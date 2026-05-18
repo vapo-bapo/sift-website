@@ -1,192 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Products — SIFT</title>
-  <meta name="description" content="Argus, Lynx, and Intelligence — three precision engines for signal-driven outbound." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Argus, Lynx, and Intelligence — three precision engines for signal-driven outbound."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
   <style>
-    /* ── PRODUCT SECTIONS ── */
-    .product-section {
-      padding: 112px 0;
-      border-top: 1px solid var(--border);
-    }
-    .product-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .product-layout.reverse { direction: rtl; }
-    .product-layout.reverse > * { direction: ltr; }
-    .product-tag {
-      font-size: 9.5px;
-      font-weight: 500;
-      letter-spacing: 0.20em;
-      color: var(--text-dim);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .product-tag::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--accent);
-    }
-    .product-name {
-      font-family: var(--font-serif);
-      font-size: clamp(52px, 7vw, 88px);
-      font-weight: 300;
-      line-height: 0.96;
-      letter-spacing: -0.02em;
-      margin-bottom: 28px;
-    }
-    .product-name em { font-style: italic; color: var(--text-secondary); }
-    .product-body {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.78;
-      margin-bottom: 40px;
-      max-width: 440px;
-    }
-    .product-cta { margin-top: 32px; }
+  /* ── PRODUCT LAYOUT ── */
+  .prod-section{padding:120px 0;border-top:1px solid var(--border);}
+  .prod-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:72px;align-items:center;
+  }
+  .prod-grid.flip{direction:rtl;}
+  .prod-grid.flip>*{direction:ltr;}
+  .prod-eyebrow{
+    font-size:9.5px;font-weight:600;letter-spacing:0.22em;
+    color:var(--accent-dim);display:flex;align-items:center;gap:12px;margin-bottom:20px;
+  }
+  .prod-eyebrow::before{content:'';display:block;width:24px;height:1.5px;background:var(--accent);}
+  .prod-name{
+    font-family:var(--font-serif);
+    font-size:clamp(56px,7vw,96px);
+    font-weight:300;line-height:0.95;letter-spacing:-0.025em;
+    margin-bottom:28px;
+  }
+  .prod-name em{font-style:italic;color:var(--text-dim);}
+  .prod-body{font-size:15px;color:var(--text-secondary);line-height:1.78;margin-bottom:36px;max-width:440px;}
+  .prod-cta{margin-top:36px;display:flex;gap:12px;align-items:center;}
 
-    /* detail card */
-    .product-detail {
-      background: var(--surface);
-      border: 1px solid var(--border-mid);
-      border-radius: 3px;
-      padding: 40px;
-    }
-    .product-detail-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-    .product-detail-label {
-      font-size: 9.5px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      color: var(--text-dim);
-    }
-    .product-detail-price {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      font-weight: 300;
-    }
-    .product-detail-price span {
-      font-size: 11px;
-      font-family: var(--font-sans);
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      margin-left: 4px;
-    }
-    .product-detail-features {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .pdf-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      gap: 16px;
-    }
-    .pdf-row:last-child { border-bottom: none; }
-    .pdf-row-label {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    .pdf-row-val {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-primary);
-      letter-spacing: 0.04em;
-      text-align: right;
-      flex-shrink: 0;
-    }
+  /* ── VIZ CONTAINERS ── */
+  .viz-wrap{
+    background:var(--bg-void);border-radius:16px;overflow:hidden;
+    box-shadow:0 24px 64px rgba(7,6,0,0.16),0 0 0 1px rgba(7,6,0,0.04);
+    position:relative;
+  }
+  .viz-header{
+    padding:16px 20px;border-bottom:1px solid rgba(255,253,245,0.06);
+    display:flex;align-items:center;gap:8px;
+  }
+  .viz-dot{width:8px;height:8px;border-radius:50%;}
 
-    /* ── LOGO ICON FOR EACH PRODUCT ── */
-    .product-icon-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      border: 1px solid var(--border-mid);
-      border-radius: 10px;
-      color: var(--accent);
-      margin-bottom: 28px;
-    }
+  /* ── ARGUS CANVAS ── */
+  #argusCanvas{display:block;width:100%;height:380px;}
 
-    /* ── COMPARISON TABLE ── */
-    .comparison {
-      padding: 112px 0;
-      border-top: 1px solid var(--border);
-    }
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 56px;
-    }
-    .comparison-table th,
-    .comparison-table td {
-      padding: 16px 20px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-    .comparison-table th {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 300;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border-mid);
-    }
-    .comparison-table th:first-child {
-      text-align: left;
-      font-family: var(--font-sans);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      color: var(--text-dim);
-    }
-    .comparison-table td:first-child {
-      text-align: left;
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    .comparison-table td {
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-    .check { color: var(--text-primary); font-size: 15px; }
-    .dash  { color: var(--text-ghost); }
-    .comparison-table tr:hover td { background: var(--surface); }
-    .col-highlighted { background: var(--surface); }
+  /* ── LYNX SVG ── */
+  .lynx-wrap{background:var(--bg-void);border-radius:16px;overflow:hidden;
+    box-shadow:0 24px 64px rgba(7,6,0,0.16);position:relative;height:420px;
+    display:flex;flex-direction:column;
+  }
+  #lynxSvg{flex:1;width:100%;cursor:crosshair;}
+  .lynx-footer{
+    padding:12px 20px;border-top:1px solid rgba(255,253,245,0.06);
+    font-size:9px;font-weight:500;letter-spacing:0.14em;
+    color:rgba(237,180,88,0.55);
+  }
 
-    @media (max-width: 900px) {
-      .product-layout { grid-template-columns: 1fr; gap: 48px; }
-      .product-layout.reverse { direction: ltr; }
-      .comparison-table th:nth-child(3),
-      .comparison-table td:nth-child(3) { display: none; }
-    }
-    @media (max-width: 640px) {
-      .comparison-table th:nth-child(4),
-      .comparison-table td:nth-child(4) { display: none; }
-    }
+  /* ── INTELLIGENCE TABS ── */
+  .intel-wrap{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:16px;
+    overflow:hidden;box-shadow:var(--shadow-elev);
+  }
+  .intel-tabs-bar{
+    display:flex;border-bottom:1px solid var(--border);
+    background:var(--bg-secondary);
+  }
+  .intel-tab{
+    padding:14px 20px;font-size:10px;font-weight:600;letter-spacing:0.12em;
+    color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;
+    margin-bottom:-1px;transition:color 180ms,border-color 180ms;flex:1;text-align:center;
+  }
+  .intel-tab.active{color:var(--text-primary);border-bottom-color:var(--accent);}
+  .intel-tab:hover{color:var(--text-secondary);}
+  .intel-pane{display:none;padding:32px;}
+  .intel-pane.active{display:block;}
+  .intel-brief-title{
+    font-family:var(--font-serif);font-size:22px;font-weight:400;
+    margin-bottom:16px;color:var(--text-primary);
+  }
+  .intel-brief-body{font-size:13px;color:var(--text-secondary);line-height:1.72;margin-bottom:20px;}
+  .intel-highlight{
+    background:var(--accent-subtle);border-left:3px solid var(--accent);
+    padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:12px;
+    font-size:12.5px;color:var(--text-secondary);line-height:1.6;
+  }
+  .intel-metric-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 0;border-bottom:1px solid var(--border-subtle);
+  }
+  .intel-metric-row:last-child{border-bottom:none;}
+  .intel-metric-label{font-size:12px;color:var(--text-dim);}
+  .intel-metric-val{font-size:13px;font-weight:600;color:var(--text-primary);}
+  .intel-tag{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:9px;font-weight:600;letter-spacing:0.14em;
+    background:var(--bg-secondary);border:1px solid var(--border);
+    padding:4px 10px;border-radius:4px;color:var(--text-dim);
+    margin:4px 4px 4px 0;
+  }
+
+  /* node tooltip */
+  .node-tooltip{
+    position:absolute;background:var(--bg-card);border:1px solid var(--border);
+    border-radius:8px;padding:10px 14px;font-size:11.5px;pointer-events:none;
+    box-shadow:var(--shadow-elev);white-space:nowrap;
+    opacity:0;transition:opacity 150ms;z-index:10;
+  }
+  .node-tooltip.show{opacity:1;}
+  .node-tooltip strong{display:block;font-size:12.5px;margin-bottom:2px;color:var(--text-primary);}
+  .node-tooltip span{color:var(--text-dim);font-size:11px;}
+
+  /* ── COMPARISON ── */
+  .compare{padding:120px 0;background:var(--bg-secondary);}
+  .compare table{width:100%;border-collapse:collapse;margin-top:56px;}
+  .compare th,.compare td{padding:14px 20px;text-align:center;border-bottom:1px solid var(--border);}
+  .compare th:first-child,.compare td:first-child{text-align:left;}
+  .compare th{
+    font-family:var(--font-serif);font-size:24px;font-weight:300;
+    padding-bottom:20px;border-bottom:1px solid var(--border-strong);
+  }
+  .compare th:first-child{
+    font-family:var(--font-sans);font-size:9.5px;font-weight:600;
+    letter-spacing:0.16em;color:var(--text-dim);
+  }
+  .compare td{font-size:13px;color:var(--text-dim);}
+  .compare td:first-child{font-size:13.5px;color:var(--text-secondary);}
+  .compare .ck{color:var(--accent-dim);font-size:16px;}
+  .compare .nd{color:var(--text-ghost);}
+  .compare .col-mid{background:rgba(237,180,88,0.04);}
+  .compare tr:hover td{background:var(--bg-card);}
+
+  @media(max-width:960px){
+    .prod-grid{grid-template-columns:1fr;gap:48px;}
+    .prod-grid.flip{direction:ltr;}
+    #argusCanvas{height:300px;}
+    .lynx-wrap{height:340px;}
+    .compare th:nth-child(3),.compare td:nth-child(3){display:none;}
+  }
+  @media(max-width:640px){
+    .prod-name{font-size:56px;}
+    .compare th:nth-child(4),.compare td:nth-child(4){display:none;}
+  }
   </style>
 </head>
 <body>
@@ -195,12 +153,12 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <svg class="nav-logo-svg sift-logo-svg" viewBox="0 0 100 70">
-        <circle cx="50" cy="35" r="19" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke="currentColor" stroke-width="1.8"/>
+      <svg class="nav-logo-svg" viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="50" cy="35" r="19" stroke-width="2"/>
+        <path d="M36,7 L21,35 L36,63" stroke-width="2"/>
+        <path d="M64,7 L79,35 L64,63" stroke-width="2"/>
       </svg>
-      <div class="nav-logo-text">
+      <div>
         <span class="nav-logo-name">SIFT</span>
         <span class="nav-logo-sub">SIGNAL INTEL · V1.0</span>
       </div>
@@ -214,205 +172,192 @@
     <a href="contact.html" class="nav-cta">BOOK A RUN →</a>
     <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
-  <div class="nav-mobile-panel" id="mobilePanel">
+  <div class="nav-mobile" id="mobileNav">
     <a href="products.html" class="nav-mobile-link">PRODUCTS</a>
     <a href="pricing.html" class="nav-mobile-link">PRICING</a>
     <a href="case-studies.html" class="nav-mobile-link">CASE STUDIES</a>
     <a href="contact.html" class="nav-mobile-link">CONTACT</a>
-    <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:12px;">BOOK A RUN →</a>
+    <a href="contact.html" class="btn btn-dark" style="margin-top:16px;">BOOK A RUN →</a>
   </div>
 </nav>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="container">
-    <h1 class="page-hero-title reveal">
-      Three engines.<br/><em>One pipeline.</em>
-    </h1>
-    <p class="page-hero-desc reveal">Each layer adds precision. Use Argus alone or stack all three for full-stack outbound intelligence.</p>
+    <div class="page-hero-inner">
+      <h1 class="h-display sr">
+        Three engines.<br/><em>One pipeline.</em>
+      </h1>
+      <p class="page-hero-desc sr-right">
+        Each layer adds precision. Stack all three for the complete outbound picture.
+      </p>
+    </div>
   </div>
 </div>
 
-<!-- ═══ ARGUS ══════════════════════════════════════════════ -->
-<section class="product-section" id="argus">
+<!-- ════════ 01 — ARGUS ════════════════════════════════════ -->
+<section class="prod-section" id="argus">
   <div class="container">
-    <div class="product-layout">
+    <div class="prod-grid">
+      <!-- text -->
       <div>
-        <div class="product-tag reveal-fast">01 — LEAD GENERATION</div>
-        <h2 class="product-name reveal">Argus</h2>
-        <p class="product-body reveal">
-          Argus builds precision lead lists from scratch using your ICP as a filter.
+        <div class="prod-eyebrow sr-up">01 — LEAD GENERATION</div>
+        <h2 class="prod-name sr">Argus</h2>
+        <p class="prod-body sr">
+          Argus builds precision lead lists from scratch using your ICP as the only filter.
           Every contact comes with a score from 0 to 100, a cited buying trigger,
-          and a one-line outreach hook — all delivered as a PDF and DOCX file within 72 hours.
+          and a one-line outreach hook — all delivered as PDF and DOCX in 72 hours.
         </p>
-        <ul class="feature-list reveal">
+        <ul class="flist sr" data-delay="80">
           <li>Up to 20 qualified leads per run</li>
           <li>Per-contact ICP score (0–100)</li>
           <li>Buying trigger, cited and sourced</li>
           <li>One-line outreach hook per contact</li>
-          <li>PDF + DOCX delivery in 72h</li>
+          <li>PDF + DOCX delivery within 72 hours</li>
           <li>Exportable to any CRM or sequencer</li>
         </ul>
-        <div class="product-cta reveal">
-          <a href="pricing.html" class="btn btn-primary">SEE PRICING →</a>
+        <div class="prod-cta sr" data-delay="140">
+          <a href="pricing.html" class="btn btn-dark">SEE PRICING →</a>
+          <a href="contact.html" class="btn btn-outline">BOOK A RUN</a>
         </div>
       </div>
-      <div class="reveal">
-        <div class="product-detail">
-          <div class="product-detail-head">
-            <span class="product-detail-label">ARGUS STARTER</span>
-            <div class="product-detail-price">€490<span>/ RUN</span></div>
-          </div>
-          <div class="product-detail-features">
-            <div class="pdf-row">
-              <span class="pdf-row-label">Qualified leads</span>
-              <span class="pdf-row-val">Up to 20</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">ICP scoring</span>
-              <span class="pdf-row-val">0–100 per contact</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Buying trigger</span>
-              <span class="pdf-row-val">Cited source</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Outreach hook</span>
-              <span class="pdf-row-val">1 per contact</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Delivery format</span>
-              <span class="pdf-row-val">PDF + DOCX</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">SLA</span>
-              <span class="pdf-row-val">72 hours</span>
-            </div>
-          </div>
+      <!-- live viz -->
+      <div class="viz-wrap sr-right tilt" data-tilt="4">
+        <div class="viz-header">
+          <div class="viz-dot" style="background:#c9943a"></div>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
+          <span style="margin-left:8px;font-size:9px;font-weight:500;letter-spacing:0.14em;color:rgba(245,240,232,0.30);">ARGUS · REAL-TIME SCAN</span>
         </div>
+        <canvas id="argusCanvas" style="height:380px;display:block;width:100%;"></canvas>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ LYNX ═══════════════════════════════════════════════ -->
-<section class="product-section" id="lynx">
+<!-- ════════ 02 — LYNX ════════════════════════════════════ -->
+<section class="prod-section" id="lynx">
   <div class="container">
-    <div class="product-layout reverse">
+    <div class="prod-grid flip">
+      <!-- text -->
       <div>
-        <div class="product-tag reveal-fast">02 — ACCOUNT INTELLIGENCE</div>
-        <h2 class="product-name reveal">Lynx</h2>
-        <p class="product-body reveal">
-          Lynx goes deeper on your five highest-priority accounts. Each one gets
-          a dedicated workspace: a complete decision-maker map, a curated news feed
-          for the past 90 days, and a contextual AI chat trained on everything we know
-          about that account.
+        <div class="prod-eyebrow sr-up">02 — ACCOUNT INTELLIGENCE</div>
+        <h2 class="prod-name sr">Lynx</h2>
+        <p class="prod-body sr">
+          Lynx goes deeper on your five highest-priority accounts. Each gets a dedicated
+          workspace: a complete decision-maker map, a curated 90-day signal feed, and an
+          AI chat trained on everything we know about that account.
         </p>
-        <ul class="feature-list reveal">
-          <li>Dedicated workspace per account</li>
+        <ul class="flist sr" data-delay="80">
+          <li>Dedicated workspace per account (×5)</li>
           <li>Full decision-maker org chart</li>
-          <li>Stakeholder roles, LinkedIn, and entry points</li>
-          <li>90-day news and signal feed</li>
-          <li>Contextual AI chat on each account</li>
-          <li>Included in Argus + Lynx stack (€990)</li>
+          <li>Stakeholder roles, LinkedIn, entry points</li>
+          <li>90-day news and intent signal feed</li>
+          <li>Contextual AI chat per account</li>
         </ul>
-        <div class="product-cta reveal">
-          <a href="pricing.html" class="btn btn-primary">SEE PRICING →</a>
+        <div class="prod-cta sr" data-delay="140">
+          <a href="pricing.html" class="btn btn-dark">SEE PRICING →</a>
+          <a href="contact.html" class="btn btn-outline">BOOK A RUN</a>
         </div>
       </div>
-      <div class="reveal">
-        <div class="product-detail">
-          <div class="product-detail-head">
-            <span class="product-detail-label">ARGUS + LYNX</span>
-            <div class="product-detail-price">€990<span>/ RUN</span></div>
-          </div>
-          <div class="product-detail-features">
-            <div class="pdf-row">
-              <span class="pdf-row-label">Priority accounts</span>
-              <span class="pdf-row-val">5 workspaces</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Decision-maker mapping</span>
-              <span class="pdf-row-val">Full org chart</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">News feed</span>
-              <span class="pdf-row-val">90 days</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">AI chat</span>
-              <span class="pdf-row-val">Per account</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Includes Argus list</span>
-              <span class="pdf-row-val">Yes</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">SLA</span>
-              <span class="pdf-row-val">72 hours</span>
-            </div>
-          </div>
+      <!-- network viz -->
+      <div class="lynx-wrap sr-left tilt" data-tilt="4" style="position:relative;">
+        <div class="viz-header">
+          <div class="viz-dot" style="background:#c9943a"></div>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
+          <span style="margin-left:8px;font-size:9px;font-weight:500;letter-spacing:0.14em;color:rgba(245,240,232,0.30);">LYNX · ORG INTELLIGENCE MAP</span>
         </div>
+        <svg id="lynxSvg"></svg>
+        <div class="node-tooltip" id="nodeTooltip"></div>
+        <div class="lynx-footer">HOVER NODES TO EXPLORE · MOVE CURSOR TO REPEL</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ INTELLIGENCE ════════════════════════════════════════ -->
-<section class="product-section" id="intelligence">
+<!-- ════════ 03 — INTELLIGENCE ════════════════════════════ -->
+<section class="prod-section" id="intelligence">
   <div class="container">
-    <div class="product-layout">
+    <div class="prod-grid">
+      <!-- text -->
       <div>
-        <div class="product-tag reveal-fast">03 — STRATEGIC BRIEFING</div>
-        <h2 class="product-name reveal">Intelligence</h2>
-        <p class="product-body reveal">
-          Intelligence is a full strategic brief on a single target company. We map
-          the competitive landscape, identify the internal buying dynamics, and deliver
-          a written brief followed by a 90-minute session where our analysts walk you
-          through everything.
+        <div class="prod-eyebrow sr-up">03 — STRATEGIC BRIEFING</div>
+        <h2 class="prod-name sr">Intelligence</h2>
+        <p class="prod-body sr">
+          A full strategic brief on one target company. We map the competitive landscape,
+          identify the buying dynamics and internal champions, then walk you through it all
+          in a 90-minute analyst session.
         </p>
-        <ul class="feature-list reveal">
-          <li>One-company deep-dive brief</li>
+        <ul class="flist sr" data-delay="80">
+          <li>Deep-dive brief on one target company</li>
           <li>Competitive landscape analysis</li>
           <li>Internal buying dynamics and champions</li>
           <li>90-minute strategy session with analysts</li>
           <li>Custom ICP refinement included</li>
-          <li>Direct line for 30 days post-delivery</li>
+          <li>Direct analyst line for 30 days</li>
         </ul>
-        <div class="product-cta reveal">
-          <a href="pricing.html" class="btn btn-primary">SEE PRICING →</a>
+        <div class="prod-cta sr" data-delay="140">
+          <a href="pricing.html" class="btn btn-dark">SEE PRICING →</a>
+          <a href="contact.html" class="btn btn-outline">BOOK A RUN</a>
         </div>
       </div>
-      <div class="reveal">
-        <div class="product-detail">
-          <div class="product-detail-head">
-            <span class="product-detail-label">FULL SUITE</span>
-            <div class="product-detail-price">€1.890<span>/ RUN</span></div>
+      <!-- intelligence card viz -->
+      <div class="sr-right tilt" data-tilt="4" id="intelTabs">
+        <div class="intel-wrap">
+          <div class="intel-tabs-bar">
+            <div class="intel-tab active" data-pane="overview">OVERVIEW</div>
+            <div class="intel-tab" data-pane="stakeholders">STAKEHOLDERS</div>
+            <div class="intel-tab" data-pane="signals">SIGNALS</div>
           </div>
-          <div class="product-detail-features">
-            <div class="pdf-row">
-              <span class="pdf-row-label">Target company deep-dive</span>
-              <span class="pdf-row-val">1 company</span>
+
+          <div class="intel-pane active" data-pane="overview">
+            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:12px;">TARGET COMPANY</p>
+            <div class="intel-brief-title">Celonis AG — Process Mining</div>
+            <p class="intel-brief-body">Munich-based enterprise software company. Currently scaling their EMEA sales team after a $1B Series D. Decision-making authority is split between the CRO and a newly appointed VP GTM.</p>
+            <div class="intel-highlight">New VP GTM hire 6 weeks ago signals intent to restructure outbound motion — ideal entry window.</div>
+            <div class="intel-highlight">Hiring 14 sales engineers in DACH, suggesting product expansion into technical buyers.</div>
+            <div style="margin-top:16px;">
+              <div class="intel-metric-row"><span class="intel-metric-label">Employees</span><span class="intel-metric-val">2,400+</span></div>
+              <div class="intel-metric-row"><span class="intel-metric-label">Last funding</span><span class="intel-metric-val">$1B Series D</span></div>
+              <div class="intel-metric-row"><span class="intel-metric-label">ICP match score</span><span class="intel-metric-val" style="color:var(--accent-dim);">91 / 100</span></div>
             </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Strategy session</span>
-              <span class="pdf-row-val">90 minutes</span>
+          </div>
+
+          <div class="intel-pane" data-pane="stakeholders">
+            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:16px;">KEY STAKEHOLDERS</p>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="padding:12px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border-subtle);">
+                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Michael Braun</div>
+                <div style="font-size:11px;color:var(--accent-dim);margin-bottom:6px;">CRO — PRIMARY CHAMPION</div>
+                <div style="font-size:12px;color:var(--text-dim);">Former VP Sales at SAP. Strong outbound background. Open to new tooling based on recent LinkedIn activity.</div>
+              </div>
+              <div style="padding:12px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border-subtle);">
+                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Sarah Klein</div>
+                <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;">VP Revenue Ops — INFLUENCER</div>
+                <div style="font-size:12px;color:var(--text-dim);">Controls tooling budget and CRM decisions. Key to any vendor evaluation process.</div>
+              </div>
+              <div style="padding:12px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border-subtle);">
+                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Jonas Weber</div>
+                <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;">CFO — BUDGET HOLDER</div>
+                <div style="font-size:12px;color:var(--text-dim);">Involved in tooling above €50k/yr. Approves Q1 budget in January.</div>
+              </div>
             </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">ICP refinement</span>
-              <span class="pdf-row-val">Custom</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Direct analyst access</span>
-              <span class="pdf-row-val">30 days</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">Includes Argus + Lynx</span>
-              <span class="pdf-row-val">Yes</span>
-            </div>
-            <div class="pdf-row">
-              <span class="pdf-row-label">SLA</span>
-              <span class="pdf-row-val">Priority</span>
+          </div>
+
+          <div class="intel-pane" data-pane="signals">
+            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:16px;">BUYING SIGNALS</p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="intel-highlight">↑ Hiring 14 sales engineers — DACH expansion signal</div>
+              <div class="intel-highlight">↑ New VP GTM hired 6 weeks ago — outbound rebuild likely</div>
+              <div class="intel-highlight">↑ Migrating CRM stack to HubSpot — integration window open</div>
+              <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:12px;margin-top:4px;">
+                <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-dim);margin-bottom:10px;">INDUSTRY SIGNALS</div>
+                <div class="intel-tag">Process Mining ↑ 34%</div>
+                <div class="intel-tag">EMEA SaaS +18% QoQ</div>
+                <div class="intel-tag">AI-driven ops expansion</div>
+                <div class="intel-tag">Enterprise budget unlock Q1</div>
+              </div>
             </div>
           </div>
         </div>
@@ -421,46 +366,39 @@
   </div>
 </section>
 
-<!-- ═══ COMPARISON TABLE ════════════════════════════════════ -->
-<section class="comparison">
+<!-- ════════ COMPARISON ════════════════════════════════════ -->
+<section class="compare">
   <div class="container">
-    <div class="section-eyebrow reveal-fast">COMPARE</div>
-    <h2 class="section-title reveal">What's included<br/><em>in each tier.</em></h2>
-    <div class="reveal">
-      <table class="comparison-table">
+    <div class="eyebrow sr-up">COMPARE</div>
+    <h2 class="h-section sr" data-delay="60">What's included<br/><em>in each tier.</em></h2>
+    <div class="sr" data-delay="120">
+      <table class="compare">
         <thead>
           <tr>
             <th>FEATURE</th>
             <th>Argus Starter</th>
-            <th class="col-highlighted">Argus + Lynx</th>
+            <th class="col-mid">Argus + Lynx</th>
             <th>Full Suite</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Qualified lead list</td><td><span class="check">✓</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>ICP score per contact</td><td><span class="check">✓</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Buying trigger (cited)</td><td><span class="check">✓</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Outreach hook</td><td><span class="check">✓</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>PDF + DOCX delivery</td><td><span class="check">✓</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Lynx account workspaces (5)</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Decision-maker org chart</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>90-day news feed</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>AI chat per account</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Intelligence brief</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="dash">—</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Strategy session (90 min)</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="dash">—</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Custom ICP refinement</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="dash">—</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Direct analyst line (30d)</td><td><span class="dash">—</span></td><td class="col-highlighted"><span class="dash">—</span></td><td><span class="check">✓</span></td></tr>
-          <tr>
-            <td style="color:var(--text-primary);font-weight:500;padding-top:24px;">Starting from</td>
-            <td style="color:var(--text-primary);font-family:var(--font-serif);font-size:22px;font-weight:300;">€490</td>
-            <td class="col-highlighted" style="color:var(--text-primary);font-family:var(--font-serif);font-size:22px;font-weight:300;">€990</td>
-            <td style="color:var(--text-primary);font-family:var(--font-serif);font-size:22px;font-weight:300;">€1.890</td>
-          </tr>
+          <tr><td>Qualified lead list</td><td><span class="ck">✓</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>ICP score per contact</td><td><span class="ck">✓</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Buying trigger (cited)</td><td><span class="ck">✓</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Outreach hook per contact</td><td><span class="ck">✓</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>PDF + DOCX delivery</td><td><span class="ck">✓</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Lynx workspaces (×5)</td><td><span class="nd">—</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Decision-maker org chart</td><td><span class="nd">—</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>90-day signal feed</td><td><span class="nd">—</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>AI chat per account</td><td><span class="nd">—</span></td><td class="col-mid"><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Intelligence brief</td><td><span class="nd">—</span></td><td class="col-mid"><span class="nd">—</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Strategy session (90 min)</td><td><span class="nd">—</span></td><td class="col-mid"><span class="nd">—</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Direct analyst line (30d)</td><td><span class="nd">—</span></td><td class="col-mid"><span class="nd">—</span></td><td><span class="ck">✓</span></td></tr>
         </tbody>
       </table>
-    </div>
-    <div style="margin-top:40px;" class="reveal">
-      <a href="pricing.html" class="btn btn-primary">VIEW ALL PRICING →</a>
+      <div style="margin-top:36px;">
+        <a href="pricing.html" class="btn btn-dark">VIEW FULL PRICING →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -470,9 +408,9 @@
   <div class="container footer-inner">
     <a href="index.html" class="footer-logo">
       <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="50" cy="35" r="19" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke-width="1.8"/>
+        <circle cx="50" cy="35" r="19" stroke-width="2"/>
+        <path d="M36,7 L21,35 L36,63" stroke-width="2"/>
+        <path d="M64,7 L79,35 L64,63" stroke-width="2"/>
       </svg>
       <span class="footer-logo-name">SIFT</span>
     </a>
@@ -487,5 +425,54 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+// Enhanced node tooltip for Lynx
+(function() {
+  const tooltip = document.getElementById('nodeTooltip');
+  const svg = document.getElementById('lynxSvg');
+  if (!tooltip || !svg) return;
+
+  const nodes = [
+    { label:'Celonis AG', role:'Target Company' },
+    { label:'Michael Braun', role:'CRO · Primary Champion' },
+    { label:'Sarah Klein', role:'VP Revenue Ops · Influencer' },
+    { label:'Thomas Müller', role:'Head of Sales · Evaluator' },
+    { label:'Anna Richter', role:'Dir. Partnerships · Gatekeeper' },
+    { label:'Jonas Weber', role:'CFO · Budget Holder' },
+    { label:'Lisa Hoffmann', role:'CISO · Technical Buyer' },
+  ];
+
+  svg.addEventListener('mousemove', e => {
+    const r = svg.getBoundingClientRect();
+    const mx = e.clientX - r.left, my = e.clientY - r.top;
+    const W = r.width, H = r.height;
+    const cx = W/2, cy = H/2;
+    const positions = [
+      {x:cx, y:cy},
+      {x:cx-160*(W/480), y:cy-80*(H/380)},
+      {x:cx+170*(W/480), y:cy-70*(H/380)},
+      {x:cx-170*(W/480), y:cy+80*(H/380)},
+      {x:cx+155*(W/480), y:cy+90*(H/380)},
+      {x:cx,             y:cy-140*(H/380)},
+      {x:cx,             y:cy+150*(H/380)},
+    ];
+    let closest = -1, minD = 36;
+    positions.forEach((p, i) => {
+      const d = Math.hypot(mx - p.x, my - p.y);
+      if (d < minD) { minD = d; closest = i; }
+    });
+    if (closest >= 0) {
+      const n = nodes[closest];
+      tooltip.innerHTML = `<strong>${n.label}</strong><span>${n.role}</span>`;
+      tooltip.style.left = (mx + 14) + 'px';
+      tooltip.style.top  = (my - 20) + 'px';
+      tooltip.classList.add('show');
+    } else {
+      tooltip.classList.remove('show');
+    }
+  });
+  svg.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+})();
+</script>
 </body>
 </html>

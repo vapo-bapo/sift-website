@@ -1,363 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SIFT — Signal Intelligence</title>
-  <meta name="description" content="SIFT builds precision outbound pipelines for B2B companies. Signal-driven lead generation, account intelligence, and strategic briefings." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="SIFT builds precision outbound pipelines for B2B companies. Signal-driven lead generation, account intelligence, and strategic briefings."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
   <style>
-    /* ── INTRO OVERLAY ── */
-    #intro-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 28px;
-      cursor: pointer;
-    }
-    .intro-svg-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 36px;
-    }
-    .intro-svg {
-      width: min(260px, 38vw);
-      height: auto;
-    }
-    /* glow filter */
-    .intro-glow {
-      filter: drop-shadow(0 0 12px rgba(200,225,235,0.6))
-              drop-shadow(0 0 30px rgba(200,225,235,0.25));
-    }
-    #intro-wordmark {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(26px, 5vw, 42px);
-      font-weight: 300;
-      letter-spacing: 0.5em;
-      color: #fff;
-      transition: none;
-      padding-right: 0.5em; /* optical centering due to letter-spacing */
-    }
-    #intro-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-    }
-    #intro-skip {
-      position: absolute;
-      bottom: 32px;
-      right: 40px;
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.2);
-    }
+  /* ── HERO ── */
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;
+    justify-content:center;padding-top:var(--nav-h);
+    position:relative;overflow:hidden;
+    background:var(--bg-primary);
+  }
+  .hero-content{padding:80px 0 100px;position:relative;z-index:1;}
+  .hero-split{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:48px;align-items:center;
+  }
+  .hero-eyebrow{
+    font-size:9.5px;font-weight:600;letter-spacing:0.22em;
+    color:var(--accent-dim);display:flex;align-items:center;gap:10px;margin-bottom:36px;
+  }
+  .hero-eyebrow span{
+    width:24px;height:1.5px;background:var(--accent);display:block;
+  }
+  .hero-title{
+    font-family:var(--font-serif);
+    font-size:clamp(60px,7.5vw,110px);
+    font-weight:300;line-height:0.96;
+    letter-spacing:-0.025em;
+    margin-bottom:32px;
+  }
+  .hero-title em{font-style:italic;color:var(--text-dim);}
+  .hero-body{
+    font-size:15.5px;color:var(--text-secondary);line-height:1.76;
+    max-width:400px;margin-bottom:44px;
+  }
+  .hero-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100svh;
-      padding-top: var(--nav-h);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-content {
-      padding: 80px 0 120px;
-    }
-    .hero-eyebrow {
-      font-size: 9.5px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      color: var(--accent);
-      border: 1px solid rgba(192,83,42,0.30);
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 2px;
-      margin-bottom: 40px;
-    }
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(58px, 9vw, 128px);
-      font-weight: 300;
-      line-height: 0.98;
-      letter-spacing: -0.02em;
-      margin-bottom: 36px;
-      max-width: 860px;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--text-secondary);
-    }
-    .hero-body {
-      font-size: 15.5px;
-      color: var(--text-secondary);
-      line-height: 1.75;
-      max-width: 420px;
-      margin-bottom: 52px;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .hero-rule {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 80px 0 56px;
-    }
-    .hero-stats {
-      display: flex;
-      gap: 64px;
-      flex-wrap: wrap;
-    }
-    .stat { display: flex; flex-direction: column; gap: 6px; }
-    .stat-num {
-      font-family: var(--font-serif);
-      font-size: 36px;
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 10.5px;
-      letter-spacing: 0.08em;
-      color: var(--text-dim);
-    }
+  /* stats strip */
+  .hero-stats-strip{
+    padding:36px 0;border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:var(--bg-secondary);
+  }
+  .stats-row{display:flex;gap:0;align-items:stretch;}
+  .stat-item{
+    flex:1;padding:0 40px;
+    border-right:1px solid var(--border);
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .stat-item:first-child{padding-left:0;}
+  .stat-item:last-child{border-right:none;}
+  .stat-num{
+    font-family:var(--font-serif);font-size:44px;
+    font-weight:300;letter-spacing:-0.02em;line-height:1;
+    color:var(--text-primary);
+  }
+  .stat-label{font-size:11px;color:var(--text-dim);letter-spacing:0.06em;}
 
-    /* background grid */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .hero-bg-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(245,240,232,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(245,240,232,0.03) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(ellipse 80% 70% at 100% 50%, black 0%, transparent 75%);
-    }
-    .hero-bg-glow {
-      position: absolute;
-      right: -10%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(192,83,42,0.07) 0%, transparent 60%);
-      border-radius: 50%;
-    }
-    .hero-logo-bg {
-      position: absolute;
-      right: 8%;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.06;
-    }
-    .hero-logo-bg svg {
-      width: min(480px, 40vw);
-      height: auto;
-    }
+  /* right panel: mini Argus preview */
+  .hero-viz{
+    background:var(--bg-void);border-radius:14px;
+    overflow:hidden;position:relative;
+    height:390px;
+    box-shadow:0 24px 64px rgba(7,6,0,0.18),0 0 0 1px rgba(7,6,0,0.06);
+  }
+  .hero-viz canvas{
+    width:100%;height:100%;display:block;
+  }
+  .hero-viz-label{
+    position:absolute;top:14px;left:18px;
+    font-size:9px;font-weight:600;letter-spacing:0.16em;
+    color:rgba(237,180,88,0.7);
+  }
 
-    /* ── INTRO ANIM: hide body until done ── */
-    body:not(.intro-done) .hero,
-    body:not(.intro-done) .nav {
-      opacity: 0;
-      pointer-events: none;
-    }
-    body.intro-done .hero,
-    body.intro-done .nav {
-      opacity: 1;
-      transition: opacity 600ms var(--ease-out);
-    }
+  /* ── BRANDS/LOGOS strip ── */
+  .trust-strip{
+    padding:56px 0;border-bottom:1px solid var(--border);
+  }
+  .trust-label{
+    font-size:9.5px;font-weight:500;letter-spacing:0.18em;
+    color:var(--text-dim);text-align:center;margin-bottom:32px;
+  }
+  .trust-logos{
+    display:flex;align-items:center;justify-content:center;
+    gap:52px;flex-wrap:wrap;opacity:0.35;
+  }
+  .trust-logo{
+    font-family:var(--font-sans);font-size:14px;font-weight:600;
+    letter-spacing:0.14em;color:var(--text-primary);
+  }
 
-    /* ── FEATURE STRIP ── */
-    .features-strip {
-      padding: 88px 0;
-      border-top: 1px solid var(--border);
-    }
-    .features-strip-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .fstrip-card {
-      background: var(--void);
-      padding: 48px 40px;
-      transition: background 300ms;
-      cursor: default;
-    }
-    .fstrip-card:hover { background: var(--surface); }
-    .fstrip-icon {
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--border-strong);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 28px;
-      color: var(--accent);
-    }
-    .fstrip-num {
-      font-size: 9.5px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      color: var(--text-dim);
-      margin-bottom: 16px;
-    }
-    .fstrip-title {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      font-weight: 400;
-      margin-bottom: 14px;
-    }
-    .fstrip-desc {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.72;
-      margin-bottom: 28px;
-    }
-    .fstrip-link {
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: var(--text-dim);
-      transition: color 180ms;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .fstrip-link:hover { color: var(--accent); }
+  /* ── PRODUCTS STRIP ── */
+  .products-strip{padding:120px 0;}
+  .products-split{
+    display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;
+  }
+  .products-sticky{position:sticky;top:120px;}
+  .products-nav{display:flex;flex-direction:column;gap:0;margin-top:48px;}
+  .products-nav-item{
+    padding:18px 0;border-top:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    cursor:pointer;transition:color 200ms;color:var(--text-dim);
+    font-size:13px;font-weight:500;letter-spacing:0.04em;
+  }
+  .products-nav-item:last-child{border-bottom:1px solid var(--border);}
+  .products-nav-item .arrow{transition:transform 300ms var(--ease-spring);font-size:16px;}
+  .products-nav-item.active,.products-nav-item:hover{color:var(--text-primary);}
+  .products-nav-item.active .arrow{transform:translateX(4px);}
+  .products-nav-item.active{color:var(--accent-dim);}
 
-    /* ── PROCESS STRIP ── */
-    .process {
-      padding: 128px 0;
-      border-top: 1px solid var(--border);
-    }
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-top: 72px;
-      overflow: hidden;
-      border-radius: 2px;
-    }
-    .process-step {
-      background: var(--void);
-      padding: 40px 32px;
-    }
-    .process-step-n {
-      font-family: var(--font-serif);
-      font-size: 48px;
-      font-weight: 300;
-      color: var(--text-ghost);
-      line-height: 1;
-      margin-bottom: 24px;
-    }
-    .process-step-title {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
-    }
-    .process-step-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
+  .products-content{display:flex;flex-direction:column;gap:80px;}
+  .product-block{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+    padding:48px;transition:box-shadow 300ms,transform 300ms var(--ease-spring);
+  }
+  .product-block:hover{box-shadow:var(--shadow-elev);}
+  .product-block-head{
+    display:flex;align-items:flex-start;justify-content:space-between;
+    gap:24px;margin-bottom:32px;
+  }
+  .product-block-num{
+    font-size:9.5px;font-weight:600;letter-spacing:0.20em;
+    color:var(--text-dim);margin-bottom:8px;
+  }
+  .product-block-name{
+    font-family:var(--font-serif);font-size:40px;font-weight:300;line-height:1;
+  }
+  .product-block-badge{
+    background:var(--bg-secondary);border:1px solid var(--border);
+    border-radius:6px;padding:6px 12px;
+    font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-dim);
+    flex-shrink:0;white-space:nowrap;
+  }
+  .product-block-desc{
+    font-size:14px;color:var(--text-secondary);line-height:1.76;margin-bottom:28px;
+  }
+  .product-block-link{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:10.5px;font-weight:600;letter-spacing:0.12em;
+    color:var(--accent-dim);transition:color 180ms,gap 200ms var(--ease-spring);
+  }
+  .product-block-link:hover{color:var(--accent);gap:10px;}
 
-    /* ── CTA BANNER ── */
-    .cta-banner {
-      padding: 112px 0;
-      border-top: 1px solid var(--border);
-    }
-    .cta-banner-inner {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-    .cta-banner-title {
-      font-family: var(--font-serif);
-      font-size: clamp(40px, 5vw, 68px);
-      font-weight: 300;
-      line-height: 1.08;
-      max-width: 560px;
-    }
-    .cta-banner-title em { font-style: italic; color: var(--text-secondary); }
-    .cta-banner-actions {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-shrink: 0;
-      flex-wrap: wrap;
-    }
+  /* ── HOW IT WORKS ── */
+  .process{padding:120px 0;background:var(--bg-secondary);}
+  .process-steps{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);border-radius:8px;
+    overflow:hidden;margin-top:64px;
+  }
+  .process-step{
+    background:var(--bg-secondary);padding:40px 32px;
+    transition:background 250ms;
+  }
+  .process-step:hover{background:var(--bg-card);}
+  .process-step-n{
+    font-family:var(--font-serif);font-size:52px;font-weight:300;
+    color:var(--text-ghost);line-height:1;margin-bottom:24px;
+  }
+  .process-step h4{font-size:13.5px;font-weight:600;margin-bottom:10px;letter-spacing:0.02em;}
+  .process-step p{font-size:13px;color:var(--text-dim);line-height:1.7;}
 
-    @media (max-width: 900px) {
-      .features-strip-grid { grid-template-columns: 1fr; }
-      .process-grid { grid-template-columns: 1fr 1fr; }
-      .hero-stats { gap: 36px; }
-    }
-    @media (max-width: 640px) {
-      .process-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 52px; }
-      .fstrip-card { padding: 32px 24px; }
-    }
+  /* ── CTA ── */
+  .cta{padding:128px 0;}
+  .cta-inner{
+    background:var(--bg-void);border-radius:16px;padding:80px;
+    display:flex;align-items:center;justify-content:space-between;gap:48px;
+    position:relative;overflow:hidden;
+  }
+  .cta-bg-glow{
+    position:absolute;right:-80px;top:50%;transform:translateY(-50%);
+    width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(237,180,88,0.08) 0%,transparent 60%);
+    pointer-events:none;
+  }
+  .cta-title{
+    font-family:var(--font-serif);font-size:clamp(36px,4vw,58px);
+    font-weight:300;line-height:1.1;color:#FFFDF5;max-width:480px;
+    position:relative;z-index:1;
+  }
+  .cta-title em{font-style:italic;color:rgba(255,253,245,0.5);}
+  .cta-actions{display:flex;gap:12px;align-items:center;flex-shrink:0;position:relative;z-index:1;}
+
+  @media(max-width:1024px){
+    .hero-split{grid-template-columns:1fr;}.hero-viz{height:300px;}
+    .products-split{grid-template-columns:1fr;}.products-sticky{position:static;}
+    .process-steps{grid-template-columns:1fr 1fr;}
+    .stats-row{flex-wrap:wrap;}.stat-item{min-width:140px;}
+  }
+  @media(max-width:700px){
+    .process-steps{grid-template-columns:1fr;}
+    .cta-inner{flex-direction:column;padding:48px 32px;}
+    .cta-actions{flex-direction:column;width:100%;}.cta-actions .btn{width:100%;justify-content:center;}
+    .trust-logos{gap:28px;}
+  }
   </style>
 </head>
 <body>
 
-<!-- ═══ INTRO ══════════════════════════════════════════════ -->
-<div id="intro-overlay">
-  <div class="intro-svg-wrap">
-    <svg class="intro-svg intro-glow sift-logo-svg" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
-      <circle id="ic" cx="100" cy="70" r="38" stroke="white" stroke-width="2.2"/>
-      <path  id="il" d="M72,14 L42,70 L72,126" stroke="white" stroke-width="2.2"/>
-      <path  id="ir" d="M128,14 L158,70 L128,126" stroke="white" stroke-width="2.2"/>
-    </svg>
-    <div id="intro-wordmark">SIFT</div>
-    <div id="intro-sub">SIGNAL INTELLIGENCE · V1.0</div>
-  </div>
-  <span id="intro-skip">CLICK TO SKIP</span>
-</div>
-
-<!-- ═══ NAV ════════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <svg class="nav-logo-svg sift-logo-svg" viewBox="0 0 100 70">
-        <circle cx="50" cy="35" r="19" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke="currentColor" stroke-width="1.8"/>
+      <svg class="nav-logo-svg" viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="50" cy="35" r="19" stroke-width="2"/>
+        <path d="M36,7 L21,35 L36,63" stroke-width="2"/>
+        <path d="M64,7 L79,35 L64,63" stroke-width="2"/>
       </svg>
-      <div class="nav-logo-text">
+      <div>
         <span class="nav-logo-name">SIFT</span>
         <span class="nav-logo-sub">SIGNAL INTEL · V1.0</span>
       </div>
@@ -371,153 +228,242 @@
     <a href="contact.html" class="nav-cta">BOOK A RUN →</a>
     <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
-  <div class="nav-mobile-panel" id="mobilePanel">
+  <div class="nav-mobile" id="mobileNav">
     <a href="products.html" class="nav-mobile-link">PRODUCTS</a>
     <a href="pricing.html" class="nav-mobile-link">PRICING</a>
     <a href="case-studies.html" class="nav-mobile-link">CASE STUDIES</a>
     <a href="contact.html" class="nav-mobile-link">CONTACT</a>
-    <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:12px;">BOOK A RUN →</a>
+    <a href="contact.html" class="btn btn-dark" style="margin-top:16px;">BOOK A RUN →</a>
   </div>
 </nav>
 
-<!-- ═══ HERO ════════════════════════════════════════════════ -->
+<!-- ════════════════ HERO ════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-bg-glow"></div>
-    <div class="hero-logo-bg">
-      <svg class="sift-logo-svg" viewBox="0 0 200 140" fill="none">
-        <circle cx="100" cy="70" r="38" stroke="white" stroke-width="1.5"/>
-        <path d="M72,14 L42,70 L72,126" stroke="white" stroke-width="1.5"/>
-        <path d="M128,14 L158,70 L128,126" stroke="white" stroke-width="1.5"/>
-      </svg>
-    </div>
+  <!-- Subtle bg dots -->
+  <div style="position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(var(--border) 1px,transparent 1px);
+    background-size:36px 36px;opacity:0.6;
+    mask-image:radial-gradient(ellipse 60% 80% at 70% 50%,black,transparent);">
   </div>
 
   <div class="container hero-content">
-    <div class="hero-eyebrow reveal-fast">B2B OUTBOUND INTELLIGENCE</div>
-    <h1 class="hero-title reveal">
-      Your pipeline,<br/>
-      <em>signal&#8209;driven.</em>
-    </h1>
-    <p class="hero-body reveal">
-      SIFT identifies, qualifies, and deep-maps your best accounts —
-      so your team arrives at every call with context, not a cold list.
-    </p>
-    <div class="hero-actions reveal">
-      <a href="contact.html" class="btn btn-primary">BOOK A RUN →</a>
-      <a href="products.html" class="btn btn-ghost">SEE HOW IT WORKS</a>
+    <div class="hero-split">
+      <!-- LEFT -->
+      <div>
+        <div class="hero-eyebrow sr-up" data-delay="0">
+          <span></span>B2B OUTBOUND INTELLIGENCE
+        </div>
+        <h1 class="hero-title sr" data-delay="80">
+          Your pipeline,<br/>
+          <em>signal&#8209;driven.</em>
+        </h1>
+        <p class="hero-body sr" data-delay="160">
+          SIFT identifies, qualifies, and deep-maps your best accounts
+          so your team arrives at every call with context — not a cold list.
+        </p>
+        <div class="hero-ctas sr" data-delay="240">
+          <a href="contact.html" class="btn btn-dark">BOOK A RUN →</a>
+          <a href="products.html" class="btn btn-outline">HOW IT WORKS</a>
+        </div>
+      </div>
+      <!-- RIGHT: Live canvas -->
+      <div class="hero-viz sr-right" data-delay="200" data-parallax="10">
+        <span class="hero-viz-label">ARGUS · LIVE SCAN</span>
+        <canvas id="argusCanvas"></canvas>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="hero-rule reveal"></div>
-
-    <div class="hero-stats" data-stagger="100">
-      <div class="stat reveal">
-        <span class="stat-num">72h</span>
+<!-- STATS -->
+<div class="hero-stats-strip">
+  <div class="container">
+    <div class="stats-row" data-stagger="100">
+      <div class="stat-item sr-up">
+        <span class="stat-num" data-count="72" data-suffix="h">72h</span>
         <span class="stat-label">Delivery SLA</span>
       </div>
-      <div class="stat reveal">
+      <div class="stat-item sr-up">
         <span class="stat-num">0–100</span>
         <span class="stat-label">ICP score per contact</span>
       </div>
-      <div class="stat reveal">
-        <span class="stat-num">5</span>
-        <span class="stat-label">Accounts deep-mapped per run</span>
+      <div class="stat-item sr-up">
+        <span class="stat-num" data-count="5" data-suffix="">5</span>
+        <span class="stat-label">Accounts deep-mapped</span>
       </div>
-      <div class="stat reveal">
-        <span class="stat-num">90d</span>
-        <span class="stat-label">News feed per account</span>
+      <div class="stat-item sr-up">
+        <span class="stat-num" data-count="90" data-suffix="d">90d</span>
+        <span class="stat-label">Signal feed per account</span>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ═══ PRODUCTS STRIP ═══════════════════════════════════════ -->
-<section class="features-strip">
+<!-- TRUST -->
+<div class="trust-strip">
   <div class="container">
-    <div class="section-eyebrow reveal-fast">THREE ENGINES</div>
-    <div class="features-strip-grid" data-stagger="120">
+    <p class="trust-label">TRUSTED BY B2B TEAMS ACROSS EUROPE</p>
+    <div class="trust-logos">
+      <span class="trust-logo">SAAS CO.</span>
+      <span class="trust-logo">FINTECH AG</span>
+      <span class="trust-logo">LOGISTIC SE</span>
+      <span class="trust-logo">AGENCY LTD</span>
+      <span class="trust-logo">GROWTH OÜ</span>
+    </div>
+  </div>
+</div>
 
-      <div class="fstrip-card reveal">
-        <div class="fstrip-num">01</div>
-        <h3 class="fstrip-title">Argus</h3>
-        <p class="fstrip-desc">Precision lead lists built around your ICP. Scored, cited, and ready to drop into your outreach sequence within 72 hours.</p>
-        <a href="products.html#argus" class="fstrip-link">EXPLORE ARGUS →</a>
+<!-- ════════════════ PRODUCTS STRIP ═══════════════════════ -->
+<section class="products-strip" id="products">
+  <div class="container">
+    <div class="products-split">
+      <!-- Sticky left -->
+      <div class="products-sticky">
+        <div class="eyebrow sr-up">THREE ENGINES</div>
+        <h2 class="h-section sr" data-delay="60">
+          One stack.<br/><em>Full coverage.</em>
+        </h2>
+        <p class="body-lead sr" data-delay="120" style="margin-top:20px;max-width:320px;">
+          Use Argus for lists, add Lynx for depth, add Intelligence for strategy. Stack them to build the complete outbound picture.
+        </p>
+        <div class="products-nav sr" data-delay="200">
+          <div class="products-nav-item active" onclick="scrollToProduct('argus',this)">
+            <span>Argus — Lead Generation</span><span class="arrow">→</span>
+          </div>
+          <div class="products-nav-item" onclick="scrollToProduct('lynx',this)">
+            <span>Lynx — Account Intelligence</span><span class="arrow">→</span>
+          </div>
+          <div class="products-nav-item" onclick="scrollToProduct('intelligence',this)">
+            <span>Intelligence — Strategic Briefing</span><span class="arrow">→</span>
+          </div>
+        </div>
       </div>
 
-      <div class="fstrip-card reveal" style="background:var(--surface)">
-        <div class="fstrip-num">02</div>
-        <h3 class="fstrip-title">Lynx</h3>
-        <p class="fstrip-desc">A dedicated intelligence workspace for each of your five warmest accounts. Org charts, stakeholders, and an AI chat interface per account.</p>
-        <a href="products.html#lynx" class="fstrip-link">EXPLORE LYNX →</a>
-      </div>
+      <!-- Product blocks -->
+      <div class="products-content">
+        <div class="product-block sr tilt" id="p-argus" data-tilt="5">
+          <div class="product-block-head">
+            <div>
+              <div class="product-block-num">01</div>
+              <div class="product-block-name">Argus</div>
+            </div>
+            <span class="product-block-badge">LEAD GENERATION</span>
+          </div>
+          <p class="product-block-desc">
+            Precision lead lists built from your ICP. Every contact arrives with a score,
+            a cited buying trigger, and a ready-to-use outreach hook — delivered in 72 hours.
+          </p>
+          <ul class="flist" style="margin-bottom:28px;">
+            <li>Up to 20 qualified leads per run</li>
+            <li>Per-contact ICP score (0–100)</li>
+            <li>Buying trigger, cited and sourced</li>
+            <li>One-line outreach hook per contact</li>
+          </ul>
+          <a href="products.html#argus" class="product-block-link">EXPLORE ARGUS <span>→</span></a>
+        </div>
 
-      <div class="fstrip-card reveal">
-        <div class="fstrip-num">03</div>
-        <h3 class="fstrip-title">Intelligence</h3>
-        <p class="fstrip-desc">A strategic brief on a single target — competitive landscape, buying dynamics, and a 90-minute session with our analysts.</p>
-        <a href="products.html#intelligence" class="fstrip-link">EXPLORE INTELLIGENCE →</a>
-      </div>
+        <div class="product-block sr tilt" id="p-lynx" data-delay="80" data-tilt="5">
+          <div class="product-block-head">
+            <div>
+              <div class="product-block-num">02</div>
+              <div class="product-block-name">Lynx</div>
+            </div>
+            <span class="product-block-badge">ACCOUNT INTELLIGENCE</span>
+          </div>
+          <p class="product-block-desc">
+            A dedicated workspace for each of your five warmest accounts.
+            Decision-maker maps, 90-day signal feeds, and contextual AI chat — all in one place.
+          </p>
+          <ul class="flist" style="margin-bottom:28px;">
+            <li>Lynx workspace per priority account (5)</li>
+            <li>Full decision-maker org chart</li>
+            <li>90-day news and intent signal feed</li>
+            <li>AI chat trained on the account</li>
+          </ul>
+          <a href="products.html#lynx" class="product-block-link">EXPLORE LYNX <span>→</span></a>
+        </div>
 
+        <div class="product-block sr tilt" id="p-intelligence" data-delay="160" data-tilt="5">
+          <div class="product-block-head">
+            <div>
+              <div class="product-block-num">03</div>
+              <div class="product-block-name">Intelligence</div>
+            </div>
+            <span class="product-block-badge">STRATEGIC BRIEFING</span>
+          </div>
+          <p class="product-block-desc">
+            A full strategic brief on a single target company — competitive landscape,
+            internal buying dynamics, and a 90-minute analyst session.
+          </p>
+          <ul class="flist" style="margin-bottom:28px;">
+            <li>Deep-dive on one target company</li>
+            <li>Competitive landscape analysis</li>
+            <li>90-minute strategy session</li>
+            <li>Custom ICP refinement included</li>
+          </ul>
+          <a href="products.html#intelligence" class="product-block-link">EXPLORE INTELLIGENCE <span>→</span></a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ PROCESS ══════════════════════════════════════════════ -->
+<!-- ════════════════ PROCESS ════════════════════════════ -->
 <section class="process">
   <div class="container">
-    <div class="section-eyebrow reveal-fast">THE PROCESS</div>
-    <h2 class="section-title reveal">Signal to sequence<br/><em>in four steps.</em></h2>
-
-    <div class="process-grid" data-stagger="80">
-      <div class="process-step reveal">
+    <div class="eyebrow sr-up">THE PROCESS</div>
+    <h2 class="h-section sr" data-delay="60">
+      Signal to sequence<br/><em>in four steps.</em>
+    </h2>
+    <div class="process-steps" data-stagger="80">
+      <div class="process-step sr">
         <div class="process-step-n">01</div>
-        <h4 class="process-step-title">ICP Definition</h4>
-        <p class="process-step-desc">We align on your ideal customer profile — firmographics, tech stack, buying triggers, and decision-maker roles.</p>
+        <h4>ICP Definition</h4>
+        <p>We align on your ideal customer profile — firmographics, tech stack, triggers, and decision-maker roles.</p>
       </div>
-      <div class="process-step reveal">
+      <div class="process-step sr">
         <div class="process-step-n">02</div>
-        <h4 class="process-step-title">Signal Scan</h4>
-        <p class="process-step-desc">Argus surfaces accounts showing intent: hiring patterns, funding events, tech adoption, and industry signals.</p>
+        <h4>Signal Scan</h4>
+        <p>Argus surfaces accounts in motion: hiring patterns, funding events, tech adoption, and intent signals.</p>
       </div>
-      <div class="process-step reveal">
+      <div class="process-step sr">
         <div class="process-step-n">03</div>
-        <h4 class="process-step-title">Deep Map</h4>
-        <p class="process-step-desc">Lynx builds an org-level intelligence layer on your priority accounts — stakeholders, structure, and entry points.</p>
+        <h4>Deep Map</h4>
+        <p>Lynx builds an org-level intelligence layer on your top accounts — stakeholders, structure, entry points.</p>
       </div>
-      <div class="process-step reveal">
+      <div class="process-step sr">
         <div class="process-step-n">04</div>
-        <h4 class="process-step-title">Delivery</h4>
-        <p class="process-step-desc">A scored lead list, Lynx workspaces, and a PDF brief — all delivered within 72 hours, ready to sequence.</p>
+        <h4>Delivery</h4>
+        <p>A scored list, Lynx workspaces, and a PDF brief — all within 72 hours, ready to sequence.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA BANNER ══════════════════════════════════════════ -->
-<section class="cta-banner">
+<!-- ════════════════ CTA ════════════════════════════════ -->
+<section class="cta">
   <div class="container">
-    <div class="cta-banner-inner">
-      <h2 class="cta-banner-title reveal">
-        Ready to run<br/>
-        <em>your first signal scan?</em>
+    <div class="cta-inner sr">
+      <div class="cta-bg-glow"></div>
+      <h2 class="cta-title">
+        Ready for your<br/><em>first signal scan?</em>
       </h2>
-      <div class="cta-banner-actions reveal">
-        <a href="pricing.html" class="btn btn-ghost">VIEW PRICING</a>
-        <a href="contact.html" class="btn btn-primary">BOOK A RUN →</a>
+      <div class="cta-actions">
+        <a href="pricing.html" class="btn btn-outline" style="border-color:rgba(255,253,245,0.20);color:rgba(255,253,245,0.65);">VIEW PRICING</a>
+        <a href="contact.html" class="btn btn-gold">BOOK A RUN →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container footer-inner">
     <a href="index.html" class="footer-logo">
       <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="50" cy="35" r="19" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke-width="1.8"/>
+        <circle cx="50" cy="35" r="19" stroke-width="2"/>
+        <path d="M36,7 L21,35 L36,63" stroke-width="2"/>
+        <path d="M64,7 L79,35 L64,63" stroke-width="2"/>
       </svg>
       <span class="footer-logo-name">SIFT</span>
     </a>
@@ -532,6 +478,13 @@
 </footer>
 
 <script src="script.js"></script>
-<script src="intro.js"></script>
+<script>
+function scrollToProduct(id, navEl) {
+  document.querySelectorAll('.products-nav-item').forEach(n => n.classList.remove('active'));
+  navEl.classList.add('active');
+  const el = document.getElementById('p-' + id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
 </body>
 </html>

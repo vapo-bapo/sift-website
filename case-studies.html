@@ -1,208 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Case Studies — SIFT</title>
-  <meta name="description" content="How B2B teams use SIFT to build signal-driven pipelines and close with context." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
   <style>
-    /* ── CASE GRID ── */
-    .cases-section {
-      padding: 80px 0 128px;
-    }
-    .cases-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border-mid);
-      border: 1px solid var(--border-mid);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 64px;
-    }
-    .case-card {
-      background: var(--void);
-      padding: 52px 44px;
-      display: flex;
-      flex-direction: column;
-      transition: background 260ms;
-      cursor: default;
-    }
-    .case-card:hover { background: var(--surface); }
-    .case-tag {
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.20em;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-    .case-title {
-      font-family: var(--font-serif);
-      font-size: 26px;
-      font-weight: 400;
-      line-height: 1.25;
-      margin-bottom: 20px;
-    }
-    .case-body {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.76;
-      flex: 1;
-      margin-bottom: 36px;
-    }
-    .case-metric {
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-    .case-num {
-      font-family: var(--font-serif);
-      font-size: 44px;
-      font-weight: 300;
-      line-height: 1;
-      letter-spacing: -0.01em;
-    }
-    .case-metric-label {
-      font-size: 12px;
-      color: var(--text-dim);
-      line-height: 1.5;
-      max-width: 180px;
-    }
-    .case-product-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      color: var(--text-dim);
-      border: 1px solid var(--border-strong);
-      padding: 4px 10px;
-      border-radius: 2px;
-      margin-bottom: 20px;
-    }
+  /* ── FEATURED ── */
+  .featured{padding:80px 0 0;}
+  .featured-card{
+    display:grid;grid-template-columns:1fr 1fr;
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  }
+  .featured-text{padding:64px 56px;}
+  .featured-stats-col{
+    background:var(--bg-secondary);border-left:1px solid var(--border);
+    padding:56px 48px;display:flex;flex-direction:column;gap:0;
+  }
+  .fstat{padding:28px 0;border-bottom:1px solid var(--border);}
+  .fstat:last-child{border-bottom:none;}
+  .fstat-num{
+    font-family:var(--font-serif);font-size:52px;font-weight:300;
+    line-height:1;margin-bottom:8px;letter-spacing:-0.01em;
+  }
+  .fstat-label{font-size:11.5px;color:var(--text-dim);}
+  .featured-quote{
+    font-family:var(--font-serif);font-size:21px;font-weight:300;
+    font-style:italic;line-height:1.55;color:var(--text-secondary);
+    margin:28px 0 20px;padding-left:20px;
+    border-left:2px solid var(--accent);
+  }
+  .featured-attr{font-size:11px;color:var(--text-dim);letter-spacing:0.08em;}
 
-    /* ── FEATURED CASE ── */
-    .featured-case {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-    .featured-case-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-      border: 1px solid var(--border-mid);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .featured-case-text {
-      padding: 64px 56px;
-    }
-    .featured-case-stats {
-      background: var(--surface);
-      padding: 64px 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border-left: 1px solid var(--border-mid);
-    }
-    .fstat {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .fstat:last-child { border-bottom: none; }
-    .fstat-num {
-      font-family: var(--font-serif);
-      font-size: 52px;
-      font-weight: 300;
-      line-height: 1;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-    .fstat-label {
-      font-size: 11.5px;
-      color: var(--text-dim);
-      letter-spacing: 0.04em;
-    }
-    .featured-quote {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.55;
-      color: var(--text-secondary);
-      margin: 32px 0 24px;
-      padding-left: 24px;
-      border-left: 2px solid var(--accent);
-    }
-    .featured-attr {
-      font-size: 11.5px;
-      color: var(--text-dim);
-      letter-spacing: 0.06em;
-    }
+  /* ── CASES GRID ── */
+  .cases{padding:80px 0 120px;}
+  .cgrid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:1px;background:var(--border);
+    border:1px solid var(--border);border-radius:10px;overflow:hidden;
+    margin-top:56px;
+  }
+  .ccard{
+    background:var(--bg-card);padding:48px 40px;
+    display:flex;flex-direction:column;transition:background 240ms;
+  }
+  .ccard:hover{background:var(--bg-secondary);}
+  .ccard-tag{font-size:8.5px;font-weight:700;letter-spacing:0.20em;color:var(--accent-dim);margin-bottom:20px;}
+  .ccard-prod{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:8.5px;font-weight:600;letter-spacing:0.14em;
+    color:var(--text-dim);border:1px solid var(--border-strong);
+    padding:3px 9px;border-radius:4px;margin-bottom:16px;width:fit-content;
+  }
+  .ccard-title{
+    font-family:var(--font-serif);font-size:24px;font-weight:400;
+    line-height:1.28;margin-bottom:16px;
+  }
+  .ccard-body{font-size:13.5px;color:var(--text-secondary);line-height:1.72;flex:1;margin-bottom:32px;}
+  .ccard-metric{
+    padding-top:24px;border-top:1px solid var(--border-subtle);
+    display:flex;align-items:baseline;gap:12px;
+  }
+  .ccard-num{
+    font-family:var(--font-serif);font-size:40px;
+    font-weight:300;line-height:1;letter-spacing:-0.01em;
+  }
+  .ccard-mlabel{font-size:12px;color:var(--text-dim);line-height:1.5;max-width:180px;}
 
-    /* ── TESTIMONIALS ── */
-    .testimonials {
-      padding: 112px 0;
-      border-top: 1px solid var(--border);
-    }
-    .tgrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 56px;
-    }
-    .tcard {
-      background: var(--surface);
-      border: 1px solid var(--border-mid);
-      border-radius: 3px;
-      padding: 40px;
-      transition: border-color 240ms;
-    }
-    .tcard:hover { border-color: var(--border-strong); }
-    .tcard-quote {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.6;
-      color: var(--text-primary);
-      margin-bottom: 28px;
-    }
-    .tcard-attr {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .tcard-name {
-      font-size: 12.5px;
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-    .tcard-role {
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 0.04em;
-    }
+  /* ── TESTIMONIALS ── */
+  .testimonials{padding:120px 0;background:var(--bg-secondary);border-top:1px solid var(--border);}
+  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:56px;}
+  .tcard{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:10px;
+    padding:40px;transition:border-color 240ms,box-shadow 240ms;
+  }
+  .tcard:hover{border-color:var(--border-strong);box-shadow:var(--shadow-sm);}
+  .tcard-quote{
+    font-family:var(--font-serif);font-size:20px;font-weight:300;
+    font-style:italic;line-height:1.62;color:var(--text-primary);margin-bottom:28px;
+  }
+  .tcard-name{font-size:12.5px;font-weight:600;margin-bottom:3px;}
+  .tcard-role{font-size:11px;color:var(--text-dim);}
 
-    @media (max-width: 960px) {
-      .cases-grid { grid-template-columns: 1fr; }
-      .featured-case-inner { grid-template-columns: 1fr; gap: 0; }
-      .featured-case-stats { border-left: none; border-top: 1px solid var(--border-mid); }
-      .tgrid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px) {
-      .case-card { padding: 36px 28px; }
-      .featured-case-text { padding: 40px 28px; }
-      .featured-case-stats { padding: 40px 28px; }
-    }
+  @media(max-width:960px){
+    .featured-card{grid-template-columns:1fr;}
+    .featured-stats-col{border-left:none;border-top:1px solid var(--border);}
+    .cgrid{grid-template-columns:1fr;}
+    .tgrid{grid-template-columns:1fr;}
+  }
+  @media(max-width:640px){
+    .featured-text{padding:40px 28px;}
+    .featured-stats-col{padding:36px 28px;}
+    .ccard{padding:36px 28px;}
+  }
   </style>
 </head>
 <body>
@@ -210,15 +103,12 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <svg class="nav-logo-svg sift-logo-svg" viewBox="0 0 100 70">
-        <circle cx="50" cy="35" r="19" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke="currentColor" stroke-width="1.8"/>
+      <svg class="nav-logo-svg" viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="50" cy="35" r="19" stroke-width="2"/>
+        <path d="M36,7 L21,35 L36,63" stroke-width="2"/>
+        <path d="M64,7 L79,35 L64,63" stroke-width="2"/>
       </svg>
-      <div class="nav-logo-text">
-        <span class="nav-logo-name">SIFT</span>
-        <span class="nav-logo-sub">SIGNAL INTEL · V1.0</span>
-      </div>
+      <div><span class="nav-logo-name">SIFT</span><span class="nav-logo-sub">SIGNAL INTEL · V1.0</span></div>
     </a>
     <div class="nav-links">
       <a href="products.html" class="nav-link">PRODUCTS</a>
@@ -229,64 +119,57 @@
     <a href="contact.html" class="nav-cta">BOOK A RUN →</a>
     <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
-  <div class="nav-mobile-panel" id="mobilePanel">
+  <div class="nav-mobile" id="mobileNav">
     <a href="products.html" class="nav-mobile-link">PRODUCTS</a>
     <a href="pricing.html" class="nav-mobile-link">PRICING</a>
     <a href="case-studies.html" class="nav-mobile-link">CASE STUDIES</a>
     <a href="contact.html" class="nav-mobile-link">CONTACT</a>
-    <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:12px;">BOOK A RUN →</a>
+    <a href="contact.html" class="btn btn-dark" style="margin-top:16px;">BOOK A RUN →</a>
   </div>
 </nav>
 
 <div class="page-hero">
   <div class="container">
-    <h1 class="page-hero-title reveal">
-      Results that<br/><em>compound.</em>
-    </h1>
-    <p class="page-hero-desc reveal">How B2B teams use SIFT to arrive at every call with context — and close faster because of it.</p>
+    <div class="page-hero-inner">
+      <h1 class="h-display sr">Results that<br/><em>compound.</em></h1>
+      <p class="page-hero-desc sr-right">How B2B teams use SIFT to arrive at every call with context — and close faster because of it.</p>
+    </div>
   </div>
 </div>
 
-<!-- FEATURED CASE -->
-<section class="featured-case">
+<!-- FEATURED -->
+<section class="featured">
   <div class="container">
-    <div class="featured-case-inner reveal">
-      <div class="featured-case-text">
-        <div class="case-tag" style="margin-bottom:20px;">FEATURED · ENTERPRISE SaaS · DACH</div>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.1;margin-bottom:20px;">
+    <div class="featured-card sr tilt" data-tilt="2">
+      <div class="featured-text">
+        <div class="eyebrow" style="margin-bottom:16px;">FEATURED · ENTERPRISE SAAS · DACH</div>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(30px,3.5vw,48px);font-weight:300;line-height:1.1;margin-bottom:20px;">
           One Argus run replaced<br/>six weeks of manual research.
         </h2>
-        <p style="font-size:14px;color:var(--text-secondary);line-height:1.78;margin-bottom:24px;">
-          A 60-person SaaS company in Munich was spending two days a week manually building
-          prospecting lists from LinkedIn Sales Navigator and ZoomInfo. Signal quality was low,
-          conversion from list to meeting sat at under 2%.
+        <p style="font-size:14px;color:var(--text-secondary);line-height:1.78;margin-bottom:16px;">
+          A 60-person SaaS company in Munich was spending two days a week manually building prospect lists. Signal quality was low — conversion from list to first meeting sat under 2%.
         </p>
         <p style="font-size:14px;color:var(--text-secondary);line-height:1.78;">
-          After one Argus + Lynx run, the team had 20 scored contacts and five Lynx workspaces
-          ready to sequence. The ICP score let them triage immediately. Three first-call meetings
-          were booked within ten days of delivery.
+          After one Argus + Lynx run, they had 20 scored contacts and five Lynx workspaces ready to sequence. The ICP score let them triage immediately. Three meetings were booked within ten days.
         </p>
-        <div class="featured-quote">
-          "We went from a cold list to three booked calls in ten days.
-          The buying triggers alone changed how we write our first touch."
-        </div>
+        <div class="featured-quote">"We went from a cold list to three booked calls in ten days. The buying triggers changed how we write our first touch entirely."</div>
         <div class="featured-attr">HEAD OF SALES · ENTERPRISE SAAS · MUNICH</div>
       </div>
-      <div class="featured-case-stats">
+      <div class="featured-stats-col">
         <div class="fstat">
-          <div class="fstat-num">3</div>
-          <div class="fstat-label">First-call meetings booked in 10 days</div>
+          <div class="fstat-num" data-count="3">3</div>
+          <div class="fstat-label">First-call meetings in 10 days</div>
         </div>
         <div class="fstat">
           <div class="fstat-num">18/20</div>
-          <div class="fstat-label">Leads matched ICP criteria exactly</div>
+          <div class="fstat-label">Leads matched ICP exactly</div>
         </div>
         <div class="fstat">
           <div class="fstat-num">6w</div>
-          <div class="fstat-label">Of manual research replaced by one run</div>
+          <div class="fstat-label">Of manual research replaced</div>
         </div>
         <div class="fstat">
-          <div class="fstat-num">72h</div>
+          <div class="fstat-num" data-count="72" data-suffix="h">72h</div>
           <div class="fstat-label">From brief to full delivery</div>
         </div>
       </div>
@@ -295,77 +178,52 @@
 </section>
 
 <!-- CASES GRID -->
-<section class="cases-section">
+<section class="cases">
   <div class="container">
-    <div class="section-eyebrow reveal-fast">MORE CASES</div>
-    <div class="cases-grid" data-stagger="100">
-
-      <div class="case-card reveal">
-        <div class="case-product-tag">ARGUS + LYNX</div>
-        <div class="case-tag">B2B SERVICES · BENELUX</div>
-        <h3 class="case-title">Lynx surfaced a champion their CRM never had</h3>
-        <p class="case-body">An Amsterdam consultancy ran Argus + Lynx before a high-stakes enterprise pitch. The decision-maker map identified a second stakeholder the team had missed entirely — the real champion. Deal closed in the first meeting.</p>
-        <div class="case-metric">
-          <span class="case-num">1</span>
-          <span class="case-metric-label">Meeting to close on a €60k contract</span>
-        </div>
+    <div class="eyebrow sr-up">MORE CASES</div>
+    <div class="cgrid" data-stagger="80">
+      <div class="ccard sr">
+        <div class="ccard-prod">ARGUS + LYNX</div>
+        <div class="ccard-tag">B2B SERVICES · BENELUX</div>
+        <h3 class="ccard-title">Lynx surfaced a champion their CRM never had</h3>
+        <p class="ccard-body">An Amsterdam consultancy ran Argus + Lynx before a high-stakes enterprise pitch. The decision-maker map identified a second stakeholder the team had missed — the real champion. Deal closed in the first meeting.</p>
+        <div class="ccard-metric"><span class="ccard-num">1</span><span class="ccard-mlabel">Meeting to close on a €60k contract</span></div>
       </div>
-
-      <div class="case-card reveal">
-        <div class="case-product-tag">AGENCY RETAINER</div>
-        <div class="case-tag">GROWTH AGENCY · UK</div>
-        <h3 class="case-title">White-label outbound for three portfolio clients</h3>
-        <p class="case-body">A London growth agency now runs SIFT on the Agency retainer, delivering branded reports to three clients monthly. No extra headcount, no research overhead. Revenue per client increased 40% with the same team.</p>
-        <div class="case-metric">
-          <span class="case-num">3×</span>
-          <span class="case-metric-label">Client capacity, same team size</span>
-        </div>
+      <div class="ccard sr">
+        <div class="ccard-prod">AGENCY RETAINER</div>
+        <div class="ccard-tag">GROWTH AGENCY · UK</div>
+        <h3 class="ccard-title">White-label outbound for three portfolio clients</h3>
+        <p class="ccard-body">A London growth agency now runs SIFT on the Agency retainer, delivering branded reports to three clients monthly. No extra headcount, no research overhead. Revenue per client increased 40% with the same team.</p>
+        <div class="ccard-metric"><span class="ccard-num">3×</span><span class="ccard-mlabel">Client capacity with same team size</span></div>
       </div>
-
-      <div class="case-card reveal">
-        <div class="case-product-tag">FULL SUITE</div>
-        <div class="case-tag">FINTECH · NORDIC</div>
-        <h3 class="case-title">Intelligence brief changed the entry point entirely</h3>
-        <p class="case-body">A Stockholm fintech was targeting the CFO. The Intelligence brief revealed that their champion was in the Head of Treasury role — a title the team hadn't considered. The first outreach attempt led to a live demo within a week.</p>
-        <div class="case-metric">
-          <span class="case-num">7d</span>
-          <span class="case-metric-label">From first touch to live product demo</span>
-        </div>
+      <div class="ccard sr">
+        <div class="ccard-prod">FULL SUITE</div>
+        <div class="ccard-tag">FINTECH · NORDIC</div>
+        <h3 class="ccard-title">Intelligence brief changed the entry point entirely</h3>
+        <p class="ccard-body">A Stockholm fintech was targeting the CFO. The Intelligence brief revealed the real champion was the Head of Treasury — a title the team hadn't considered. The first outreach attempt led to a live demo within a week.</p>
+        <div class="ccard-metric"><span class="ccard-num">7d</span><span class="ccard-mlabel">From first touch to live product demo</span></div>
       </div>
-
-      <div class="case-card reveal">
-        <div class="case-product-tag">PRO RETAINER</div>
-        <div class="case-tag">CYBERSECURITY · FRANCE</div>
-        <h3 class="case-title">From 2% to 11% list-to-meeting conversion</h3>
-        <p class="case-body">A Paris-based cybersecurity vendor was hitting 2% conversion from contact list to first meeting. After three months on the Pro retainer with ICP refinement, conversion hit 11% — on a smaller, more targeted list.</p>
-        <div class="case-metric">
-          <span class="case-num">11%</span>
-          <span class="case-metric-label">List-to-meeting rate after 3 months</span>
-        </div>
+      <div class="ccard sr">
+        <div class="ccard-prod">PRO RETAINER</div>
+        <div class="ccard-tag">CYBERSECURITY · FRANCE</div>
+        <h3 class="ccard-title">From 2% to 11% list-to-meeting conversion</h3>
+        <p class="ccard-body">A Paris-based cybersecurity vendor was hitting 2% conversion from list to first meeting. After three months on the Pro retainer with ICP refinement, conversion hit 11% on a smaller, more targeted list.</p>
+        <div class="ccard-metric"><span class="ccard-num">11%</span><span class="ccard-mlabel">List-to-meeting rate after 3 months</span></div>
       </div>
-
-      <div class="case-card reveal">
-        <div class="case-product-tag">ARGUS STARTER</div>
-        <div class="case-tag">LOGISTICS TECH · DACH</div>
-        <h3 class="case-title">Validated a new vertical in one run</h3>
-        <p class="case-body">Before expanding into the logistics vertical, a Berlin scaleup used an Argus Starter run to validate demand. 14 of 20 leads responded positively to the outreach hook. The expansion was greenlit the same week.</p>
-        <div class="case-metric">
-          <span class="case-num">14/20</span>
-          <span class="case-metric-label">Leads with positive initial response</span>
-        </div>
+      <div class="ccard sr">
+        <div class="ccard-prod">ARGUS STARTER</div>
+        <div class="ccard-tag">LOGISTICS TECH · DACH</div>
+        <h3 class="ccard-title">Validated a new vertical in one run</h3>
+        <p class="ccard-body">Before expanding into logistics, a Berlin scaleup used Argus Starter to validate demand. 14 of 20 leads responded positively to the outreach hook. The expansion was greenlit the same week delivery arrived.</p>
+        <div class="ccard-metric"><span class="ccard-num">14/20</span><span class="ccard-mlabel">Leads with positive initial response</span></div>
       </div>
-
-      <div class="case-card reveal">
-        <div class="case-product-tag">ARGUS + LYNX</div>
-        <div class="case-tag">HR TECH · IBERIA</div>
-        <h3 class="case-title">Pipeline rebuilt after a key account went dark</h3>
-        <p class="case-body">After losing their anchor client, a Madrid HR tech firm needed to rebuild their pipeline fast. One Argus + Lynx run delivered 20 scored contacts and five account workspaces within 72 hours. Two became opportunities in the first month.</p>
-        <div class="case-metric">
-          <span class="case-num">2</span>
-          <span class="case-metric-label">Qualified opportunities in month one</span>
-        </div>
+      <div class="ccard sr">
+        <div class="ccard-prod">ARGUS + LYNX</div>
+        <div class="ccard-tag">HR TECH · IBERIA</div>
+        <h3 class="ccard-title">Pipeline rebuilt after a key account went dark</h3>
+        <p class="ccard-body">After losing their anchor client, a Madrid HR tech firm needed pipeline fast. One Argus + Lynx run delivered 20 scored contacts and five workspaces in 72 hours. Two became opportunities in the first month.</p>
+        <div class="ccard-metric"><span class="ccard-num">2</span><span class="ccard-mlabel">Qualified opportunities in month one</span></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -373,37 +231,13 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="container">
-    <div class="section-eyebrow reveal-fast">WHAT CLIENTS SAY</div>
-    <h2 class="section-title reveal">In their<br/><em>own words.</em></h2>
-    <div class="tgrid" data-stagger="80">
-      <div class="tcard reveal">
-        <p class="tcard-quote">"The ICP score alone saved us two hours of triage per run. We knew exactly who to call first."</p>
-        <div class="tcard-attr">
-          <span class="tcard-name">Sales Director</span>
-          <span class="tcard-role">B2B SaaS · DACH</span>
-        </div>
-      </div>
-      <div class="tcard reveal">
-        <p class="tcard-quote">"Lynx workspaces changed how we prep for enterprise calls. We stopped winging it."</p>
-        <div class="tcard-attr">
-          <span class="tcard-name">Account Executive</span>
-          <span class="tcard-role">Consulting · Benelux</span>
-        </div>
-      </div>
-      <div class="tcard reveal">
-        <p class="tcard-quote">"We now deliver SIFT-quality intelligence to three clients under our own brand. The Agency retainer pays for itself in month one."</p>
-        <div class="tcard-attr">
-          <span class="tcard-name">Founder</span>
-          <span class="tcard-role">Growth Agency · London</span>
-        </div>
-      </div>
-      <div class="tcard reveal">
-        <p class="tcard-quote">"The buying triggers are the most underrated part. We went from generic cold email to hyper-relevant first lines overnight."</p>
-        <div class="tcard-attr">
-          <span class="tcard-name">Head of Outbound</span>
-          <span class="tcard-role">Cybersecurity · Paris</span>
-        </div>
-      </div>
+    <div class="eyebrow sr-up">WHAT CLIENTS SAY</div>
+    <h2 class="h-section sr" data-delay="60">In their<br/><em>own words.</em></h2>
+    <div class="tgrid" data-stagger="70">
+      <div class="tcard sr"><p class="tcard-quote">"The ICP score alone saved us two hours of triage per run. We knew exactly who to call first."</p><div class="tcard-name">Sales Director</div><div class="tcard-role">B2B SaaS · DACH</div></div>
+      <div class="tcard sr"><p class="tcard-quote">"Lynx workspaces changed how we prep for enterprise calls. We stopped winging it."</p><div class="tcard-name">Account Executive</div><div class="tcard-role">Consulting · Benelux</div></div>
+      <div class="tcard sr"><p class="tcard-quote">"We now deliver SIFT-quality intelligence to three clients under our own brand. The Agency retainer pays for itself in month one."</p><div class="tcard-name">Founder</div><div class="tcard-role">Growth Agency · London</div></div>
+      <div class="tcard sr"><p class="tcard-quote">"The buying triggers are the most underrated part. We went from generic cold email to hyper-relevant first lines overnight."</p><div class="tcard-name">Head of Outbound</div><div class="tcard-role">Cybersecurity · Paris</div></div>
     </div>
   </div>
 </section>
@@ -412,12 +246,10 @@
 <section style="padding:112px 0;border-top:1px solid var(--border);">
   <div class="container">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap;">
-      <h2 class="reveal" style="font-family:var(--font-serif);font-size:clamp(40px,5vw,68px);font-weight:300;line-height:1.08;max-width:540px;">
-        Want results<br/><em>like these?</em>
-      </h2>
-      <div class="reveal" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;flex-shrink:0;">
-        <a href="pricing.html" class="btn btn-ghost">VIEW PRICING</a>
-        <a href="contact.html" class="btn btn-primary">BOOK A RUN →</a>
+      <h2 class="h-section sr" style="max-width:520px;">Want results<br/><em>like these?</em></h2>
+      <div class="sr" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;flex-shrink:0;">
+        <a href="pricing.html" class="btn btn-outline">VIEW PRICING</a>
+        <a href="contact.html" class="btn btn-dark">BOOK A RUN →</a>
       </div>
     </div>
   </div>
@@ -426,11 +258,7 @@
 <footer class="footer">
   <div class="container footer-inner">
     <a href="index.html" class="footer-logo">
-      <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="50" cy="35" r="19" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke-width="1.8"/>
-      </svg>
+      <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="35" r="19" stroke-width="2"/><path d="M36,7 L21,35 L36,63" stroke-width="2"/><path d="M64,7 L79,35 L64,63" stroke-width="2"/></svg>
       <span class="footer-logo-name">SIFT</span>
     </a>
     <nav class="footer-nav">
@@ -442,7 +270,6 @@
     <span class="footer-copy">© 2025 SIFT Signal Intelligence</span>
   </div>
 </footer>
-
 <script src="script.js"></script>
 </body>
 </html>

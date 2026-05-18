@@ -1,224 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pricing — SIFT</title>
-  <meta name="description" content="On-demand runs and monthly retainers. No lock-in. Start with a single Argus run." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
   <style>
-    /* ── TABS ── */
-    .tabs-bar {
-      display: flex;
-      gap: 0;
-      border-bottom: 1px solid var(--border-mid);
-      margin-bottom: 0;
-    }
-    .ptab {
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      color: var(--text-dim);
-      padding: 18px 0;
-      margin-right: 44px;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 180ms, border-color 180ms;
-    }
-    .ptab:hover { color: var(--text-secondary); }
-    .ptab--active {
-      color: var(--text-primary);
-      border-bottom-color: var(--text-primary);
-    }
+  .ptabs-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:0;}
+  .ptab{
+    font-size:10.5px;font-weight:600;letter-spacing:0.16em;color:var(--text-dim);
+    padding:18px 0;margin-right:40px;border-bottom:2px solid transparent;
+    margin-bottom:-1px;transition:color 180ms,border-color 180ms;cursor:pointer;
+  }
+  .ptab:hover{color:var(--text-secondary);}
+  .ptab--on{color:var(--text-primary);border-bottom-color:var(--accent);}
 
-    /* ── PRICING GRID ── */
-    .pricing-wrap {
-      padding-top: 64px;
-      padding-bottom: 128px;
-    }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border-mid);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .pcard {
-      padding: 52px 44px;
-      border-right: 1px solid var(--border-mid);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      transition: background 240ms;
-    }
-    .pcard:last-child { border-right: none; }
-    .pcard--rec {
-      background: var(--surface);
-    }
-    .rec-label {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      color: var(--accent);
-      margin-bottom: 20px;
-      height: 16px;
-    }
-    .pcard:not(.pcard--rec) .rec-label { height: 16px; }
-    .pcard-tier {
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      color: var(--text-dim);
-      margin-bottom: 24px;
-    }
-    .pcard-name {
-      font-family: var(--font-serif);
-      font-size: 40px;
-      font-weight: 300;
-      line-height: 1;
-      margin-bottom: 28px;
-    }
-    .pcard-price {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .pcard-amount {
-      font-family: var(--font-serif);
-      font-size: 56px;
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .pcard-period {
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.10em;
-      color: var(--text-dim);
-    }
-    .pcard-desc {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.72;
-      margin-bottom: 32px;
-    }
-    .pcard-features {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-      margin-bottom: 44px;
-    }
-    .pcard-features li {
-      font-size: 13px;
-      color: var(--text-secondary);
-      padding-left: 20px;
-      position: relative;
-    }
-    .pcard-features li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--text-dim);
-      font-size: 10px;
-      top: 3px;
-    }
-    .pcard-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 20px;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      border-radius: 2px;
-      margin-top: auto;
-      transition: background 180ms, border-color 180ms, color 180ms,
-                  transform 180ms var(--ease-spring), box-shadow 180ms;
-    }
-    .pcard-btn:active { transform: scale(0.98); }
-    .pcard-btn--outline {
-      border: 1px solid var(--border-strong);
-      color: var(--text-secondary);
-    }
-    .pcard-btn--outline:hover {
-      border-color: rgba(245,240,232,0.32);
-      color: var(--text-primary);
-      transform: translateY(-1px);
-    }
-    .pcard-btn--fill {
-      background: var(--accent);
-      color: var(--text-primary);
-      border: 1px solid transparent;
-    }
-    .pcard-btn--fill:hover {
-      background: var(--accent-bright);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 28px var(--accent-glow);
-    }
+  .pricing-wrap{padding:64px 0 128px;}
+  .pgrid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--border);border-radius:10px;overflow:hidden;
+  }
+  .pcard{
+    padding:52px 40px;border-right:1px solid var(--border);
+    display:flex;flex-direction:column;
+    background:var(--bg-card);
+    transition:background 240ms;
+  }
+  .pcard:last-child{border-right:none;}
+  .pcard--rec{background:var(--bg-secondary);}
+  .rec-badge{
+    font-size:8.5px;font-weight:700;letter-spacing:0.22em;
+    color:var(--accent-dim);margin-bottom:20px;height:14px;
+  }
+  .pcard-tier{font-size:8.5px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:20px;}
+  .pcard-name{font-family:var(--font-serif);font-size:38px;font-weight:300;line-height:1;margin-bottom:28px;}
+  .pcard-price{display:flex;align-items:baseline;gap:5px;margin-bottom:18px;}
+  .pcard-amount{font-family:var(--font-serif);font-size:54px;font-weight:300;letter-spacing:-0.02em;line-height:1;}
+  .pcard-period{font-size:10.5px;font-weight:500;letter-spacing:0.1em;color:var(--text-dim);}
+  .pcard-desc{font-size:13.5px;color:var(--text-secondary);line-height:1.72;margin-bottom:28px;}
+  .pcard-feats{flex:1;display:flex;flex-direction:column;gap:12px;margin-bottom:40px;}
+  .pcard-feats li{font-size:13px;color:var(--text-secondary);padding-left:18px;position:relative;}
+  .pcard-feats li::before{content:'—';position:absolute;left:0;color:var(--accent-dim);font-size:10px;top:3px;}
+  .pcard-btn{
+    display:flex;align-items:center;justify-content:center;
+    padding:13px 20px;font-size:10.5px;font-weight:600;letter-spacing:0.12em;
+    border-radius:6px;margin-top:auto;transition:all 180ms var(--ease-spring);
+  }
+  .pcard-btn:active{transform:scale(0.98);}
+  .pcard-btn--out{border:1.5px solid var(--border-strong);color:var(--text-secondary);}
+  .pcard-btn--out:hover{border-color:var(--text-primary);color:var(--text-primary);transform:translateY(-1px);}
+  .pcard-btn--fill{background:var(--bg-void);color:#FFFDF5;}
+  .pcard-btn--fill:hover{background:#1a1810;transform:translateY(-1px);box-shadow:var(--shadow-sm);}
 
-    /* ── PRICING FOOTNOTE ── */
-    .pricing-note {
-      margin-top: 56px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      color: var(--text-dim);
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .pricing-note-dot { color: var(--text-ghost); }
+  .pricing-note{
+    margin-top:48px;padding-top:20px;border-top:1px solid var(--border-subtle);
+    font-size:9.5px;font-weight:500;letter-spacing:0.14em;
+    color:var(--text-dim);display:flex;gap:10px;flex-wrap:wrap;
+  }
 
-    /* ── FAQ ── */
-    .faq {
-      padding: 112px 0;
-      border-top: 1px solid var(--border);
-    }
-    .faq-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 56px;
-    }
-    .faq-item {
-      background: var(--void);
-      padding: 36px 40px;
-      transition: background 220ms;
-    }
-    .faq-item:hover { background: var(--surface); }
-    .faq-q {
-      font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 12px;
-      color: var(--text-primary);
-      line-height: 1.4;
-    }
-    .faq-a {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.72;
-    }
+  /* FAQ */
+  .faq{padding:120px 0;background:var(--bg-secondary);border-top:1px solid var(--border);}
+  .faq-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:10px;overflow:hidden;margin-top:56px;
+  }
+  .faq-item{
+    background:var(--bg-secondary);padding:36px 40px;
+    transition:background 220ms;
+  }
+  .faq-item:hover{background:var(--bg-card);}
+  .faq-q{font-size:15px;font-weight:500;line-height:1.4;margin-bottom:12px;}
+  .faq-a{font-size:13.5px;color:var(--text-dim);line-height:1.72;}
 
-    @media (max-width: 960px) {
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pcard { border-right: none; border-bottom: 1px solid var(--border-mid); }
-      .pcard:last-child { border-bottom: none; }
-      .faq-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px) {
-      .pcard { padding: 36px 28px; }
-    }
+  @media(max-width:960px){
+    .pgrid{grid-template-columns:1fr;}
+    .pcard{border-right:none;border-bottom:1px solid var(--border);}
+    .pcard:last-child{border-bottom:none;}
+    .faq-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:640px){.pcard{padding:36px 28px;}.faq-item{padding:28px 24px;}}
   </style>
 </head>
 <body>
@@ -226,15 +90,12 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <svg class="nav-logo-svg sift-logo-svg" viewBox="0 0 100 70">
-        <circle cx="50" cy="35" r="19" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke="currentColor" stroke-width="1.8"/>
+      <svg class="nav-logo-svg" viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="50" cy="35" r="19" stroke-width="2"/>
+        <path d="M36,7 L21,35 L36,63" stroke-width="2"/>
+        <path d="M64,7 L79,35 L64,63" stroke-width="2"/>
       </svg>
-      <div class="nav-logo-text">
-        <span class="nav-logo-name">SIFT</span>
-        <span class="nav-logo-sub">SIGNAL INTEL · V1.0</span>
-      </div>
+      <div><span class="nav-logo-name">SIFT</span><span class="nav-logo-sub">SIGNAL INTEL · V1.0</span></div>
     </a>
     <div class="nav-links">
       <a href="products.html" class="nav-link">PRODUCTS</a>
@@ -245,68 +106,59 @@
     <a href="contact.html" class="nav-cta">BOOK A RUN →</a>
     <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
-  <div class="nav-mobile-panel" id="mobilePanel">
+  <div class="nav-mobile" id="mobileNav">
     <a href="products.html" class="nav-mobile-link">PRODUCTS</a>
     <a href="pricing.html" class="nav-mobile-link">PRICING</a>
     <a href="case-studies.html" class="nav-mobile-link">CASE STUDIES</a>
     <a href="contact.html" class="nav-mobile-link">CONTACT</a>
-    <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:12px;">BOOK A RUN →</a>
+    <a href="contact.html" class="btn btn-dark" style="margin-top:16px;">BOOK A RUN →</a>
   </div>
 </nav>
 
 <div class="page-hero">
   <div class="container">
-    <h1 class="page-hero-title reveal">
-      Simple pricing.<br/><em>No lock-in.</em>
-    </h1>
-    <p class="page-hero-desc reveal">Start with a single on-demand run. Move to a retainer when outbound becomes a discipline, not a project.</p>
-  </div>
-</div>
-
-<!-- TABS + PANELS -->
-<div style="border-top:1px solid var(--border);">
-  <div class="container">
-    <div class="tabs-bar reveal-fast">
-      <button class="ptab ptab--active" data-tab="ondemand">ON-DEMAND</button>
-      <button class="ptab" data-tab="retainer">MONTHLY RETAINER</button>
+    <div class="page-hero-inner">
+      <h1 class="h-display sr">Simple pricing.<br/><em>No lock-in.</em></h1>
+      <p class="page-hero-desc sr-right">Start with one on-demand run. Move to a retainer when outbound becomes a discipline.</p>
     </div>
   </div>
 </div>
 
-<!-- ON-DEMAND PANEL -->
-<div class="ppanel" id="ppanel-ondemand">
-  <div class="container pricing-wrap">
-    <div class="pricing-grid">
+<div style="border-top:1px solid var(--border);background:var(--bg-card);">
+  <div class="container">
+    <div class="ptabs-bar sr-up">
+      <button class="ptab ptab--on" data-tab="od">ON-DEMAND</button>
+      <button class="ptab" data-tab="ret">MONTHLY RETAINER</button>
+    </div>
+  </div>
+</div>
 
-      <div class="pcard reveal">
-        <div class="rec-label"></div>
+<!-- ON-DEMAND -->
+<div class="ppanel" id="ppanel-od" style="background:var(--bg-primary);">
+  <div class="container pricing-wrap">
+    <div class="pgrid">
+      <div class="pcard sr">
+        <div class="rec-badge"></div>
         <div class="pcard-tier">ON-DEMAND · TIER 01</div>
         <div class="pcard-name">Argus Starter</div>
-        <div class="pcard-price">
-          <span class="pcard-amount">€490</span>
-          <span class="pcard-period">/ RUN</span>
-        </div>
+        <div class="pcard-price"><span class="pcard-amount">€490</span><span class="pcard-period">/ RUN</span></div>
         <p class="pcard-desc">Single run for a focused outbound push. Test the engine before committing.</p>
-        <ul class="pcard-features">
+        <ul class="pcard-feats">
           <li>Up to 20 qualified leads</li>
           <li>Per-contact ICP score (0–100)</li>
           <li>Buying trigger, cited</li>
           <li>One-line outreach hook per contact</li>
           <li>PDF + DOCX delivery in 72h</li>
         </ul>
-        <a href="contact.html" class="pcard-btn pcard-btn--outline">BOOK A RUN →</a>
+        <a href="contact.html" class="pcard-btn pcard-btn--out">BOOK A RUN →</a>
       </div>
-
-      <div class="pcard pcard--rec reveal">
-        <div class="rec-label">RECOMMENDED</div>
+      <div class="pcard pcard--rec sr" data-delay="80">
+        <div class="rec-badge">RECOMMENDED</div>
         <div class="pcard-tier">ON-DEMAND · TIER 02</div>
         <div class="pcard-name">Argus + Lynx</div>
-        <div class="pcard-price">
-          <span class="pcard-amount">€990</span>
-          <span class="pcard-period">/ RUN</span>
-        </div>
+        <div class="pcard-price"><span class="pcard-amount">€990</span><span class="pcard-period">/ RUN</span></div>
         <p class="pcard-desc">List + deep map of your best five accounts. Built for warm-lane outbound.</p>
-        <ul class="pcard-features">
+        <ul class="pcard-feats">
           <li>Everything in Argus Starter</li>
           <li>Lynx workspace on 5 priority accounts</li>
           <li>Full decision-maker mapping</li>
@@ -315,71 +167,56 @@
         </ul>
         <a href="contact.html" class="pcard-btn pcard-btn--fill">BOOK THIS STACK →</a>
       </div>
-
-      <div class="pcard reveal">
-        <div class="rec-label"></div>
+      <div class="pcard sr" data-delay="160">
+        <div class="rec-badge"></div>
         <div class="pcard-tier">ON-DEMAND · TIER 03</div>
         <div class="pcard-name">Full Suite</div>
-        <div class="pcard-price">
-          <span class="pcard-amount">€1.890</span>
-          <span class="pcard-period">/ RUN</span>
-        </div>
+        <div class="pcard-price"><span class="pcard-amount">€1.890</span><span class="pcard-period">/ RUN</span></div>
         <p class="pcard-desc">Argus + Lynx + Intelligence + a strategic session with the team.</p>
-        <ul class="pcard-features">
+        <ul class="pcard-feats">
           <li>Everything in Argus + Lynx</li>
           <li>Intelligence brief on one target</li>
           <li>Strategy session (90 min)</li>
           <li>Custom ICP refinement</li>
           <li>Direct line for 30 days</li>
         </ul>
-        <a href="contact.html" class="pcard-btn pcard-btn--outline">BOOK THE SUITE →</a>
+        <a href="contact.html" class="pcard-btn pcard-btn--out">BOOK THE SUITE →</a>
       </div>
-
     </div>
     <div class="pricing-note">
-      <span>ALL PRICES EXCL. VAT</span>
-      <span class="pricing-note-dot">·</span>
-      <span>FIRST ARGUS RUN FREE FOR QUALIFIED AGENCIES</span>
-      <span class="pricing-note-dot">·</span>
+      <span>ALL PRICES EXCL. VAT</span><span>·</span>
+      <span>FIRST ARGUS RUN FREE FOR QUALIFIED AGENCIES</span><span>·</span>
       <span>CUSTOM BUILDS ON REQUEST</span>
     </div>
   </div>
 </div>
 
-<!-- RETAINER PANEL -->
-<div class="ppanel" id="ppanel-retainer" style="display:none">
+<!-- RETAINER -->
+<div class="ppanel" id="ppanel-ret" style="display:none;background:var(--bg-primary);">
   <div class="container pricing-wrap">
-    <div class="pricing-grid">
-
-      <div class="pcard reveal">
-        <div class="rec-label"></div>
+    <div class="pgrid">
+      <div class="pcard sr">
+        <div class="rec-badge"></div>
         <div class="pcard-tier">RETAINER · TIER 01</div>
         <div class="pcard-name">Base</div>
-        <div class="pcard-price">
-          <span class="pcard-amount">€790</span>
-          <span class="pcard-period">/ MONTH</span>
-        </div>
+        <div class="pcard-price"><span class="pcard-amount">€790</span><span class="pcard-period">/ MONTH</span></div>
         <p class="pcard-desc">Continuous lead flow for a single outbound channel. Enough to test, not to bet.</p>
-        <ul class="pcard-features">
+        <ul class="pcard-feats">
           <li>2 Argus runs per month</li>
           <li>40 qualified leads / month</li>
           <li>Quarterly ICP review</li>
           <li>Standard 72h SLA</li>
           <li>Email support</li>
         </ul>
-        <a href="contact.html" class="pcard-btn pcard-btn--outline">START RETAINER →</a>
+        <a href="contact.html" class="pcard-btn pcard-btn--out">START RETAINER →</a>
       </div>
-
-      <div class="pcard pcard--rec reveal">
-        <div class="rec-label">RECOMMENDED</div>
+      <div class="pcard pcard--rec sr" data-delay="80">
+        <div class="rec-badge">RECOMMENDED</div>
         <div class="pcard-tier">RETAINER · TIER 02</div>
         <div class="pcard-name">Pro</div>
-        <div class="pcard-price">
-          <span class="pcard-amount">€1.690</span>
-          <span class="pcard-period">/ MONTH</span>
-        </div>
+        <div class="pcard-price"><span class="pcard-amount">€1.690</span><span class="pcard-period">/ MONTH</span></div>
         <p class="pcard-desc">The default for sales teams running outbound as a discipline, not a project.</p>
-        <ul class="pcard-features">
+        <ul class="pcard-feats">
           <li>4 Argus + Lynx runs per month</li>
           <li>80 qualified leads / month</li>
           <li>Monthly strategy call (60 min)</li>
@@ -388,32 +225,25 @@
         </ul>
         <a href="contact.html" class="pcard-btn pcard-btn--fill">START PRO →</a>
       </div>
-
-      <div class="pcard reveal">
-        <div class="rec-label"></div>
+      <div class="pcard sr" data-delay="160">
+        <div class="rec-badge"></div>
         <div class="pcard-tier">RETAINER · TIER 03</div>
         <div class="pcard-name">Agency</div>
-        <div class="pcard-price">
-          <span class="pcard-amount">€3.490</span>
-          <span class="pcard-period">/ MONTH</span>
-        </div>
+        <div class="pcard-price"><span class="pcard-amount">€3.490</span><span class="pcard-period">/ MONTH</span></div>
         <p class="pcard-desc">Full stack for agencies running outbound on behalf of multiple clients.</p>
-        <ul class="pcard-features">
+        <ul class="pcard-feats">
           <li>Unlimited runs (fair use)</li>
           <li>Full suite — Argus + Lynx + Intelligence</li>
           <li>Dedicated account manager</li>
           <li>White-label PDF + DOCX</li>
           <li>Same-day SLA on priority runs</li>
         </ul>
-        <a href="contact.html" class="pcard-btn pcard-btn--outline">TALK TO US →</a>
+        <a href="contact.html" class="pcard-btn pcard-btn--out">TALK TO US →</a>
       </div>
-
     </div>
     <div class="pricing-note">
-      <span>ALL PRICES EXCL. VAT</span>
-      <span class="pricing-note-dot">·</span>
-      <span>FIRST ARGUS RUN FREE FOR QUALIFIED AGENCIES</span>
-      <span class="pricing-note-dot">·</span>
+      <span>ALL PRICES EXCL. VAT</span><span>·</span>
+      <span>FIRST ARGUS RUN FREE FOR QUALIFIED AGENCIES</span><span>·</span>
       <span>CUSTOM BUILDS ON REQUEST</span>
     </div>
   </div>
@@ -422,33 +252,15 @@
 <!-- FAQ -->
 <section class="faq">
   <div class="container">
-    <div class="section-eyebrow reveal-fast">FAQ</div>
-    <h2 class="section-title reveal">Common<br/><em>questions.</em></h2>
+    <div class="eyebrow sr-up">FAQ</div>
+    <h2 class="h-section sr" data-delay="60">Common<br/><em>questions.</em></h2>
     <div class="faq-grid" data-stagger="60">
-      <div class="faq-item reveal">
-        <p class="faq-q">How quickly will I receive my deliverables?</p>
-        <p class="faq-a">Standard SLA is 72 hours from ICP brief confirmation. Pro and Agency retainers are 48h. Full Suite runs are prioritised.</p>
-      </div>
-      <div class="faq-item reveal">
-        <p class="faq-q">What if the leads don't match my ICP?</p>
-        <p class="faq-a">We offer a free revision on any run where more than 20% of leads fall outside the agreed ICP criteria. Your brief is binding — so are we.</p>
-      </div>
-      <div class="faq-item reveal">
-        <p class="faq-q">Can I start on-demand and move to a retainer?</p>
-        <p class="faq-a">Yes. Most clients start with an Argus Starter or Argus + Lynx run to validate the engine, then move to a retainer after the first qualified conversation.</p>
-      </div>
-      <div class="faq-item reveal">
-        <p class="faq-q">What does "first run free for qualified agencies" mean?</p>
-        <p class="faq-a">Agencies running outbound for clients qualify for a complimentary Argus Starter run. Send us a brief and we'll confirm eligibility within 24 hours.</p>
-      </div>
-      <div class="faq-item reveal">
-        <p class="faq-q">In what format are deliverables sent?</p>
-        <p class="faq-a">Every run includes a PDF and a DOCX file. Lynx workspaces are accessed via a shared link. Intelligence briefs include a written document plus the live session.</p>
-      </div>
-      <div class="faq-item reveal">
-        <p class="faq-q">Do you offer custom builds?</p>
-        <p class="faq-a">Yes — for teams with specific data sources, CRM integrations, or workflow requirements. Contact us to scope a custom build.</p>
-      </div>
+      <div class="faq-item sr"><p class="faq-q">How quickly will I receive my deliverables?</p><p class="faq-a">Standard SLA is 72 hours from ICP brief confirmation. Pro and Agency retainers run on 48h. Full Suite runs are prioritised.</p></div>
+      <div class="faq-item sr"><p class="faq-q">What if the leads don't match my ICP?</p><p class="faq-a">We offer a free revision on any run where more than 20% of leads fall outside the agreed criteria. Your brief is binding — so are we.</p></div>
+      <div class="faq-item sr"><p class="faq-q">Can I start on-demand and move to a retainer?</p><p class="faq-a">Yes. Most clients start with Argus Starter or Argus + Lynx, then move to a retainer after the first qualified conversation books.</p></div>
+      <div class="faq-item sr"><p class="faq-q">What does "first run free for qualified agencies" mean?</p><p class="faq-a">Agencies running outbound for clients qualify for a complimentary Argus Starter run. Send a brief and we confirm eligibility within 24 hours.</p></div>
+      <div class="faq-item sr"><p class="faq-q">In what format are deliverables sent?</p><p class="faq-a">Every run includes a PDF and DOCX file. Lynx workspaces are shared via link. Intelligence briefs include a written document plus the live session.</p></div>
+      <div class="faq-item sr"><p class="faq-q">Do you offer custom builds?</p><p class="faq-a">Yes — for teams with specific data sources, CRM integrations, or workflow requirements. Contact us to scope a custom build.</p></div>
     </div>
   </div>
 </section>
@@ -456,11 +268,7 @@
 <footer class="footer">
   <div class="container footer-inner">
     <a href="index.html" class="footer-logo">
-      <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="50" cy="35" r="19" stroke-width="1.8"/>
-        <path d="M36,7 L21,35 L36,63" stroke-width="1.8"/>
-        <path d="M64,7 L79,35 L64,63" stroke-width="1.8"/>
-      </svg>
+      <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="35" r="19" stroke-width="2"/><path d="M36,7 L21,35 L36,63" stroke-width="2"/><path d="M64,7 L79,35 L64,63" stroke-width="2"/></svg>
       <span class="footer-logo-name">SIFT</span>
     </a>
     <nav class="footer-nav">
@@ -472,7 +280,6 @@
     <span class="footer-copy">© 2025 SIFT Signal Intelligence</span>
   </div>
 </footer>
-
 <script src="script.js"></script>
 </body>
 </html>
