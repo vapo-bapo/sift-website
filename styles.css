@@ -27,7 +27,7 @@
   --shadow-xl:   0 24px 64px rgba(14,12,6,0.15), 0 4px 12px rgba(14,12,6,0.06);
 
   --font-sans:    'Inter', -apple-system, system-ui, sans-serif;
-  --font-serif:   'Instrument Serif', Georgia, serif;
+  --font-serif:   'Fraunces', Georgia, serif;
 
   --nav-h:        62px;
   --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
@@ -146,21 +146,24 @@ input, select, textarea { font: inherit; color: inherit; }
 .t-hero {
   font-family: var(--font-serif);
   font-size: clamp(54px, 7vw, 100px);
-  font-weight: 400; line-height: 1.02; letter-spacing: -0.01em;
+  font-weight: 300; line-height: 1.02; letter-spacing: -0.015em;
+  font-optical-sizing: auto;
 }
 .t-hero em { font-style: italic; color: var(--text-dim); }
 
 .t-display {
   font-family: var(--font-serif);
   font-size: clamp(40px, 5vw, 72px);
-  font-weight: 400; line-height: 1.06; letter-spacing: -0.01em;
+  font-weight: 300; line-height: 1.06; letter-spacing: -0.01em;
+  font-optical-sizing: auto;
 }
 .t-display em { font-style: italic; color: var(--text-dim); }
 
 .t-title {
   font-family: var(--font-serif);
   font-size: clamp(32px, 3.5vw, 52px);
-  font-weight: 400; line-height: 1.1; letter-spacing: -0.005em;
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.008em;
+  font-optical-sizing: auto;
 }
 
 .t-body { font-size: 15px; color: var(--text-secondary); line-height: 1.78; }
