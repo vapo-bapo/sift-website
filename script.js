@@ -122,6 +122,33 @@ if (!isMobile) {
   }
 }
 
+// ─── HERO LOGO DRAW (on load) ─────────────────────────────
+function initHeroLogo() {
+  const wrap = document.getElementById('heroLogoAnim');
+  if (!wrap) return;
+  const circle = wrap.querySelector('.hero-logo-circle');
+  const brackets = wrap.querySelectorAll('.hero-logo-bracket');
+  const allPaths = [circle, ...brackets].filter(Boolean);
+  allPaths.forEach(p => {
+    let len;
+    try { len = p.getTotalLength(); } catch(e) { len = 150; }
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+  });
+  setTimeout(() => {
+    if (circle) {
+      circle.style.transition = 'stroke-dashoffset 1100ms cubic-bezier(0.16,1,0.3,1)';
+      circle.style.strokeDashoffset = '0';
+    }
+    setTimeout(() => {
+      brackets.forEach(b => {
+        b.style.transition = 'stroke-dashoffset 800ms cubic-bezier(0.16,1,0.3,1)';
+        b.style.strokeDashoffset = '0';
+      });
+    }, 440);
+  }, 350);
+}
+
 // ─── SCROLL LOGO ANIMATION ────────────────────────────────
 function initLogoAnimation(wrap) {
   if (!wrap) return;
@@ -168,11 +195,11 @@ function initArgusCanvas(canvas) {
   new ResizeObserver(resize).observe(canvas);
 
   const leads = [
-    { name: 'Arcturus GmbH',    role: 'VP of Engineering',    score: 94, trigger: 'Hiring 11 ML engineers — Q1 expansion', sector: 'AI / Data' },
-    { name: 'Helix Software SE', role: 'Head of Sales Ops',   score: 88, trigger: 'Series C raised · expanding DACH',        sector: 'HR Tech' },
-    { name: 'Volta Systems AG',  role: 'Director, GTM EMEA',  score: 83, trigger: 'New VP Sales appointed 5 weeks ago',      sector: 'Enterprise SaaS' },
-    { name: 'Meridian GmbH',    role: 'CRO',                   score: 79, trigger: 'Migrating CRM stack → HubSpot',          sector: 'Pricing Tech' },
-    { name: 'Solaris Logistics', role: 'VP Revenue',           score: 74, trigger: 'Outbound gap — logistics scale-up',       sector: 'Logistics' },
+    { name: 'Arcturus GmbH',     role: 'VP of Engineering',    score: 94, trigger: 'Hiring 11 ML engineers — Q1 expansion', sector: 'AI / Data' },
+    { name: 'Helix Software SE',  role: 'Head of Sales Ops',    score: 88, trigger: 'Series C raised · expanding DACH',       sector: 'HR Tech' },
+    { name: 'Volta Systems AG',   role: 'Director, GTM EMEA',   score: 83, trigger: 'New VP Sales appointed 5 weeks ago',     sector: 'Enterprise SaaS' },
+    { name: 'Meridian GmbH',      role: 'CRO',                  score: 79, trigger: 'Migrating CRM stack → HubSpot',          sector: 'Pricing Tech' },
+    { name: 'Solaris Logistics',  role: 'VP Revenue',           score: 74, trigger: 'Outbound gap — logistics scale-up',      sector: 'Logistics' },
   ];
 
   let revealed = 0;
@@ -188,9 +215,7 @@ function initArgusCanvas(canvas) {
   canvas.addEventListener('mousemove', e => {
     const r = canvas.getBoundingClientRect();
     const my = e.clientY - r.top;
-    const rowH = 72;
-    const startY = 20;
-    hovered = Math.floor((my - startY) / rowH);
+    hovered = Math.floor((my - 20) / 72);
     if (hovered < 0 || hovered >= revealed) hovered = -1;
   });
   canvas.addEventListener('mouseleave', () => { hovered = -1; });
@@ -206,97 +231,146 @@ function initArgusCanvas(canvas) {
     const H = canvas.getBoundingClientRect().height;
     ctx.clearRect(0, 0, W, H);
 
-    ctx.fillStyle = '#0d0c07';
+    // bg
+    ctx.fillStyle = '#0a0905';
     ctx.fillRect(0, 0, W, H);
 
-    ctx.font = '500 9px Inter, sans-serif';
-    ctx.letterSpacing = '0.14em';
-    ctx.fillStyle = 'rgba(245,240,232,0.25)';
-    ctx.fillText('COMPANY', 20, 16);
-    ctx.fillText('SCORE', W - 100, 16);
+    // subtle grid
+    ctx.strokeStyle = 'rgba(255,253,245,0.02)';
+    ctx.lineWidth = 1;
+    for (let y = 36; y < H; y += 36) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
 
-    const rowH = 72;
-    const startY = 20;
+    // score column separator
+    ctx.strokeStyle = 'rgba(255,253,245,0.04)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(W - 110, 20); ctx.lineTo(W - 110, H - 24); ctx.stroke();
+
+    // column headers
+    ctx.font = '600 9px Inter, sans-serif';
+    ctx.letterSpacing = '0.16em';
+    ctx.fillStyle = 'rgba(245,240,232,0.20)';
+    ctx.fillText('COMPANY', 20, 15);
+    ctx.textAlign = 'right';
+    ctx.fillText('SCORE', W - 14, 15);
+    ctx.textAlign = 'left';
+    ctx.letterSpacing = '0';
+
+    const rowH = 72, startY = 20;
+
+    // Active scan highlight for next row
+    if (revealed < leads.length && frame > 10) {
+      const nextY = startY + revealed * rowH;
+      const pulse = (Math.sin(frame * 0.12) + 1) / 2;
+      const glowAlpha = 0.04 + pulse * 0.06;
+      ctx.fillStyle = `rgba(237,180,88,${glowAlpha})`;
+      ctx.fillRect(0, nextY, W, rowH);
+      // scan line
+      const lineAlpha = 0.3 + pulse * 0.5;
+      const lineGrad = ctx.createLinearGradient(0, nextY, W, nextY);
+      lineGrad.addColorStop(0, 'transparent');
+      lineGrad.addColorStop(0.15, `rgba(237,180,88,${lineAlpha})`);
+      lineGrad.addColorStop(0.85, `rgba(237,180,88,${lineAlpha})`);
+      lineGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = lineGrad;
+      ctx.fillRect(0, nextY, W, 1);
+    }
 
     for (let i = 0; i < revealed; i++) {
       const lead = leads[i];
       const y = startY + i * rowH;
       const isHov = hovered === i;
 
-      scoreProgress[i] = Math.min(scoreProgress[i] + 1.2, lead.score);
+      scoreProgress[i] = Math.min(scoreProgress[i] + 1.4, lead.score);
 
+      // row bg
       if (isHov) {
-        ctx.fillStyle = 'rgba(237,180,88,0.07)';
+        ctx.fillStyle = 'rgba(237,180,88,0.06)';
         ctx.fillRect(0, y, W, rowH);
-      } else {
-        ctx.fillStyle = i % 2 === 0 ? 'rgba(255,253,245,0.02)' : 'transparent';
+      } else if (i % 2 === 0) {
+        ctx.fillStyle = 'rgba(255,253,245,0.015)';
         ctx.fillRect(0, y, W, rowH);
       }
 
-      ctx.fillStyle = 'rgba(255,253,245,0.06)';
+      // row separator
+      ctx.fillStyle = 'rgba(255,253,245,0.04)';
       ctx.fillRect(0, y + rowH - 1, W, 1);
 
-      const age = frame - i * 18;
-      const slideX = age < 24 ? Math.max(0, (24 - age) * 4) : 0;
-      const alpha = age < 24 ? Math.min(1, age / 24) : 1;
+      // entry animation
+      const age = frame - i * 20;
+      const slideX = age < 20 ? Math.max(0, (20 - age) * 5) : 0;
+      const alpha = age < 20 ? Math.min(1, age / 20) : 1;
 
       ctx.save();
       ctx.globalAlpha = alpha;
       ctx.translate(-slideX, 0);
 
+      // name
       ctx.font = '500 13px Inter, sans-serif';
-      ctx.fillStyle = '#F5F0E8';
-      ctx.fillText(lead.name, 20, y + 24);
+      ctx.fillStyle = isHov ? '#FFFDF5' : '#EDE8DC';
+      ctx.fillText(lead.name, 20, y + 26);
 
+      // role
       ctx.font = '400 11px Inter, sans-serif';
-      ctx.fillStyle = 'rgba(245,240,232,0.40)';
-      ctx.fillText(lead.role, 20, y + 40);
+      ctx.fillStyle = 'rgba(245,240,232,0.38)';
+      ctx.fillText(lead.role, 20, y + 42);
 
+      // trigger on hover
       if (isHov) {
-        ctx.font = '400 11px Inter, sans-serif';
+        ctx.font = '400 10.5px Inter, sans-serif';
         ctx.fillStyle = scoreColor(lead.score);
-        ctx.fillText('↑ ' + lead.trigger, 20, y + 57);
+        ctx.fillText('↑ ' + lead.trigger, 20, y + 58);
+      } else {
+        // sector
+        ctx.font = '500 9px Inter, sans-serif';
+        ctx.letterSpacing = '0.08em';
+        ctx.fillStyle = 'rgba(201,148,58,0.50)';
+        ctx.fillText(lead.sector, 20, y + 58);
+        ctx.letterSpacing = '0';
       }
 
-      ctx.font = '500 9px Inter, sans-serif';
-      ctx.fillStyle = 'rgba(237,180,88,0.55)';
-      ctx.fillText(lead.sector, 20, y + (isHov ? 57 : 57));
+      // score bar bg
+      const barX = W - 96, barW = 72, barY = y + 30;
+      ctx.fillStyle = 'rgba(255,253,245,0.06)';
+      ctx.beginPath(); ctx.roundRect(barX, barY, barW, 3, 2); ctx.fill();
 
-      const barX = W - 96;
-      const barW = 72;
-      const barY = y + 28;
-      ctx.fillStyle = 'rgba(255,253,245,0.07)';
-      ctx.beginPath();
-      ctx.roundRect(barX, barY, barW, 4, 2);
-      ctx.fill();
-
+      // score bar fill
       const pct = scoreProgress[i] / 100;
       const sc = scoreColor(lead.score);
       ctx.fillStyle = sc;
-      ctx.beginPath();
-      ctx.roundRect(barX, barY, barW * pct, 4, 2);
-      ctx.fill();
+      ctx.beginPath(); ctx.roundRect(barX, barY, barW * pct, 3, 2); ctx.fill();
 
-      ctx.font = '600 14px Inter, sans-serif';
+      // score number
+      ctx.font = '600 16px Inter, sans-serif';
       ctx.fillStyle = sc;
       ctx.textAlign = 'right';
-      ctx.fillText(Math.round(scoreProgress[i]), W - 16, y + 28);
+      ctx.fillText(Math.round(scoreProgress[i]), W - 14, y + 28);
       ctx.textAlign = 'left';
 
       ctx.restore();
     }
 
+    // status footer
+    ctx.fillStyle = 'rgba(255,253,245,0.04)';
+    ctx.fillRect(0, H - 26, W, 1);
     if (revealed < leads.length) {
-      const pulse = Math.abs(Math.sin(frame * 0.05));
-      ctx.fillStyle = `rgba(237,180,88,${0.3 + pulse * 0.4})`;
-      ctx.font = '500 9px Inter, sans-serif';
-      ctx.letterSpacing = '0.12em';
-      ctx.fillText('● SCANNING', 20, H - 14);
+      const pulse = (Math.sin(frame * 0.07) + 1) / 2;
+      ctx.fillStyle = `rgba(237,180,88,${0.35 + pulse * 0.45})`;
+      ctx.font = '600 8.5px Inter, sans-serif';
+      ctx.letterSpacing = '0.14em';
+      ctx.fillText('● SCANNING', 20, H - 9);
+      // progress bar
+      const pBar = (revealed / leads.length);
+      ctx.fillStyle = 'rgba(255,253,245,0.06)';
+      ctx.beginPath(); ctx.roundRect(W - 110, H - 14, 90, 2, 1); ctx.fill();
+      ctx.fillStyle = `rgba(237,180,88,${0.4 + pulse * 0.3})`;
+      ctx.beginPath(); ctx.roundRect(W - 110, H - 14, 90 * pBar, 2, 1); ctx.fill();
     } else {
-      ctx.fillStyle = 'rgba(237,180,88,0.6)';
-      ctx.font = '500 9px Inter, sans-serif';
-      ctx.letterSpacing = '0.12em';
-      ctx.fillText('✓ SCAN COMPLETE — 20 LEADS FOUND', 20, H - 14);
+      ctx.fillStyle = 'rgba(237,180,88,0.55)';
+      ctx.font = '600 8.5px Inter, sans-serif';
+      ctx.letterSpacing = '0.14em';
+      ctx.fillText('✓  SCAN COMPLETE — 20 LEADS IDENTIFIED', 20, H - 9);
     }
 
     frame++;
@@ -317,13 +391,13 @@ function initLynxNetwork(svg) {
 
   const cx = W / 2, cy = H / 2;
   const nodes = [
-    { id: 0, label: 'Arcturus GmbH', role: 'Target Company',  r: 38, x: cx,        y: cy,        color: '#edb458', isCenter: true },
-    { id: 1, label: 'J. Hartmann',   role: 'CRO',             r: 24, x: cx - 160,  y: cy - 80 },
-    { id: 2, label: 'S. Vogel',      role: 'VP Revenue Ops',  r: 22, x: cx + 170,  y: cy - 70 },
-    { id: 3, label: 'M. Fischer',    role: 'Head of Sales',   r: 22, x: cx - 170,  y: cy + 80 },
-    { id: 4, label: 'K. Brandt',     role: 'Dir. Partnerships', r: 20, x: cx + 155, y: cy + 90 },
-    { id: 5, label: 'T. Schäfer',   role: 'CFO',             r: 20, x: cx,        y: cy - 140 },
-    { id: 6, label: 'L. Meier',      role: 'CISO',            r: 18, x: cx,        y: cy + 150 },
+    { id: 0, label: 'Arcturus GmbH', role: 'Target Company',    r: 38, x: cx,        y: cy,        color: '#edb458', isCenter: true },
+    { id: 1, label: 'J. Hartmann',   role: 'CRO',               r: 24, x: cx - 160,  y: cy - 80 },
+    { id: 2, label: 'S. Vogel',      role: 'VP Revenue Ops',    r: 22, x: cx + 170,  y: cy - 70 },
+    { id: 3, label: 'M. Fischer',    role: 'Head of Sales',     r: 22, x: cx - 170,  y: cy + 80 },
+    { id: 4, label: 'K. Brandt',     role: 'Dir. Partnerships', r: 20, x: cx + 155,  y: cy + 90 },
+    { id: 5, label: 'T. Schäfer',   role: 'CFO',               r: 20, x: cx,        y: cy - 140 },
+    { id: 6, label: 'L. Meier',      role: 'CISO',              r: 18, x: cx,        y: cy + 150 },
   ];
   const edges = [[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[1,3],[2,4]];
 
@@ -332,7 +406,7 @@ function initLynxNetwork(svg) {
     <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/>
     <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#f5c97a" stop-opacity="0.25"/>
+      <stop offset="0%" stop-color="#f5c97a" stop-opacity="0.20"/>
       <stop offset="100%" stop-color="#edb458" stop-opacity="0"/>
     </radialGradient>
   `;
@@ -344,7 +418,7 @@ function initLynxNetwork(svg) {
     const na = nodes[a], nb = nodes[b];
     line.setAttribute('x1', na.x); line.setAttribute('y1', na.y);
     line.setAttribute('x2', nb.x); line.setAttribute('y2', nb.y);
-    line.setAttribute('stroke', 'rgba(237,180,88,0.15)');
+    line.setAttribute('stroke', 'rgba(237,180,88,0.13)');
     line.setAttribute('stroke-width', '1.5');
     const len = Math.hypot(nb.x - na.x, nb.y - na.y);
     line.style.strokeDasharray = len;
@@ -364,15 +438,15 @@ function initLynxNetwork(svg) {
 
     const circle = document.createElementNS(ns, 'circle');
     circle.setAttribute('r', n.r);
-    circle.setAttribute('fill', n.isCenter ? 'rgba(237,180,88,0.12)' : 'rgba(255,253,245,0.05)');
-    circle.setAttribute('stroke', n.color || 'rgba(237,180,88,0.35)');
+    circle.setAttribute('fill', n.isCenter ? 'rgba(237,180,88,0.10)' : 'rgba(255,253,245,0.04)');
+    circle.setAttribute('stroke', n.color || 'rgba(237,180,88,0.32)');
     circle.setAttribute('stroke-width', n.isCenter ? '2' : '1.5');
     if (n.isCenter) circle.setAttribute('filter', 'url(#glow)');
 
     const label = document.createElementNS(ns, 'text');
     label.setAttribute('y', n.isCenter ? 5 : 4);
     label.setAttribute('text-anchor', 'middle');
-    label.setAttribute('fill', n.isCenter ? '#edb458' : 'rgba(245,240,232,0.80)');
+    label.setAttribute('fill', n.isCenter ? '#edb458' : 'rgba(245,240,232,0.78)');
     label.setAttribute('font-size', n.isCenter ? '10' : '9');
     label.setAttribute('font-family', 'Inter,sans-serif');
     label.setAttribute('font-weight', '500');
@@ -381,23 +455,21 @@ function initLynxNetwork(svg) {
     const roleEl = document.createElementNS(ns, 'text');
     roleEl.setAttribute('y', n.isCenter ? 18 : 16);
     roleEl.setAttribute('text-anchor', 'middle');
-    roleEl.setAttribute('fill', 'rgba(245,240,232,0.30)');
+    roleEl.setAttribute('fill', 'rgba(245,240,232,0.28)');
     roleEl.setAttribute('font-size', '7.5');
     roleEl.setAttribute('font-family', 'Inter,sans-serif');
-    roleEl.textContent = n.role.split(' ').slice(0,2).join(' ');
+    roleEl.textContent = n.role.split(' ').slice(0, 2).join(' ');
 
-    g.appendChild(circle);
-    g.appendChild(label);
-    g.appendChild(roleEl);
+    g.appendChild(circle); g.appendChild(label); g.appendChild(roleEl);
 
     g.addEventListener('mouseenter', () => {
       circle.setAttribute('stroke', '#edb458');
-      circle.setAttribute('fill', 'rgba(237,180,88,0.15)');
+      circle.setAttribute('fill', 'rgba(237,180,88,0.14)');
       g.style.transform = `translate(${n.x}px,${n.y}px) scale(1.12)`;
     });
     g.addEventListener('mouseleave', () => {
-      circle.setAttribute('stroke', n.color || 'rgba(237,180,88,0.35)');
-      circle.setAttribute('fill', n.isCenter ? 'rgba(237,180,88,0.12)' : 'rgba(255,253,245,0.05)');
+      circle.setAttribute('stroke', n.color || 'rgba(237,180,88,0.32)');
+      circle.setAttribute('fill', n.isCenter ? 'rgba(237,180,88,0.10)' : 'rgba(255,253,245,0.04)');
       g.style.transform = `translate(${n.x}px,${n.y}px) scale(1)`;
     });
 
@@ -461,6 +533,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // ─── INIT ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroLogo();
   initArgusCanvas(document.getElementById('argusCanvas'));
   initLynxNetwork(document.getElementById('lynxSvg'));
   initIntelTabs(document.getElementById('intelTabs'));

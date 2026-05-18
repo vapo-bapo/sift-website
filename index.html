@@ -16,66 +16,184 @@
     justify-content:center;padding-top:var(--nav-h);
     position:relative;overflow:hidden;background:var(--bg-primary);
   }
-  .hero-content{padding:80px 0 100px;position:relative;z-index:1;}
-  .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .hero-content{padding:72px 0 96px;position:relative;z-index:1;}
+  .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+
+  /* hero left */
+  .hero-logo-draw{
+    margin-bottom:32px;
+    width:52px;height:37px; /* 100:70 ratio → 52px wide */
+    color:var(--accent);
+    opacity:0;
+    animation:heroLogoFadeIn 600ms var(--ease-out) 200ms forwards;
+  }
+  @keyframes heroLogoFadeIn{to{opacity:1;}}
+
   .hero-eyebrow{
     font-size:9.5px;font-weight:600;letter-spacing:0.22em;
-    color:var(--accent-dim);display:flex;align-items:center;gap:10px;margin-bottom:36px;
+    color:var(--accent-dim);display:flex;align-items:center;gap:10px;margin-bottom:32px;
   }
   .hero-eyebrow span{width:24px;height:1.5px;background:var(--accent);display:block;}
   .hero-title{
-    font-family:var(--font-serif);font-size:clamp(56px,7vw,104px);
-    font-weight:400;line-height:0.97;letter-spacing:-0.02em;margin-bottom:32px;
+    font-family:var(--font-serif);
+    font-size:clamp(52px,6.8vw,100px);
+    font-weight:400;line-height:0.97;letter-spacing:-0.02em;margin-bottom:28px;
   }
   .hero-title em{font-style:italic;color:var(--text-dim);}
-  .hero-body{font-size:15.5px;color:var(--text-secondary);line-height:1.76;max-width:400px;margin-bottom:44px;}
+  .hero-body{font-size:15.5px;color:var(--text-secondary);line-height:1.76;max-width:390px;margin-bottom:40px;}
   .hero-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
 
-  /* stats strip */
-  .hero-stats-strip{padding:36px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-secondary);}
-  .stats-row{display:flex;gap:0;align-items:stretch;}
-  .stat-item{flex:1;padding:0 40px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:6px;}
-  .stat-item:first-child{padding-left:0;}
-  .stat-item:last-child{border-right:none;}
-  .stat-num{font-family:var(--font-serif);font-size:44px;font-weight:400;letter-spacing:-0.02em;line-height:1;color:var(--text-primary);}
-  .stat-label{font-size:11px;color:var(--text-dim);letter-spacing:0.06em;}
-
-  /* right panel */
+  /* hero right: canvas */
   .hero-viz{
-    background:var(--bg-void);border-radius:14px;overflow:hidden;position:relative;height:390px;
-    box-shadow:0 24px 64px rgba(7,6,0,0.18),0 0 0 1px rgba(7,6,0,0.06);
+    background:var(--bg-void);border-radius:14px;overflow:hidden;position:relative;height:400px;
+    box-shadow:0 24px 64px rgba(7,6,0,0.20),0 0 0 1px rgba(7,6,0,0.08);
   }
   .hero-viz canvas{width:100%;height:100%;display:block;}
-  .hero-viz-label{
-    position:absolute;top:14px;left:18px;
-    font-size:9px;font-weight:600;letter-spacing:0.16em;color:rgba(237,180,88,0.7);
+  .hero-viz-header{
+    padding:12px 16px;border-bottom:1px solid rgba(255,253,245,0.06);
+    display:flex;align-items:center;gap:7px;position:absolute;top:0;left:0;right:0;z-index:2;
+    background:rgba(10,9,5,0.6);backdrop-filter:blur(12px);
   }
+  .hero-viz-dot{width:7px;height:7px;border-radius:50%;}
+  .hero-viz-label{
+    margin-left:6px;font-size:8.5px;font-weight:600;letter-spacing:0.16em;
+    color:rgba(237,180,88,0.65);
+  }
+  .hero-viz canvas{padding-top:37px;box-sizing:border-box;}
 
-  /* logo reveal section */
-  .logo-reveal{padding:128px 0;background:var(--bg-void);position:relative;overflow:hidden;text-align:center;}
-  .logo-reveal-glow{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    width:600px;height:600px;border-radius:50%;
-    background:radial-gradient(circle,rgba(201,148,58,0.08) 0%,transparent 60%);
+  /* stats strip */
+  .hero-stats-strip{padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-secondary);}
+  .stats-row{display:flex;gap:0;align-items:stretch;}
+  .stat-item{flex:1;padding:0 36px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:5px;}
+  .stat-item:first-child{padding-left:0;}
+  .stat-item:last-child{border-right:none;}
+  .stat-num{font-family:var(--font-serif);font-size:42px;font-weight:400;letter-spacing:-0.02em;line-height:1;color:var(--text-primary);}
+  .stat-label{font-size:10.5px;color:var(--text-dim);letter-spacing:0.06em;}
+
+  /* ── RADAR LOGO SECTION ── */
+  .logo-reveal{
+    padding:136px 0 120px;
+    background:var(--bg-void);
+    position:relative;overflow:hidden;text-align:center;
+  }
+  /* ambient glow */
+  .logo-reveal::before{
+    content:'';position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    width:700px;height:700px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,148,58,0.07) 0%,transparent 55%);
     pointer-events:none;
   }
-  .logo-reveal-svg{width:140px;height:98px;color:var(--accent);display:block;margin:0 auto;}
+
+  .scan-container{
+    position:relative;width:360px;height:360px;
+    margin:0 auto 52px;
+  }
+  /* concentric rings */
+  .scan-ring{
+    position:absolute;border-radius:50%;
+    top:50%;left:50%;transform:translate(-50%,-50%);
+    border:1px solid rgba(201,148,58,0.10);
+    pointer-events:none;
+  }
+  .scan-ring-outer{width:360px;height:360px;}
+  .scan-ring-mid  {width:240px;height:240px;border-color:rgba(201,148,58,0.08);}
+  .scan-ring-inner{width:128px;height:128px;border-color:rgba(201,148,58,0.14);}
+  /* crosshair lines */
+  .scan-cross{
+    position:absolute;inset:0;pointer-events:none;
+  }
+  .scan-cross::before{
+    content:'';position:absolute;
+    top:50%;left:0;right:0;height:1px;
+    background:linear-gradient(to right,transparent,rgba(201,148,58,0.07),transparent);
+    transform:translateY(-50%);
+  }
+  .scan-cross::after{
+    content:'';position:absolute;
+    left:50%;top:0;bottom:0;width:1px;
+    background:linear-gradient(to bottom,transparent,rgba(201,148,58,0.07),transparent);
+    transform:translateX(-50%);
+  }
+  /* radar sweep (conic gradient) */
+  .scan-sweep{
+    position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(
+      from 0deg,
+      transparent 0deg 290deg,
+      rgba(201,148,58,0.02) 290deg 315deg,
+      rgba(201,148,58,0.08) 315deg 335deg,
+      rgba(201,148,58,0.16) 335deg 348deg,
+      rgba(201,148,58,0.06) 348deg 358deg,
+      transparent 358deg 360deg
+    );
+    animation:radarSweep 3.5s linear infinite;
+    pointer-events:none;
+  }
+  /* solid sweep line */
+  .scan-line{
+    position:absolute;
+    top:0;left:50%;
+    width:1px;height:50%;
+    margin-left:-0.5px;
+    background:linear-gradient(to bottom,rgba(201,148,58,0.0) 0%,rgba(201,148,58,0.55) 100%);
+    transform-origin:bottom center;
+    animation:radarSweep 3.5s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes radarSweep{to{transform:rotate(360deg);}}
+
+  /* blip dots (detected signals) */
+  .scan-blip{
+    position:absolute;width:5px;height:5px;border-radius:50%;
+    background:rgba(201,148,58,0.85);
+    box-shadow:0 0 8px rgba(201,148,58,0.7),0 0 18px rgba(201,148,58,0.25);
+    animation:blipPulse 2.2s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes blipPulse{
+    0%,100%{opacity:1;transform:scale(1);}
+    50%{opacity:0.25;transform:scale(0.5);}
+  }
+
+  /* logo centered inside radar */
+  .scan-logo-wrap{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    z-index:2;
+  }
+  .scan-logo-svg{
+    width:88px;height:62px; /* 100:70 ratio */
+    color:var(--accent);display:block;
+  }
+
+  /* labels and stats */
   .logo-reveal-label{
-    font-size:9px;font-weight:600;letter-spacing:0.30em;
-    color:rgba(245,240,232,0.20);margin-top:52px;
+    font-size:9px;font-weight:600;letter-spacing:0.32em;
+    color:rgba(245,240,232,0.22);
+    position:relative;z-index:1;
   }
-  .logo-reveal-sub{
-    font-family:var(--font-serif);font-size:22px;font-weight:400;font-style:italic;
-    color:rgba(245,240,232,0.40);margin-top:14px;
+  .logo-reveal-stats{
+    display:flex;align-items:flex-start;justify-content:center;
+    gap:56px;margin-top:44px;position:relative;z-index:1;
+  }
+  .logo-reveal-stat{text-align:center;}
+  .logo-reveal-stat-val{
+    font-family:var(--font-serif);font-size:30px;font-weight:400;
+    color:rgba(245,240,232,0.60);line-height:1;display:block;
+  }
+  .logo-reveal-stat-key{
+    font-size:8px;font-weight:600;letter-spacing:0.22em;
+    color:rgba(245,240,232,0.18);margin-top:7px;display:block;
   }
 
-  /* trust strip */
-  .trust-strip{padding:56px 0;border-bottom:1px solid var(--border);}
-  .trust-label{font-size:9.5px;font-weight:500;letter-spacing:0.18em;color:var(--text-dim);text-align:center;margin-bottom:32px;}
-  .trust-logos{display:flex;align-items:center;justify-content:center;gap:52px;flex-wrap:wrap;opacity:0.30;}
-  .trust-logo{font-family:var(--font-sans);font-size:13px;font-weight:600;letter-spacing:0.16em;color:var(--text-primary);}
+  /* ── TRUST STRIP ── */
+  .trust-strip{padding:52px 0;border-bottom:1px solid var(--border);}
+  .trust-label{font-size:9.5px;font-weight:500;letter-spacing:0.18em;color:var(--text-dim);text-align:center;margin-bottom:28px;}
+  .trust-logos{display:flex;align-items:center;justify-content:center;gap:52px;flex-wrap:wrap;opacity:0.28;}
+  .trust-logo{font-family:var(--font-sans);font-size:12.5px;font-weight:700;letter-spacing:0.18em;color:var(--text-primary);}
 
-  /* products strip */
+  /* ── PRODUCTS STRIP ── */
   .products-strip{padding:120px 0;}
   .products-split{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;}
   .products-sticky{position:sticky;top:120px;}
@@ -91,22 +209,21 @@
   .products-nav-item.active,.products-nav-item:hover{color:var(--text-primary);}
   .products-nav-item.active .arrow{transform:translateX(4px);}
   .products-nav-item.active{color:var(--accent-dim);}
-
-  .products-content{display:flex;flex-direction:column;gap:80px;}
+  .products-content{display:flex;flex-direction:column;gap:72px;}
   .product-block{
     background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
-    padding:48px;transition:box-shadow 300ms,transform 300ms var(--ease-spring);
+    padding:44px;transition:box-shadow 300ms,transform 300ms var(--ease-spring);
   }
   .product-block:hover{box-shadow:var(--shadow-lg);}
-  .product-block-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:32px;}
-  .product-block-num{font-size:9.5px;font-weight:600;letter-spacing:0.20em;color:var(--text-dim);margin-bottom:8px;}
-  .product-block-name{font-family:var(--font-serif);font-size:40px;font-weight:400;line-height:1;}
+  .product-block-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:28px;}
+  .product-block-num{font-size:9.5px;font-weight:600;letter-spacing:0.20em;color:var(--text-dim);margin-bottom:7px;}
+  .product-block-name{font-family:var(--font-serif);font-size:38px;font-weight:400;line-height:1;}
   .product-block-badge{
     background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;
     padding:6px 12px;font-size:9px;font-weight:600;letter-spacing:0.14em;
     color:var(--text-dim);flex-shrink:0;white-space:nowrap;
   }
-  .product-block-desc{font-size:14px;color:var(--text-secondary);line-height:1.76;margin-bottom:28px;}
+  .product-block-desc{font-size:14px;color:var(--text-secondary);line-height:1.76;margin-bottom:24px;}
   .product-block-link{
     display:inline-flex;align-items:center;gap:6px;
     font-size:10.5px;font-weight:600;letter-spacing:0.12em;
@@ -114,12 +231,13 @@
   }
   .product-block-link:hover{color:var(--accent);gap:10px;}
 
-  /* process */
+  /* ── PROCESS ── */
   .process{padding:120px 0;background:var(--bg-secondary);}
+  .h-section{font-family:var(--font-serif);font-size:clamp(36px,4.5vw,58px);font-weight:400;line-height:1.08;letter-spacing:-0.01em;}
+  .h-section em{font-style:italic;color:var(--text-dim);}
   .process-steps{
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--border);border:1px solid var(--border);
-    border-radius:8px;overflow:hidden;margin-top:64px;
+    background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:64px;
   }
   .process-step{background:var(--bg-secondary);padding:40px 32px;transition:background 250ms;}
   .process-step:hover{background:var(--bg-card);}
@@ -127,42 +245,48 @@
   .process-step h4{font-size:13.5px;font-weight:600;margin-bottom:10px;letter-spacing:0.02em;}
   .process-step p{font-size:13px;color:var(--text-dim);line-height:1.7;}
 
-  /* section heading used on this page */
-  .h-section{font-family:var(--font-serif);font-size:clamp(38px,4.5vw,60px);font-weight:400;line-height:1.08;letter-spacing:-0.01em;}
-  .h-section em{font-style:italic;color:var(--text-dim);}
-
-  /* cta */
+  /* ── CTA ── */
   .cta{padding:128px 0;}
   .cta-inner{
     background:var(--bg-void);border-radius:16px;padding:80px;
     display:flex;align-items:center;justify-content:space-between;
     gap:48px;position:relative;overflow:hidden;
   }
-  .cta-bg-glow{
+  .cta-glow{
     position:absolute;right:-80px;top:50%;transform:translateY(-50%);
     width:500px;height:500px;border-radius:50%;
-    background:radial-gradient(circle,rgba(237,180,88,0.08) 0%,transparent 60%);
+    background:radial-gradient(circle,rgba(237,180,88,0.07) 0%,transparent 60%);
     pointer-events:none;
   }
   .cta-title{
-    font-family:var(--font-serif);font-size:clamp(36px,4vw,58px);
+    font-family:var(--font-serif);font-size:clamp(34px,4vw,56px);
     font-weight:400;line-height:1.1;color:#FFFDF5;max-width:480px;position:relative;z-index:1;
   }
-  .cta-title em{font-style:italic;color:rgba(255,253,245,0.45);}
+  .cta-title em{font-style:italic;color:rgba(255,253,245,0.42);}
   .cta-actions{display:flex;gap:12px;align-items:center;flex-shrink:0;position:relative;z-index:1;}
 
+  /* ── RESPONSIVE ── */
   @media(max-width:1024px){
     .hero-split{grid-template-columns:1fr;}.hero-viz{height:300px;}
     .products-split{grid-template-columns:1fr;}.products-sticky{position:static;}
     .process-steps{grid-template-columns:1fr 1fr;}
-    .stats-row{flex-wrap:wrap;}.stat-item{min-width:140px;}
+    .stats-row{flex-wrap:wrap;}.stat-item{min-width:130px;}
+    .scan-container{width:300px;height:300px;}
+    .scan-ring-outer{width:300px;height:300px;}
+    .scan-ring-mid{width:200px;height:200px;}
+    .scan-ring-inner{width:106px;height:106px;}
   }
   @media(max-width:700px){
     .process-steps{grid-template-columns:1fr;}
     .cta-inner{flex-direction:column;padding:48px 32px;}
     .cta-actions{flex-direction:column;width:100%;}.cta-actions .btn{width:100%;justify-content:center;}
-    .trust-logos{gap:28px;}
-    .logo-reveal-glow{width:320px;height:320px;}
+    .trust-logos{gap:24px;}
+    .logo-reveal-stats{gap:32px;}
+    .scan-container{width:260px;height:260px;}
+    .scan-ring-outer{width:260px;height:260px;}
+    .scan-ring-mid{width:174px;height:174px;}
+    .scan-ring-inner{width:92px;height:92px;}
+    .logo-reveal-stat-val{font-size:24px;}
   }
   </style>
 </head>
@@ -198,32 +322,50 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ════════════════ HERO ════════════════════════════════ -->
 <section class="hero">
+  <!-- dot grid bg -->
   <div style="position:absolute;inset:0;pointer-events:none;
     background-image:radial-gradient(var(--border) 1px,transparent 1px);
-    background-size:36px 36px;opacity:0.5;
-    mask-image:radial-gradient(ellipse 60% 80% at 70% 50%,black,transparent);">
+    background-size:36px 36px;opacity:0.45;
+    mask-image:radial-gradient(ellipse 70% 90% at 72% 50%,black,transparent);">
   </div>
+
   <div class="container hero-content">
     <div class="hero-split">
+      <!-- LEFT -->
       <div>
-        <div class="hero-eyebrow sr-up" data-delay="0">
+        <!-- Logo draw animation -->
+        <svg class="hero-logo-draw" id="heroLogoAnim" viewBox="0 0 100 70"
+          fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle class="hero-logo-path hero-logo-circle" cx="50" cy="35" r="19" stroke-width="2.5"/>
+          <path class="hero-logo-path hero-logo-bracket" d="M36,7 L21,35 L36,63" stroke-width="2.5"/>
+          <path class="hero-logo-path hero-logo-bracket" d="M64,7 L79,35 L64,63" stroke-width="2.5"/>
+        </svg>
+
+        <div class="hero-eyebrow sr-up" data-delay="100">
           <span></span>B2B OUTBOUND INTELLIGENCE
         </div>
-        <h1 class="hero-title sr" data-delay="80">
+        <h1 class="hero-title sr" data-delay="180">
           Your pipeline,<br/><em>signal&#8209;driven.</em>
         </h1>
-        <p class="hero-body sr" data-delay="160">
+        <p class="hero-body sr" data-delay="260">
           SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list.
         </p>
-        <div class="hero-ctas sr" data-delay="240">
+        <div class="hero-ctas sr" data-delay="340">
           <a href="contact.html" class="btn btn-dark">BOOK A RUN →</a>
           <a href="products.html" class="btn btn-outline">HOW IT WORKS</a>
         </div>
       </div>
-      <div class="hero-viz sr-right" data-delay="200" data-parallax="10">
-        <span class="hero-viz-label">ARGUS · LIVE SCAN</span>
+
+      <!-- RIGHT: Argus live canvas -->
+      <div class="hero-viz sr-right" data-delay="200" data-parallax="8">
+        <div class="hero-viz-header">
+          <div class="hero-viz-dot" style="background:#c9943a;"></div>
+          <div class="hero-viz-dot" style="background:rgba(255,253,245,0.15);"></div>
+          <div class="hero-viz-dot" style="background:rgba(255,253,245,0.15);"></div>
+          <span class="hero-viz-label">ARGUS · LIVE SCAN</span>
+        </div>
         <canvas id="argusCanvas"></canvas>
       </div>
     </div>
@@ -243,7 +385,7 @@
         <span class="stat-label">ICP score per contact</span>
       </div>
       <div class="stat-item sr-up">
-        <span class="stat-num" data-count="5" data-suffix="">5</span>
+        <span class="stat-num" data-count="5">5</span>
         <span class="stat-label">Accounts deep-mapped</span>
       </div>
       <div class="stat-item sr-up">
@@ -254,17 +396,53 @@
   </div>
 </div>
 
-<!-- LOGO REVEAL -->
+<!-- ════════════════ RADAR / LOGO REVEAL ═══════════════ -->
 <section class="logo-reveal" id="logoAnim">
-  <div class="logo-reveal-glow"></div>
   <div class="container" style="position:relative;z-index:1;">
-    <svg class="logo-reveal-svg" viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-      <circle class="logo-anim-path logo-anim-circle" cx="50" cy="35" r="19" stroke-width="1.5"/>
-      <path class="logo-anim-path logo-anim-bracket" d="M36,7 L21,35 L36,63" stroke-width="1.5"/>
-      <path class="logo-anim-path logo-anim-bracket" d="M64,7 L79,35 L64,63" stroke-width="1.5"/>
-    </svg>
-    <div class="logo-reveal-label sr-up" data-delay="600">SIGNAL INTELLIGENCE</div>
-    <p class="logo-reveal-sub sr" data-delay="900">Precision, delivered in 72 hours.</p>
+
+    <div class="scan-container">
+      <!-- Rings -->
+      <div class="scan-ring scan-ring-outer"></div>
+      <div class="scan-ring scan-ring-mid"></div>
+      <div class="scan-ring scan-ring-inner"></div>
+      <!-- Crosshairs -->
+      <div class="scan-cross"></div>
+      <!-- Radar sweep -->
+      <div class="scan-sweep"></div>
+      <div class="scan-line"></div>
+      <!-- Signal blips -->
+      <div class="scan-blip" style="top:14%;left:71%;animation-delay:0s;"></div>
+      <div class="scan-blip" style="top:67%;left:19%;animation-delay:0.8s;"></div>
+      <div class="scan-blip" style="top:28%;left:11%;animation-delay:1.6s;"></div>
+      <div class="scan-blip" style="top:76%;left:67%;animation-delay:2.4s;"></div>
+      <div class="scan-blip" style="top:48%;left:82%;animation-delay:0.4s;width:4px;height:4px;"></div>
+      <!-- Logo centered in radar -->
+      <div class="scan-logo-wrap">
+        <svg class="scan-logo-svg logo-anim-path-group" viewBox="0 0 100 70"
+          fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle class="logo-anim-path logo-anim-circle" cx="50" cy="35" r="19" stroke-width="1.8"/>
+          <path class="logo-anim-path logo-anim-bracket" d="M36,7 L21,35 L36,63" stroke-width="1.8"/>
+          <path class="logo-anim-path logo-anim-bracket" d="M64,7 L79,35 L64,63" stroke-width="1.8"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="logo-reveal-label sr-up" data-delay="300">SIGNAL INTELLIGENCE</div>
+
+    <div class="logo-reveal-stats sr-up" data-delay="500">
+      <div class="logo-reveal-stat">
+        <span class="logo-reveal-stat-val">72H</span>
+        <span class="logo-reveal-stat-key">DELIVERY SLA</span>
+      </div>
+      <div class="logo-reveal-stat">
+        <span class="logo-reveal-stat-val">EMEA</span>
+        <span class="logo-reveal-stat-key">COVERAGE</span>
+      </div>
+      <div class="logo-reveal-stat">
+        <span class="logo-reveal-stat-val">20+</span>
+        <span class="logo-reveal-stat-key">LEADS PER RUN</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -282,14 +460,14 @@
   </div>
 </div>
 
-<!-- PRODUCTS -->
+<!-- ════════════════ PRODUCTS ════════════════════════════ -->
 <section class="products-strip" id="products">
   <div class="container">
     <div class="products-split">
       <div class="products-sticky">
         <div class="eyebrow sr-up">THREE ENGINES</div>
         <h2 class="h-section sr" data-delay="60">One stack.<br/><em>Full coverage.</em></h2>
-        <p class="t-body sr" data-delay="120" style="margin-top:20px;max-width:320px;">
+        <p class="t-body sr" data-delay="120" style="margin-top:20px;max-width:300px;">
           Use Argus for lists, add Lynx for depth, add Intelligence for strategy. Stack them to build the complete outbound picture.
         </p>
         <div class="products-nav sr" data-delay="200">
@@ -317,7 +495,7 @@
           <p class="product-block-desc">
             Precision lead lists built from your ICP. Every contact arrives with a score, a cited buying trigger, and a ready-to-use outreach hook — delivered in 72 hours.
           </p>
-          <ul class="flist" style="margin-bottom:28px;">
+          <ul class="flist" style="margin-bottom:24px;">
             <li>Up to 20 qualified leads per run</li>
             <li>Per-contact ICP score (0–100)</li>
             <li>Buying trigger, cited and sourced</li>
@@ -337,7 +515,7 @@
           <p class="product-block-desc">
             A dedicated workspace for each of your five warmest accounts. Decision-maker maps, 90-day signal feeds, and contextual AI chat — all in one place.
           </p>
-          <ul class="flist" style="margin-bottom:28px;">
+          <ul class="flist" style="margin-bottom:24px;">
             <li>Lynx workspace per priority account (5)</li>
             <li>Full decision-maker org chart</li>
             <li>90-day news and intent signal feed</li>
@@ -357,7 +535,7 @@
           <p class="product-block-desc">
             A full strategic brief on a single target company — competitive landscape, internal buying dynamics, and a 90-minute analyst session.
           </p>
-          <ul class="flist" style="margin-bottom:28px;">
+          <ul class="flist" style="margin-bottom:24px;">
             <li>Deep-dive on one target company</li>
             <li>Competitive landscape analysis</li>
             <li>90-minute strategy session</li>
@@ -370,7 +548,7 @@
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- ════════════════ PROCESS ════════════════════════════ -->
 <section class="process">
   <div class="container">
     <div class="eyebrow sr-up">THE PROCESS</div>
@@ -400,14 +578,14 @@
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ════════════════ CTA ════════════════════════════════ -->
 <section class="cta">
   <div class="container">
     <div class="cta-inner sr">
-      <div class="cta-bg-glow"></div>
+      <div class="cta-glow"></div>
       <h2 class="cta-title">Ready for your<br/><em>first signal scan?</em></h2>
       <div class="cta-actions">
-        <a href="pricing.html" class="btn btn-outline" style="border-color:rgba(255,253,245,0.20);color:rgba(255,253,245,0.65);">VIEW PRICING</a>
+        <a href="pricing.html" class="btn btn-outline" style="border-color:rgba(255,253,245,0.18);color:rgba(255,253,245,0.60);">VIEW PRICING</a>
         <a href="contact.html" class="btn btn-dark">BOOK A RUN →</a>
       </div>
     </div>
