@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — SIFT</title>
+  <meta name="description" content="Tell us your ICP. We'll scope the right run and send a proposal within 24 hours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── CONTACT LAYOUT ── */
+    .contact-main {
+      padding: 80px 0 128px;
+      border-top: 1px solid var(--border);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 96px;
+      align-items: start;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .contact-info { position: sticky; top: 100px; }
+    .contact-tagline {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .contact-tagline em { font-style: italic; color: var(--text-secondary); }
+    .contact-body {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.78;
+      margin-bottom: 48px;
+      max-width: 340px;
+    }
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+    .cdetail-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.20em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .cdetail-val {
+      font-size: 14.5px;
+      color: var(--text-primary);
+      transition: color 180ms;
+    }
+    a.cdetail-val:hover { color: var(--accent); }
+
+    .contact-guarantee {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      border-radius: 3px;
+      padding: 28px 32px;
+    }
+    .contact-guarantee-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .contact-guarantee ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contact-guarantee li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding-left: 18px;
+      position: relative;
+    }
+    .contact-guarantee li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 1px;
+    }
+
+    /* ── FORM ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--border-mid);
+      padding: 20px 0;
+      position: relative;
+    }
+    .form-field:focus-within {
+      border-bottom-color: var(--border-strong);
+    }
+    .form-field-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.20em;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      transition: color 180ms;
+    }
+    .form-field:focus-within .form-field-label {
+      color: var(--text-secondary);
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      color: var(--text-primary);
+      padding: 0;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--text-ghost); }
+    .form-select { cursor: pointer; }
+    .form-select option { background: var(--card); color: var(--text-primary); }
+    .form-textarea {
+      resize: none;
+      min-height: 100px;
+      line-height: 1.6;
+    }
+
+    /* bottom border accent on focus */
+    .form-field::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      height: 1px;
+      background: var(--accent);
+      width: 0;
+      transition: width 300ms var(--ease-spring);
+    }
+    .form-field:focus-within::after { width: 100%; }
+
+    .form-submit-row {
+      padding-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .form-submit-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+      max-width: 280px;
+      line-height: 1.6;
+    }
+    .form-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--accent);
+      color: var(--text-primary);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: background 180ms, transform 200ms var(--ease-spring), box-shadow 200ms;
+      flex-shrink: 0;
+    }
+    .form-submit-btn:hover {
+      background: var(--accent-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px var(--accent-glow);
+    }
+    .form-submit-btn:active { transform: scale(0.98); }
+    .form-submit-btn:disabled {
+      background: rgba(40,100,65,0.7);
+      transform: none;
+      box-shadow: none;
+      cursor: default;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 80px 40px;
+      border: 1px solid var(--border-mid);
+      border-radius: 3px;
+      background: var(--surface);
+    }
+    .form-success-icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      color: var(--accent);
+    }
+    .form-success-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+    .form-success-body {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 960px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 56px; }
+      .contact-info { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .form-submit-row { flex-direction: column; align-items: flex-start; }
+      .form-submit-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-logo-svg sift-logo-svg" viewBox="0 0 100 70">
+        <circle cx="50" cy="35" r="19" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M36,7 L21,35 L36,63" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M64,7 L79,35 L64,63" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">SIFT</span>
+        <span class="nav-logo-sub">SIGNAL INTEL · V1.0</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="products.html" class="nav-link">PRODUCTS</a>
+      <a href="pricing.html" class="nav-link">PRICING</a>
+      <a href="case-studies.html" class="nav-link">CASE STUDIES</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </div>
+    <a href="contact.html" class="nav-cta">BOOK A RUN →</a>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile-panel" id="mobilePanel">
+    <a href="products.html" class="nav-mobile-link">PRODUCTS</a>
+    <a href="pricing.html" class="nav-mobile-link">PRICING</a>
+    <a href="case-studies.html" class="nav-mobile-link">CASE STUDIES</a>
+    <a href="contact.html" class="nav-mobile-link">CONTACT</a>
+    <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:12px;">BOOK A RUN →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title reveal">
+      Let's scope<br/><em>your run.</em>
+    </h1>
+    <p class="page-hero-desc reveal">Tell us your ICP. We'll send a proposal within 24 hours and confirm your run slot.</p>
+  </div>
+</div>
+
+<section class="contact-main">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- LEFT -->
+      <div class="contact-info reveal">
+        <h2 class="contact-tagline">
+          A signal scan starts<br/><em>with a brief.</em>
+        </h2>
+        <p class="contact-body">
+          Fill in the form with your ICP, target market, and what you're trying to accomplish.
+          We'll review it and come back with the right product recommendation and a scoped proposal — within 24 hours.
+        </p>
+
+        <div class="contact-details">
+          <div>
+            <div class="cdetail-label">EMAIL</div>
+            <a href="mailto:hello@sift.run" class="cdetail-val">hello@sift.run</a>
+          </div>
+          <div>
+            <div class="cdetail-label">RESPONSE TIME</div>
+            <span class="cdetail-val">Within 24 hours</span>
+          </div>
+          <div>
+            <div class="cdetail-label">DELIVERY SLA</div>
+            <span class="cdetail-val">72h from brief confirmation</span>
+          </div>
+        </div>
+
+        <div class="contact-guarantee">
+          <div class="contact-guarantee-title">WHAT HAPPENS NEXT</div>
+          <ul>
+            <li>We review your ICP brief</li>
+            <li>Proposal arrives within 24 hours</li>
+            <li>One alignment call if needed</li>
+            <li>Run confirmed, delivery in 72h</li>
+            <li>Free revision if leads miss the brief</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="reveal">
+        <form class="contact-form" id="contactForm">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-field-label">FIRST NAME</label>
+              <input class="form-input" type="text" placeholder="Alessandro" required />
+            </div>
+            <div class="form-field">
+              <label class="form-field-label">LAST NAME</label>
+              <input class="form-input" type="text" placeholder="Bellucco" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-field-label">COMPANY</label>
+              <input class="form-input" type="text" placeholder="SIFT GmbH" required />
+            </div>
+            <div class="form-field">
+              <label class="form-field-label">WORK EMAIL</label>
+              <input class="form-input" type="email" placeholder="you@company.com" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label">WHAT ARE YOU LOOKING FOR?</label>
+            <select class="form-select form-input" required>
+              <option value="" disabled selected>Select a product</option>
+              <option>Argus Starter — €490 / run</option>
+              <option>Argus + Lynx — €990 / run</option>
+              <option>Full Suite — €1.890 / run</option>
+              <option>Base Retainer — €790 / month</option>
+              <option>Pro Retainer — €1.690 / month</option>
+              <option>Agency Retainer — €3.490 / month</option>
+              <option>Custom build — let's talk</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label">TARGET MARKET & GEOGRAPHY</label>
+            <input class="form-input" type="text" placeholder="e.g. Mid-market SaaS, DACH region, 50–500 employees" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label">TARGET ROLE(S)</label>
+            <input class="form-input" type="text" placeholder="e.g. Head of Sales, VP Engineering, CFO" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label">YOUR ICP — TELL US MORE</label>
+            <textarea class="form-textarea" placeholder="What problem do you solve? What signals indicate a company is ready to buy? Any industries, technologies, or triggers to prioritise?"></textarea>
+          </div>
+
+          <div class="form-submit-row">
+            <p class="form-submit-note">All briefs are reviewed manually. We'll reply within 24 hours with a recommendation and proposal.</p>
+            <button type="submit" class="form-submit-btn" id="submitBtn">
+              SEND BRIEF →
+            </button>
+          </div>
+
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="4,11 9,16 18,6"/>
+            </svg>
+          </div>
+          <h3 class="form-success-title">Brief received.</h3>
+          <p class="form-success-body">We'll review your ICP and come back<br/>with a proposal within 24 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="footer-logo">
+      <svg viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="50" cy="35" r="19" stroke-width="1.8"/>
+        <path d="M36,7 L21,35 L36,63" stroke-width="1.8"/>
+        <path d="M64,7 L79,35 L64,63" stroke-width="1.8"/>
+      </svg>
+      <span class="footer-logo-name">SIFT</span>
+    </a>
+    <nav class="footer-nav">
+      <a href="products.html" class="footer-link">Products</a>
+      <a href="pricing.html" class="footer-link">Pricing</a>
+      <a href="case-studies.html" class="footer-link">Case Studies</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+    </nav>
+    <span class="footer-copy">© 2025 SIFT Signal Intelligence</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Enhanced form submit for contact page
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      form.style.transition = 'opacity 300ms';
+      form.style.opacity = '0';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+        success.style.opacity = '0';
+        success.style.transition = 'opacity 500ms';
+        requestAnimationFrame(() => { success.style.opacity = '1'; });
+      }, 300);
+    });
+  }
+</script>
+</body>
+</html>
