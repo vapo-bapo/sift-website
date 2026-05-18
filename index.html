@@ -7,101 +7,77 @@
   <meta name="description" content="SIFT builds precision outbound pipelines for B2B companies. Signal-driven lead generation, account intelligence, and strategic briefings."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css"/>
   <style>
   /* ── HERO ── */
   .hero{
     min-height:100svh;display:flex;flex-direction:column;
     justify-content:center;padding-top:var(--nav-h);
-    position:relative;overflow:hidden;
-    background:var(--bg-primary);
+    position:relative;overflow:hidden;background:var(--bg-primary);
   }
   .hero-content{padding:80px 0 100px;position:relative;z-index:1;}
-  .hero-split{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:48px;align-items:center;
-  }
+  .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
   .hero-eyebrow{
     font-size:9.5px;font-weight:600;letter-spacing:0.22em;
     color:var(--accent-dim);display:flex;align-items:center;gap:10px;margin-bottom:36px;
   }
-  .hero-eyebrow span{
-    width:24px;height:1.5px;background:var(--accent);display:block;
-  }
+  .hero-eyebrow span{width:24px;height:1.5px;background:var(--accent);display:block;}
   .hero-title{
-    font-family:var(--font-serif);
-    font-size:clamp(60px,7.5vw,110px);
-    font-weight:300;line-height:0.96;
-    letter-spacing:-0.025em;
-    margin-bottom:32px;
+    font-family:var(--font-serif);font-size:clamp(56px,7vw,104px);
+    font-weight:400;line-height:0.97;letter-spacing:-0.02em;margin-bottom:32px;
   }
   .hero-title em{font-style:italic;color:var(--text-dim);}
-  .hero-body{
-    font-size:15.5px;color:var(--text-secondary);line-height:1.76;
-    max-width:400px;margin-bottom:44px;
-  }
+  .hero-body{font-size:15.5px;color:var(--text-secondary);line-height:1.76;max-width:400px;margin-bottom:44px;}
   .hero-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
 
   /* stats strip */
-  .hero-stats-strip{
-    padding:36px 0;border-top:1px solid var(--border);
-    border-bottom:1px solid var(--border);
-    background:var(--bg-secondary);
-  }
+  .hero-stats-strip{padding:36px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-secondary);}
   .stats-row{display:flex;gap:0;align-items:stretch;}
-  .stat-item{
-    flex:1;padding:0 40px;
-    border-right:1px solid var(--border);
-    display:flex;flex-direction:column;gap:6px;
-  }
+  .stat-item{flex:1;padding:0 40px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:6px;}
   .stat-item:first-child{padding-left:0;}
   .stat-item:last-child{border-right:none;}
-  .stat-num{
-    font-family:var(--font-serif);font-size:44px;
-    font-weight:300;letter-spacing:-0.02em;line-height:1;
-    color:var(--text-primary);
-  }
+  .stat-num{font-family:var(--font-serif);font-size:44px;font-weight:400;letter-spacing:-0.02em;line-height:1;color:var(--text-primary);}
   .stat-label{font-size:11px;color:var(--text-dim);letter-spacing:0.06em;}
 
-  /* right panel: mini Argus preview */
+  /* right panel */
   .hero-viz{
-    background:var(--bg-void);border-radius:14px;
-    overflow:hidden;position:relative;
-    height:390px;
+    background:var(--bg-void);border-radius:14px;overflow:hidden;position:relative;height:390px;
     box-shadow:0 24px 64px rgba(7,6,0,0.18),0 0 0 1px rgba(7,6,0,0.06);
   }
-  .hero-viz canvas{
-    width:100%;height:100%;display:block;
-  }
+  .hero-viz canvas{width:100%;height:100%;display:block;}
   .hero-viz-label{
     position:absolute;top:14px;left:18px;
-    font-size:9px;font-weight:600;letter-spacing:0.16em;
-    color:rgba(237,180,88,0.7);
+    font-size:9px;font-weight:600;letter-spacing:0.16em;color:rgba(237,180,88,0.7);
   }
 
-  /* ── BRANDS/LOGOS strip ── */
-  .trust-strip{
-    padding:56px 0;border-bottom:1px solid var(--border);
+  /* logo reveal section */
+  .logo-reveal{padding:128px 0;background:var(--bg-void);position:relative;overflow:hidden;text-align:center;}
+  .logo-reveal-glow{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,148,58,0.08) 0%,transparent 60%);
+    pointer-events:none;
   }
-  .trust-label{
-    font-size:9.5px;font-weight:500;letter-spacing:0.18em;
-    color:var(--text-dim);text-align:center;margin-bottom:32px;
+  .logo-reveal-svg{width:140px;height:98px;color:var(--accent);display:block;margin:0 auto;}
+  .logo-reveal-label{
+    font-size:9px;font-weight:600;letter-spacing:0.30em;
+    color:rgba(245,240,232,0.20);margin-top:52px;
   }
-  .trust-logos{
-    display:flex;align-items:center;justify-content:center;
-    gap:52px;flex-wrap:wrap;opacity:0.35;
-  }
-  .trust-logo{
-    font-family:var(--font-sans);font-size:14px;font-weight:600;
-    letter-spacing:0.14em;color:var(--text-primary);
+  .logo-reveal-sub{
+    font-family:var(--font-serif);font-size:22px;font-weight:400;font-style:italic;
+    color:rgba(245,240,232,0.40);margin-top:14px;
   }
 
-  /* ── PRODUCTS STRIP ── */
+  /* trust strip */
+  .trust-strip{padding:56px 0;border-bottom:1px solid var(--border);}
+  .trust-label{font-size:9.5px;font-weight:500;letter-spacing:0.18em;color:var(--text-dim);text-align:center;margin-bottom:32px;}
+  .trust-logos{display:flex;align-items:center;justify-content:center;gap:52px;flex-wrap:wrap;opacity:0.30;}
+  .trust-logo{font-family:var(--font-sans);font-size:13px;font-weight:600;letter-spacing:0.16em;color:var(--text-primary);}
+
+  /* products strip */
   .products-strip{padding:120px 0;}
-  .products-split{
-    display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;
-  }
+  .products-split{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;}
   .products-sticky{position:sticky;top:120px;}
   .products-nav{display:flex;flex-direction:column;gap:0;margin-top:48px;}
   .products-nav-item{
@@ -121,27 +97,16 @@
     background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
     padding:48px;transition:box-shadow 300ms,transform 300ms var(--ease-spring);
   }
-  .product-block:hover{box-shadow:var(--shadow-elev);}
-  .product-block-head{
-    display:flex;align-items:flex-start;justify-content:space-between;
-    gap:24px;margin-bottom:32px;
-  }
-  .product-block-num{
-    font-size:9.5px;font-weight:600;letter-spacing:0.20em;
-    color:var(--text-dim);margin-bottom:8px;
-  }
-  .product-block-name{
-    font-family:var(--font-serif);font-size:40px;font-weight:300;line-height:1;
-  }
+  .product-block:hover{box-shadow:var(--shadow-lg);}
+  .product-block-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:32px;}
+  .product-block-num{font-size:9.5px;font-weight:600;letter-spacing:0.20em;color:var(--text-dim);margin-bottom:8px;}
+  .product-block-name{font-family:var(--font-serif);font-size:40px;font-weight:400;line-height:1;}
   .product-block-badge{
-    background:var(--bg-secondary);border:1px solid var(--border);
-    border-radius:6px;padding:6px 12px;
-    font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-dim);
-    flex-shrink:0;white-space:nowrap;
+    background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;
+    padding:6px 12px;font-size:9px;font-weight:600;letter-spacing:0.14em;
+    color:var(--text-dim);flex-shrink:0;white-space:nowrap;
   }
-  .product-block-desc{
-    font-size:14px;color:var(--text-secondary);line-height:1.76;margin-bottom:28px;
-  }
+  .product-block-desc{font-size:14px;color:var(--text-secondary);line-height:1.76;margin-bottom:28px;}
   .product-block-link{
     display:inline-flex;align-items:center;gap:6px;
     font-size:10.5px;font-weight:600;letter-spacing:0.12em;
@@ -149,31 +114,29 @@
   }
   .product-block-link:hover{color:var(--accent);gap:10px;}
 
-  /* ── HOW IT WORKS ── */
+  /* process */
   .process{padding:120px 0;background:var(--bg-secondary);}
   .process-steps{
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--border);border:1px solid var(--border);border-radius:8px;
-    overflow:hidden;margin-top:64px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:8px;overflow:hidden;margin-top:64px;
   }
-  .process-step{
-    background:var(--bg-secondary);padding:40px 32px;
-    transition:background 250ms;
-  }
+  .process-step{background:var(--bg-secondary);padding:40px 32px;transition:background 250ms;}
   .process-step:hover{background:var(--bg-card);}
-  .process-step-n{
-    font-family:var(--font-serif);font-size:52px;font-weight:300;
-    color:var(--text-ghost);line-height:1;margin-bottom:24px;
-  }
+  .process-step-n{font-family:var(--font-serif);font-size:52px;font-weight:400;color:var(--text-ghost);line-height:1;margin-bottom:24px;}
   .process-step h4{font-size:13.5px;font-weight:600;margin-bottom:10px;letter-spacing:0.02em;}
   .process-step p{font-size:13px;color:var(--text-dim);line-height:1.7;}
 
-  /* ── CTA ── */
+  /* section heading used on this page */
+  .h-section{font-family:var(--font-serif);font-size:clamp(38px,4.5vw,60px);font-weight:400;line-height:1.08;letter-spacing:-0.01em;}
+  .h-section em{font-style:italic;color:var(--text-dim);}
+
+  /* cta */
   .cta{padding:128px 0;}
   .cta-inner{
     background:var(--bg-void);border-radius:16px;padding:80px;
-    display:flex;align-items:center;justify-content:space-between;gap:48px;
-    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:48px;position:relative;overflow:hidden;
   }
   .cta-bg-glow{
     position:absolute;right:-80px;top:50%;transform:translateY(-50%);
@@ -183,10 +146,9 @@
   }
   .cta-title{
     font-family:var(--font-serif);font-size:clamp(36px,4vw,58px);
-    font-weight:300;line-height:1.1;color:#FFFDF5;max-width:480px;
-    position:relative;z-index:1;
+    font-weight:400;line-height:1.1;color:#FFFDF5;max-width:480px;position:relative;z-index:1;
   }
-  .cta-title em{font-style:italic;color:rgba(255,253,245,0.5);}
+  .cta-title em{font-style:italic;color:rgba(255,253,245,0.45);}
   .cta-actions{display:flex;gap:12px;align-items:center;flex-shrink:0;position:relative;z-index:1;}
 
   @media(max-width:1024px){
@@ -200,6 +162,7 @@
     .cta-inner{flex-direction:column;padding:48px 32px;}
     .cta-actions{flex-direction:column;width:100%;}.cta-actions .btn{width:100%;justify-content:center;}
     .trust-logos{gap:28px;}
+    .logo-reveal-glow{width:320px;height:320px;}
   }
   </style>
 </head>
@@ -222,7 +185,6 @@
     <div class="nav-links">
       <a href="products.html" class="nav-link">PRODUCTS</a>
       <a href="pricing.html" class="nav-link">PRICING</a>
-      <a href="case-studies.html" class="nav-link">CASE STUDIES</a>
       <a href="contact.html" class="nav-link">CONTACT</a>
     </div>
     <a href="contact.html" class="nav-cta">BOOK A RUN →</a>
@@ -231,42 +193,35 @@
   <div class="nav-mobile" id="mobileNav">
     <a href="products.html" class="nav-mobile-link">PRODUCTS</a>
     <a href="pricing.html" class="nav-mobile-link">PRICING</a>
-    <a href="case-studies.html" class="nav-mobile-link">CASE STUDIES</a>
     <a href="contact.html" class="nav-mobile-link">CONTACT</a>
     <a href="contact.html" class="btn btn-dark" style="margin-top:16px;">BOOK A RUN →</a>
   </div>
 </nav>
 
-<!-- ════════════════ HERO ════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
-  <!-- Subtle bg dots -->
   <div style="position:absolute;inset:0;pointer-events:none;
     background-image:radial-gradient(var(--border) 1px,transparent 1px);
-    background-size:36px 36px;opacity:0.6;
+    background-size:36px 36px;opacity:0.5;
     mask-image:radial-gradient(ellipse 60% 80% at 70% 50%,black,transparent);">
   </div>
-
   <div class="container hero-content">
     <div class="hero-split">
-      <!-- LEFT -->
       <div>
         <div class="hero-eyebrow sr-up" data-delay="0">
           <span></span>B2B OUTBOUND INTELLIGENCE
         </div>
         <h1 class="hero-title sr" data-delay="80">
-          Your pipeline,<br/>
-          <em>signal&#8209;driven.</em>
+          Your pipeline,<br/><em>signal&#8209;driven.</em>
         </h1>
         <p class="hero-body sr" data-delay="160">
-          SIFT identifies, qualifies, and deep-maps your best accounts
-          so your team arrives at every call with context — not a cold list.
+          SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list.
         </p>
         <div class="hero-ctas sr" data-delay="240">
           <a href="contact.html" class="btn btn-dark">BOOK A RUN →</a>
           <a href="products.html" class="btn btn-outline">HOW IT WORKS</a>
         </div>
       </div>
-      <!-- RIGHT: Live canvas -->
       <div class="hero-viz sr-right" data-delay="200" data-parallax="10">
         <span class="hero-viz-label">ARGUS · LIVE SCAN</span>
         <canvas id="argusCanvas"></canvas>
@@ -299,6 +254,20 @@
   </div>
 </div>
 
+<!-- LOGO REVEAL -->
+<section class="logo-reveal" id="logoAnim">
+  <div class="logo-reveal-glow"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <svg class="logo-reveal-svg" viewBox="0 0 100 70" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle class="logo-anim-path logo-anim-circle" cx="50" cy="35" r="19" stroke-width="1.5"/>
+      <path class="logo-anim-path logo-anim-bracket" d="M36,7 L21,35 L36,63" stroke-width="1.5"/>
+      <path class="logo-anim-path logo-anim-bracket" d="M64,7 L79,35 L64,63" stroke-width="1.5"/>
+    </svg>
+    <div class="logo-reveal-label sr-up" data-delay="600">SIGNAL INTELLIGENCE</div>
+    <p class="logo-reveal-sub sr" data-delay="900">Precision, delivered in 72 hours.</p>
+  </div>
+</section>
+
 <!-- TRUST -->
 <div class="trust-strip">
   <div class="container">
@@ -306,24 +275,21 @@
     <div class="trust-logos">
       <span class="trust-logo">SAAS CO.</span>
       <span class="trust-logo">FINTECH AG</span>
-      <span class="trust-logo">LOGISTIC SE</span>
+      <span class="trust-logo">LOGISTICS SE</span>
       <span class="trust-logo">AGENCY LTD</span>
       <span class="trust-logo">GROWTH OÜ</span>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ PRODUCTS STRIP ═══════════════════════ -->
+<!-- PRODUCTS -->
 <section class="products-strip" id="products">
   <div class="container">
     <div class="products-split">
-      <!-- Sticky left -->
       <div class="products-sticky">
         <div class="eyebrow sr-up">THREE ENGINES</div>
-        <h2 class="h-section sr" data-delay="60">
-          One stack.<br/><em>Full coverage.</em>
-        </h2>
-        <p class="body-lead sr" data-delay="120" style="margin-top:20px;max-width:320px;">
+        <h2 class="h-section sr" data-delay="60">One stack.<br/><em>Full coverage.</em></h2>
+        <p class="t-body sr" data-delay="120" style="margin-top:20px;max-width:320px;">
           Use Argus for lists, add Lynx for depth, add Intelligence for strategy. Stack them to build the complete outbound picture.
         </p>
         <div class="products-nav sr" data-delay="200">
@@ -339,7 +305,6 @@
         </div>
       </div>
 
-      <!-- Product blocks -->
       <div class="products-content">
         <div class="product-block sr tilt" id="p-argus" data-tilt="5">
           <div class="product-block-head">
@@ -350,8 +315,7 @@
             <span class="product-block-badge">LEAD GENERATION</span>
           </div>
           <p class="product-block-desc">
-            Precision lead lists built from your ICP. Every contact arrives with a score,
-            a cited buying trigger, and a ready-to-use outreach hook — delivered in 72 hours.
+            Precision lead lists built from your ICP. Every contact arrives with a score, a cited buying trigger, and a ready-to-use outreach hook — delivered in 72 hours.
           </p>
           <ul class="flist" style="margin-bottom:28px;">
             <li>Up to 20 qualified leads per run</li>
@@ -371,8 +335,7 @@
             <span class="product-block-badge">ACCOUNT INTELLIGENCE</span>
           </div>
           <p class="product-block-desc">
-            A dedicated workspace for each of your five warmest accounts.
-            Decision-maker maps, 90-day signal feeds, and contextual AI chat — all in one place.
+            A dedicated workspace for each of your five warmest accounts. Decision-maker maps, 90-day signal feeds, and contextual AI chat — all in one place.
           </p>
           <ul class="flist" style="margin-bottom:28px;">
             <li>Lynx workspace per priority account (5)</li>
@@ -392,8 +355,7 @@
             <span class="product-block-badge">STRATEGIC BRIEFING</span>
           </div>
           <p class="product-block-desc">
-            A full strategic brief on a single target company — competitive landscape,
-            internal buying dynamics, and a 90-minute analyst session.
+            A full strategic brief on a single target company — competitive landscape, internal buying dynamics, and a 90-minute analyst session.
           </p>
           <ul class="flist" style="margin-bottom:28px;">
             <li>Deep-dive on one target company</li>
@@ -408,13 +370,11 @@
   </div>
 </section>
 
-<!-- ════════════════ PROCESS ════════════════════════════ -->
+<!-- PROCESS -->
 <section class="process">
   <div class="container">
     <div class="eyebrow sr-up">THE PROCESS</div>
-    <h2 class="h-section sr" data-delay="60">
-      Signal to sequence<br/><em>in four steps.</em>
-    </h2>
+    <h2 class="h-section sr" data-delay="60">Signal to sequence<br/><em>in four steps.</em></h2>
     <div class="process-steps" data-stagger="80">
       <div class="process-step sr">
         <div class="process-step-n">01</div>
@@ -440,17 +400,15 @@
   </div>
 </section>
 
-<!-- ════════════════ CTA ════════════════════════════════ -->
+<!-- CTA -->
 <section class="cta">
   <div class="container">
     <div class="cta-inner sr">
       <div class="cta-bg-glow"></div>
-      <h2 class="cta-title">
-        Ready for your<br/><em>first signal scan?</em>
-      </h2>
+      <h2 class="cta-title">Ready for your<br/><em>first signal scan?</em></h2>
       <div class="cta-actions">
         <a href="pricing.html" class="btn btn-outline" style="border-color:rgba(255,253,245,0.20);color:rgba(255,253,245,0.65);">VIEW PRICING</a>
-        <a href="contact.html" class="btn btn-gold">BOOK A RUN →</a>
+        <a href="contact.html" class="btn btn-dark">BOOK A RUN →</a>
       </div>
     </div>
   </div>
@@ -470,7 +428,6 @@
     <nav class="footer-nav">
       <a href="products.html" class="footer-link">Products</a>
       <a href="pricing.html" class="footer-link">Pricing</a>
-      <a href="case-studies.html" class="footer-link">Case Studies</a>
       <a href="contact.html" class="footer-link">Contact</a>
     </nav>
     <span class="footer-copy">© 2025 SIFT Signal Intelligence</span>

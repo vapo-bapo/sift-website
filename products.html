@@ -7,27 +7,34 @@
   <meta name="description" content="Argus, Lynx, and Intelligence — three precision engines for signal-driven outbound."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css"/>
   <style>
-  /* ── PRODUCT LAYOUT ── */
-  .prod-section{padding:120px 0;border-top:1px solid var(--border);}
-  .prod-grid{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:72px;align-items:center;
+  /* ── PAGE HERO ── */
+  .page-hero{padding-top:calc(var(--nav-h) + 72px);padding-bottom:72px;border-bottom:1px solid var(--border);}
+  .page-hero-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;}
+  .page-hero-title{
+    font-family:var(--font-serif);font-size:clamp(44px,5.5vw,80px);
+    font-weight:400;line-height:1.04;letter-spacing:-0.01em;
   }
-  .prod-grid.flip{direction:rtl;}
-  .prod-grid.flip>*{direction:ltr;}
+  .page-hero-title em{font-style:italic;color:var(--text-dim);}
+  .page-hero-desc{font-size:14px;color:var(--text-dim);line-height:1.76;max-width:300px;flex-shrink:0;padding-bottom:4px;}
+
+  /* ── SECTION HEADING ── */
+  .h-section{font-family:var(--font-serif);font-size:clamp(38px,4.5vw,60px);font-weight:400;line-height:1.08;letter-spacing:-0.01em;}
+  .h-section em{font-style:italic;color:var(--text-dim);}
+
+  /* ── PRODUCT LAYOUT ── */
+  .prod-section{padding:112px 0;border-top:1px solid var(--border);}
+  .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
   .prod-eyebrow{
     font-size:9.5px;font-weight:600;letter-spacing:0.22em;
     color:var(--accent-dim);display:flex;align-items:center;gap:12px;margin-bottom:20px;
   }
   .prod-eyebrow::before{content:'';display:block;width:24px;height:1.5px;background:var(--accent);}
   .prod-name{
-    font-family:var(--font-serif);
-    font-size:clamp(56px,7vw,96px);
-    font-weight:300;line-height:0.95;letter-spacing:-0.025em;
-    margin-bottom:28px;
+    font-family:var(--font-serif);font-size:clamp(56px,7vw,96px);
+    font-weight:400;line-height:0.95;letter-spacing:-0.025em;margin-bottom:28px;
   }
   .prod-name em{font-style:italic;color:var(--text-dim);}
   .prod-body{font-size:15px;color:var(--text-secondary);line-height:1.78;margin-bottom:36px;max-width:440px;}
@@ -40,35 +47,33 @@
     position:relative;
   }
   .viz-header{
-    padding:16px 20px;border-bottom:1px solid rgba(255,253,245,0.06);
+    padding:14px 18px;border-bottom:1px solid rgba(255,253,245,0.06);
     display:flex;align-items:center;gap:8px;
   }
   .viz-dot{width:8px;height:8px;border-radius:50%;}
+  .viz-label{margin-left:6px;font-size:8.5px;font-weight:500;letter-spacing:0.16em;color:rgba(245,240,232,0.28);}
 
   /* ── ARGUS CANVAS ── */
   #argusCanvas{display:block;width:100%;height:380px;}
 
   /* ── LYNX SVG ── */
-  .lynx-wrap{background:var(--bg-void);border-radius:16px;overflow:hidden;
-    box-shadow:0 24px 64px rgba(7,6,0,0.16);position:relative;height:420px;
-    display:flex;flex-direction:column;
+  .lynx-wrap{
+    background:var(--bg-void);border-radius:16px;overflow:hidden;
+    box-shadow:0 24px 64px rgba(7,6,0,0.16);
+    position:relative;height:420px;display:flex;flex-direction:column;
   }
   #lynxSvg{flex:1;width:100%;cursor:crosshair;}
   .lynx-footer{
     padding:12px 20px;border-top:1px solid rgba(255,253,245,0.06);
-    font-size:9px;font-weight:500;letter-spacing:0.14em;
-    color:rgba(237,180,88,0.55);
+    font-size:9px;font-weight:500;letter-spacing:0.14em;color:rgba(237,180,88,0.45);
   }
 
   /* ── INTELLIGENCE TABS ── */
   .intel-wrap{
-    background:var(--bg-card);border:1px solid var(--border);border-radius:16px;
-    overflow:hidden;box-shadow:var(--shadow-elev);
+    background:var(--bg-card);border:1px solid var(--border);
+    border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);
   }
-  .intel-tabs-bar{
-    display:flex;border-bottom:1px solid var(--border);
-    background:var(--bg-secondary);
-  }
+  .intel-tabs-bar{display:flex;border-bottom:1px solid var(--border);background:var(--bg-secondary);}
   .intel-tab{
     padding:14px 20px;font-size:10px;font-weight:600;letter-spacing:0.12em;
     color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;
@@ -76,51 +81,48 @@
   }
   .intel-tab.active{color:var(--text-primary);border-bottom-color:var(--accent);}
   .intel-tab:hover{color:var(--text-secondary);}
-  .intel-pane{display:none;padding:32px;}
+  .intel-pane{display:none;padding:28px;}
   .intel-pane.active{display:block;}
   .intel-brief-title{
-    font-family:var(--font-serif);font-size:22px;font-weight:400;
-    margin-bottom:16px;color:var(--text-primary);
+    font-family:var(--font-serif);font-size:21px;font-weight:400;
+    margin-bottom:14px;color:var(--text-primary);
   }
-  .intel-brief-body{font-size:13px;color:var(--text-secondary);line-height:1.72;margin-bottom:20px;}
+  .intel-brief-body{font-size:13px;color:var(--text-secondary);line-height:1.72;margin-bottom:18px;}
   .intel-highlight{
     background:var(--accent-subtle);border-left:3px solid var(--accent);
-    padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:12px;
+    padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:10px;
     font-size:12.5px;color:var(--text-secondary);line-height:1.6;
   }
   .intel-metric-row{
     display:flex;align-items:center;justify-content:space-between;
-    padding:10px 0;border-bottom:1px solid var(--border-subtle);
+    padding:9px 0;border-bottom:1px solid var(--border-subtle);
   }
   .intel-metric-row:last-child{border-bottom:none;}
   .intel-metric-label{font-size:12px;color:var(--text-dim);}
   .intel-metric-val{font-size:13px;font-weight:600;color:var(--text-primary);}
   .intel-tag{
-    display:inline-flex;align-items:center;gap:6px;
-    font-size:9px;font-weight:600;letter-spacing:0.14em;
-    background:var(--bg-secondary);border:1px solid var(--border);
-    padding:4px 10px;border-radius:4px;color:var(--text-dim);
-    margin:4px 4px 4px 0;
+    display:inline-flex;align-items:center;gap:6px;font-size:9px;font-weight:600;
+    letter-spacing:0.14em;background:var(--bg-secondary);border:1px solid var(--border);
+    padding:4px 10px;border-radius:4px;color:var(--text-dim);margin:4px 4px 4px 0;
   }
 
   /* node tooltip */
   .node-tooltip{
     position:absolute;background:var(--bg-card);border:1px solid var(--border);
     border-radius:8px;padding:10px 14px;font-size:11.5px;pointer-events:none;
-    box-shadow:var(--shadow-elev);white-space:nowrap;
-    opacity:0;transition:opacity 150ms;z-index:10;
+    box-shadow:var(--shadow-md);white-space:nowrap;opacity:0;transition:opacity 150ms;z-index:10;
   }
   .node-tooltip.show{opacity:1;}
   .node-tooltip strong{display:block;font-size:12.5px;margin-bottom:2px;color:var(--text-primary);}
   .node-tooltip span{color:var(--text-dim);font-size:11px;}
 
   /* ── COMPARISON ── */
-  .compare{padding:120px 0;background:var(--bg-secondary);}
+  .compare{padding:112px 0;background:var(--bg-secondary);}
   .compare table{width:100%;border-collapse:collapse;margin-top:56px;}
   .compare th,.compare td{padding:14px 20px;text-align:center;border-bottom:1px solid var(--border);}
   .compare th:first-child,.compare td:first-child{text-align:left;}
   .compare th{
-    font-family:var(--font-serif);font-size:24px;font-weight:300;
+    font-family:var(--font-serif);font-size:24px;font-weight:400;
     padding-bottom:20px;border-bottom:1px solid var(--border-strong);
   }
   .compare th:first-child{
@@ -136,9 +138,10 @@
 
   @media(max-width:960px){
     .prod-grid{grid-template-columns:1fr;gap:48px;}
-    .prod-grid.flip{direction:ltr;}
     #argusCanvas{height:300px;}
     .lynx-wrap{height:340px;}
+    .page-hero-inner{flex-direction:column;align-items:flex-start;}
+    .page-hero-desc{max-width:100%;}
     .compare th:nth-child(3),.compare td:nth-child(3){display:none;}
   }
   @media(max-width:640px){
@@ -166,7 +169,6 @@
     <div class="nav-links">
       <a href="products.html" class="nav-link">PRODUCTS</a>
       <a href="pricing.html" class="nav-link">PRICING</a>
-      <a href="case-studies.html" class="nav-link">CASE STUDIES</a>
       <a href="contact.html" class="nav-link">CONTACT</a>
     </div>
     <a href="contact.html" class="nav-cta">BOOK A RUN →</a>
@@ -175,7 +177,6 @@
   <div class="nav-mobile" id="mobileNav">
     <a href="products.html" class="nav-mobile-link">PRODUCTS</a>
     <a href="pricing.html" class="nav-mobile-link">PRICING</a>
-    <a href="case-studies.html" class="nav-mobile-link">CASE STUDIES</a>
     <a href="contact.html" class="nav-mobile-link">CONTACT</a>
     <a href="contact.html" class="btn btn-dark" style="margin-top:16px;">BOOK A RUN →</a>
   </div>
@@ -185,12 +186,8 @@
 <div class="page-hero">
   <div class="container">
     <div class="page-hero-inner">
-      <h1 class="h-display sr">
-        Three engines.<br/><em>One pipeline.</em>
-      </h1>
-      <p class="page-hero-desc sr-right">
-        Each layer adds precision. Stack all three for the complete outbound picture.
-      </p>
+      <h1 class="page-hero-title sr">Three engines.<br/><em>One pipeline.</em></h1>
+      <p class="page-hero-desc sr-right">Each layer adds precision. Stack all three for the complete outbound picture.</p>
     </div>
   </div>
 </div>
@@ -204,9 +201,7 @@
         <div class="prod-eyebrow sr-up">01 — LEAD GENERATION</div>
         <h2 class="prod-name sr">Argus</h2>
         <p class="prod-body sr">
-          Argus builds precision lead lists from scratch using your ICP as the only filter.
-          Every contact comes with a score from 0 to 100, a cited buying trigger,
-          and a one-line outreach hook — all delivered as PDF and DOCX in 72 hours.
+          Argus builds precision lead lists from scratch using your ICP as the only filter. Every contact comes with a score from 0 to 100, a cited buying trigger, and a one-line outreach hook — all delivered as PDF and DOCX in 72 hours.
         </p>
         <ul class="flist sr" data-delay="80">
           <li>Up to 20 qualified leads per run</li>
@@ -221,15 +216,15 @@
           <a href="contact.html" class="btn btn-outline">BOOK A RUN</a>
         </div>
       </div>
-      <!-- live viz -->
+      <!-- viz -->
       <div class="viz-wrap sr-right tilt" data-tilt="4">
         <div class="viz-header">
           <div class="viz-dot" style="background:#c9943a"></div>
-          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
-          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
-          <span style="margin-left:8px;font-size:9px;font-weight:500;letter-spacing:0.14em;color:rgba(245,240,232,0.30);">ARGUS · REAL-TIME SCAN</span>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.12)"></div>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.12)"></div>
+          <span class="viz-label">ARGUS · REAL-TIME SCAN</span>
         </div>
-        <canvas id="argusCanvas" style="height:380px;display:block;width:100%;"></canvas>
+        <canvas id="argusCanvas"></canvas>
       </div>
     </div>
   </div>
@@ -238,15 +233,25 @@
 <!-- ════════ 02 — LYNX ════════════════════════════════════ -->
 <section class="prod-section" id="lynx">
   <div class="container">
-    <div class="prod-grid flip">
+    <div class="prod-grid">
+      <!-- viz first (left), text second (right) -->
+      <div class="lynx-wrap sr-left tilt" data-tilt="4" style="position:relative;">
+        <div class="viz-header">
+          <div class="viz-dot" style="background:#c9943a"></div>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.12)"></div>
+          <div class="viz-dot" style="background:rgba(255,253,245,0.12)"></div>
+          <span class="viz-label">LYNX · ORG INTELLIGENCE MAP</span>
+        </div>
+        <svg id="lynxSvg"></svg>
+        <div class="node-tooltip" id="nodeTooltip"></div>
+        <div class="lynx-footer">HOVER NODES TO EXPLORE · MOVE CURSOR TO REPEL</div>
+      </div>
       <!-- text -->
       <div>
         <div class="prod-eyebrow sr-up">02 — ACCOUNT INTELLIGENCE</div>
         <h2 class="prod-name sr">Lynx</h2>
         <p class="prod-body sr">
-          Lynx goes deeper on your five highest-priority accounts. Each gets a dedicated
-          workspace: a complete decision-maker map, a curated 90-day signal feed, and an
-          AI chat trained on everything we know about that account.
+          Lynx goes deeper on your five highest-priority accounts. Each gets a dedicated workspace: a complete decision-maker map, a curated 90-day signal feed, and an AI chat trained on everything we know about that account.
         </p>
         <ul class="flist sr" data-delay="80">
           <li>Dedicated workspace per account (×5)</li>
@@ -259,18 +264,6 @@
           <a href="pricing.html" class="btn btn-dark">SEE PRICING →</a>
           <a href="contact.html" class="btn btn-outline">BOOK A RUN</a>
         </div>
-      </div>
-      <!-- network viz -->
-      <div class="lynx-wrap sr-left tilt" data-tilt="4" style="position:relative;">
-        <div class="viz-header">
-          <div class="viz-dot" style="background:#c9943a"></div>
-          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
-          <div class="viz-dot" style="background:rgba(255,253,245,0.15);"></div>
-          <span style="margin-left:8px;font-size:9px;font-weight:500;letter-spacing:0.14em;color:rgba(245,240,232,0.30);">LYNX · ORG INTELLIGENCE MAP</span>
-        </div>
-        <svg id="lynxSvg"></svg>
-        <div class="node-tooltip" id="nodeTooltip"></div>
-        <div class="lynx-footer">HOVER NODES TO EXPLORE · MOVE CURSOR TO REPEL</div>
       </div>
     </div>
   </div>
@@ -285,9 +278,7 @@
         <div class="prod-eyebrow sr-up">03 — STRATEGIC BRIEFING</div>
         <h2 class="prod-name sr">Intelligence</h2>
         <p class="prod-body sr">
-          A full strategic brief on one target company. We map the competitive landscape,
-          identify the buying dynamics and internal champions, then walk you through it all
-          in a 90-minute analyst session.
+          A full strategic brief on one target company. We map the competitive landscape, identify the buying dynamics and internal champions, then walk you through it all in a 90-minute analyst session.
         </p>
         <ul class="flist sr" data-delay="80">
           <li>Deep-dive brief on one target company</li>
@@ -302,7 +293,7 @@
           <a href="contact.html" class="btn btn-outline">BOOK A RUN</a>
         </div>
       </div>
-      <!-- intelligence card viz -->
+      <!-- intelligence tabs -->
       <div class="sr-right tilt" data-tilt="4" id="intelTabs">
         <div class="intel-wrap">
           <div class="intel-tabs-bar">
@@ -312,51 +303,51 @@
           </div>
 
           <div class="intel-pane active" data-pane="overview">
-            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:12px;">TARGET COMPANY</p>
-            <div class="intel-brief-title">Celonis AG — Process Mining</div>
-            <p class="intel-brief-body">Munich-based enterprise software company. Currently scaling their EMEA sales team after a $1B Series D. Decision-making authority is split between the CRO and a newly appointed VP GTM.</p>
-            <div class="intel-highlight">New VP GTM hire 6 weeks ago signals intent to restructure outbound motion — ideal entry window.</div>
-            <div class="intel-highlight">Hiring 14 sales engineers in DACH, suggesting product expansion into technical buyers.</div>
-            <div style="margin-top:16px;">
-              <div class="intel-metric-row"><span class="intel-metric-label">Employees</span><span class="intel-metric-val">2,400+</span></div>
-              <div class="intel-metric-row"><span class="intel-metric-label">Last funding</span><span class="intel-metric-val">$1B Series D</span></div>
+            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:10px;">TARGET COMPANY</p>
+            <div class="intel-brief-title">Arcturus GmbH — Enterprise SaaS</div>
+            <p class="intel-brief-body">Munich-based enterprise software company, currently scaling their EMEA go-to-market after a significant Series C. Decision-making authority sits with the CRO and a recently appointed VP GTM.</p>
+            <div class="intel-highlight">New VP GTM appointed 5 weeks ago — signals intent to rebuild outbound motion. Ideal entry window.</div>
+            <div class="intel-highlight">Hiring 11 sales engineers in DACH — suggests expansion into technical buyer segment.</div>
+            <div style="margin-top:14px;">
+              <div class="intel-metric-row"><span class="intel-metric-label">Employees</span><span class="intel-metric-val">1,800+</span></div>
+              <div class="intel-metric-row"><span class="intel-metric-label">Last funding</span><span class="intel-metric-val">Series C raised</span></div>
               <div class="intel-metric-row"><span class="intel-metric-label">ICP match score</span><span class="intel-metric-val" style="color:var(--accent-dim);">91 / 100</span></div>
             </div>
           </div>
 
           <div class="intel-pane" data-pane="stakeholders">
-            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:16px;">KEY STAKEHOLDERS</p>
-            <div style="display:flex;flex-direction:column;gap:12px;">
+            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:14px;">KEY STAKEHOLDERS</p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
               <div style="padding:12px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border-subtle);">
-                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Michael Braun</div>
-                <div style="font-size:11px;color:var(--accent-dim);margin-bottom:6px;">CRO — PRIMARY CHAMPION</div>
-                <div style="font-size:12px;color:var(--text-dim);">Former VP Sales at SAP. Strong outbound background. Open to new tooling based on recent LinkedIn activity.</div>
+                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">J. Hartmann</div>
+                <div style="font-size:11px;color:var(--accent-dim);margin-bottom:5px;">CRO — PRIMARY CHAMPION</div>
+                <div style="font-size:12px;color:var(--text-dim);">Strong outbound background. Open to new tooling based on recent public commentary around pipeline efficiency.</div>
               </div>
               <div style="padding:12px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border-subtle);">
-                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Sarah Klein</div>
-                <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;">VP Revenue Ops — INFLUENCER</div>
+                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">S. Vogel</div>
+                <div style="font-size:11px;color:var(--text-dim);margin-bottom:5px;">VP REVENUE OPS — INFLUENCER</div>
                 <div style="font-size:12px;color:var(--text-dim);">Controls tooling budget and CRM decisions. Key to any vendor evaluation process.</div>
               </div>
               <div style="padding:12px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border-subtle);">
-                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Jonas Weber</div>
-                <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;">CFO — BUDGET HOLDER</div>
-                <div style="font-size:12px;color:var(--text-dim);">Involved in tooling above €50k/yr. Approves Q1 budget in January.</div>
+                <div style="font-size:13px;font-weight:500;margin-bottom:3px;">T. Schäfer</div>
+                <div style="font-size:11px;color:var(--text-dim);margin-bottom:5px;">CFO — BUDGET HOLDER</div>
+                <div style="font-size:12px;color:var(--text-dim);">Approves tooling above a certain threshold. Involved in Q1 budget cycles from January.</div>
               </div>
             </div>
           </div>
 
           <div class="intel-pane" data-pane="signals">
-            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:16px;">BUYING SIGNALS</p>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div class="intel-highlight">↑ Hiring 14 sales engineers — DACH expansion signal</div>
-              <div class="intel-highlight">↑ New VP GTM hired 6 weeks ago — outbound rebuild likely</div>
-              <div class="intel-highlight">↑ Migrating CRM stack to HubSpot — integration window open</div>
+            <p style="font-size:9px;font-weight:600;letter-spacing:0.18em;color:var(--text-dim);margin-bottom:14px;">BUYING SIGNALS</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div class="intel-highlight">↑ Hiring 11 sales engineers — DACH expansion signal</div>
+              <div class="intel-highlight">↑ New VP GTM appointed 5 weeks ago — outbound rebuild likely</div>
+              <div class="intel-highlight">↑ Migrating CRM stack — integration window open</div>
               <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:12px;margin-top:4px;">
-                <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-dim);margin-bottom:10px;">INDUSTRY SIGNALS</div>
-                <div class="intel-tag">Process Mining ↑ 34%</div>
-                <div class="intel-tag">EMEA SaaS +18% QoQ</div>
+                <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-dim);margin-bottom:10px;">MARKET SIGNALS</div>
+                <div class="intel-tag">Enterprise SaaS ↑ 28%</div>
+                <div class="intel-tag">EMEA expansion +18% QoQ</div>
                 <div class="intel-tag">AI-driven ops expansion</div>
-                <div class="intel-tag">Enterprise budget unlock Q1</div>
+                <div class="intel-tag">Q1 budget unlock</div>
               </div>
             </div>
           </div>
@@ -372,7 +363,7 @@
     <div class="eyebrow sr-up">COMPARE</div>
     <h2 class="h-section sr" data-delay="60">What's included<br/><em>in each tier.</em></h2>
     <div class="sr" data-delay="120">
-      <table class="compare">
+      <table>
         <thead>
           <tr>
             <th>FEATURE</th>
@@ -417,7 +408,6 @@
     <nav class="footer-nav">
       <a href="products.html" class="footer-link">Products</a>
       <a href="pricing.html" class="footer-link">Pricing</a>
-      <a href="case-studies.html" class="footer-link">Case Studies</a>
       <a href="contact.html" class="footer-link">Contact</a>
     </nav>
     <span class="footer-copy">© 2025 SIFT Signal Intelligence</span>
@@ -426,20 +416,19 @@
 
 <script src="script.js"></script>
 <script>
-// Enhanced node tooltip for Lynx
 (function() {
   const tooltip = document.getElementById('nodeTooltip');
   const svg = document.getElementById('lynxSvg');
   if (!tooltip || !svg) return;
 
   const nodes = [
-    { label:'Celonis AG', role:'Target Company' },
-    { label:'Michael Braun', role:'CRO · Primary Champion' },
-    { label:'Sarah Klein', role:'VP Revenue Ops · Influencer' },
-    { label:'Thomas Müller', role:'Head of Sales · Evaluator' },
-    { label:'Anna Richter', role:'Dir. Partnerships · Gatekeeper' },
-    { label:'Jonas Weber', role:'CFO · Budget Holder' },
-    { label:'Lisa Hoffmann', role:'CISO · Technical Buyer' },
+    { label: 'Arcturus GmbH', role: 'Target Company' },
+    { label: 'J. Hartmann',   role: 'CRO · Primary Champion' },
+    { label: 'S. Vogel',      role: 'VP Revenue Ops · Influencer' },
+    { label: 'M. Fischer',    role: 'Head of Sales · Evaluator' },
+    { label: 'K. Brandt',     role: 'Dir. Partnerships · Gatekeeper' },
+    { label: 'T. Schäfer',   role: 'CFO · Budget Holder' },
+    { label: 'L. Meier',      role: 'CISO · Technical Buyer' },
   ];
 
   svg.addEventListener('mousemove', e => {
@@ -448,7 +437,7 @@
     const W = r.width, H = r.height;
     const cx = W/2, cy = H/2;
     const positions = [
-      {x:cx, y:cy},
+      {x:cx,             y:cy},
       {x:cx-160*(W/480), y:cy-80*(H/380)},
       {x:cx+170*(W/480), y:cy-70*(H/380)},
       {x:cx-170*(W/480), y:cy+80*(H/380)},
