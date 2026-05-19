@@ -123,6 +123,13 @@ if (!isMobile) {
 }
 
 // ─── HERO LOGO DRAW (on load) ─────────────────────────────
+function getPathLen(p) {
+  if (p.tagName && p.tagName.toLowerCase() === 'circle') {
+    return 2 * Math.PI * parseFloat(p.getAttribute('r') || 0);
+  }
+  try { return p.getTotalLength(); } catch(e) { return 200; }
+}
+
 function initHeroLogo() {
   const wrap = document.getElementById('heroLogoAnim');
   if (!wrap) return;
@@ -130,8 +137,7 @@ function initHeroLogo() {
   const brackets = wrap.querySelectorAll('.hero-logo-bracket');
   const allPaths = [circle, ...brackets].filter(Boolean);
   allPaths.forEach(p => {
-    let len;
-    try { len = p.getTotalLength(); } catch(e) { len = 150; }
+    const len = getPathLen(p);
     p.style.strokeDasharray = len;
     p.style.strokeDashoffset = len;
   });
@@ -154,8 +160,7 @@ function initLogoAnimation(wrap) {
   if (!wrap) return;
   const paths = wrap.querySelectorAll('.logo-anim-path');
   paths.forEach(p => {
-    let len;
-    try { len = p.getTotalLength(); } catch(e) { len = 200; }
+    const len = getPathLen(p);
     p.style.strokeDasharray = len;
     p.style.strokeDashoffset = len;
   });
@@ -382,11 +387,24 @@ function initArgusCanvas(canvas) {
 // ─── LYNX NETWORK ─────────────────────────────────────────
 function initLynxNetwork(svg) {
   if (!svg) return;
+  let initialized = false;
+  const ro = new ResizeObserver(() => {
+    if (initialized) return;
+    const { width, height } = svg.getBoundingClientRect();
+    if (!width || !height) return;
+    initialized = true;
+    ro.disconnect();
+    renderLynxNetwork(svg, width, height);
+  });
+  ro.observe(svg);
+  const { width: w0, height: h0 } = svg.getBoundingClientRect();
+  if (w0 && h0) { initialized = true; ro.disconnect(); renderLynxNetwork(svg, w0, h0); }
+}
+
+function renderLynxNetwork(svg, W, H) {
   const ns = 'http://www.w3.org/2000/svg';
   svg.innerHTML = '';
 
-  const W = svg.clientWidth || 480;
-  const H = svg.clientHeight || 380;
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
 
   const cx = W / 2, cy = H / 2;

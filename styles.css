@@ -224,6 +224,27 @@ input, select, textarea { font: inherit; color: inherit; }
   max-width: 300px; flex-shrink: 0; padding-bottom: 4px;
 }
 
+/* ─── PAGE HERO (alias for pricing / contact pages) ──────── */
+.page-hero {
+  padding-top: calc(var(--nav-h) + 68px);
+  padding-bottom: 68px;
+  border-bottom: 1px solid var(--border);
+}
+.page-hero-inner {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 48px;
+}
+.page-hero-desc {
+  font-size: 14px; color: var(--text-dim); line-height: 1.76;
+  max-width: 300px; flex-shrink: 0; padding-bottom: 4px;
+}
+.h-display {
+  font-family: var(--font-serif);
+  font-size: clamp(44px, 5.5vw, 78px);
+  font-weight: 300; line-height: 1.04; letter-spacing: -0.015em;
+  font-optical-sizing: auto;
+}
+.h-display em { font-style: italic; color: var(--text-dim); }
+
 /* ─── DARK PANEL ─────────────────────────────────────────── */
 .panel-dark {
   background: var(--bg-void); border-radius: 12px; overflow: hidden;
