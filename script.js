@@ -211,19 +211,26 @@ function initArgusCanvas(canvas) {
   let scoreProgress = leads.map(() => 0);
   let hovered = -1;
   let frame = 0;
+  let _rowH = 72;
 
   const revealInterval = setInterval(() => {
     if (revealed < leads.length) revealed++;
     else clearInterval(revealInterval);
   }, 900);
 
-  canvas.addEventListener('mousemove', e => {
+  function hitRow(clientY) {
     const r = canvas.getBoundingClientRect();
-    const my = e.clientY - r.top;
-    hovered = Math.floor((my - 20) / 72);
-    if (hovered < 0 || hovered >= revealed) hovered = -1;
-  });
+    const my = clientY - r.top;
+    const h = Math.floor((my - 20) / _rowH);
+    return (h >= 0 && h < revealed) ? h : -1;
+  }
+
+  canvas.addEventListener('mousemove', e => { hovered = hitRow(e.clientY); });
   canvas.addEventListener('mouseleave', () => { hovered = -1; });
+  canvas.addEventListener('touchstart', e => {
+    hovered = hitRow(e.touches[0].clientY);
+  }, { passive: true });
+  canvas.addEventListener('touchend', () => { hovered = -1; });
 
   function scoreColor(s) {
     if (s >= 85) return '#edb458';
@@ -250,7 +257,8 @@ function initArgusCanvas(canvas) {
     // score column separator
     ctx.strokeStyle = 'rgba(255,253,245,0.04)';
     ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(W - 110, 20); ctx.lineTo(W - 110, H - 24); ctx.stroke();
+    const sepX = compact ? W - 80 : W - 110;
+    ctx.beginPath(); ctx.moveTo(sepX, 20); ctx.lineTo(sepX, H - 24); ctx.stroke();
 
     // column headers
     ctx.font = '600 9px Inter, sans-serif';
@@ -262,7 +270,9 @@ function initArgusCanvas(canvas) {
     ctx.textAlign = 'left';
     ctx.letterSpacing = '0';
 
-    const rowH = 72, startY = 20;
+    _rowH = Math.max(44, Math.min(72, Math.floor((H - 46) / leads.length)));
+    const rowH = _rowH, startY = 20;
+    const compact = rowH < 56;
 
     // Active scan highlight for next row
     if (revealed < leads.length && frame > 10) {
@@ -311,46 +321,56 @@ function initArgusCanvas(canvas) {
       ctx.globalAlpha = alpha;
       ctx.translate(-slideX, 0);
 
+      // proportional y offsets
+      const nY  = y + Math.round(rowH * 0.40);
+      const rY  = y + Math.round(rowH * 0.62);
+      const t3Y = y + Math.round(rowH * 0.82);
+      const bY  = y + Math.round(rowH * 0.48);
+      const sY  = y + Math.round(rowH * 0.44);
+
       // name
-      ctx.font = '500 13px Inter, sans-serif';
+      ctx.font = `500 ${compact ? 11 : 13}px Inter, sans-serif`;
       ctx.fillStyle = isHov ? '#FFFDF5' : '#EDE8DC';
-      ctx.fillText(lead.name, 20, y + 26);
+      ctx.fillText(lead.name, 20, nY);
 
-      // role
-      ctx.font = '400 11px Inter, sans-serif';
-      ctx.fillStyle = 'rgba(245,240,232,0.38)';
-      ctx.fillText(lead.role, 20, y + 42);
+      // role (hidden in compact mode)
+      if (!compact) {
+        ctx.font = '400 11px Inter, sans-serif';
+        ctx.fillStyle = 'rgba(245,240,232,0.38)';
+        ctx.fillText(lead.role, 20, rY);
+      }
 
-      // trigger on hover
-      if (isHov) {
-        ctx.font = '400 10.5px Inter, sans-serif';
-        ctx.fillStyle = scoreColor(lead.score);
-        ctx.fillText('↑ ' + lead.trigger, 20, y + 58);
-      } else {
-        // sector
-        ctx.font = '500 9px Inter, sans-serif';
-        ctx.letterSpacing = '0.08em';
-        ctx.fillStyle = 'rgba(201,148,58,0.50)';
-        ctx.fillText(lead.sector, 20, y + 58);
-        ctx.letterSpacing = '0';
+      // sector / trigger (hidden in compact mode)
+      if (!compact) {
+        if (isHov) {
+          ctx.font = '400 10.5px Inter, sans-serif';
+          ctx.fillStyle = scoreColor(lead.score);
+          ctx.fillText('↑ ' + lead.trigger, 20, t3Y);
+        } else {
+          ctx.font = '500 9px Inter, sans-serif';
+          ctx.letterSpacing = '0.08em';
+          ctx.fillStyle = 'rgba(201,148,58,0.50)';
+          ctx.fillText(lead.sector, 20, t3Y);
+          ctx.letterSpacing = '0';
+        }
       }
 
       // score bar bg
-      const barX = W - 96, barW = 72, barY = y + 30;
+      const barX = W - 96, barW = compact ? 48 : 72, barY = y + bY - y;
       ctx.fillStyle = 'rgba(255,253,245,0.06)';
-      ctx.beginPath(); ctx.roundRect(barX, barY, barW, 3, 2); ctx.fill();
+      ctx.beginPath(); ctx.roundRect(W - barW - 14, bY, barW, 3, 2); ctx.fill();
 
       // score bar fill
       const pct = scoreProgress[i] / 100;
       const sc = scoreColor(lead.score);
       ctx.fillStyle = sc;
-      ctx.beginPath(); ctx.roundRect(barX, barY, barW * pct, 3, 2); ctx.fill();
+      ctx.beginPath(); ctx.roundRect(W - barW - 14, bY, barW * pct, 3, 2); ctx.fill();
 
       // score number
-      ctx.font = '600 16px Inter, sans-serif';
+      ctx.font = `600 ${compact ? 13 : 16}px Inter, sans-serif`;
       ctx.fillStyle = sc;
       ctx.textAlign = 'right';
-      ctx.fillText(Math.round(scoreProgress[i]), W - 14, y + 28);
+      ctx.fillText(Math.round(scoreProgress[i]), W - 14, sY);
       ctx.textAlign = 'left';
 
       ctx.restore();
@@ -368,9 +388,9 @@ function initArgusCanvas(canvas) {
       // progress bar
       const pBar = (revealed / leads.length);
       ctx.fillStyle = 'rgba(255,253,245,0.06)';
-      ctx.beginPath(); ctx.roundRect(W - 110, H - 14, 90, 2, 1); ctx.fill();
+      ctx.beginPath(); ctx.roundRect(W - (compact ? 80 : 110), H - 14, compact ? 60 : 90, 2, 1); ctx.fill();
       ctx.fillStyle = `rgba(237,180,88,${0.4 + pulse * 0.3})`;
-      ctx.beginPath(); ctx.roundRect(W - 110, H - 14, 90 * pBar, 2, 1); ctx.fill();
+      ctx.beginPath(); ctx.roundRect(W - (compact ? 80 : 110), H - 14, (compact ? 60 : 90) * pBar, 2, 1); ctx.fill();
     } else {
       ctx.fillStyle = 'rgba(237,180,88,0.55)';
       ctx.font = '600 8.5px Inter, sans-serif';
