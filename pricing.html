@@ -83,6 +83,9 @@
     .faq-grid{grid-template-columns:1fr;}
   }
   @media(max-width:640px){.pcard{padding:36px 28px;}.faq-item{padding:28px 24px;}}
+  /* force nav opaque on this page */
+  .nav{background:rgba(255,253,245,0.97)!important;backdrop-filter:blur(20px)!important;border-color:var(--border)!important;}
+  .page-hero{padding-top:calc(var(--nav-h) + 68px);}
   </style>
 </head>
 <body>
@@ -178,7 +181,7 @@
           <li>Custom ICP refinement</li>
           <li>Direct line for 30 days</li>
         </ul>
-        <a href="contact.html" class="pcard-btn pcard-btn--out">BOOK THE SUITE →</a>
+        <a href="contact.html?plan=full-suite" class="pcard-btn pcard-btn--out">BOOK THE SUITE →</a>
       </div>
     </div>
     <div class="pricing-note">
@@ -236,7 +239,7 @@
           <li>White-label PDF + DOCX</li>
           <li>Same-day SLA on priority runs</li>
         </ul>
-        <a href="contact.html" class="pcard-btn pcard-btn--out">TALK TO US →</a>
+        <a href="contact.html?plan=agency" class="pcard-btn pcard-btn--out">TALK TO US →</a>
       </div>
     </div>
     <div class="pricing-note">
