@@ -241,6 +241,10 @@ function initArgusCanvas(canvas) {
   function draw() {
     const W = canvas.getBoundingClientRect().width;
     const H = canvas.getBoundingClientRect().height;
+    _rowH = Math.max(44, Math.min(72, Math.floor((H - 46) / leads.length)));
+    const rowH = _rowH;
+    const compact = rowH < 56;
+    const startY = 20;
     ctx.clearRect(0, 0, W, H);
 
     // bg
@@ -269,10 +273,6 @@ function initArgusCanvas(canvas) {
     ctx.fillText('SCORE', W - 14, 15);
     ctx.textAlign = 'left';
     ctx.letterSpacing = '0';
-
-    _rowH = Math.max(44, Math.min(72, Math.floor((H - 46) / leads.length)));
-    const rowH = _rowH, startY = 20;
-    const compact = rowH < 56;
 
     // Active scan highlight for next row
     if (revealed < leads.length && frame > 10) {
