@@ -1,4 +1,12 @@
-// ─── NAV SCROLL ───────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════════════════
+   SIFT — Signal System runtime
+   Atmosphere · scroll engine · reveal choreography · product visualisations
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const COARSE  = window.matchMedia('(pointer: coarse)').matches;
+
+/* ─── NAV SCROLL ─────────────────────────────────────────── */
 const nav = document.querySelector('.nav');
 if (nav) {
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
@@ -6,15 +14,15 @@ if (nav) {
   onScroll();
 }
 
-// ─── ACTIVE NAV LINK ──────────────────────────────────────
-(function() {
+/* ─── ACTIVE NAV LINK ────────────────────────────────────── */
+(function () {
   const path = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link').forEach(a => {
     if (a.getAttribute('href') === path) a.classList.add('active');
   });
 })();
 
-// ─── MOBILE NAV ───────────────────────────────────────────
+/* ─── MOBILE NAV ─────────────────────────────────────────── */
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobileNav');
 if (hamburger && mobileNav) {
@@ -28,29 +36,274 @@ if (hamburger && mobileNav) {
   }));
 }
 
-// ─── SCROLL REVEAL ────────────────────────────────────────
-const srObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
+/* ─── ATMOSPHERE: grain + scroll progress + ambient field ── */
+function injectAtmosphere() {
+  if (!document.querySelector('.sig-progress')) {
+    const bar = document.createElement('div');
+    bar.className = 'sig-progress';
+    document.body.appendChild(bar);
+  }
+  if (!REDUCED && !document.querySelector('.sig-grain')) {
+    const grain = document.createElement('div');
+    grain.className = 'sig-grain';
+    document.body.appendChild(grain);
+  }
+}
+
+const progressEl = () => document.querySelector('.sig-progress');
+
+/* ─── AMBIENT SIGNAL FIELD ───────────────────────────────────
+   Drifting nodes + proximity links in gold over the cream page.
+   Reacts to scroll velocity. Perf-capped, pauses when hidden,
+   disabled for reduced-motion / coarse pointers. ───────────── */
+function initSignalField() {
+  if (REDUCED || COARSE) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'sig-field';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d', { alpha: true });
+
+  let W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let nodes = [];
+  let lastScroll = window.scrollY;
+  let scrollDrift = 0;
+  let mouse = { x: -9999, y: -9999 };
+  let running = true;
+
+  function build() {
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.max(26, Math.min(64, Math.round((W * H) / 28000)));
+    nodes = new Array(count).fill(0).map(() => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      r: Math.random() * 1.4 + 0.6,
+    }));
+  }
+  build();
+
+  const LINK = 132;
+  function frame() {
+    if (!running) return;
+    // scroll velocity → vertical drift of the whole field
+    const sy = window.scrollY;
+    scrollDrift += (sy - lastScroll) * 0.06;
+    lastScroll = sy;
+    scrollDrift *= 0.9;               // ease back to rest
+
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy - scrollDrift * 0.04;
+      // gentle pointer repulsion
+      const dxm = n.x - mouse.x, dym = n.y - mouse.y;
+      const dm2 = dxm * dxm + dym * dym;
+      if (dm2 < 14000) {
+        const f = (14000 - dm2) / 14000 * 0.6;
+        const dm = Math.sqrt(dm2) || 1;
+        n.x += (dxm / dm) * f; n.y += (dym / dm) * f;
+      }
+      // wrap
+      if (n.x < -20) n.x = W + 20; else if (n.x > W + 20) n.x = -20;
+      if (n.y < -20) n.y = H + 20; else if (n.y > H + 20) n.y = -20;
+    }
+
+    // links
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) {
+          const alpha = (1 - Math.sqrt(d2) / LINK) * 0.16;
+          ctx.strokeStyle = `rgba(176,128,46,${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+    }
+    // nodes
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(176,128,46,0.34)';
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  let resizeT;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeT); resizeT = setTimeout(build, 180);
+  }, { passive: true });
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  window.addEventListener('mouseout', () => { mouse.x = -9999; mouse.y = -9999; }, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    running = !document.hidden;
+    if (running) { lastScroll = window.scrollY; requestAnimationFrame(frame); }
+  });
+  requestAnimationFrame(frame);
+}
+
+/* ─── SCROLL ENGINE: progress + parallax (single rAF) ────── */
+function initScrollEngine() {
+  const speedEls = Array.from(document.querySelectorAll('[data-speed]'));
+  const cache = new Map();
+
+  function measure() {
+    const sy = window.scrollY;
+    speedEls.forEach(el => {
+      el.style.transform = 'none';
+      const r = el.getBoundingClientRect();
+      cache.set(el, { mid: sy + r.top + r.height / 2, speed: parseFloat(el.dataset.speed) || 0.08 });
+    });
+  }
+  measure();
+  window.addEventListener('load', measure);
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(measure, 200); }, { passive: true });
+
+  const docH = () => document.documentElement.scrollHeight - window.innerHeight;
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const sy = window.scrollY;
+    const bar = progressEl();
+    if (bar) {
+      const p = Math.max(0, Math.min(1, sy / (docH() || 1)));
+      bar.style.transform = `scaleX(${p})`;
+    }
+    if (!REDUCED) {
+      const vmid = sy + window.innerHeight / 2;
+      speedEls.forEach(el => {
+        const c = cache.get(el); if (!c) return;
+        const ty = (vmid - c.mid) * c.speed;
+        el.style.transform = `translate3d(0, ${ty.toFixed(2)}px, 0)`;
+      });
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  update();
+}
+
+/* ─── HEADLINE WORD SPLITTING ────────────────────────────── */
+function splitWords(el, step) {
+  if (el.dataset.split) return;
+  el.dataset.split = '1';
+  let idx = 0;
+  const STEP = step || 64;
+  function wrapText(text) {
+    const out = document.createDocumentFragment();
+    const parts = text.split(/(\s+)/);
+    parts.forEach(p => {
+      if (p === '') return;
+      if (/^\s+$/.test(p)) { out.appendChild(document.createTextNode(p)); return; }
+      const w = document.createElement('span'); w.className = 'rw-word';
+      const i = document.createElement('i');
+      i.textContent = p;
+      i.style.setProperty('--rw-delay', (idx++ * STEP) + 'ms');
+      w.appendChild(i); out.appendChild(w);
+    });
+    return out;
+  }
+  function recurse(node, target) {
+    Array.from(node.childNodes).forEach(child => {
+      if (child.nodeType === 3) {
+        target.appendChild(wrapText(child.textContent));
+      } else if (child.tagName === 'BR') {
+        target.appendChild(document.createElement('br'));
+      } else {
+        const clone = child.cloneNode(false);
+        recurse(child, clone);
+        target.appendChild(clone);
+      }
+    });
+  }
+  const frag = document.createDocumentFragment();
+  recurse(el, frag);
+  el.innerHTML = '';
+  el.appendChild(frag);
+  el.classList.add('reveal-words');
+}
+
+/* ─── REVEAL CHOREOGRAPHY ────────────────────────────────── */
+function initReveal() {
+  // assign stagger delays to children of [data-stagger]
+  document.querySelectorAll('[data-stagger]').forEach(parent => {
+    const stepLegacy = +(parent.dataset.stagger || 80);
+    parent.querySelectorAll(':scope > *').forEach((child, i) => {
+      if ((child.matches('.sr,.sr-up,.sr-left,.sr-right')) && !child.dataset.delay) {
+        child.dataset.delay = i * stepLegacy;
+      }
+      if (child.hasAttribute('data-reveal') && !child.dataset.delay) {
+        child.dataset.delay = i * stepLegacy;
+      }
+    });
+  });
+
+  // split any headline marked for word reveal
+  document.querySelectorAll('[data-words]').forEach(el => splitWords(el, +(el.dataset.words) || 64));
+
+  const apply = (el) => {
     const delay = +(el.dataset.delay || 0);
-    setTimeout(() => el.classList.add('in'), delay);
-    srObserver.unobserve(el);
+    if (el.hasAttribute('data-reveal') || el.classList.contains('reveal-words')) {
+      el.style.setProperty('--reveal-delay', delay + 'ms');
+    }
+    if (delay && (el.classList.contains('sr') || el.classList.contains('sr-up') ||
+                  el.classList.contains('sr-left') || el.classList.contains('sr-right'))) {
+      setTimeout(() => el.classList.add('in'), delay);
+    } else {
+      el.classList.add('in');
+    }
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      apply(entry.target);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.sr,.sr-up,.sr-left,.sr-right,[data-reveal],.reveal-words')
+    .forEach(el => io.observe(el));
+}
+
+/* ─── MAGNETIC ELEMENTS ──────────────────────────────────── */
+function initMagnetic() {
+  if (COARSE) return;
+  document.querySelectorAll('.magnetic').forEach(el => {
+    const strength = +(el.dataset.magnetic || 0.3);
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - (r.left + r.width / 2)) * strength;
+      const y = (e.clientY - (r.top + r.height / 2)) * strength;
+      el.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = 'translate(0,0)'; });
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}
 
-document.querySelectorAll('.sr,.sr-up,.sr-left,.sr-right').forEach(el => {
-  srObserver.observe(el);
-});
-
-document.querySelectorAll('[data-stagger]').forEach(parent => {
-  const step = +(parent.dataset.stagger || 80);
-  parent.querySelectorAll(':scope > *').forEach((child, i) => {
-    if (!child.dataset.delay) child.dataset.delay = i * step;
+/* ─── MARQUEE (seamless loop) ────────────────────────────── */
+function initMarquee() {
+  document.querySelectorAll('.marquee-track').forEach(track => {
+    if (track.dataset.cloned) return;
+    track.dataset.cloned = '1';
+    track.innerHTML += track.innerHTML;   // duplicate for -50% loop
   });
-});
+}
 
-// ─── PRICING TABS ─────────────────────────────────────────
+/* ─── PRICING TABS ───────────────────────────────────────── */
 document.querySelectorAll('.ptab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('ptab--on'));
@@ -59,7 +312,7 @@ document.querySelectorAll('.ptab').forEach(tab => {
     document.querySelectorAll('.ppanel').forEach(p => {
       const show = p.id === 'ppanel-' + id;
       p.style.display = show ? 'block' : 'none';
-      if (show) p.querySelectorAll('.sr,.sr-up').forEach(el => {
+      if (show) p.querySelectorAll('.sr,.sr-up,[data-reveal]').forEach(el => {
         el.classList.remove('in');
         setTimeout(() => el.classList.add('in'), 80);
       });
@@ -67,16 +320,17 @@ document.querySelectorAll('.ptab').forEach(tab => {
   });
 });
 
-// ─── COUNTER ANIMATION ────────────────────────────────────
+/* ─── COUNTER ANIMATION ──────────────────────────────────── */
 function animateCount(el) {
   const target = +el.dataset.count;
   const suffix = el.dataset.suffix || '';
-  const dur = 1400;
+  const prefix = el.dataset.prefix || '';
+  const dur = 1500;
   const start = performance.now();
   const update = (now) => {
     const t = Math.min((now - start) / dur, 1);
     const ease = 1 - Math.pow(1 - t, 3);
-    el.textContent = Math.round(ease * target) + suffix;
+    el.textContent = prefix + Math.round(ease * target) + suffix;
     if (t < 1) requestAnimationFrame(update);
   };
   requestAnimationFrame(update);
@@ -90,16 +344,15 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
-// ─── 3D CARD TILT ─────────────────────────────────────────
-const isMobile = window.matchMedia('(pointer: coarse)').matches;
-if (!isMobile) {
+/* ─── 3D CARD TILT ───────────────────────────────────────── */
+if (!COARSE) {
   document.querySelectorAll('.tilt').forEach(card => {
     const maxTilt = +(card.dataset.tilt || 8);
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(900px) rotateY(${x*maxTilt*2}deg) rotateX(${-y*maxTilt*2}deg) scale(1.01)`;
+      card.style.transform = `perspective(900px) rotateY(${x * maxTilt * 2}deg) rotateX(${-y * maxTilt * 2}deg) scale(1.01)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'perspective(900px) rotateY(0) rotateX(0) scale(1)';
@@ -107,8 +360,8 @@ if (!isMobile) {
   });
 }
 
-// ─── HERO PARALLAX ────────────────────────────────────────
-if (!isMobile) {
+/* ─── HERO POINTER PARALLAX ──────────────────────────────── */
+if (!COARSE) {
   const heroParallax = document.querySelectorAll('[data-parallax]');
   if (heroParallax.length) {
     document.addEventListener('mousemove', e => {
@@ -122,12 +375,12 @@ if (!isMobile) {
   }
 }
 
-// ─── HERO LOGO DRAW (on load) ─────────────────────────────
+/* ─── LOGO PATH HELPERS ──────────────────────────────────── */
 function getPathLen(p) {
   if (p.tagName && p.tagName.toLowerCase() === 'circle') {
     return 2 * Math.PI * parseFloat(p.getAttribute('r') || 0);
   }
-  try { return p.getTotalLength(); } catch(e) { return 200; }
+  try { return p.getTotalLength(); } catch (e) { return 200; }
 }
 
 function initHeroLogo() {
@@ -139,8 +392,9 @@ function initHeroLogo() {
   allPaths.forEach(p => {
     const len = getPathLen(p);
     p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
+    p.style.strokeDashoffset = REDUCED ? 0 : len;
   });
+  if (REDUCED) return;
   setTimeout(() => {
     if (circle) {
       circle.style.transition = 'stroke-dashoffset 1100ms cubic-bezier(0.16,1,0.3,1)';
@@ -155,16 +409,15 @@ function initHeroLogo() {
   }, 350);
 }
 
-// ─── SCROLL LOGO ANIMATION ────────────────────────────────
 function initLogoAnimation(wrap) {
   if (!wrap) return;
   const paths = wrap.querySelectorAll('.logo-anim-path');
   paths.forEach(p => {
     const len = getPathLen(p);
     p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
+    p.style.strokeDashoffset = REDUCED ? 0 : len;
   });
-
+  if (REDUCED) return;
   const observer = new IntersectionObserver(([entry]) => {
     if (!entry.isIntersecting) return;
     const circle = wrap.querySelector('.logo-anim-circle');
@@ -184,7 +437,7 @@ function initLogoAnimation(wrap) {
   observer.observe(wrap);
 }
 
-// ─── ARGUS CANVAS DEMO ────────────────────────────────────
+/* ─── ARGUS CANVAS DEMO ──────────────────────────────────── */
 function initArgusCanvas(canvas) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -194,7 +447,7 @@ function initArgusCanvas(canvas) {
     const r = canvas.getBoundingClientRect();
     canvas.width = r.width * dpr;
     canvas.height = r.height * dpr;
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   resize();
   new ResizeObserver(resize).observe(canvas);
@@ -227,9 +480,7 @@ function initArgusCanvas(canvas) {
 
   canvas.addEventListener('mousemove', e => { hovered = hitRow(e.clientY); });
   canvas.addEventListener('mouseleave', () => { hovered = -1; });
-  canvas.addEventListener('touchstart', e => {
-    hovered = hitRow(e.touches[0].clientY);
-  }, { passive: true });
+  canvas.addEventListener('touchstart', e => { hovered = hitRow(e.touches[0].clientY); }, { passive: true });
   canvas.addEventListener('touchend', () => { hovered = -1; });
 
   function scoreColor(s) {
@@ -247,24 +498,20 @@ function initArgusCanvas(canvas) {
     const startY = 20;
     ctx.clearRect(0, 0, W, H);
 
-    // bg
     ctx.fillStyle = '#0a0905';
     ctx.fillRect(0, 0, W, H);
 
-    // subtle grid
     ctx.strokeStyle = 'rgba(255,253,245,0.02)';
     ctx.lineWidth = 1;
     for (let y = 36; y < H; y += 36) {
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
     }
 
-    // score column separator
     ctx.strokeStyle = 'rgba(255,253,245,0.04)';
     ctx.lineWidth = 1;
     const sepX = compact ? W - 80 : W - 110;
     ctx.beginPath(); ctx.moveTo(sepX, 20); ctx.lineTo(sepX, H - 24); ctx.stroke();
 
-    // column headers
     ctx.font = '600 9px Inter, sans-serif';
     ctx.letterSpacing = '0.16em';
     ctx.fillStyle = 'rgba(245,240,232,0.20)';
@@ -274,14 +521,12 @@ function initArgusCanvas(canvas) {
     ctx.textAlign = 'left';
     ctx.letterSpacing = '0';
 
-    // Active scan highlight for next row
     if (revealed < leads.length && frame > 10) {
       const nextY = startY + revealed * rowH;
       const pulse = (Math.sin(frame * 0.12) + 1) / 2;
       const glowAlpha = 0.04 + pulse * 0.06;
       ctx.fillStyle = `rgba(237,180,88,${glowAlpha})`;
       ctx.fillRect(0, nextY, W, rowH);
-      // scan line
       const lineAlpha = 0.3 + pulse * 0.5;
       const lineGrad = ctx.createLinearGradient(0, nextY, W, nextY);
       lineGrad.addColorStop(0, 'transparent');
@@ -299,7 +544,6 @@ function initArgusCanvas(canvas) {
 
       scoreProgress[i] = Math.min(scoreProgress[i] + 1.4, lead.score);
 
-      // row bg
       if (isHov) {
         ctx.fillStyle = 'rgba(237,180,88,0.06)';
         ctx.fillRect(0, y, W, rowH);
@@ -308,11 +552,9 @@ function initArgusCanvas(canvas) {
         ctx.fillRect(0, y, W, rowH);
       }
 
-      // row separator
       ctx.fillStyle = 'rgba(255,253,245,0.04)';
       ctx.fillRect(0, y + rowH - 1, W, 1);
 
-      // entry animation
       const age = frame - i * 20;
       const slideX = age < 20 ? Math.max(0, (20 - age) * 5) : 0;
       const alpha = age < 20 ? Math.min(1, age / 20) : 1;
@@ -321,26 +563,22 @@ function initArgusCanvas(canvas) {
       ctx.globalAlpha = alpha;
       ctx.translate(-slideX, 0);
 
-      // proportional y offsets
       const nY  = y + Math.round(rowH * 0.40);
       const rY  = y + Math.round(rowH * 0.62);
       const t3Y = y + Math.round(rowH * 0.82);
       const bY  = y + Math.round(rowH * 0.48);
       const sY  = y + Math.round(rowH * 0.44);
 
-      // name
       ctx.font = `500 ${compact ? 11 : 13}px Inter, sans-serif`;
       ctx.fillStyle = isHov ? '#FFFDF5' : '#EDE8DC';
       ctx.fillText(lead.name, 20, nY);
 
-      // role (hidden in compact mode)
       if (!compact) {
         ctx.font = '400 11px Inter, sans-serif';
         ctx.fillStyle = 'rgba(245,240,232,0.38)';
         ctx.fillText(lead.role, 20, rY);
       }
 
-      // sector / trigger (hidden in compact mode)
       if (!compact) {
         if (isHov) {
           ctx.font = '400 10.5px Inter, sans-serif';
@@ -355,18 +593,15 @@ function initArgusCanvas(canvas) {
         }
       }
 
-      // score bar bg
-      const barX = W - 96, barW = compact ? 48 : 72, barY = y + bY - y;
+      const barW = compact ? 48 : 72;
       ctx.fillStyle = 'rgba(255,253,245,0.06)';
       ctx.beginPath(); ctx.roundRect(W - barW - 14, bY, barW, 3, 2); ctx.fill();
 
-      // score bar fill
       const pct = scoreProgress[i] / 100;
       const sc = scoreColor(lead.score);
       ctx.fillStyle = sc;
       ctx.beginPath(); ctx.roundRect(W - barW - 14, bY, barW * pct, 3, 2); ctx.fill();
 
-      // score number
       ctx.font = `600 ${compact ? 13 : 16}px Inter, sans-serif`;
       ctx.fillStyle = sc;
       ctx.textAlign = 'right';
@@ -376,7 +611,6 @@ function initArgusCanvas(canvas) {
       ctx.restore();
     }
 
-    // status footer
     ctx.fillStyle = 'rgba(255,253,245,0.04)';
     ctx.fillRect(0, H - 26, W, 1);
     if (revealed < leads.length) {
@@ -385,7 +619,6 @@ function initArgusCanvas(canvas) {
       ctx.font = '600 8.5px Inter, sans-serif';
       ctx.letterSpacing = '0.14em';
       ctx.fillText('● SCANNING', 20, H - 9);
-      // progress bar
       const pBar = (revealed / leads.length);
       ctx.fillStyle = 'rgba(255,253,245,0.06)';
       ctx.beginPath(); ctx.roundRect(W - (compact ? 80 : 110), H - 14, compact ? 60 : 90, 2, 1); ctx.fill();
@@ -404,7 +637,7 @@ function initArgusCanvas(canvas) {
   draw();
 }
 
-// ─── LYNX NETWORK ─────────────────────────────────────────
+/* ─── LYNX NETWORK ───────────────────────────────────────── */
 function initLynxNetwork(svg) {
   if (!svg) return;
   let initialized = false;
@@ -424,7 +657,6 @@ function initLynxNetwork(svg) {
 function renderLynxNetwork(svg, W, H) {
   const ns = 'http://www.w3.org/2000/svg';
   svg.innerHTML = '';
-
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
 
   const cx = W / 2, cy = H / 2;
@@ -460,7 +692,7 @@ function renderLynxNetwork(svg, W, H) {
     line.setAttribute('stroke-width', '1.5');
     const len = Math.hypot(nb.x - na.x, nb.y - na.y);
     line.style.strokeDasharray = len;
-    line.style.strokeDashoffset = len;
+    line.style.strokeDashoffset = REDUCED ? 0 : len;
     line.style.transition = `stroke-dashoffset 600ms var(--ease-spring)`;
     edgeGroup.appendChild(line);
     return line;
@@ -468,7 +700,7 @@ function renderLynxNetwork(svg, W, H) {
   svg.appendChild(edgeGroup);
 
   const nodeGroup = document.createElementNS(ns, 'g');
-  const nodeEls = nodes.map((n, i) => {
+  const nodeEls = nodes.map((n) => {
     const g = document.createElementNS(ns, 'g');
     g.setAttribute('transform', `translate(${n.x},${n.y})`);
     g.style.cursor = 'pointer';
@@ -516,26 +748,27 @@ function renderLynxNetwork(svg, W, H) {
   });
   svg.appendChild(nodeGroup);
 
-  svg.addEventListener('mousemove', e => {
-    const r = svg.getBoundingClientRect();
-    const mx = (e.clientX - r.left) * (W / r.width);
-    const my = (e.clientY - r.top) * (H / r.height);
-    nodes.forEach((n, i) => {
-      if (n.isCenter) return;
-      const dx = n.x - mx, dy = n.y - my;
-      const dist = Math.hypot(dx, dy);
-      const force = Math.min(28 / (dist * 0.05 + 1), 14);
-      const ox = (dx / dist) * force;
-      const oy = (dy / dist) * force;
-      nodeEls[i].el.style.transform = `translate(${n.x + ox}px,${n.y + oy}px)`;
+  if (!COARSE) {
+    svg.addEventListener('mousemove', e => {
+      const r = svg.getBoundingClientRect();
+      const mx = (e.clientX - r.left) * (W / r.width);
+      const my = (e.clientY - r.top) * (H / r.height);
+      nodes.forEach((n, i) => {
+        if (n.isCenter) return;
+        const dx = n.x - mx, dy = n.y - my;
+        const dist = Math.hypot(dx, dy) || 1;
+        const force = Math.min(28 / (dist * 0.05 + 1), 14);
+        const ox = (dx / dist) * force;
+        const oy = (dy / dist) * force;
+        nodeEls[i].el.style.transform = `translate(${n.x + ox}px,${n.y + oy}px)`;
+      });
     });
-  });
-  svg.addEventListener('mouseleave', () => {
-    nodes.forEach((n, i) => {
-      nodeEls[i].el.style.transform = `translate(${n.x}px,${n.y}px)`;
+    svg.addEventListener('mouseleave', () => {
+      nodes.forEach((n, i) => { nodeEls[i].el.style.transform = `translate(${n.x}px,${n.y}px)`; });
     });
-  });
+  }
 
+  if (REDUCED) return;
   const observer = new IntersectionObserver(([e]) => {
     if (!e.isIntersecting) return;
     edgeEls.forEach((el, i) => setTimeout(() => { el.style.strokeDashoffset = 0; }, i * 120 + 200));
@@ -544,7 +777,7 @@ function renderLynxNetwork(svg, W, H) {
   observer.observe(svg);
 }
 
-// ─── INTELLIGENCE TABS ────────────────────────────────────
+/* ─── INTELLIGENCE TABS ──────────────────────────────────── */
 function initIntelTabs(wrap) {
   if (!wrap) return;
   const tabs = wrap.querySelectorAll('.intel-tab');
@@ -559,18 +792,26 @@ function initIntelTabs(wrap) {
   });
 }
 
-// ─── SMOOTH ANCHOR SCROLL ─────────────────────────────────
+/* ─── SMOOTH ANCHOR SCROLL ───────────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const el = document.getElementById(a.getAttribute('href').slice(1));
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
     if (!el) return;
     e.preventDefault();
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
   });
 });
 
-// ─── INIT ─────────────────────────────────────────────────
+/* ─── INIT ───────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  injectAtmosphere();
+  initSignalField();
+  initScrollEngine();
+  initReveal();
+  initMagnetic();
+  initMarquee();
   initHeroLogo();
   initArgusCanvas(document.getElementById('argusCanvas'));
   initLynxNetwork(document.getElementById('lynxSvg'));
