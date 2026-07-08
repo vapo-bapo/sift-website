@@ -1,0 +1,8 @@
+{
+  "name": "SIFT",
+  "description": "SIFT — B2B outbound signal intelligence. Scored lead lists, deep account maps, and strategic briefs delivered in 72 hours.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
