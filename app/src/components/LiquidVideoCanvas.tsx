@@ -186,9 +186,11 @@ export function LiquidVideoCanvas({
         }
       }
 
-      // Apply style values directly to the DOM to bypass React lifecycle latency and avoid layout stutters
+      // Apply style values directly to the DOM to bypass React lifecycle latency and avoid layout stutters.
+      // hue-rotate + saturate/sepia retint the source footage's green neon glow into the site's warm
+      // gold palette (#c9943a / #e0a94c) without touching the scrub/blur/entrance logic above.
       if (video) {
-        video.style.filter = `blur(${blurVal}px)`;
+        video.style.filter = `blur(${blurVal}px) hue-rotate(280deg) saturate(1.5)`;
         video.style.transform = `scale(${scaleVal * entranceZoom})`;
         video.style.opacity = `${entranceOpacity}`;
       }
