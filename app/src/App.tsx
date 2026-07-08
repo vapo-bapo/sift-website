@@ -6,7 +6,6 @@ import { ScrambleText } from "./components/ScrambleText";
 import { ScrambleIn } from "./components/ScrambleIn";
 import { StatsGrid } from "./components/StatsGrid";
 import {
-  LogoMarquee,
   ProcessSection,
   EnginesSection,
   PricingSection,
@@ -602,11 +601,6 @@ export default function App() {
               </h2>
             </motion.div>
           </div>
-
-          {/* SECTION 2: Trusted-by marquee */}
-          <ScrollReveal>
-            <LogoMarquee />
-          </ScrollReveal>
 
           {/* SECTION 3: Modern Stats screen (Full-Width Swipe Coverflow with no border truncation) */}
           <div className="w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] relative mt-16 pointer-events-auto overflow-hidden">
