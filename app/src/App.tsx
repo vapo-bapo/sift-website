@@ -262,9 +262,6 @@ export default function App() {
               <span className="font-sans text-[16px] font-bold tracking-tight text-[#0E0C06] leading-none">
                 SIFT
               </span>
-              <span className="font-mono text-[9px] font-medium tracking-[0.14em] text-[#7A6248] leading-none uppercase mt-[1px]">
-                Signal Intel · V1.0
-              </span>
             </motion.button>
 
             {/* Expanding Menu Pill Button (Skiper3 Inspired Layout with Squash Hamburger) */}
@@ -476,20 +473,6 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
                 {/* TOP LEFT: Large Main Display Title */}
                 <div className="text-left select-none">
-                  <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={videoEntranceComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="flex items-center gap-3 mb-6"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#e0a94c] animate-pulse shrink-0" />
-                    <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#FFFDF5]/60">
-                      52.5200° N — Signal · Locked
-                    </span>
-                    <span className="hidden sm:inline font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#FFFDF5]/35">
-                      B2B Outbound Intelligence
-                    </span>
-                  </motion.div>
                   <h1 className="font-serif font-light text-[50px] sm:text-[70px] md:text-[85px] lg:text-[100px] text-[#FFFDF5] leading-[0.95] tracking-[-0.03em] flex flex-col items-start">
                     <ScrambleIn text="Your" scrollProgress={scrollProgress} delay={100} trigger={videoEntranceComplete} />
                     <ScrambleIn text="Pipeline," scrollProgress={scrollProgress} delay={300} trigger={videoEntranceComplete} />
@@ -514,30 +497,11 @@ export default function App() {
                     SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list.
                   </motion.p>
 
-                  {/* Live status chips */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={videoEntranceComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.35 }}
-                    className="flex flex-wrap items-center gap-2 mt-6"
-                  >
-                    <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFFDF5]/10 backdrop-blur-md font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-[#FFFDF5]/75">
-                      <span className="w-1 h-1 rounded-full bg-[#e0a94c] animate-pulse shrink-0" />
-                      Argus Online
-                    </span>
-                    <span className="px-3 py-1.5 rounded-full bg-[#FFFDF5]/10 backdrop-blur-md font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-[#FFFDF5]/75">
-                      72h Delivery SLA
-                    </span>
-                    <span className="px-3 py-1.5 rounded-full bg-[#FFFDF5]/10 backdrop-blur-md font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-[#FFFDF5]/75">
-                      EMEA Coverage
-                    </span>
-                  </motion.div>
-
                   {/* Hero CTAs */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={videoEntranceComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.5 }}
+                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.35 }}
                     className="flex flex-wrap items-center gap-3 mt-8"
                   >
                     <motion.button
