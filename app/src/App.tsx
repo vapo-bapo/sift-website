@@ -590,12 +590,35 @@ export default function App() {
                   </motion.div>
                 </motion.div>
 
-                {/* BOTTOM RIGHT: Large Accent Header */}
-                <div className="flex flex-col items-end text-right select-none">
-                  <h2 className="font-serif font-light italic text-[55px] sm:text-[70px] md:text-[85px] lg:text-[100px] text-[#FFFDF5] leading-[0.95] tracking-[-0.03em] flex flex-col items-end">
-                    <ScrambleIn text="Signal" scrollProgress={scrollProgress} delay={200} trigger={pageLoaded} />
-                    <ScrambleIn text="Driven." scrollProgress={scrollProgress} delay={400} trigger={pageLoaded} />
-                  </h2>
+                {/* BOTTOM RIGHT: Value proposition block */}
+                <div className="flex flex-col items-end text-right select-none max-w-md">
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.5 }}
+                    className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#c9943a] mb-4"
+                  >
+                    Signal Intelligence
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.6 }}
+                    className="font-serif font-light text-[28px] sm:text-[36px] md:text-[42px] text-[#FFFDF5] leading-[1.1] tracking-[-0.02em]"
+                  >
+                    Every call starts with context.
+                  </motion.p>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={pageLoaded ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 1.2, delay: 0.8 }}
+                    className="flex items-center gap-3 mt-6"
+                  >
+                    <span className="inline-block w-[6px] h-[6px] rounded-full bg-[#c9943a]" />
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/50">72h Delivery</span>
+                    <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#FFFDF5]/20" />
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/50">EMEA</span>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -610,21 +633,13 @@ export default function App() {
             style={{ y: gridY }}
           />
 
-          {/* SECTION 1.5: Cinematic Scroll Perspective Paragraph Block */}
-          <div
-            ref={cinematicRef}
-            className="relative w-full max-w-5xl mx-auto py-24 sm:py-32 pointer-events-none"
-            style={{
-              transformStyle: "preserve-3d",
-              perspective: "400px",
-            }}
-          >
+          {/* SECTION 1.5: Clean editorial statement */}
+          <div className="relative w-full max-w-5xl mx-auto py-24 sm:py-32">
             <motion.div
-              style={{
-                transformStyle: "preserve-3d",
-                transform,
-                opacity: cinematicOpacity,
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ type: "spring", stiffness: 60, damping: 20 }}
               className="w-full text-center"
             >
               <h2 className="font-serif font-light text-[24px] sm:text-[32px] md:text-[38px] lg:text-[44px] text-[#0E0C06] leading-[1.3] tracking-[-0.02em] select-none px-6 sm:px-12 text-center">

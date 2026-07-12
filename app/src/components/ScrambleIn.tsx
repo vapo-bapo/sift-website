@@ -49,7 +49,6 @@ export function ScrambleIn({ text, scrollProgress, delay = 0, className = "", tr
 
     return () => {
       if (startTimeoutRef.current) clearTimeout(startTimeoutRef.current);
-      if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
     };
   }, [scrollActive, delay, trigger]);
 
@@ -58,7 +57,8 @@ export function ScrambleIn({ text, scrollProgress, delay = 0, className = "", tr
     phaseRef.current = targetPhase;
     progressRef.current = 0;
     lastTimeRef.current = performance.now();
-    animate();
+    // Start immediately without setTimeout to prevent RAF scheduling gaps
+    animationFrameId.current = requestAnimationFrame(animate);
   };
 
   const animate = () => {
@@ -66,7 +66,6 @@ export function ScrambleIn({ text, scrollProgress, delay = 0, className = "", tr
     const delta = now - lastTimeRef.current;
     lastTimeRef.current = now;
 
-    // Advanced duration control for professional, high-performance look
     const duration = phaseRef.current === "scrambling-in" ? 900 : 700;
     progressRef.current = Math.min(1, progressRef.current + delta / duration);
 
@@ -74,24 +73,16 @@ export function ScrambleIn({ text, scrollProgress, delay = 0, className = "", tr
 
     if (phaseRef.current === "scrambling-in") {
       setOpacity(1);
-      // We reveal from left to right.
-      // Every character space has a threshold.
       const updated = text
         .split("")
         .map((char, index) => {
           if (char === " ") return " ";
-
-          // Calculate progression marker per character index
           const charThreshold = index / text.length;
-          
           if (t >= charThreshold + 0.15) {
-            // Over the threshold: resolve to the actual character
             return char;
           } else if (t >= charThreshold - 0.1) {
-            // Close to threshold: scramble character actively
             return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
           } else {
-            // Still unrevealed: return empty string or non-breaking space
             return "\u00A0";
           }
         })
@@ -101,41 +92,34 @@ export function ScrambleIn({ text, scrollProgress, delay = 0, className = "", tr
 
       if (t >= 1) {
         phaseRef.current = "revealed";
-        setDisplayText(text); // Ensure precise fallback match
+        setDisplayText(text);
+        animationFrameId.current = null;
         return;
       }
     } else if (phaseRef.current === "scrambling-out") {
-      // Scramble out deletes from right to left or left to right, scrambling and slowly vanishing
-      // Let's do a glamorous progressive left-to-right crumble
       const updated = text
         .split("")
         .map((char, index) => {
           if (char === " ") return " ";
-
           const charThreshold = index / text.length;
-
           if (t >= charThreshold + 0.2) {
-            // Completely dissolved: blank space
             return "\u00A0";
           } else if (t >= charThreshold - 0.05) {
-            // Active scramble glitch
             return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
           } else {
-            // Not yet scrambled
             return char;
           }
         })
         .join("");
 
       setDisplayText(updated);
-      
-      // Gradually fade opacity to absolute zero during scrambling out
       setOpacity(Math.max(0, 1 - t * 1.5));
 
       if (t >= 1) {
         phaseRef.current = "hidden";
         setDisplayText(text.split("").map(c => c === " " ? " " : "\u00A0").join(""));
         setOpacity(0);
+        animationFrameId.current = null;
         return;
       }
     }
