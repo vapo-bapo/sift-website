@@ -495,8 +495,8 @@ export default function App() {
             ))}
           </div>
 
-          {/* Bottom hand-off gradient: dark void dissolves into the warm paper body */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#070600]/40 to-[#FFFDF5] pointer-events-none z-[2]" />
+          {/* Bottom hand-off gradient: keep hero solid black longer, then diffuse cleanly */}
+          <div className="absolute bottom-0 left-0 right-0 h-[35vh] bg-gradient-to-b from-transparent from-0% via-[#070600] via-[55%] to-[#FFFDF5] to-100% pointer-events-none z-[2]" />
 
           <motion.div
             style={{ opacity: heroOpacity, scale: heroScale }}
