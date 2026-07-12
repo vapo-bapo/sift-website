@@ -136,8 +136,6 @@ export default function App() {
   // Hero fades run on absolute pixels so they stay identical no matter how long the page grows
   const heroOpacity = useTransform(smoothScrollY, [0, 600], [1, 0]);
   const heroScale = useTransform(smoothScrollY, [0, 600], [1, 0.96]);
-  const descOpacity = useTransform(smoothScrollY, [0, 300], [1, 0]);
-  const descY = useTransform(smoothScrollY, [0, 300], [0, -30]);
 
   // Subtle vertical parallax for the warm-paper background grid
   const gridY = useTransform(smoothScrollY, [0, 5000], [0, -80]);
@@ -505,69 +503,31 @@ export default function App() {
             className="relative z-[3] w-full max-w-7xl mx-auto flex flex-col min-h-[100svh] justify-between px-4 sm:px-8 pt-28 pb-24 pointer-events-auto"
           >
             <div className="w-full flex-1 flex flex-col justify-between gap-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
-                {/* TOP LEFT: Large Main Display Title */}
-                <div className="text-left select-none">
-                  <h1 className="font-serif font-light text-[50px] sm:text-[70px] md:text-[85px] lg:text-[100px] text-[#FFFDF5] leading-[0.95] tracking-[-0.03em] flex flex-col items-start">
-                    <LetterReveal text="Your" delay={200} trigger={pageLoaded} />
-                    <br />
-                    <LetterReveal text="Pipeline," delay={500} trigger={pageLoaded} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full items-center">
+                {/* LEFT: Large Main Display Title + description */}
+                <div className="text-left select-none flex flex-col justify-center">
+                  <h1 className="font-serif font-light text-[52px] sm:text-[74px] md:text-[90px] lg:text-[110px] text-[#FFFDF5] leading-[0.9] tracking-[-0.04em]">
+                    <span className="block">
+                      <LetterReveal text="Your" delay={200} trigger={pageLoaded} />
+                    </span>
+                    <span className="block">
+                      <LetterReveal text="Pipeline," delay={450} trigger={pageLoaded} />
+                    </span>
                   </h1>
-                </div>
-                {/* TOP RIGHT: 3D Visualization with glow effect */}
-                <div className="hidden md:flex items-center justify-center relative">
-                  {/* Glow behind 3D visualization */}
-                  <div className="absolute inset-0 bg-[#c9943a]/10 rounded-full blur-[80px] animate-pulse" />
-                  <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
-                    <Hero3DVisualization />
-                  </div>
-                  {/* Orbiting dots */}
-                  <div className="absolute inset-0 pointer-events-none">
-                    {[0, 1, 2, 3].map((i) => (
-                      <motion.div
-                        key={i}
-                        className="absolute w-2 h-2 bg-[#c9943a] rounded-full"
-                        style={{
-                          left: '50%',
-                          top: '50%',
-                        }}
-                        animate={{
-                          x: [0, Math.cos(i * Math.PI / 2) * 180, 0],
-                          y: [0, Math.sin(i * Math.PI / 2) * 180, 0],
-                          opacity: [0.4, 1, 0.4],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          delay: i * 0.5,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full mt-auto items-end pt-12">
-                {/* BOTTOM LEFT: Product Descriptive Text Block */}
-                <motion.div
-                  style={{ opacity: descOpacity, y: descY }}
-                  className="max-w-sm text-left pointer-events-auto"
-                >
                   <motion.p
-                    initial={{ opacity: 0, y: 25 }}
-                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.2 }}
-                    className="font-sans text-[14px] sm:text-[15px] text-[#FFFDF5]/65 leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.75 }}
+                    className="font-sans text-[15px] sm:text-[16px] text-[#FFFDF5]/60 leading-relaxed max-w-md mt-8"
                   >
-                    SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list.
+                    SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context.
                   </motion.p>
 
-                  {/* Hero CTAs */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.35 }}
+                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.9 }}
                     className="flex flex-wrap items-center gap-3 mt-8"
                   >
                     <motion.button
@@ -590,38 +550,40 @@ export default function App() {
                       How it works
                     </motion.button>
                   </motion.div>
+                </div>
+
+                {/* RIGHT: 3D Visualization */}
+                <div className="hidden md:flex items-center justify-center relative">
+                  <div className="absolute inset-0 bg-[#c9943a]/10 rounded-full blur-[80px] animate-pulse" />
+                  <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
+                    <Hero3DVisualization />
+                  </div>
+                </div>
+              </div>
+
+              {/* BOTTOM BAR: clean metadata */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 w-full mt-auto pt-16">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={pageLoaded ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 1.2, delay: 1 }}
+                  className="flex items-center gap-4"
+                >
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/40">Signal Intelligence</span>
+                  <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#c9943a]/60" />
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/40">72h Delivery</span>
+                  <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#c9943a]/60" />
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/40">EMEA</span>
                 </motion.div>
 
-                {/* BOTTOM RIGHT: Value proposition block */}
-                <div className="flex flex-col items-end text-right select-none max-w-md">
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.5 }}
-                    className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#c9943a] mb-4"
-                  >
-                    Signal Intelligence
-                  </motion.p>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.6 }}
-                    className="font-serif font-light text-[28px] sm:text-[36px] md:text-[42px] text-[#FFFDF5] leading-[1.1] tracking-[-0.02em]"
-                  >
-                    Every call starts with context.
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={pageLoaded ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 1.2, delay: 0.8 }}
-                    className="flex items-center gap-3 mt-6"
-                  >
-                    <span className="inline-block w-[6px] h-[6px] rounded-full bg-[#c9943a]" />
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/50">72h Delivery</span>
-                    <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#FFFDF5]/20" />
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/50">EMEA</span>
-                  </motion.div>
-                </div>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                  transition={{ duration: 0.9, delay: 1.1 }}
+                  className="font-serif font-light italic text-[18px] sm:text-[22px] text-[#FFFDF5]/50 tracking-[-0.01em]"
+                >
+                  Context, not cold lists.
+                </motion.p>
               </div>
             </div>
           </motion.div>
