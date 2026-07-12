@@ -476,21 +476,6 @@ export default function App() {
           {/* Ambient hero dot grid */}
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.05] pointer-events-none z-[1]" />
 
-          {/* Scanline effect */}
-          <div className="absolute inset-0 pointer-events-none z-[2] overflow-hidden">
-            <motion.div
-              className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#c9943a]/30 to-transparent"
-              animate={{
-                top: ['-5%', '105%'],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          </div>
-
           {/* Data stream lines */}
           <div className="absolute inset-0 pointer-events-none z-[1]">
             {[...Array(5)].map((_, i) => (
