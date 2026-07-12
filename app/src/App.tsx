@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useMotionTemplate, useSpring } from "m
 import Lenis from "lenis";
 import { ScrambleText } from "./components/ScrambleText";
 import { ScrambleIn } from "./components/ScrambleIn";
+import { LetterReveal } from "./components/LetterReveal";
 import { StatsGrid } from "./components/StatsGrid";
 import { ParticleBackground } from "./components/ParticleBackground";
 import { Hero3DVisualization } from "./components/Hero3DVisualization";
@@ -508,8 +509,9 @@ export default function App() {
                 {/* TOP LEFT: Large Main Display Title */}
                 <div className="text-left select-none">
                   <h1 className="font-serif font-light text-[50px] sm:text-[70px] md:text-[85px] lg:text-[100px] text-[#FFFDF5] leading-[0.95] tracking-[-0.03em] flex flex-col items-start">
-                    <ScrambleIn text="Your" scrollProgress={scrollProgress} delay={100} trigger={pageLoaded} />
-                    <ScrambleIn text="Pipeline," scrollProgress={scrollProgress} delay={300} trigger={pageLoaded} />
+                    <LetterReveal text="Your" delay={200} trigger={pageLoaded} />
+                    <br />
+                    <LetterReveal text="Pipeline," delay={500} trigger={pageLoaded} />
                   </h1>
                 </div>
                 {/* TOP RIGHT: 3D Visualization with glow effect */}
