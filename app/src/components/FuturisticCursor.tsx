@@ -14,7 +14,6 @@ export function FuturisticCursor() {
   const trailPos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Check for touch device
     if (window.matchMedia("(pointer: coarse)").matches) {
       return;
     }
@@ -27,7 +26,6 @@ export function FuturisticCursor() {
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
-    // Track hoverable elements
     const handleElementMouseEnter = () => setIsHovering(true);
     const handleElementMouseLeave = () => setIsHovering(false);
 
@@ -35,7 +33,6 @@ export function FuturisticCursor() {
     document.body.addEventListener("mouseenter", handleMouseEnter);
     document.body.addEventListener("mouseleave", handleMouseLeave);
 
-    // Add hover listeners to interactive elements
     const interactiveElements = document.querySelectorAll(
       'a, button, [role="button"], input, textarea, select, [data-cursor-hover]'
     );
@@ -45,18 +42,14 @@ export function FuturisticCursor() {
       el.addEventListener("mouseleave", handleElementMouseLeave);
     });
 
-    // Animation loop
     let rafId: number;
     const animate = () => {
-      // Dot follows immediately
       dotPos.current.x += (mousePos.current.x - dotPos.current.x) * 0.2;
       dotPos.current.y += (mousePos.current.y - dotPos.current.y) * 0.2;
 
-      // Ring follows with delay
       ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.1;
       ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.1;
 
-      // Trail follows with more delay
       trailPos.current.x += (mousePos.current.x - trailPos.current.x) * 0.05;
       trailPos.current.y += (mousePos.current.y - trailPos.current.y) * 0.05;
 
@@ -88,7 +81,6 @@ export function FuturisticCursor() {
     };
   }, [isVisible]);
 
-  // Don't render on touch devices
   if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
     return null;
   }
@@ -99,7 +91,6 @@ export function FuturisticCursor() {
       className="fixed inset-0 pointer-events-none z-[99999]"
       style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.3s ease" }}
     >
-      {/* Main dot */}
       <div
         ref={dotRef}
         className="fixed top-0 left-0 w-[6px] h-[6px] rounded-full bg-[#c9943a]"
@@ -114,7 +105,6 @@ export function FuturisticCursor() {
         }}
       />
 
-      {/* Ring */}
       <div
         ref={ringRef}
         className="fixed top-0 left-0 w-[40px] h-[40px] rounded-full border border-[#c9943a]/40"
@@ -128,7 +118,6 @@ export function FuturisticCursor() {
         }}
       />
 
-      {/* Trail */}
       <div
         ref={trailRef}
         className="fixed top-0 left-0 w-[20px] h-[20px] rounded-full border border-[#c9943a]/20"
@@ -139,7 +128,6 @@ export function FuturisticCursor() {
         }}
       />
 
-      {/* Glow effect on hover */}
       {isHovering && (
         <div
           className="fixed pointer-events-none"

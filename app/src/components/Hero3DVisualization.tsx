@@ -20,14 +20,11 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    // Scene
     const scene = new THREE.Scene();
 
-    // Camera
     const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
     camera.position.z = 8;
 
-    // Renderer
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
@@ -38,10 +35,8 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Main geometry - Icosahedron for futuristic signal look
     const geometry = new THREE.IcosahedronGeometry(1.8, 1);
 
-    // Wireframe material with amber glow
     const wireframeMaterial = new THREE.MeshBasicMaterial({
       color: 0xc9943a,
       wireframe: true,
@@ -49,7 +44,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
       opacity: 0.4,
     });
 
-    // Inner glow material
     const innerMaterial = new THREE.MeshBasicMaterial({
       color: 0xc9943a,
       transparent: true,
@@ -63,7 +57,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     scene.add(wireframeMesh);
     scene.add(innerMesh);
 
-    // Orbital rings
     const ringGeometry = new THREE.RingGeometry(2.2, 2.25, 64);
     const ringMaterial = new THREE.MeshBasicMaterial({
       color: 0xc9943a,
@@ -85,7 +78,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     scene.add(ring2);
     scene.add(ring3);
 
-    // Particles orbiting
     const particleCount = 40;
     const particleGeometry = new THREE.BufferGeometry();
     const particlePositions = new Float32Array(particleCount * 3);
@@ -120,12 +112,10 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
 
-    // Core glow light
     const coreLight = new THREE.PointLight(0xc9943a, 1, 10);
     coreLight.position.set(0, 0, 0);
     scene.add(coreLight);
 
-    // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
       mouseRef.current.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
@@ -133,7 +123,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     };
     container.addEventListener("mousemove", handleMouseMove, { passive: true });
 
-    // Resize handler
     const handleResize = () => {
       const newWidth = container.clientWidth;
       const newHeight = container.clientHeight;
@@ -143,7 +132,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     };
     window.addEventListener("resize", handleResize, { passive: true });
 
-    // Animation
     let frameCount = 0;
     const animate = () => {
       if (!isActiveRef.current) return;
@@ -154,17 +142,14 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
 
       const time = Date.now() * 0.001;
 
-      // Rotate main geometry
       wireframeMesh.rotation.x += 0.003;
       wireframeMesh.rotation.y += 0.005;
       innerMesh.rotation.x += 0.003;
       innerMesh.rotation.y += 0.005;
 
-      // Mouse interaction - subtle tilt
       wireframeMesh.rotation.x += mouseRef.current.y * 0.01;
       wireframeMesh.rotation.y += mouseRef.current.x * 0.01;
 
-      // Rotate rings
       ring1.rotation.z += 0.002;
       ring1.rotation.x = Math.sin(time * 0.5) * 0.1;
       ring2.rotation.x += 0.003;
@@ -172,7 +157,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
       ring3.rotation.y += 0.002;
       ring3.rotation.z = Math.sin(time * 0.4) * 0.1;
 
-      // Update orbiting particles
       const positions = particleGeometry.attributes.position.array as Float32Array;
       for (let i = 0; i < particleCount; i++) {
         particleAngles[i] += particleSpeeds[i];
@@ -183,7 +167,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
       particleGeometry.attributes.position.needsUpdate = true;
       particles.rotation.y -= 0.001;
 
-      // Pulse core light
       coreLight.intensity = 0.8 + Math.sin(time * 2) * 0.3;
 
       renderer.render(scene, camera);
@@ -191,7 +174,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
 
     animate();
 
-    // Visibility handling
     const handleVisibility = () => {
       isActiveRef.current = !document.hidden;
       if (isActiveRef.current) {
@@ -222,7 +204,6 @@ export function Hero3DVisualization({ className = "" }: Hero3DVisualizationProps
     };
   }, []);
 
-  // Don't render on mobile
   if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
     return (
       <div className={`${className} flex items-center justify-center`}>
