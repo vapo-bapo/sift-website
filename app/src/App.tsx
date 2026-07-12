@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useMotionTemplate, useSpring } from "motion/react";
 import Lenis from "lenis";
-import { LiquidVideoCanvas } from "./components/LiquidVideoCanvas";
 import { ScrambleText } from "./components/ScrambleText";
 import { ScrambleIn } from "./components/ScrambleIn";
 import { StatsGrid } from "./components/StatsGrid";
@@ -110,10 +109,8 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [videoUrl, setVideoUrl] = useState<string>("");
-  const [videoEntranceComplete, setVideoEntranceComplete] = useState(false);
-  const [videoErrorCount, setVideoErrorCount] = useState(0);
   const [isBookHovered, setIsBookHovered] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   const lenisRef = useRef<Lenis | null>(null);
   const cinematicRef = useRef<HTMLDivElement | null>(null);
@@ -166,34 +163,10 @@ export default function App() {
     setIsMobileMenuOpen(false);
   };
 
-  // Fallback chain only: the primary source is the locally bundled /hero-signal.mp4,
-  // which works on static hosting (GitHub Pages) where the /api endpoint doesn't exist.
-  const fetchVideoSource = (forceRefresh = false) => {
-    if (videoErrorCount >= 2) {
-      console.warn("Activating high-availability Vimeo loop fallback.");
-      setVideoUrl("https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c054ab1797d090a9e1b289539fb7b57b&profile_id=139&oauth2_token_id=57447761");
-      return;
-    }
-
-    const url = forceRefresh ? "/api/video-src?refresh=true" : "/api/video-src";
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.url) {
-          setVideoUrl(data.url);
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to load background video:", err);
-        // Ultimate stable fallback CDN loop
-        setVideoUrl("https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c054ab1797d090a9e1b289539fb7b57b&profile_id=139&oauth2_token_id=57447761");
-      });
-  };
-
   // Set default values and setup native scroll listeners
   useEffect(() => {
-    // Bundled local video first: instant, CDN-independent, static-hosting friendly
-    setVideoUrl("/hero-signal.mp4");
+    // Page loaded animation
+    setPageLoaded(true);
 
     const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const smallScreen = window.innerWidth < 768;
@@ -220,9 +193,7 @@ export default function App() {
       rafId = requestAnimationFrame(raf);
     }
 
-    // Native window scroll tracker - operates cleanly across all screen sizes and trackpads.
-    // The video scrub/blur progress is clamped to the hero's ~1.3 viewports so the cinematic
-    // sequence completes as the dark hero hands off to the light editorial body.
+    // Native window scroll tracker
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const heroWindow = window.innerHeight * 1.3;
@@ -265,7 +236,7 @@ export default function App() {
       <motion.header
         id="edra-main-header"
         initial={{ opacity: 0 }}
-        animate={{ opacity: videoEntranceComplete ? 1 : 0 }}
+        animate={{ opacity: pageLoaded ? 1 : 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 h-20 px-4 sm:px-8 flex items-center justify-between z-50 bg-transparent pointer-events-auto"
       >
@@ -458,35 +429,87 @@ export default function App() {
       <motion.main
         id="edra-main-scrolling-content"
         initial={{ opacity: 0 }}
-        animate={{ opacity: videoEntranceComplete ? 1 : 0 }}
+        animate={{ opacity: pageLoaded ? 1 : 0 }}
         transition={{ duration: 1.0, ease: "easeOut" }}
         className="relative w-full flex flex-col z-10 pointer-events-auto"
       >
-        {/* SECTION 1: Cinematic dark void hero with the liquid scroll-scrubbed video */}
+        {/* SECTION 1: Cinematic dark void hero with animated background */}
         <section className="relative w-full min-h-[100svh] bg-[#070600] overflow-hidden">
-          {videoUrl && (
-            <LiquidVideoCanvas
-              videoUrl={videoUrl}
-              scrollProgress={scrollProgress}
-              containerClassName="absolute inset-0 w-full h-full overflow-hidden select-none bg-[#070600] z-0"
-              onEntranceComplete={() => setVideoEntranceComplete(true)}
-              onVideoError={() => {
-                setVideoErrorCount((prev) => {
-                  const nextCount = prev + 1;
-                  if (nextCount >= 2) {
-                    // Instantly pivot to the ultra-reliable, high-bandwidth Vimeo stream
-                    setVideoUrl("https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c054ab1797d090a9e1b289539fb7b57b&profile_id=139&oauth2_token_id=57447761");
-                  } else {
-                    fetchVideoSource(true);
-                  }
-                  return nextCount;
-                });
-              }}
-            />
-          )}
+          {/* Animated gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#070600] via-[#0a0800] to-[#070600] z-0" />
+          
+          {/* Animated aurora effect */}
+          <div className="absolute inset-0 opacity-30 z-0">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#c9943a]/20 rounded-full blur-[120px] animate-pulse" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#c9943a]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+          </div>
+
+          {/* Animated grid lines */}
+          <div className="absolute inset-0 z-[1]">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(201,148,58,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,148,58,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+          </div>
+
+          {/* Floating particles overlay */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-[#c9943a]/40 rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -30, 0],
+                  opacity: [0.2, 0.8, 0.2],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
 
           {/* Ambient hero dot grid */}
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.05] pointer-events-none z-[1]" />
+
+          {/* Scanline effect */}
+          <div className="absolute inset-0 pointer-events-none z-[2] overflow-hidden">
+            <motion.div
+              className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#c9943a]/30 to-transparent"
+              animate={{
+                top: ['-5%', '105%'],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          </div>
+
+          {/* Data stream lines */}
+          <div className="absolute inset-0 pointer-events-none z-[1]">
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-px h-full bg-gradient-to-b from-transparent via-[#c9943a]/10 to-transparent"
+                style={{ left: `${20 + i * 15}%` }}
+                animate={{
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
 
           {/* Bottom hand-off gradient: dark void dissolves into the warm paper body */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#070600]/40 to-[#FFFDF5] pointer-events-none z-[2]" />
@@ -500,14 +523,40 @@ export default function App() {
                 {/* TOP LEFT: Large Main Display Title */}
                 <div className="text-left select-none">
                   <h1 className="font-serif font-light text-[50px] sm:text-[70px] md:text-[85px] lg:text-[100px] text-[#FFFDF5] leading-[0.95] tracking-[-0.03em] flex flex-col items-start">
-                    <ScrambleIn text="Your" scrollProgress={scrollProgress} delay={100} trigger={videoEntranceComplete} />
-                    <ScrambleIn text="Pipeline," scrollProgress={scrollProgress} delay={300} trigger={videoEntranceComplete} />
+                    <ScrambleIn text="Your" scrollProgress={scrollProgress} delay={100} trigger={pageLoaded} />
+                    <ScrambleIn text="Pipeline," scrollProgress={scrollProgress} delay={300} trigger={pageLoaded} />
                   </h1>
                 </div>
-                {/* TOP RIGHT: 3D Visualization */}
-                <div className="hidden md:flex items-center justify-center">
-                  <div className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
+                {/* TOP RIGHT: 3D Visualization with glow effect */}
+                <div className="hidden md:flex items-center justify-center relative">
+                  {/* Glow behind 3D visualization */}
+                  <div className="absolute inset-0 bg-[#c9943a]/10 rounded-full blur-[80px] animate-pulse" />
+                  <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
                     <Hero3DVisualization />
+                  </div>
+                  {/* Orbiting dots */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {[0, 1, 2, 3].map((i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-2 h-2 bg-[#c9943a] rounded-full"
+                        style={{
+                          left: '50%',
+                          top: '50%',
+                        }}
+                        animate={{
+                          x: [0, Math.cos(i * Math.PI / 2) * 180, 0],
+                          y: [0, Math.sin(i * Math.PI / 2) * 180, 0],
+                          opacity: [0.4, 1, 0.4],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          delay: i * 0.5,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -520,7 +569,7 @@ export default function App() {
                 >
                   <motion.p
                     initial={{ opacity: 0, y: 25 }}
-                    animate={videoEntranceComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                     transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.2 }}
                     className="font-sans text-[14px] sm:text-[15px] text-[#FFFDF5]/65 leading-relaxed"
                   >
@@ -530,7 +579,7 @@ export default function App() {
                   {/* Hero CTAs */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={videoEntranceComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.35 }}
                     className="flex flex-wrap items-center gap-3 mt-8"
                   >
@@ -559,8 +608,8 @@ export default function App() {
                 {/* BOTTOM RIGHT: Large Accent Header */}
                 <div className="flex flex-col items-end text-right select-none">
                   <h2 className="font-serif font-light italic text-[55px] sm:text-[70px] md:text-[85px] lg:text-[100px] text-[#FFFDF5] leading-[0.95] tracking-[-0.03em] flex flex-col items-end">
-                    <ScrambleIn text="Signal" scrollProgress={scrollProgress} delay={200} trigger={videoEntranceComplete} />
-                    <ScrambleIn text="Driven." scrollProgress={scrollProgress} delay={400} trigger={videoEntranceComplete} />
+                    <ScrambleIn text="Signal" scrollProgress={scrollProgress} delay={200} trigger={pageLoaded} />
+                    <ScrambleIn text="Driven." scrollProgress={scrollProgress} delay={400} trigger={pageLoaded} />
                   </h2>
                 </div>
               </div>
