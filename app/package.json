@@ -20,6 +20,8 @@
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "swiper": "^12.2.0",
+    "three": "^0.160.0",
+    "@types/three": "^0.160.0",
     "vite": "^6.2.3"
   },
   "devDependencies": {

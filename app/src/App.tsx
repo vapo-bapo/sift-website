@@ -5,6 +5,10 @@ import { LiquidVideoCanvas } from "./components/LiquidVideoCanvas";
 import { ScrambleText } from "./components/ScrambleText";
 import { ScrambleIn } from "./components/ScrambleIn";
 import { StatsGrid } from "./components/StatsGrid";
+import { ParticleBackground } from "./components/ParticleBackground";
+import { Hero3DVisualization } from "./components/Hero3DVisualization";
+import { FuturisticCursor } from "./components/FuturisticCursor";
+import { GlowButton, DataStream, GlitchText } from "./components/GlowEffects";
 import {
   ProcessSection,
   EnginesSection,
@@ -235,6 +239,12 @@ export default function App() {
       id="edra-root-canvas"
       className="relative w-full min-h-screen bg-[#FFFDF5] select-none overflow-x-hidden"
     >
+      {/* FUTURISTIC CURSOR */}
+      <FuturisticCursor />
+
+      {/* PARTICLE BACKGROUND */}
+      <ParticleBackground />
+
       {/* HEADER SECTION: Fixed smoothly to top of viewport */}
       <motion.header
         id="edra-main-header"
@@ -478,8 +488,12 @@ export default function App() {
                     <ScrambleIn text="Pipeline," scrollProgress={scrollProgress} delay={300} trigger={videoEntranceComplete} />
                   </h1>
                 </div>
-                {/* TOP RIGHT: Empty */}
-                <div className="hidden md:block"></div>
+                {/* TOP RIGHT: 3D Visualization */}
+                <div className="hidden md:flex items-center justify-center">
+                  <div className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
+                    <Hero3DVisualization />
+                  </div>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full mt-auto items-end pt-12">
