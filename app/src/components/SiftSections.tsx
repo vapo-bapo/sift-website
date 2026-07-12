@@ -1,25 +1,171 @@
-import React, { useState } from "react";
-import { motion } from "motion/react";
+import React, { useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 
 /* ---------------------------------- Shared ---------------------------------- */
 
 const LIME = "#c9943a";
 
+function usePrefersReducedMotion() {
+  return useReducedMotion() ?? false;
+}
+
+const revealItemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.98 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 18,
+      delay,
+    },
+  }),
+};
+
 function ScrollReveal({
   children,
   delay = 0,
+  stagger = false,
+  staggerDelay = 0.08,
 }: {
   children: React.ReactNode;
   delay?: number;
+  stagger?: boolean;
+  staggerDelay?: number;
   key?: React.Key;
 }) {
+  const shouldReduceMotion = usePrefersReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <>{children}</>;
+  }
+
+  if (stagger) {
+    return (
+      <motion.div
+        className="w-full"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: staggerDelay,
+              delayChildren: delay,
+            },
+          },
+        }}
+      >
+        {React.Children.map(children, (child, i) =>
+          child ? (
+            <motion.div
+              key={i}
+              className="w-full"
+              variants={{
+                hidden: { opacity: 0, y: 40, scale: 0.98 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 18,
+                  },
+                },
+              }}
+            >
+              {child}
+            </motion.div>
+          ) : null
+        )}
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      variants={revealItemVariants}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-      transition={{ type: "spring", stiffness: 80, damping: 18, delay }}
+      custom={delay}
       className="w-full"
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function StaggerContainer({
+  children,
+  className = "",
+  staggerDelay = 0.08,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  staggerDelay?: number;
+  delay?: number;
+}) {
+  const shouldReduceMotion = usePrefersReducedMotion();
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: staggerDelay,
+            delayChildren: delay,
+          },
+        },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function StaggerItem({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  key?: React.Key;
+}) {
+  const shouldReduceMotion = usePrefersReducedMotion();
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className={className}
+      variants={{
+        hidden: { opacity: 0, y: 40, scale: 0.98 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: {
+            type: "spring",
+            stiffness: 80,
+            damping: 18,
+          },
+        },
+      }}
     >
       {children}
     </motion.div>
@@ -35,28 +181,133 @@ function scrollToId(id: string) {
 }
 
 function Kicker({ children }: { children: React.ReactNode }) {
+  const shouldReduceMotion = usePrefersReducedMotion();
+  const text = typeof children === "string" ? children : "";
+
+  if (shouldReduceMotion || !text) {
+    return (
+      <div className="flex items-center gap-2.5 mb-6">
+        <span
+          className="inline-block w-[6px] h-[6px] rounded-full shrink-0"
+          style={{ backgroundColor: LIME }}
+        />
+        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
+          {children}
+        </span>
+      </div>
+    );
+  }
+
+  const words = text.split(" ");
+
   return (
-    <div className="flex items-center gap-2.5 mb-6">
-      <span
+    <motion.div
+      className="flex items-center gap-2.5 mb-6"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.04,
+            delayChildren: 0.05,
+          },
+        },
+      }}
+    >
+      <motion.span
         className="inline-block w-[6px] h-[6px] rounded-full shrink-0"
         style={{ backgroundColor: LIME }}
+        variants={{
+          hidden: { scale: 0, opacity: 0 },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: { type: "spring", stiffness: 300, damping: 20 },
+          },
+        }}
       />
-      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
-        {children}
-      </span>
-    </div>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { type: "spring", stiffness: 120, damping: 18 },
+            },
+          }}
+          className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]"
+        >
+          {word}
+          {i < words.length - 1 ? "\u00A0" : ""}
+        </motion.span>
+      ))}
+    </motion.div>
   );
 }
 
 function SectionHeading({ lines }: { lines: string[] }) {
+  const shouldReduceMotion = usePrefersReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <h2 className="font-serif font-light text-[38px] sm:text-[52px] md:text-[64px] text-[#0E0C06] leading-[0.98] tracking-[-0.03em]">
+        {lines.map((line, i) => (
+          <span key={i} className="block">
+            {line}
+          </span>
+        ))}
+      </h2>
+    );
+  }
+
   return (
-    <h2 className="font-serif font-light text-[38px] sm:text-[52px] md:text-[64px] text-[#0E0C06] leading-[0.98] tracking-[-0.03em]">
+    <motion.h2
+      className="font-serif font-light text-[38px] sm:text-[52px] md:text-[64px] text-[#0E0C06] leading-[0.98] tracking-[-0.03em]"
+      style={{ perspective: 400 }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.06,
+            delayChildren: 0.05,
+          },
+        },
+      }}
+    >
       {lines.map((line, i) => (
-        <span key={i} className="block">
-          {line}
+        <span key={i} className="block overflow-hidden">
+          {line.split(" ").map((word, j) => (
+            <motion.span
+              key={j}
+              variants={{
+                hidden: { opacity: 0, y: 28, rotateX: -35 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  rotateX: 0,
+                  transition: {
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 18,
+                  },
+                },
+              }}
+              className="inline-block mr-[0.25em]"
+              style={{ transformOrigin: "bottom left" }}
+            >
+              {word}
+            </motion.span>
+          ))}
         </span>
       ))}
-    </h2>
+    </motion.h2>
   );
 }
 
@@ -64,19 +315,51 @@ function GlassCard({
   children,
   outerClassName = "",
   innerClassName = "",
+  hover = true,
 }: {
   children: React.ReactNode;
   outerClassName?: string;
   innerClassName?: string;
+  hover?: boolean;
 }) {
-  return (
-    <div className={`p-1.5 rounded-[28px] bg-[#F4EFE0]/70 border border-[#F0E8D4] ${outerClassName}`}>
-      <div
-        className={`bg-white border border-[#E8DFC8] rounded-[23px] shadow-[0_12px_40px_rgba(14,12,6,0.08)] p-8 h-full ${innerClassName}`}
-      >
-        {children}
+  const shouldReduceMotion = usePrefersReducedMotion();
+
+  const outerClasses = `p-1.5 rounded-[28px] bg-[#F4EFE0]/70 border border-[#F0E8D4] ${outerClassName}`;
+  const innerClasses = `relative overflow-hidden bg-white border border-[#E8DFC8] rounded-[23px] shadow-[0_12px_40px_rgba(14,12,6,0.08)] p-8 h-full ${innerClassName}`;
+
+  if (shouldReduceMotion || !hover) {
+    return (
+      <div className={outerClasses}>
+        <div className={innerClasses}>{children}</div>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <motion.div
+      className={outerClasses}
+      initial={{ y: 0 }}
+      whileHover={{ y: -6, borderColor: "rgba(201, 148, 58, 0.45)" }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
+      <motion.div
+        className={innerClasses}
+        whileHover={{ borderColor: "rgba(201, 148, 58, 0.35)" }}
+        transition={{ duration: 0.25 }}
+      >
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-10"
+          initial={{ x: "-100%", opacity: 0 }}
+          whileHover={{ x: "100%", opacity: 1 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            background:
+              "linear-gradient(105deg, transparent 30%, rgba(201,148,58,0.06) 45%, rgba(201,148,58,0.14) 50%, rgba(201,148,58,0.06) 55%, transparent 70%)",
+          }}
+        />
+        {children}
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -85,18 +368,42 @@ function PillCta({
   className = "",
   onClick,
   type = "button",
+  magnetic = false,
 }: {
   label: string;
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit";
+  magnetic?: boolean;
 }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const shouldReduceMotion = usePrefersReducedMotion();
+
+  function handleMouseMove(e: React.MouseEvent<HTMLButtonElement>) {
+    if (!magnetic || !ref.current || shouldReduceMotion) return;
+    const rect = ref.current.getBoundingClientRect();
+    setOffset({
+      x: (e.clientX - rect.left - rect.width / 2) * 0.25,
+      y: (e.clientY - rect.top - rect.height / 2) * 0.25,
+    });
+  }
+
+  function handleMouseLeave() {
+    setOffset({ x: 0, y: 0 });
+  }
+
   return (
     <motion.button
+      ref={ref}
       type={type}
       onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={magnetic ? { x: offset.x, y: offset.y } : undefined}
       whileHover={{ scale: 1.03, backgroundColor: "#e0a94c" }}
       whileTap={{ scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 350, damping: 15, mass: 0.5 }}
       className={`h-12 px-6 bg-[#c9943a] rounded-full text-[#FFFDF5] font-medium text-[15px] flex items-center justify-center gap-2.5 cursor-pointer ${className}`}
     >
       <span>{label.replace(/\s*→\s*$/, "")}</span>
@@ -194,6 +501,8 @@ const PROCESS_STEPS = [
 ];
 
 export function ProcessSection() {
+  const shouldReduceMotion = usePrefersReducedMotion();
+
   return (
     <section id="process" className="w-full max-w-7xl mx-auto py-24 sm:py-32">
       <ScrollReveal>
@@ -204,27 +513,67 @@ export function ProcessSection() {
           delivered in seventy-two hours.
         </p>
       </ScrollReveal>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-16">
-        {PROCESS_STEPS.map((step, i) => (
-          <ScrollReveal key={step.num} delay={i * 0.08}>
-            <GlassCard outerClassName="h-full">
-              <div className="text-[64px] font-light text-[#0E0C06]/10 leading-none">{step.num}</div>
-              <div className="flex items-center gap-2 mt-6">
-                <span
-                  className="inline-block w-[4px] h-[4px] rounded-full shrink-0"
-                  style={{ backgroundColor: LIME }}
-                />
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
-                  {step.label}
-                </span>
-              </div>
-              <h3 className="text-[#0E0C06] text-[18px] font-light mt-3 tracking-tight">
-                {step.title}
-              </h3>
-              <p className="text-[#7A6248] text-[13px] leading-relaxed mt-3">{step.body}</p>
-            </GlassCard>
-          </ScrollReveal>
-        ))}
+      <div className="relative mt-16">
+        {!shouldReduceMotion && (
+          <>
+            <motion.div
+              className="hidden lg:block absolute top-[72px] left-[12.5%] right-[12.5%] h-[1px] bg-gradient-to-r from-transparent via-[#c9943a]/40 to-transparent"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              style={{ originX: 0 }}
+            />
+            <motion.div
+              className="lg:hidden absolute top-0 bottom-0 left-[23px] w-[1px] bg-gradient-to-b from-transparent via-[#c9943a]/40 to-transparent"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              style={{ originY: 0 }}
+            />
+          </>
+        )}
+        <StaggerContainer
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10"
+          staggerDelay={0.12}
+          delay={0.1}
+        >
+          {PROCESS_STEPS.map((step) => (
+            <StaggerItem key={step.num} className="h-full">
+              <GlassCard outerClassName="h-full">
+                <div className="flex items-center justify-between">
+                  <div className="text-[64px] font-light text-[#0E0C06]/10 leading-none">
+                    {step.num}
+                  </div>
+                  {!shouldReduceMotion && (
+                    <motion.span
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: LIME }}
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.4 }}
+                    />
+                  )}
+                </div>
+                <div className="flex items-center gap-2 mt-6">
+                  <span
+                    className="inline-block w-[4px] h-[4px] rounded-full shrink-0"
+                    style={{ backgroundColor: LIME }}
+                  />
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
+                    {step.label}
+                  </span>
+                </div>
+                <h3 className="text-[#0E0C06] text-[18px] font-light mt-3 tracking-tight">
+                  {step.title}
+                </h3>
+                <p className="text-[#7A6248] text-[13px] leading-relaxed mt-3">{step.body}</p>
+              </GlassCard>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );
@@ -275,6 +624,8 @@ const ENGINES = [
 ];
 
 export function EnginesSection() {
+  const shouldReduceMotion = usePrefersReducedMotion();
+
   return (
     <section id="products" className="w-full max-w-7xl mx-auto py-24 sm:py-32">
       <ScrollReveal>
@@ -293,9 +644,23 @@ export function EnginesSection() {
                 <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
                   {engine.label}
                 </span>
-                <span className="border border-[#c9943a]/40 text-[#a07828] bg-[#c9943a]/10 text-[10px] px-3 py-1 rounded-full uppercase tracking-widest">
+                <motion.span
+                  className="border border-[#c9943a]/40 text-[#a07828] bg-[#c9943a]/10 text-[10px] px-3 py-1 rounded-full uppercase tracking-widest"
+                  animate={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          boxShadow: [
+                            "0 0 0 0 rgba(201,148,58,0)",
+                            "0 0 0 4px rgba(201,148,58,0.12)",
+                            "0 0 0 0 rgba(201,148,58,0)",
+                          ],
+                        }
+                  }
+                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                >
                   {engine.badge}
-                </span>
+                </motion.span>
               </div>
               <h3 className="font-serif text-[#0E0C06] text-[44px] sm:text-[56px] font-light tracking-[-0.03em] leading-none mt-8">
                 {engine.name}
@@ -303,19 +668,44 @@ export function EnginesSection() {
               <p className="text-[#7A6248] text-[15px] leading-relaxed max-w-xl mt-6">
                 {engine.desc}
               </p>
-              <ul className="mt-8 flex flex-col gap-3">
+              <motion.ul
+                className="mt-8 flex flex-col gap-3"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.06,
+                      delayChildren: 0.15,
+                    },
+                  },
+                }}
+              >
                 {engine.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3">
+                  <motion.li
+                    key={feature}
+                    variants={{
+                      hidden: { opacity: 0, x: -12 },
+                      visible: {
+                        opacity: 1,
+                        x: 0,
+                        transition: { type: "spring", stiffness: 120, damping: 18 },
+                      },
+                    }}
+                    className="flex items-center gap-3"
+                  >
                     <span
                       className="inline-block w-[4px] h-[4px] rounded-full shrink-0"
                       style={{ backgroundColor: LIME }}
                     />
                     <span className="text-[13px] text-[#3A2810]">{feature}</span>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
               <div className="mt-10">
-                <PillCta label={engine.cta} onClick={scrollToContact} className="w-fit" />
+                <PillCta label={engine.cta} onClick={scrollToContact} className="w-fit" magnetic />
               </div>
             </GlassCard>
           </ScrollReveal>
@@ -373,6 +763,8 @@ const TIERS = [
 ];
 
 export function PricingSection() {
+  const shouldReduceMotion = usePrefersReducedMotion();
+
   return (
     <section id="pricing" className="w-full max-w-7xl mx-auto py-24 sm:py-32">
       <ScrollReveal>
@@ -382,15 +774,35 @@ export function PricingSection() {
           Start with one on-demand run. Move to a retainer when outbound becomes a discipline.
         </p>
       </ScrollReveal>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 items-stretch">
-        {TIERS.map((tier, i) => (
-          <ScrollReveal key={tier.name} delay={i * 0.08}>
-            <div
+      <StaggerContainer
+        className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 items-stretch"
+        staggerDelay={0.12}
+      >
+        {TIERS.map((tier) => (
+          <StaggerItem key={tier.name} className="h-full">
+            <motion.div
               className={`relative h-full p-1.5 rounded-[28px] border ${
                 tier.recommended
                   ? "bg-[#c9943a]/15 border-[#c9943a]/30"
                   : "bg-[#F4EFE0]/70 border-[#F0E8D4]"
               }`}
+              animate={
+                tier.recommended && !shouldReduceMotion
+                  ? {
+                      boxShadow: [
+                        "0 0 0 1px rgba(201,148,58,0.25), 0 12px 40px rgba(14,12,6,0.08)",
+                        "0 0 0 3px rgba(201,148,58,0.45), 0 12px 48px rgba(201,148,58,0.18)",
+                        "0 0 0 1px rgba(201,148,58,0.25), 0 12px 40px rgba(14,12,6,0.08)",
+                      ],
+                      borderColor: [
+                        "rgba(201,148,58,0.3)",
+                        "rgba(201,148,58,0.55)",
+                        "rgba(201,148,58,0.3)",
+                      ],
+                    }
+                  : {}
+              }
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             >
               {tier.recommended && (
                 <span
@@ -423,10 +835,10 @@ export function PricingSection() {
                   <PillCta label={tier.cta} onClick={scrollToContact} className="w-full" />
                 </div>
               </div>
-            </div>
-          </ScrollReveal>
+            </motion.div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
       <ScrollReveal delay={0.24}>
         <p className="mt-12 flex items-center justify-center gap-3 text-center text-[11px] uppercase tracking-[0.15em] text-[#7A6248]/70">
           <span>First Argus run free for qualified agencies</span>
@@ -472,6 +884,7 @@ const FAQS = [
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const shouldReduceMotion = usePrefersReducedMotion();
 
   return (
     <section id="faq" className="w-full max-w-7xl mx-auto py-24 sm:py-32">
@@ -496,24 +909,55 @@ export function FaqSection() {
                     className="w-full flex items-center justify-between gap-6 py-6 text-left cursor-pointer"
                   >
                     <span className="text-[15px] sm:text-[17px] text-[#0E0C06]">{faq.q}</span>
-                    <motion.span
-                      animate={{ rotate: open ? 45 : 0 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                      className="text-[#c9943a] text-[20px] leading-none shrink-0 select-none"
+                    <span
+                      className="relative w-5 h-5 flex items-center justify-center shrink-0"
                       aria-hidden="true"
                     >
-                      +
-                    </motion.span>
+                      <motion.span
+                        className="absolute w-[14px] h-[2px] bg-[#c9943a] rounded-full"
+                        animate={{ rotate: open ? 45 : 0 }}
+                        transition={
+                          shouldReduceMotion
+                            ? { duration: 0 }
+                            : { type: "spring", stiffness: 300, damping: 22 }
+                        }
+                      />
+                      <motion.span
+                        className="absolute w-[14px] h-[2px] bg-[#c9943a] rounded-full"
+                        animate={{ rotate: open ? -45 : 90 }}
+                        transition={
+                          shouldReduceMotion
+                            ? { duration: 0 }
+                            : { type: "spring", stiffness: 300, damping: 22 }
+                        }
+                      />
+                    </span>
                   </button>
                   <motion.div
                     initial={false}
                     animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 26 }}
+                    transition={
+                      shouldReduceMotion
+                        ? { duration: 0 }
+                        : { type: "spring", stiffness: 200, damping: 26 }
+                    }
                     className="overflow-hidden"
                   >
-                    <p className="text-[#7A6248] text-[13px] leading-relaxed pb-6 pr-10">
+                    <motion.p
+                      className="text-[#7A6248] text-[13px] leading-relaxed pb-6 pr-10"
+                      initial={false}
+                      animate={{
+                        opacity: open ? 1 : 0,
+                        y: open ? 0 : 6,
+                      }}
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : { duration: 0.25, ease: "easeOut" }
+                      }
+                    >
                       {faq.a}
-                    </p>
+                    </motion.p>
                   </motion.div>
                 </div>
               );
@@ -536,13 +980,14 @@ const NEXT_STEPS = [
 ];
 
 const INPUT_CLASS =
-  "w-full bg-[#FFFDF5] border border-[#E8DFC8] rounded-[12px] px-4 py-3 text-[14px] text-[#0E0C06] placeholder-[#7A6248]/50 outline-none focus:border-[#c9943a] transition-colors";
+  "w-full bg-[#FFFDF5] border border-[#E8DFC8] rounded-[12px] px-4 py-3 text-[14px] text-[#0E0C06] placeholder-[#7A6248]/50 outline-none focus:border-[#c9943a] focus:shadow-[0_0_0_3px_rgba(201,148,58,0.12)] transition-all";
 
 const FIELD_LABEL_CLASS =
   "block font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828] mb-2";
 
 export function ContactSection() {
   const [sent, setSent] = useState(false);
+  const shouldReduceMotion = usePrefersReducedMotion();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -617,9 +1062,34 @@ export function ContactSection() {
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828] mb-6">
               What Happens Next
             </p>
-            <ol className="flex flex-col gap-4">
+            <motion.ol
+              className="flex flex-col gap-4"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.1,
+                    delayChildren: 0.1,
+                  },
+                },
+              }}
+            >
               {NEXT_STEPS.map((step, i) => (
-                <li key={step} className="flex items-center gap-4">
+                <motion.li
+                  key={step}
+                  variants={{
+                    hidden: { opacity: 0, x: -16 },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      transition: { type: "spring", stiffness: 100, damping: 18 },
+                    },
+                  }}
+                  className="flex items-center gap-4"
+                >
                   <span
                     className="flex items-center justify-center w-7 h-7 rounded-full border text-[11px] shrink-0"
                     style={{ borderColor: "rgba(201, 148, 58, 0.5)", color: "#a07828" }}
@@ -627,9 +1097,9 @@ export function ContactSection() {
                     {i + 1}
                   </span>
                   <span className="text-[13px] text-[#3A2810]">{step}</span>
-                </li>
+                </motion.li>
               ))}
-            </ol>
+            </motion.ol>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={0.16}>
@@ -767,7 +1237,47 @@ export function ContactSection() {
                 style={sent ? { color: "#a07828" } : undefined}
               >
                 {sent ? (
-                  <span>BRIEF SENT ✓</span>
+                  <>
+                    <motion.span
+                      initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 300, damping: 20 }
+                      }
+                    >
+                      BRIEF SENT
+                    </motion.span>
+                    <motion.svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 300, damping: 20, delay: 0.1 }
+                      }
+                    >
+                      <motion.path
+                        d="M5 12l5 5L20 7"
+                        initial={shouldReduceMotion ? {} : { pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={
+                          shouldReduceMotion
+                            ? { duration: 0 }
+                            : { duration: 0.35, ease: "easeOut", delay: 0.15 }
+                        }
+                      />
+                    </motion.svg>
+                  </>
                 ) : (
                   <>
                     <span>SEND BRIEF</span>
@@ -795,34 +1305,36 @@ const FOOTER_LINKS = [
 
 export function SiftFooter() {
   return (
-    <footer className="w-full py-16">
-      <div className="max-w-7xl mx-auto bg-[#070600] rounded-[28px] px-8 sm:px-14 py-16">
-        <p className="font-serif text-[20px] sm:text-[26px] font-light text-[#FFFDF5]/90 max-w-2xl leading-snug">
-          Cold lists lose. Context wins. SIFT turns scattered market signal into the few accounts
-          worth your next call.
-        </p>
-        <div className="mt-14 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-t border-[#FFFDF5]/10 pt-10">
-          <div>
-            <div className="text-[22px] font-bold tracking-tight text-[#FFFDF5]">SIFT</div>
-            <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#e0a94c] mt-1">
-              Signal Intelligence · EMEA
+    <ScrollReveal>
+      <footer className="w-full py-16">
+        <div className="max-w-7xl mx-auto bg-[#070600] rounded-[28px] px-8 sm:px-14 py-16">
+          <p className="font-serif text-[20px] sm:text-[26px] font-light text-[#FFFDF5]/90 max-w-2xl leading-snug">
+            Cold lists lose. Context wins. SIFT turns scattered market signal into the few accounts
+            worth your next call.
+          </p>
+          <div className="mt-14 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-t border-[#FFFDF5]/10 pt-10">
+            <div>
+              <div className="text-[22px] font-bold tracking-tight text-[#FFFDF5]">SIFT</div>
+              <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#e0a94c] mt-1">
+                Signal Intelligence · EMEA
+              </div>
             </div>
+            <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              {FOOTER_LINKS.map((link) => (
+                <button
+                  key={link.id}
+                  type="button"
+                  onClick={() => scrollToId(link.id)}
+                  className="text-[13px] text-[#FFFDF5]/60 hover:text-[#FFFDF5] transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </button>
+              ))}
+            </nav>
           </div>
-          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            {FOOTER_LINKS.map((link) => (
-              <button
-                key={link.id}
-                type="button"
-                onClick={() => scrollToId(link.id)}
-                className="text-[13px] text-[#FFFDF5]/60 hover:text-[#FFFDF5] transition-colors cursor-pointer"
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
+          <p className="mt-12 text-[11px] text-[#FFFDF5]/35">© 2025 SIFT Signal Intelligence</p>
         </div>
-        <p className="mt-12 text-[11px] text-[#FFFDF5]/35">© 2025 SIFT Signal Intelligence</p>
-      </div>
-    </footer>
+      </footer>
+    </ScrollReveal>
   );
 }

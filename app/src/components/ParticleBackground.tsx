@@ -10,6 +10,7 @@ export function ParticleBackground() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number>(0);
   const isActiveRef = useRef(true);
+  const scrollRef = useRef(0);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -80,6 +81,7 @@ export function ParticleBackground() {
       color: 0xc9943a,
       transparent: true,
       opacity: 0.15,
+      blending: THREE.AdditiveBlending,
     });
 
     const lineGeometry = new THREE.BufferGeometry();
@@ -91,6 +93,11 @@ export function ParticleBackground() {
       mouseRef.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+
+    const handleScroll = () => {
+      scrollRef.current = window.scrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -109,6 +116,11 @@ export function ParticleBackground() {
 
       const positions = geometry.attributes.position.array as Float32Array;
 
+      // Subtle z-depth parallax tied to scroll: the camera drifts back slightly and
+      // particles float along their z axis to emphasize depth without costing much.
+      const scrollNorm = Math.min(scrollRef.current / 3000, 1);
+      camera.position.z = 50 - scrollNorm * 8;
+
       for (let i = 0; i < particleCount; i++) {
         const idx = i * 3;
         const orig = originalPositions[i];
@@ -122,14 +134,18 @@ export function ParticleBackground() {
         const dy = positions[idx + 1] - mouseRef.current.y * 30;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 15) {
+        if (dist < 15 && dist > 0.01) {
           const force = (15 - dist) / 15;
           positions[idx] += (dx / dist) * force * 0.5;
           positions[idx + 1] += (dy / dist) * force * 0.5;
         }
 
-        positions[idx] += (orig.x - positions[idx]) * 0.01;
-        positions[idx + 1] += (orig.y - positions[idx + 1]) * 0.01;
+        // Spring back to origin, with scroll nudging the cloud upward so the web feels alive.
+        const driftX = Math.sin(i * 0.4 + scrollRef.current * 0.001) * 1.5;
+        const driftY = scrollRef.current * 0.015;
+
+        positions[idx] += (orig.x + driftX - positions[idx]) * 0.01;
+        positions[idx + 1] += (orig.y + driftY - positions[idx + 1]) * 0.01;
         positions[idx + 2] += (orig.z - positions[idx + 2]) * 0.01;
 
         if (Math.abs(positions[idx]) > 60) velocities[i].x *= -1;
@@ -139,8 +155,10 @@ export function ParticleBackground() {
 
       geometry.attributes.position.needsUpdate = true;
 
+      // Golden web: proximity determines whether a line is drawn; the shared additive
+      // material is tinted warm so the whole field feels like a single glowing mesh.
       const linePositions: number[] = [];
-      const maxDistance = 20;
+      const maxDistance = 22;
       const maxConnections = 3;
 
       for (let i = 0; i < particleCount; i++) {
@@ -172,6 +190,10 @@ export function ParticleBackground() {
         new THREE.Float32BufferAttribute(linePositions, 3)
       );
 
+      // Vary the global web opacity with connection density for a subtle distance-based feel.
+      lineMaterial.opacity = Math.max(0.06, 0.22 * (linePositions.length / 360));
+      lineMaterial.color.setHex(0xe0a94c);
+
       particles.rotation.y += 0.0005;
       lines.rotation.y += 0.0005;
 
@@ -194,6 +216,7 @@ export function ParticleBackground() {
       isActiveRef.current = false;
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibility);
       renderer.dispose();

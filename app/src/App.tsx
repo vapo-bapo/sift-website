@@ -119,6 +119,7 @@ export default function App() {
   const cinematicRef = useRef<HTMLDivElement | null>(null);
 
   const { scrollY } = useScroll();
+  const { scrollYProgress } = useScroll();
 
   // Ultra-smooth dynamic inertia spring config for a slower, cinematic, liquid movement on desktop scroll
   const smoothScrollY = useSpring(scrollY, {
@@ -128,11 +129,20 @@ export default function App() {
     restDelta: 0.01
   });
 
+  const smoothScrollProgress = useSpring(scrollYProgress, {
+    stiffness: 60,
+    damping: 20,
+    restDelta: 0.001,
+  });
+
   // Hero fades run on absolute pixels so they stay identical no matter how long the page grows
   const heroOpacity = useTransform(smoothScrollY, [0, 600], [1, 0]);
   const heroScale = useTransform(smoothScrollY, [0, 600], [1, 0.96]);
   const descOpacity = useTransform(smoothScrollY, [0, 300], [1, 0]);
   const descY = useTransform(smoothScrollY, [0, 300], [0, -30]);
+
+  // Subtle vertical parallax for the warm-paper background grid
+  const gridY = useTransform(smoothScrollY, [0, 5000], [0, -80]);
 
   // Cinematic paragraph block: scroll progress scoped to its own viewport window
   const { scrollYProgress: cineProgress } = useScroll({
@@ -239,6 +249,12 @@ export default function App() {
       id="edra-root-canvas"
       className="relative w-full min-h-screen bg-[#FFFDF5] select-none overflow-x-hidden"
     >
+      {/* SCROLL PROGRESS BAR */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2px] bg-[#c9943a] origin-left z-50 pointer-events-none"
+        style={{ scaleX: smoothScrollProgress }}
+      />
+
       {/* FUTURISTIC CURSOR */}
       <FuturisticCursor />
 
@@ -555,7 +571,10 @@ export default function App() {
         {/* WARM PAPER BODY */}
         <div className="relative w-full flex flex-col px-4 sm:px-8 pb-36">
           {/* Ambient background grid on paper */}
-          <div className="absolute inset-0 bg-[radial-gradient(#0E0C06_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none" />
+          <motion.div
+            className="absolute inset-0 bg-[radial-gradient(#0E0C06_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none"
+            style={{ y: gridY }}
+          />
 
           {/* SECTION 1.5: Cinematic Scroll Perspective Paragraph Block */}
           <div
