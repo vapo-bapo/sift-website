@@ -2,13 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useMotionTemplate, useSpring } from "motion/react";
 import Lenis from "lenis";
 import { ScrambleText } from "./components/ScrambleText";
-import { ScrambleIn } from "./components/ScrambleIn";
-import { LetterReveal } from "./components/LetterReveal";
 import { StatsGrid } from "./components/StatsGrid";
 import { ParticleBackground } from "./components/ParticleBackground";
-import { Hero3DVisualization } from "./components/Hero3DVisualization";
+import { NetworkBackground } from "./components/NetworkBackground";
 import { FuturisticCursor } from "./components/FuturisticCursor";
-import { GlowButton, DataStream, GlitchText } from "./components/GlowEffects";
+
 import {
   ProcessSection,
   EnginesSection,
@@ -107,7 +105,6 @@ const NAV_LINKS: { label: string; id: string }[] = [
 ];
 
 export default function App() {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isBookHovered, setIsBookHovered] = useState(false);
@@ -117,7 +114,6 @@ export default function App() {
   const cinematicRef = useRef<HTMLDivElement | null>(null);
 
   const { scrollY } = useScroll();
-  const { scrollYProgress } = useScroll();
 
   // Ultra-smooth dynamic inertia spring config for a slower, cinematic, liquid movement on desktop scroll
   const smoothScrollY = useSpring(scrollY, {
@@ -127,18 +123,9 @@ export default function App() {
     restDelta: 0.01
   });
 
-  const smoothScrollProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001,
-  });
-
   // Hero fades run on absolute pixels so they stay identical no matter how long the page grows
   const heroOpacity = useTransform(smoothScrollY, [0, 600], [1, 0]);
   const heroScale = useTransform(smoothScrollY, [0, 600], [1, 0.96]);
-
-  // Subtle vertical parallax for the warm-paper background grid
-  const gridY = useTransform(smoothScrollY, [0, 5000], [0, -80]);
 
   // Cinematic paragraph block: scroll progress scoped to its own viewport window
   const { scrollYProgress: cineProgress } = useScroll({
@@ -192,25 +179,10 @@ export default function App() {
       rafId = requestAnimationFrame(raf);
     }
 
-    // Native window scroll tracker
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const heroWindow = window.innerHeight * 1.3;
-      if (heroWindow <= 0) return;
-      setScrollProgress(Math.min(1, scrollTop / heroWindow));
-    };
-
-    if (lenis) {
-      lenis.on("scroll", handleScroll);
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       if (lenis) lenis.destroy();
       lenisRef.current = null;
-      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -219,12 +191,6 @@ export default function App() {
       id="edra-root-canvas"
       className="relative w-full min-h-screen bg-[#FFFDF5] select-none overflow-x-hidden"
     >
-      {/* SCROLL PROGRESS BAR */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-[#c9943a] origin-left z-50 pointer-events-none"
-        style={{ scaleX: smoothScrollProgress }}
-      />
-
       {/* FUTURISTIC CURSOR */}
       <FuturisticCursor />
 
@@ -432,159 +398,88 @@ export default function App() {
         transition={{ duration: 1.0, ease: "easeOut" }}
         className="relative w-full flex flex-col z-10 pointer-events-auto"
       >
-        {/* SECTION 1: Cinematic dark void hero with animated background */}
+        {/* SECTION 1: Aether-style network-field hero */}
         <section className="relative w-full min-h-[100svh] bg-[#070600] overflow-hidden">
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#070600] via-[#0a0800] to-[#070600] z-0" />
-          
-          {/* Animated aurora effect */}
-          <div className="absolute inset-0 opacity-30 z-0">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#c9943a]/20 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#c9943a]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
-          </div>
+          {/* WebGL node network field */}
+          <NetworkBackground />
 
-          {/* Animated grid lines */}
-          <div className="absolute inset-0 z-[1]">
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(201,148,58,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,148,58,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
-          </div>
+          {/* Soft vignette to keep text legible */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(7,6,0,0.4)_100%)] pointer-events-none z-[1]" />
 
-          {/* Floating particles overlay */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-[#c9943a]/40 rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -30, 0],
-                  opacity: [0.2, 0.8, 0.2],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Ambient hero dot grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.05] pointer-events-none z-[1]" />
-
-          {/* Data stream lines */}
-          <div className="absolute inset-0 pointer-events-none z-[1]">
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-px h-full bg-gradient-to-b from-transparent via-[#c9943a]/10 to-transparent"
-                style={{ left: `${20 + i * 15}%` }}
-                animate={{
-                  opacity: [0.1, 0.3, 0.1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.3,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Bottom hand-off gradient: keep hero solid black longer, then diffuse cleanly */}
-          <div className="absolute bottom-0 left-0 right-0 h-[35vh] bg-gradient-to-b from-transparent from-0% via-[#070600] via-[55%] to-[#FFFDF5] to-100% pointer-events-none z-[2]" />
+          {/* Bottom hand-off gradient: dark void dissolves into the warm paper body */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#070600]/40 to-[#FFFDF5] pointer-events-none z-[2]" />
 
           <motion.div
             style={{ opacity: heroOpacity, scale: heroScale }}
-            className="relative z-[3] w-full max-w-7xl mx-auto flex flex-col min-h-[100svh] justify-between px-4 sm:px-8 pt-28 pb-24 pointer-events-auto"
+            className="relative z-[3] w-full max-w-7xl mx-auto flex flex-col min-h-[100svh] justify-center px-4 sm:px-8 pt-28 pb-24 pointer-events-auto"
           >
-            <div className="w-full flex-1 flex flex-col justify-between gap-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full items-center">
-                {/* LEFT: Large Main Display Title + description */}
-                <div className="text-left select-none flex flex-col justify-center">
-                  <h1 className="font-serif font-light text-[52px] sm:text-[74px] md:text-[90px] lg:text-[110px] text-[#FFFDF5] leading-[0.9] tracking-[-0.04em]">
-                    <span className="block">
-                      <LetterReveal text="Your" delay={200} trigger={pageLoaded} />
+            <div className="w-full flex flex-col items-center text-center">
+              {/* Bounded glass card */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 1, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.1 }}
+                className="w-full max-w-3xl p-[1px] rounded-[28px] bg-gradient-to-b from-[#FFFDF5]/20 via-[#FFFDF5]/5 to-transparent"
+              >
+                <div className="w-full h-full rounded-[28px] bg-[#070600]/60 backdrop-blur-xl border border-[#FFFDF5]/10 px-6 py-12 sm:px-12 sm:py-16">
+                  {/* Kicker */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                    className="flex items-center justify-center gap-2.5 mb-8"
+                  >
+                    <span className="inline-block w-[6px] h-[6px] rounded-full bg-[#c9943a]" />
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#e0a94c]">
+                      Signal Intelligence
                     </span>
-                    <span className="block">
-                      <LetterReveal text="Pipeline," delay={450} trigger={pageLoaded} />
-                    </span>
+                  </motion.div>
+
+                  {/* Headline */}
+                  <h1 className="font-serif font-light text-[46px] sm:text-[62px] md:text-[78px] lg:text-[90px] text-[#FFFDF5] leading-[0.95] tracking-[-0.03em]">
+                    <span className="block">Your Pipeline,</span>
+                    <span className="block italic">Signal Driven.</span>
                   </h1>
 
+                  {/* Body */}
                   <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.75 }}
-                    className="font-sans text-[15px] sm:text-[16px] text-[#FFFDF5]/60 leading-relaxed max-w-md mt-8"
+                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.35 }}
+                    className="font-sans text-[15px] sm:text-[16px] text-[#FFFDF5]/65 leading-relaxed max-w-xl mx-auto mt-8"
                   >
-                    SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context.
+                    SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list.
                   </motion.p>
 
+                  {/* CTAs */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.9 }}
-                    className="flex flex-wrap items-center gap-3 mt-8"
+                    transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.000], delay: 0.5 }}
+                    className="flex flex-wrap items-center justify-center gap-3 mt-10"
                   >
                     <motion.button
                       type="button"
                       onClick={() => scrollToId("contact")}
                       whileHover={{ scale: 1.03, backgroundColor: "#e0a94c" }}
                       whileTap={{ scale: 0.97 }}
-                      className="h-11 px-6 bg-[#c9943a] rounded-full flex items-center gap-2 cursor-pointer text-[#FFFDF5] font-sans font-medium text-[14px]"
+                      className="h-12 px-7 bg-[#c9943a] rounded-full flex items-center gap-2 cursor-pointer text-[#FFFDF5] font-sans font-medium text-[15px] shadow-[0_4px_16px_rgba(201,148,58,0.35)]"
                     >
                       Book a Run
-                      <span className="text-[13px] leading-none">→</span>
+                      <span className="text-[14px] leading-none">→</span>
                     </motion.button>
                     <motion.button
                       type="button"
                       onClick={() => scrollToId("process")}
                       whileHover={{ scale: 1.03, backgroundColor: "rgba(255,253,245,0.18)" }}
                       whileTap={{ scale: 0.97 }}
-                      className="h-11 px-6 bg-[#FFFDF5]/10 backdrop-blur-md rounded-full flex items-center cursor-pointer text-[#FFFDF5]/85 font-sans font-normal text-[14px]"
+                      className="h-12 px-7 bg-[#FFFDF5]/10 backdrop-blur-md border border-[#FFFDF5]/10 rounded-full flex items-center cursor-pointer text-[#FFFDF5]/85 font-sans font-normal text-[15px]"
                     >
                       How it works
                     </motion.button>
                   </motion.div>
                 </div>
-
-                {/* RIGHT: 3D Visualization */}
-                <div className="hidden md:flex items-center justify-center relative">
-                  <div className="absolute inset-0 bg-[#c9943a]/10 rounded-full blur-[80px] animate-pulse" />
-                  <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
-                    <Hero3DVisualization />
-                  </div>
-                </div>
-              </div>
-
-              {/* BOTTOM BAR: clean metadata */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 w-full mt-auto pt-16">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={pageLoaded ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 1.2, delay: 1 }}
-                  className="flex items-center gap-4"
-                >
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/40">Signal Intelligence</span>
-                  <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#c9943a]/60" />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/40">72h Delivery</span>
-                  <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#c9943a]/60" />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#FFFDF5]/40">EMEA</span>
-                </motion.div>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                  transition={{ duration: 0.9, delay: 1.1 }}
-                  className="font-serif font-light italic text-[18px] sm:text-[22px] text-[#FFFDF5]/50 tracking-[-0.01em]"
-                >
-                  Context, not cold lists.
-                </motion.p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </section>
@@ -592,18 +487,23 @@ export default function App() {
         {/* WARM PAPER BODY */}
         <div className="relative w-full flex flex-col px-4 sm:px-8 pb-36">
           {/* Ambient background grid on paper */}
-          <motion.div
-            className="absolute inset-0 bg-[radial-gradient(#0E0C06_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none"
-            style={{ y: gridY }}
-          />
+          <div className="absolute inset-0 bg-[radial-gradient(#0E0C06_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none" />
 
-          {/* SECTION 1.5: Clean editorial statement */}
-          <div className="relative w-full max-w-5xl mx-auto py-24 sm:py-32">
+          {/* SECTION 1.5: Cinematic Scroll Perspective Paragraph Block */}
+          <div
+            ref={cinematicRef}
+            className="relative w-full max-w-5xl mx-auto py-24 sm:py-32 pointer-events-none"
+            style={{
+              transformStyle: "preserve-3d",
+              perspective: "400px",
+            }}
+          >
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10% 0px" }}
-              transition={{ type: "spring", stiffness: 60, damping: 20 }}
+              style={{
+                transformStyle: "preserve-3d",
+                transform,
+                opacity: cinematicOpacity,
+              }}
               className="w-full text-center"
             >
               <h2 className="font-serif font-light text-[24px] sm:text-[32px] md:text-[38px] lg:text-[44px] text-[#0E0C06] leading-[1.3] tracking-[-0.02em] select-none px-6 sm:px-12 text-center">
