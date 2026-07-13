@@ -3,7 +3,9 @@ import { motion, useReducedMotion } from "motion/react";
 
 /* ---------------------------------- Shared ---------------------------------- */
 
-const LIME = "#c9943a";
+const ACCENT = "#4B4BA0";
+const ACCENT_LIGHT = "#6b6bbd";
+const MUTED = "#A1A1AA";
 
 function usePrefersReducedMotion() {
   return useReducedMotion() ?? false;
@@ -34,7 +36,6 @@ function ScrollReveal({
   delay?: number;
   stagger?: boolean;
   staggerDelay?: number;
-  key?: React.Key;
 }) {
   const shouldReduceMotion = usePrefersReducedMotion();
 
@@ -143,7 +144,6 @@ function StaggerItem({
 }: {
   children: React.ReactNode;
   className?: string;
-  key?: React.Key;
 }) {
   const shouldReduceMotion = usePrefersReducedMotion();
   if (shouldReduceMotion) {
@@ -189,9 +189,9 @@ function Kicker({ children }: { children: React.ReactNode }) {
       <div className="flex items-center gap-2.5 mb-6">
         <span
           className="inline-block w-[6px] h-[6px] rounded-full shrink-0"
-          style={{ backgroundColor: LIME }}
+          style={{ backgroundColor: ACCENT }}
         />
-        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
+        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA]">
           {children}
         </span>
       </div>
@@ -218,7 +218,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
     >
       <motion.span
         className="inline-block w-[6px] h-[6px] rounded-full shrink-0"
-        style={{ backgroundColor: LIME }}
+        style={{ backgroundColor: ACCENT }}
         variants={{
           hidden: { scale: 0, opacity: 0 },
           visible: {
@@ -239,7 +239,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
               transition: { type: "spring", stiffness: 120, damping: 18 },
             },
           }}
-          className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]"
+          className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA]"
         >
           {word}
           {i < words.length - 1 ? "\u00A0" : ""}
@@ -254,7 +254,7 @@ function SectionHeading({ lines }: { lines: string[] }) {
 
   if (shouldReduceMotion) {
     return (
-      <h2 className="font-serif font-light text-[38px] sm:text-[52px] md:text-[64px] text-[#0E0C06] leading-[0.98] tracking-[-0.03em]">
+      <h2 className="font-sans font-semibold text-[38px] sm:text-[52px] md:text-[64px] text-[#F4F4F5] leading-[0.98] tracking-[-0.025em]">
         {lines.map((line, i) => (
           <span key={i} className="block">
             {line}
@@ -266,7 +266,7 @@ function SectionHeading({ lines }: { lines: string[] }) {
 
   return (
     <motion.h2
-      className="font-serif font-light text-[38px] sm:text-[52px] md:text-[64px] text-[#0E0C06] leading-[0.98] tracking-[-0.03em]"
+      className="font-sans font-semibold text-[38px] sm:text-[52px] md:text-[64px] text-[#F4F4F5] leading-[0.98] tracking-[-0.025em]"
       style={{ perspective: 400 }}
       initial="hidden"
       whileInView="visible"
@@ -324,8 +324,8 @@ function GlassCard({
 }) {
   const shouldReduceMotion = usePrefersReducedMotion();
 
-  const outerClasses = `p-1.5 rounded-[28px] bg-[#F4EFE0]/70 border border-[#F0E8D4] ${outerClassName}`;
-  const innerClasses = `relative overflow-hidden bg-white border border-[#E8DFC8] rounded-[23px] shadow-[0_12px_40px_rgba(14,12,6,0.08)] p-8 h-full ${innerClassName}`;
+  const outerClasses = `p-1.5 rounded-[28px] bg-white/5 border border-white/10 ${outerClassName}`;
+  const innerClasses = `relative overflow-hidden bg-[#09090B]/40 backdrop-blur-xl border border-white/10 rounded-[23px] p-8 h-full ${innerClassName}`;
 
   if (shouldReduceMotion || !hover) {
     return (
@@ -339,12 +339,12 @@ function GlassCard({
     <motion.div
       className={outerClasses}
       initial={{ y: 0 }}
-      whileHover={{ y: -6, borderColor: "rgba(201, 148, 58, 0.45)" }}
+      whileHover={{ y: -6, borderColor: "rgba(75, 75, 160, 0.35)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <motion.div
         className={innerClasses}
-        whileHover={{ borderColor: "rgba(201, 148, 58, 0.35)" }}
+        whileHover={{ borderColor: "rgba(75, 75, 160, 0.25)" }}
         transition={{ duration: 0.25 }}
       >
         <motion.div
@@ -354,7 +354,7 @@ function GlassCard({
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           style={{
             background:
-              "linear-gradient(105deg, transparent 30%, rgba(201,148,58,0.06) 45%, rgba(201,148,58,0.14) 50%, rgba(201,148,58,0.06) 55%, transparent 70%)",
+              "linear-gradient(105deg, transparent 30%, rgba(75,75,160,0.05) 45%, rgba(75,75,160,0.12) 50%, rgba(75,75,160,0.05) 55%, transparent 70%)",
           }}
         />
         {children}
@@ -369,12 +369,14 @@ function PillCta({
   onClick,
   type = "button",
   magnetic = false,
+  variant = "primary",
 }: {
   label: string;
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit";
   magnetic?: boolean;
+  variant?: "primary" | "secondary";
 }) {
   const ref = useRef<HTMLButtonElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -393,6 +395,11 @@ function PillCta({
     setOffset({ x: 0, y: 0 });
   }
 
+  const base =
+    variant === "primary"
+      ? "bg-[#4B4BA0] text-[#F4F4F5] hover:bg-[#6b6bbd]"
+      : "bg-white/5 text-[#F4F4F5]/85 border border-white/10 hover:bg-white/10 hover:border-white/20";
+
   return (
     <motion.button
       ref={ref}
@@ -401,73 +408,14 @@ function PillCta({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={magnetic ? { x: offset.x, y: offset.y } : undefined}
-      whileHover={{ scale: 1.03, backgroundColor: "#e0a94c" }}
+      whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 350, damping: 15, mass: 0.5 }}
-      className={`h-12 px-6 bg-[#c9943a] rounded-full text-[#FFFDF5] font-medium text-[15px] flex items-center justify-center gap-2.5 cursor-pointer ${className}`}
+      className={`h-12 px-6 rounded-full font-medium text-[15px] flex items-center justify-center gap-2.5 cursor-pointer transition-colors ${base} ${className}`}
     >
       <span>{label.replace(/\s*→\s*$/, "")}</span>
       <span aria-hidden="true">→</span>
     </motion.button>
-  );
-}
-
-/* -------------------------------- LogoMarquee -------------------------------- */
-
-const MARQUEE_NAMES = [
-  "SAAS CO.",
-  "FINTECH AG",
-  "LOGISTICS SE",
-  "AGENCY LTD",
-  "GROWTH OÜ",
-  "CYBER GMBH",
-  "HR TECH SE",
-  "NORDIC FIN",
-];
-
-export function LogoMarquee() {
-  return (
-    <div className="w-full max-w-7xl mx-auto py-16 sm:py-20">
-      <style>{`
-        @keyframes sift-marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .sift-marquee-track {
-          animation: sift-marquee 30s linear infinite;
-        }
-        .sift-marquee:hover .sift-marquee-track {
-          animation-play-state: paused;
-        }
-      `}</style>
-      <p className="text-center font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828] mb-10">
-        Trusted by B2B teams across Europe
-      </p>
-      <div
-        className="sift-marquee relative w-full overflow-hidden"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-        }}
-      >
-        <div className="sift-marquee-track flex w-max items-center">
-          {[0, 1].map((dup) => (
-            <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
-              {MARQUEE_NAMES.map((name) => (
-                <span
-                  key={`${dup}-${name}`}
-                  className="text-[#7A6248]/60 text-[15px] tracking-[0.15em] uppercase whitespace-nowrap px-10"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -508,7 +456,7 @@ export function ProcessSection() {
       <ScrollReveal>
         <Kicker>The Process</Kicker>
         <SectionHeading lines={["From noise", "to named pipeline."]} />
-        <p className="text-[#7A6248] text-[15px] max-w-md mt-6">
+        <p className="text-[#A1A1AA] text-[15px] max-w-md mt-6">
           Four steps turn a market full of noise into a scored, sourced, ready-to-sequence list —
           delivered in seventy-two hours.
         </p>
@@ -517,7 +465,7 @@ export function ProcessSection() {
         {!shouldReduceMotion && (
           <>
             <motion.div
-              className="hidden lg:block absolute top-[72px] left-[12.5%] right-[12.5%] h-[1px] bg-gradient-to-r from-transparent via-[#c9943a]/40 to-transparent"
+              className="hidden lg:block absolute top-[72px] left-[12.5%] right-[12.5%] h-[1px] bg-gradient-to-r from-transparent via-[#4B4BA0]/40 to-transparent"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
@@ -525,7 +473,7 @@ export function ProcessSection() {
               style={{ originX: 0 }}
             />
             <motion.div
-              className="lg:hidden absolute top-0 bottom-0 left-[23px] w-[1px] bg-gradient-to-b from-transparent via-[#c9943a]/40 to-transparent"
+              className="lg:hidden absolute top-0 bottom-0 left-[23px] w-[1px] bg-gradient-to-b from-transparent via-[#4B4BA0]/40 to-transparent"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
@@ -540,16 +488,17 @@ export function ProcessSection() {
           delay={0.1}
         >
           {PROCESS_STEPS.map((step) => (
-            <StaggerItem key={step.num} className="h-full">
+            <React.Fragment key={step.num}>
+            <StaggerItem className="h-full">
               <GlassCard outerClassName="h-full">
                 <div className="flex items-center justify-between">
-                  <div className="text-[64px] font-light text-[#0E0C06]/10 leading-none">
+                  <div className="text-[64px] font-light text-[#F4F4F5]/10 leading-none">
                     {step.num}
                   </div>
                   {!shouldReduceMotion && (
                     <motion.span
                       className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: LIME }}
+                      style={{ backgroundColor: ACCENT }}
                       initial={{ scale: 0, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true }}
@@ -560,18 +509,19 @@ export function ProcessSection() {
                 <div className="flex items-center gap-2 mt-6">
                   <span
                     className="inline-block w-[4px] h-[4px] rounded-full shrink-0"
-                    style={{ backgroundColor: LIME }}
+                    style={{ backgroundColor: ACCENT }}
                   />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA]">
                     {step.label}
                   </span>
                 </div>
-                <h3 className="text-[#0E0C06] text-[18px] font-light mt-3 tracking-tight">
+                <h3 className="text-[#F4F4F5] text-[18px] font-medium mt-3 tracking-tight">
                   {step.title}
                 </h3>
-                <p className="text-[#7A6248] text-[13px] leading-relaxed mt-3">{step.body}</p>
+                <p className="text-[#A1A1AA] text-[13px] leading-relaxed mt-3">{step.body}</p>
               </GlassCard>
             </StaggerItem>
+            </React.Fragment>
           ))}
         </StaggerContainer>
       </div>
@@ -631,29 +581,30 @@ export function EnginesSection() {
       <ScrollReveal>
         <Kicker>Three Engines</Kicker>
         <SectionHeading lines={["One stack.", "Full coverage."]} />
-        <p className="text-[#7A6248] text-[15px] max-w-md mt-6">
+        <p className="text-[#A1A1AA] text-[15px] max-w-md mt-6">
           Use Argus for lists, add Lynx for depth, add Intelligence for strategy. Stack them to
           build the complete outbound picture.
         </p>
       </ScrollReveal>
       <div className="flex flex-col gap-6 mt-16">
         {ENGINES.map((engine, i) => (
-          <ScrollReveal key={engine.name} delay={i * 0.08}>
+          <React.Fragment key={engine.name}>
+          <ScrollReveal delay={i * 0.08}>
             <GlassCard innerClassName="p-8 sm:p-12">
               <div className="flex items-center justify-between gap-4 flex-wrap">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA]">
                   {engine.label}
                 </span>
                 <motion.span
-                  className="border border-[#c9943a]/40 text-[#a07828] bg-[#c9943a]/10 text-[10px] px-3 py-1 rounded-full uppercase tracking-widest"
+                  className="border border-[#4B4BA0]/40 text-[#F4F4F5]/80 bg-[#4B4BA0]/10 text-[10px] px-3 py-1 rounded-full uppercase tracking-widest"
                   animate={
                     shouldReduceMotion
                       ? {}
                       : {
                           boxShadow: [
-                            "0 0 0 0 rgba(201,148,58,0)",
-                            "0 0 0 4px rgba(201,148,58,0.12)",
-                            "0 0 0 0 rgba(201,148,58,0)",
+                            "0 0 0 0 rgba(75,75,160,0)",
+                            "0 0 0 4px rgba(75,75,160,0.12)",
+                            "0 0 0 0 rgba(75,75,160,0)",
                           ],
                         }
                   }
@@ -662,10 +613,10 @@ export function EnginesSection() {
                   {engine.badge}
                 </motion.span>
               </div>
-              <h3 className="font-serif text-[#0E0C06] text-[44px] sm:text-[56px] font-light tracking-[-0.03em] leading-none mt-8">
+              <h3 className="font-sans text-[#F4F4F5] text-[44px] sm:text-[56px] font-semibold tracking-[-0.025em] leading-none mt-8">
                 {engine.name}
               </h3>
-              <p className="text-[#7A6248] text-[15px] leading-relaxed max-w-xl mt-6">
+              <p className="text-[#A1A1AA] text-[15px] leading-relaxed max-w-xl mt-6">
                 {engine.desc}
               </p>
               <motion.ul
@@ -698,9 +649,9 @@ export function EnginesSection() {
                   >
                     <span
                       className="inline-block w-[4px] h-[4px] rounded-full shrink-0"
-                      style={{ backgroundColor: LIME }}
+                      style={{ backgroundColor: ACCENT }}
                     />
-                    <span className="text-[13px] text-[#3A2810]">{feature}</span>
+                    <span className="text-[13px] text-[#F4F4F5]/80">{feature}</span>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -709,6 +660,7 @@ export function EnginesSection() {
               </div>
             </GlassCard>
           </ScrollReveal>
+          </React.Fragment>
         ))}
       </div>
     </section>
@@ -770,7 +722,7 @@ export function PricingSection() {
       <ScrollReveal>
         <Kicker>Pricing</Kicker>
         <SectionHeading lines={["Simple pricing.", "No lock-in."]} />
-        <p className="text-[#7A6248] text-[15px] max-w-md mt-6">
+        <p className="text-[#A1A1AA] text-[15px] max-w-md mt-6">
           Start with one on-demand run. Move to a retainer when outbound becomes a discipline.
         </p>
       </ScrollReveal>
@@ -779,25 +731,26 @@ export function PricingSection() {
         staggerDelay={0.12}
       >
         {TIERS.map((tier) => (
-          <StaggerItem key={tier.name} className="h-full">
+          <React.Fragment key={tier.name}>
+          <StaggerItem className="h-full">
             <motion.div
               className={`relative h-full p-1.5 rounded-[28px] border ${
                 tier.recommended
-                  ? "bg-[#c9943a]/15 border-[#c9943a]/30"
-                  : "bg-[#F4EFE0]/70 border-[#F0E8D4]"
+                  ? "bg-[#4B4BA0]/15 border-[#4B4BA0]/30"
+                  : "bg-white/5 border-white/10"
               }`}
               animate={
                 tier.recommended && !shouldReduceMotion
                   ? {
                       boxShadow: [
-                        "0 0 0 1px rgba(201,148,58,0.25), 0 12px 40px rgba(14,12,6,0.08)",
-                        "0 0 0 3px rgba(201,148,58,0.45), 0 12px 48px rgba(201,148,58,0.18)",
-                        "0 0 0 1px rgba(201,148,58,0.25), 0 12px 40px rgba(14,12,6,0.08)",
+                        "0 0 0 1px rgba(75,75,160,0.25), 0 12px 40px rgba(0,0,0,0.25)",
+                        "0 0 0 3px rgba(75,75,160,0.45), 0 12px 48px rgba(75,75,160,0.18)",
+                        "0 0 0 1px rgba(75,75,160,0.25), 0 12px 40px rgba(0,0,0,0.25)",
                       ],
                       borderColor: [
-                        "rgba(201,148,58,0.3)",
-                        "rgba(201,148,58,0.55)",
-                        "rgba(201,148,58,0.3)",
+                        "rgba(75,75,160,0.3)",
+                        "rgba(75,75,160,0.55)",
+                        "rgba(75,75,160,0.3)",
                       ],
                     }
                   : {}
@@ -806,28 +759,28 @@ export function PricingSection() {
             >
               {tier.recommended && (
                 <span
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 text-[#FFFDF5] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest"
-                  style={{ backgroundColor: LIME }}
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 text-[#F4F4F5] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest"
+                  style={{ backgroundColor: ACCENT }}
                 >
                   Recommended
                 </span>
               )}
-              <div className="bg-white border border-[#E8DFC8] rounded-[23px] shadow-[0_12px_40px_rgba(14,12,6,0.08)] p-8 h-full flex flex-col">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
+              <div className="bg-[#09090B]/60 backdrop-blur-xl border border-white/10 rounded-[23px] p-8 h-full flex flex-col">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA]">
                   {tier.label}
                 </span>
-                <h3 className="font-serif text-[#0E0C06] text-[28px] font-light tracking-tight mt-4">
+                <h3 className="font-sans text-[#F4F4F5] text-[28px] font-semibold tracking-tight mt-4">
                   {tier.name}
                 </h3>
-                <p className="text-[13px] text-[#7A6248] tracking-widest uppercase mt-2">
+                <p className="text-[13px] text-[#A1A1AA] tracking-widest uppercase mt-2">
                   Pricing on request
                 </p>
-                <p className="text-[#7A6248] text-[13px] leading-relaxed mt-4">{tier.desc}</p>
+                <p className="text-[#A1A1AA] text-[13px] leading-relaxed mt-4">{tier.desc}</p>
                 <ul className="mt-6 flex flex-col gap-3 flex-1">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-3">
-                      <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#CFC0A0] shrink-0" />
-                      <span className="text-[13px] text-[#3A2810]">{feature}</span>
+                      <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#52525B] shrink-0" />
+                      <span className="text-[13px] text-[#F4F4F5]/80">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -837,14 +790,15 @@ export function PricingSection() {
               </div>
             </motion.div>
           </StaggerItem>
+          </React.Fragment>
         ))}
       </StaggerContainer>
       <ScrollReveal delay={0.24}>
-        <p className="mt-12 flex items-center justify-center gap-3 text-center text-[11px] uppercase tracking-[0.15em] text-[#7A6248]/70">
+        <p className="mt-12 flex items-center justify-center gap-3 text-center text-[11px] uppercase tracking-[0.15em] text-[#A1A1AA]/70">
           <span>First Argus run free for qualified agencies</span>
           <span
             className="inline-block w-[4px] h-[4px] rounded-full shrink-0"
-            style={{ backgroundColor: LIME }}
+            style={{ backgroundColor: ACCENT }}
           />
           <span>Custom builds on request</span>
         </p>
@@ -893,14 +847,14 @@ export function FaqSection() {
         <SectionHeading lines={["Common", "questions."]} />
       </ScrollReveal>
       <ScrollReveal delay={0.08}>
-        <div className="mt-16 p-1.5 rounded-[28px] bg-[#F4EFE0]/70 border border-[#F0E8D4]">
-          <div className="bg-white border border-[#E8DFC8] rounded-[23px] shadow-[0_12px_40px_rgba(14,12,6,0.08)] px-8">
+        <div className="mt-16 p-1.5 rounded-[28px] bg-white/5 border border-white/10">
+          <div className="bg-[#09090B]/60 backdrop-blur-xl border border-white/10 rounded-[23px] px-8">
             {FAQS.map((faq, i) => {
               const open = openIndex === i;
               return (
                 <div
                   key={faq.q}
-                  className={i > 0 ? "border-t border-[#F0E8D4]" : undefined}
+                  className={i > 0 ? "border-t border-white/10" : undefined}
                 >
                   <button
                     type="button"
@@ -908,13 +862,13 @@ export function FaqSection() {
                     onClick={() => setOpenIndex(open ? null : i)}
                     className="w-full flex items-center justify-between gap-6 py-6 text-left cursor-pointer"
                   >
-                    <span className="text-[15px] sm:text-[17px] text-[#0E0C06]">{faq.q}</span>
+                    <span className="text-[15px] sm:text-[17px] text-[#F4F4F5]">{faq.q}</span>
                     <span
                       className="relative w-5 h-5 flex items-center justify-center shrink-0"
                       aria-hidden="true"
                     >
                       <motion.span
-                        className="absolute w-[14px] h-[2px] bg-[#c9943a] rounded-full"
+                        className="absolute w-[14px] h-[2px] bg-[#4B4BA0] rounded-full"
                         animate={{ rotate: open ? 45 : 0 }}
                         transition={
                           shouldReduceMotion
@@ -923,7 +877,7 @@ export function FaqSection() {
                         }
                       />
                       <motion.span
-                        className="absolute w-[14px] h-[2px] bg-[#c9943a] rounded-full"
+                        className="absolute w-[14px] h-[2px] bg-[#4B4BA0] rounded-full"
                         animate={{ rotate: open ? -45 : 90 }}
                         transition={
                           shouldReduceMotion
@@ -944,7 +898,7 @@ export function FaqSection() {
                     className="overflow-hidden"
                   >
                     <motion.p
-                      className="text-[#7A6248] text-[13px] leading-relaxed pb-6 pr-10"
+                      className="text-[#A1A1AA] text-[13px] leading-relaxed pb-6 pr-10"
                       initial={false}
                       animate={{
                         opacity: open ? 1 : 0,
@@ -980,10 +934,10 @@ const NEXT_STEPS = [
 ];
 
 const INPUT_CLASS =
-  "w-full bg-[#FFFDF5] border border-[#E8DFC8] rounded-[12px] px-4 py-3 text-[14px] text-[#0E0C06] placeholder-[#7A6248]/50 outline-none focus:border-[#c9943a] focus:shadow-[0_0_0_3px_rgba(201,148,58,0.12)] transition-all";
+  "w-full bg-white/5 border border-white/10 rounded-[12px] px-4 py-3 text-[14px] text-[#F4F4F5] placeholder-[#52525B] outline-none focus:border-[#4B4BA0] focus:shadow-[0_0_0_3px_rgba(75,75,160,0.12)] transition-all";
 
 const FIELD_LABEL_CLASS =
-  "block font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828] mb-2";
+  "block font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA] mb-2";
 
 export function ContactSection() {
   const [sent, setSent] = useState(false);
@@ -1019,47 +973,41 @@ export function ContactSection() {
       <ScrollReveal>
         <Kicker>Ready When You Are</Kicker>
         <SectionHeading lines={["Let's scope", "your run."]} />
-        <p className="text-[#7A6248] text-[15px] max-w-md mt-6">
+        <p className="text-[#A1A1AA] text-[15px] max-w-md mt-6">
           Tell us your ICP. We'll send a proposal within 24 hours and confirm your run slot.
         </p>
       </ScrollReveal>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mt-16 items-start">
         <ScrollReveal delay={0.08}>
-          <h3 className="text-[22px] font-light text-[#0E0C06] tracking-tight">
+          <h3 className="text-[22px] font-medium text-[#F4F4F5] tracking-tight">
             A signal scan starts with a brief.
           </h3>
-          <p className="text-[#7A6248] text-[13px] leading-relaxed mt-4 max-w-md">
+          <p className="text-[#A1A1AA] text-[13px] leading-relaxed mt-4 max-w-md">
             Fill in your ICP, target market, and what you're trying to accomplish. We review it
             manually and come back with the right product recommendation and a scoped proposal —
             within 24 hours.
           </p>
           <div className="mt-10 flex flex-col gap-4">
-            <div className="flex items-baseline justify-between gap-4 border-b border-[#F0E8D4] pb-4">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
-                Email
-              </span>
+            <div className="flex items-baseline justify-between gap-4 border-b border-white/10 pb-4">
+              <span className={FIELD_LABEL_CLASS}>Email</span>
               <a
                 href="mailto:general@sifttechnology.com"
-                className="text-[14px] text-[#0E0C06] hover:text-[#3A2810] transition-colors"
+                className="text-[14px] text-[#F4F4F5] hover:text-[#A1A1AA] transition-colors"
               >
                 general@sifttechnology.com
               </a>
             </div>
-            <div className="flex items-baseline justify-between gap-4 border-b border-[#F0E8D4] pb-4">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
-                Response Time
-              </span>
-              <span className="text-[14px] text-[#0E0C06]">Within 24 hours</span>
+            <div className="flex items-baseline justify-between gap-4 border-b border-white/10 pb-4">
+              <span className={FIELD_LABEL_CLASS}>Response Time</span>
+              <span className="text-[14px] text-[#F4F4F5]">Within 24 hours</span>
             </div>
-            <div className="flex items-baseline justify-between gap-4 border-b border-[#F0E8D4] pb-4">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828]">
-                Delivery SLA
-              </span>
-              <span className="text-[14px] text-[#0E0C06]">72h from brief confirmation</span>
+            <div className="flex items-baseline justify-between gap-4 border-b border-white/10 pb-4">
+              <span className={FIELD_LABEL_CLASS}>Delivery SLA</span>
+              <span className="text-[14px] text-[#F4F4F5]">72h from brief confirmation</span>
             </div>
           </div>
           <div className="mt-12">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#a07828] mb-6">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA] mb-6">
               What Happens Next
             </p>
             <motion.ol
@@ -1092,18 +1040,18 @@ export function ContactSection() {
                 >
                   <span
                     className="flex items-center justify-center w-7 h-7 rounded-full border text-[11px] shrink-0"
-                    style={{ borderColor: "rgba(201, 148, 58, 0.5)", color: "#a07828" }}
+                    style={{ borderColor: "rgba(75, 75, 160, 0.5)", color: "#A1A1AA" }}
                   >
                     {i + 1}
                   </span>
-                  <span className="text-[13px] text-[#3A2810]">{step}</span>
+                  <span className="text-[13px] text-[#F4F4F5]/80">{step}</span>
                 </motion.li>
               ))}
             </motion.ol>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={0.16}>
-          <GlassCard>
+          <GlassCard hover={false}>
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
@@ -1165,26 +1113,14 @@ export function ContactSection() {
                   defaultValue=""
                   className={`${INPUT_CLASS} appearance-none bg-transparent cursor-pointer`}
                 >
-                  <option value="">
-                    Select a product
-                  </option>
-                  <option value="Argus — Lead Generation">
-                    Argus — Lead Generation
-                  </option>
-                  <option value="Lynx — Account Intelligence">
-                    Lynx — Account Intelligence
-                  </option>
-                  <option
-                    value="Intelligence — Strategic Briefing"
-                                     >
+                  <option value="">Select a product</option>
+                  <option value="Argus — Lead Generation">Argus — Lead Generation</option>
+                  <option value="Lynx — Account Intelligence">Lynx — Account Intelligence</option>
+                  <option value="Intelligence — Strategic Briefing">
                     Intelligence — Strategic Briefing
                   </option>
-                  <option value="Full Suite">
-                    Full Suite
-                  </option>
-                  <option value="Not sure yet">
-                    Not sure yet
-                  </option>
+                  <option value="Full Suite">Full Suite</option>
+                  <option value="Not sure yet">Not sure yet</option>
                 </select>
               </div>
               <div>
@@ -1223,7 +1159,7 @@ export function ContactSection() {
                   placeholder="What problem do you solve? What signals indicate a company is ready to buy? Any industries, tech, or triggers to prioritise?"
                 />
               </div>
-              <p className="text-[11px] text-[#7A6248]/70">
+              <p className="text-[11px] text-[#52525B]">
                 All briefs are reviewed manually. We reply within 24 hours with a recommendation
                 and scoped proposal.
               </p>
@@ -1232,9 +1168,8 @@ export function ContactSection() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className={`h-12 px-6 rounded-full font-medium text-[15px] flex items-center justify-center gap-2.5 w-full cursor-pointer transition-colors ${
-                  sent ? "bg-[#c9943a]/15" : "bg-[#c9943a] text-[#FFFDF5]"
+                  sent ? "bg-[#4B4BA0]/15 text-[#A1A1AA]" : "bg-[#4B4BA0] text-[#F4F4F5] hover:bg-[#6b6bbd]"
                 }`}
-                style={sent ? { color: "#a07828" } : undefined}
               >
                 {sent ? (
                   <>
@@ -1307,15 +1242,15 @@ export function SiftFooter() {
   return (
     <ScrollReveal>
       <footer className="w-full py-16">
-        <div className="max-w-7xl mx-auto bg-[#070600] rounded-[28px] px-8 sm:px-14 py-16">
-          <p className="font-serif text-[20px] sm:text-[26px] font-light text-[#FFFDF5]/90 max-w-2xl leading-snug">
+        <div className="max-w-7xl mx-auto bg-[#09090B]/60 backdrop-blur-xl border border-white/10 rounded-[28px] px-8 sm:px-14 py-16">
+          <p className="font-sans text-[20px] sm:text-[26px] font-medium text-[#F4F4F5]/90 max-w-2xl leading-snug">
             Cold lists lose. Context wins. SIFT turns scattered market signal into the few accounts
             worth your next call.
           </p>
-          <div className="mt-14 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-t border-[#FFFDF5]/10 pt-10">
+          <div className="mt-14 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-t border-white/10 pt-10">
             <div>
-              <div className="text-[22px] font-bold tracking-tight text-[#FFFDF5]">SIFT</div>
-              <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#e0a94c] mt-1">
+              <div className="text-[22px] font-bold tracking-tight text-[#F4F4F5]">SIFT</div>
+              <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA] mt-1">
                 Signal Intelligence · EMEA
               </div>
             </div>
@@ -1325,14 +1260,14 @@ export function SiftFooter() {
                   key={link.id}
                   type="button"
                   onClick={() => scrollToId(link.id)}
-                  className="text-[13px] text-[#FFFDF5]/60 hover:text-[#FFFDF5] transition-colors cursor-pointer"
+                  className="text-[13px] text-[#F4F4F5]/60 hover:text-[#F4F4F5] transition-colors cursor-pointer"
                 >
                   {link.label}
                 </button>
               ))}
             </nav>
           </div>
-          <p className="mt-12 text-[11px] text-[#FFFDF5]/35">© 2025 SIFT Signal Intelligence</p>
+          <p className="mt-12 text-[11px] text-[#52525B]">© 2025 SIFT Signal Intelligence</p>
         </div>
       </footer>
     </ScrollReveal>
