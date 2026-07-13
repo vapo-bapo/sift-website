@@ -10,6 +10,7 @@ import Lenis from "lenis";
 
 import { AetherField } from "./components/AetherField";
 import { AetherStats } from "./components/AetherStats";
+import { AuroraHero } from "./components/AuroraHero";
 import {
   ProcessSection,
   EnginesSection,
@@ -314,75 +315,12 @@ export default function App() {
         className="relative z-10 w-full flex flex-col pointer-events-auto"
       >
         {/* Hero */}
-        <section className="relative w-full min-h-[100svh] flex items-center justify-center px-4 sm:px-8 pt-28 pb-24">
-          <motion.div
-            style={{ opacity: heroOpacity, scale: heroScale }}
-            className="w-full max-w-3xl mx-auto flex flex-col items-center text-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 1, ease: [0.215, 0.61, 0.355, 1], delay: 0.1 }}
-              className="w-full p-[1px] rounded-[28px] bg-gradient-to-b from-white/20 via-white/5 to-transparent"
-            >
-              <div className="w-full h-full rounded-[28px] bg-[#09090B]/60 backdrop-blur-xl border border-white/10 px-6 py-12 sm:px-12 sm:py-16">
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                  className="inline-flex items-center gap-2.5 mb-8 px-4 py-1.5 rounded-full border border-white/10 bg-white/5"
-                >
-                  <span className="inline-block w-[6px] h-[6px] rounded-full bg-[#4B4BA0]" />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#A1A1AA]">
-                    Signal Intelligence
-                  </span>
-                </motion.div>
-
-                <h1 className="font-sans font-semibold text-[46px] sm:text-[62px] md:text-[72px] text-[#F4F4F5] leading-[0.95] tracking-[-0.025em]">
-                  <span className="block">Your Pipeline,</span>
-                  <span className="block text-[#A1A1AA]">Signal Driven.</span>
-                </h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.9, ease: [0.215, 0.61, 0.355, 1], delay: 0.35 }}
-                  className="font-mono text-[14px] text-[#A1A1AA] leading-[1.6] max-w-xl mx-auto mt-8"
-                >
-                  SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives
-                  at every call with context — not a cold list.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={pageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.9, ease: [0.215, 0.61, 0.355, 1], delay: 0.5 }}
-                  className="flex flex-wrap items-center justify-center gap-3 mt-10"
-                >
-                  <motion.button
-                    type="button"
-                    onClick={() => scrollToId("contact")}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="h-12 px-7 bg-[#4B4BA0] hover:bg-[#6b6bbd] rounded-full flex items-center gap-2 cursor-pointer text-[#F4F4F5] font-sans font-medium text-[15px] transition-colors"
-                  >
-                    Book a Run
-                    <span className="text-[14px] leading-none">→</span>
-                  </motion.button>
-                  <motion.button
-                    type="button"
-                    onClick={() => scrollToId("process")}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="h-12 px-7 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full flex items-center cursor-pointer text-[#F4F4F5]/85 font-sans font-normal text-[15px] transition-colors"
-                  >
-                    How it works
-                  </motion.button>
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </section>
+        <motion.div style={{ opacity: heroOpacity, scale: heroScale }}>
+          <AuroraHero
+            onPrimary={() => scrollToId("contact")}
+            onSecondary={() => scrollToId("process")}
+          />
+        </motion.div>
 
         {/* Cinematic statement */}
         <div

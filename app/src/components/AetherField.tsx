@@ -309,26 +309,6 @@ export function AetherField() {
         }}
       />
 
-      {/* HUD overlay */}
-      <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 font-mono text-[11px] sm:text-[12px] tracking-widest text-[#A1A1AA]/80 pointer-events-none hidden sm:flex flex-col gap-1">
-        <div className="flex items-center gap-4">
-          <span className="w-16">NODES</span>
-          <span ref={nodesRef} className="text-[#F4F4F5]">160</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="w-16">LINKS</span>
-          <span ref={linksRef} className="text-[#F4F4F5]">0</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="w-16">FPS</span>
-          <span ref={fpsRef} className="text-[#F4F4F5]">60</span>
-        </div>
-      </div>
-
-      <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-widest text-[#A1A1AA]/60 pointer-events-none">
-        <span className="inline-block w-2 h-2 rounded-full border border-[#A1A1AA]/40" />
-        MOVE CURSOR
-      </div>
     </div>
   );
 }
