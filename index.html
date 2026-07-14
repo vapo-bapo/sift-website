@@ -1,16 +1,1126 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23A3E635' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23A3E635' stroke-width='1' opacity='0.45'/%3E%3Ccircle cx='16' cy='16' r='1.8' fill='%23A3E635'/%3E%3C/svg%3E" />
-    <title>SIFT — Signal Intelligence</title>
-    <meta name="description" content="SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list." />
-    <script type="module" crossorigin src="/assets/index-B8_ne_V1.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bcv3St6B.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIFT — Signal Intelligence | Your pipeline, signal-driven</title>
+    <meta name="description" content="SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050505'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23D4AF37' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23FF4500' stroke-width='1' opacity='0.6'/%3E%3Ccircle cx='16' cy='16' r='1.8' fill='%23D4AF37'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sift: {
+                            bg: '#050505',
+                            card: '#0A0A0A',
+                            elevated: '#111111',
+                            gold: '#D4AF37',
+                            goldLight: '#F4E4BC',
+                            red: '#FF4500',
+                            redGlow: '#FF5722',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg: #050505;
+            --card: #0A0A0A;
+            --elevated: #111111;
+            --gold: #D4AF37;
+            --gold-light: #F4E4BC;
+            --red: #FF4500;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: #f5f5f5;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0.04;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Floating Orbs */
+        @keyframes float-orb {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+            33% { transform: translateY(-30px) translateX(15px) scale(1.05); }
+            66% { transform: translateY(15px) translateX(-20px) scale(0.95); }
+        }
+
+        @keyframes float-orb-slow {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            50% { transform: translateY(40px) translateX(-30px) rotate(5deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .orb-gold {
+            background: radial-gradient(circle, rgba(212,175,55,0.35) 0%, rgba(212,175,55,0) 70%);
+            animation: float-orb 18s ease-in-out infinite;
+        }
+
+        .orb-red {
+            background: radial-gradient(circle, rgba(255,69,0,0.25) 0%, rgba(255,69,0,0) 70%);
+            animation: float-orb-slow 22s ease-in-out infinite;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 40px rgba(212,175,55,0.25), 0 0 80px rgba(255,69,0,0.15);
+        }
+
+        /* Gradient Text */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-subtle {
+            background: linear-gradient(180deg, rgba(245,245,245,0.95) 0%, rgba(245,245,245,0.55) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Cards */
+        .card-glass {
+            background: rgba(17, 17, 17, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .card-glass:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.08), 0 0 0 1px rgba(212, 175, 55, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .card-red {
+            background: linear-gradient(145deg, rgba(255,69,0,0.18) 0%, rgba(255,69,0,0.05) 100%);
+            border: 1px solid rgba(255, 69, 0, 0.25);
+        }
+
+        .card-red:hover {
+            border-color: rgba(255, 69, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 69, 0, 0.15);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #B8941F 100%);
+            color: #050505;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.12);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        /* Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-track {
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Divider gradient */
+        .divider-gold {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.4) 50%, transparent 100%);
+        }
+
+        /* Accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            opacity: 1;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Grid pattern */
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold tracking-tight font-serif text-gradient-gold">
+                SIFT
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#process" class="text-sm text-gray-400 hover:text-sift-goldLight transition-colors duration-300">Process</a>
+                <a href="#engines" class="text-sm text-gray-400 hover:text-sift-goldLight transition-colors duration-300">Engines</a>
+                <a href="#results" class="text-sm text-gray-400 hover:text-sift-goldLight transition-colors duration-300">Results</a>
+                <a href="#pricing" class="text-sm text-gray-400 hover:text-sift-goldLight transition-colors duration-300">Pricing</a>
+                <a href="#faq" class="text-sm text-gray-400 hover:text-sift-goldLight transition-colors duration-300">FAQ</a>
+            </div>
+
+            <a href="#contact" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-medium btn-primary">
+                Start Brief
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-20 bg-sift-bg">
+        <!-- Atmospheric Orbs -->
+        <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+            <div class="orb orb-gold w-[60vw] h-[60vw] -left-[10%] -top-[10%] max-w-[800px] max-h-[800px]"></div>
+            <div class="orb orb-red w-[50vw] h-[50vw] right-[-5%] bottom-[-10%] max-w-[700px] max-h-[700px]"></div>
+            <div class="orb orb-gold w-[30vw] h-[30vw] left-[40%] top-[40%] max-w-[400px] max-h-[400px]" style="animation-delay: -5s; opacity: 0.4;"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sift-bg/50 to-sift-bg z-10"></div>
+            <div class="absolute inset-0 grid-pattern opacity-40 z-10"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div id="hero-content" class="container mx-auto px-6 relative z-20 text-center flex flex-col items-center justify-center min-h-[80vh]">
+            <div class="max-w-4xl mx-auto">
+                <div class="reveal">
+                    <p class="text-xs md:text-sm text-sift-gold uppercase tracking-[0.3em] mb-6 font-medium">Signal Intelligence · EMEA</p>
+                </div>
+
+                <div class="reveal" style="transition-delay: 100ms;">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.05] tracking-tight mb-8 font-serif glow-text text-white">
+                        Your pipeline,<br />
+                        <span class="italic font-light text-gradient-gold">signal-driven.</span>
+                    </h1>
+                </div>
+                
+                <div class="reveal" style="transition-delay: 200ms;">
+                    <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light tracking-wide leading-relaxed">
+                        SIFT identifies, qualifies, and deep-maps your best accounts so your team arrives at every call with context — not a cold list.
+                    </p>
+                </div>
+
+                <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4" style="transition-delay: 300ms;">
+                    <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-sm font-semibold inline-flex items-center gap-2">
+                        <span>Start Your Brief</span>
+                        <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+                    </a>
+                    <a href="#process" class="btn-outline px-8 py-4 rounded-full text-sm font-medium inline-flex items-center gap-2">
+                        <span>See How It Works</span>
+                    </a>
+                </div>
+
+                <div class="reveal mt-20 flex items-center justify-center gap-6 text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-mono" style="transition-delay: 400ms;">
+                    <span id="current-time">11:11 PM</span>
+                    <span class="w-px h-3 bg-gray-700"></span>
+                    <span>EMEA</span>
+                    <span class="w-px h-3 bg-gray-700"></span>
+                    <span>72h Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto Section -->
+    <section id="manifesto" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <h2 class="text-3xl md:text-5xl lg:text-6xl leading-tight mb-10 font-serif text-white/90">
+                    Cold lists lose. <span class="italic text-gradient-gold">Context wins.</span>
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-500 leading-relaxed font-light">
+                    SIFT turns a market full of noise into scored accounts, mapped stakeholders, and cited buying triggers. Argus finds the motion. Lynx maps the room. Intelligence writes the play — delivered in seventy-two hours.
+                </p>
+            </div>
+
+            <!-- Trust Marquee -->
+            <div class="mt-24 overflow-hidden border-y border-white/5 py-8">
+                <div class="marquee-track flex whitespace-nowrap">
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">SaaS Co.</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Fintech AG</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Logistics SE</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Agency LTD</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Growth OÜ</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Cyber GmbH</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">HR Tech SE</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Nordic Fin.</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">SaaS Co.</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Fintech AG</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Logistics SE</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Agency LTD</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Growth OÜ</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Cyber GmbH</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">HR Tech SE</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                    <span class="text-lg text-gray-600 font-medium tracking-widest mx-8">Nordic Fin.</span>
+                    <span class="text-sift-gold/40 mx-4">◆</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="reveal mb-20 text-center">
+                <p class="text-sift-gold uppercase tracking-[0.25em] text-xs mb-4 font-medium">The Workflow</p>
+                <h2 class="text-4xl md:text-6xl font-serif">
+                    From signal to <span class="italic text-gradient-gold">sale</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                <!-- Step 1 -->
+                <div class="reveal card-glass rounded-2xl p-8 flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-full bg-sift-gold/10 flex items-center justify-center">
+                            <iconify-icon icon="lucide:target" class="text-sift-gold text-2xl"></iconify-icon>
+                        </div>
+                        <span class="text-sift-gold/50 font-mono text-sm">01</span>
+                    </div>
+                    <h3 class="text-2xl text-white mb-3 font-serif">Align</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-grow">
+                        We align on your ideal customer profile — firmographics, tech stack, buying triggers, and the decision-maker roles that actually sign.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="reveal card-glass rounded-2xl p-8 flex flex-col h-full" style="transition-delay: 100ms;">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-full bg-sift-red/10 flex items-center justify-center">
+                            <iconify-icon icon="lucide:scan-eye" class="text-sift-red text-2xl"></iconify-icon>
+                        </div>
+                        <span class="text-sift-gold/50 font-mono text-sm">02</span>
+                    </div>
+                    <h3 class="text-2xl text-white mb-3 font-serif">Detect</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-grow">
+                        Argus surfaces accounts in motion: hiring patterns, funding events, leadership changes, tech adoption and intent signals — each one cited.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="reveal card-glass rounded-2xl p-8 flex flex-col h-full" style="transition-delay: 200ms;">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-full bg-sift-gold/10 flex items-center justify-center">
+                            <iconify-icon icon="lucide:network" class="text-sift-gold text-2xl"></iconify-icon>
+                        </div>
+                        <span class="text-sift-gold/50 font-mono text-sm">03</span>
+                    </div>
+                    <h3 class="text-2xl text-white mb-3 font-serif">Map</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-grow">
+                        Lynx builds an org-level intelligence layer on your top accounts — stakeholders, structure, the real champion, and the way in.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="reveal card-glass rounded-2xl p-8 flex flex-col h-full" style="transition-delay: 300ms;">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-full bg-sift-red/10 flex items-center justify-center">
+                            <iconify-icon icon="lucide:send" class="text-sift-red text-2xl"></iconify-icon>
+                        </div>
+                        <span class="text-sift-gold/50 font-mono text-sm">04</span>
+                    </div>
+                    <h3 class="text-2xl text-white mb-3 font-serif">Deliver</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-grow">
+                        A scored list, five Lynx workspaces, and a PDF brief — all within 72 hours, exportable to any CRM and ready to sequence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engines Section -->
+    <section id="engines" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="reveal mb-20 text-center">
+                <p class="text-sift-gold uppercase tracking-[0.25em] text-xs mb-4 font-medium">The Engines</p>
+                <h2 class="text-4xl md:text-6xl font-serif">
+                    Three modes of <span class="italic text-gradient-gold">intelligence</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Argus -->
+                <div class="reveal card-glass rounded-3xl p-8 md:p-10 flex flex-col h-full group">
+                    <div class="flex justify-between items-start mb-10">
+                        <div class="w-14 h-14 rounded-2xl bg-sift-red/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <iconify-icon icon="lucide:radar" class="text-sift-red text-3xl"></iconify-icon>
+                        </div>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest">Lead Gen</span>
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl text-white mb-2 font-serif">Argus</h3>
+                    <p class="text-sift-gold text-sm mb-6">Precision lead lists</p>
+                    
+                    <p class="text-gray-400 leading-relaxed mb-8 flex-grow">
+                        Precision lead lists built from your ICP. Every contact arrives with a score, a cited buying trigger, and a ready-to-use outreach hook — delivered in 72 hours.
+                    </p>
+
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Up to 20 qualified leads per run</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>ICP score 0–100 per contact</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Cited, sourced buying trigger</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>One-line outreach hook</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-6 border-t border-white/10">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Delivery</p>
+                        <p class="text-white font-medium">PDF + DOCX in 72h</p>
+                    </div>
+                </div>
+
+                <!-- Lynx -->
+                <div class="reveal card-glass rounded-3xl p-8 md:p-10 flex flex-col h-full group" style="transition-delay: 150ms;">
+                    <div class="flex justify-between items-start mb-10">
+                        <div class="w-14 h-14 rounded-2xl bg-sift-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <iconify-icon icon="lucide:git-branch" class="text-sift-gold text-3xl"></iconify-icon>
+                        </div>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest">Account Intel</span>
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl text-white mb-2 font-serif">Lynx</h3>
+                    <p class="text-sift-gold text-sm mb-6">Deep account mapping</p>
+                    
+                    <p class="text-gray-400 leading-relaxed mb-8 flex-grow">
+                        A dedicated workspace for each of your five warmest accounts. Decision-maker maps, 90-day signal feeds, and contextual AI chat — all in one place.
+                    </p>
+
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>5 workspaces for priority accounts</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Full decision-maker org chart</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Stakeholder roles, LinkedIn, access points</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>90-day signal feed + AI chat</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-6 border-t border-white/10">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Delivery</p>
+                        <p class="text-white font-medium">Shared workspace links</p>
+                    </div>
+                </div>
+
+                <!-- Intelligence -->
+                <div class="reveal card-glass rounded-3xl p-8 md:p-10 flex flex-col h-full group" style="transition-delay: 300ms;">
+                    <div class="flex justify-between items-start mb-10">
+                        <div class="w-14 h-14 rounded-2xl bg-sift-red/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <iconify-icon icon="lucide:file-search" class="text-sift-red text-3xl"></iconify-icon>
+                        </div>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest">Strategic Brief</span>
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl text-white mb-2 font-serif">Intelligence</h3>
+                    <p class="text-sift-gold text-sm mb-6">Full strategic brief</p>
+                    
+                    <p class="text-gray-400 leading-relaxed mb-8 flex-grow">
+                        A full strategic brief on a single target company — competitive landscape, internal buying dynamics, and a dedicated analyst session.
+                    </p>
+
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Deep-dive on one target company</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Competitive landscape analysis</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Internal buying dynamics & champions</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check-circle-2" class="text-sift-gold mt-0.5 flex-shrink-0"></iconify-icon>
+                            <span>Custom ICP refinement</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-6 border-t border-white/10">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Delivery</p>
+                        <p class="text-white font-medium">Document + live session</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-24 relative border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                <div class="reveal text-center">
+                    <p class="text-4xl md:text-5xl font-serif text-gradient-gold mb-2">72h</p>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">Delivery SLA</p>
+                </div>
+                <div class="reveal text-center" style="transition-delay: 100ms;">
+                    <p class="text-4xl md:text-5xl font-serif text-gradient-gold mb-2">20+</p>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">Leads per run</p>
+                </div>
+                <div class="reveal text-center" style="transition-delay: 200ms;">
+                    <p class="text-4xl md:text-5xl font-serif text-gradient-gold mb-2">0–100</p>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">ICP score</p>
+                </div>
+                <div class="reveal text-center" style="transition-delay: 300ms;">
+                    <p class="text-4xl md:text-5xl font-serif text-gradient-gold mb-2">5</p>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">Lynx workspaces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results / Case Studies -->
+    <section id="results" class="py-32 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[40vw] h-[40vw] orb orb-gold max-w-[500px] max-h-[500px] opacity-30"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="reveal mb-20 text-center">
+                <p class="text-sift-gold uppercase tracking-[0.25em] text-xs mb-4 font-medium">Selected Results</p>
+                <h2 class="text-4xl md:text-6xl font-serif">
+                    Context that <span class="italic text-gradient-gold">converts</span>
+                </h2>
+            </div>
+
+            <!-- Featured Case Study -->
+            <div class="reveal max-w-5xl mx-auto mb-16 card-red rounded-3xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row gap-10 items-start">
+                    <div class="md:w-2/3">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="px-3 py-1 rounded-full bg-sift-red/20 text-sift-red text-xs font-medium uppercase tracking-wider">Featured</span>
+                            <span class="text-gray-500 text-sm">Enterprise SaaS · DACH</span>
+                        </div>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
+                            A 60-person SaaS company in Munich was spending two days a week manually building prospect lists. Signal quality was low — conversion from list to first meeting sat under 2%. After one Argus + Lynx run, they had 20 scored contacts and five Lynx workspaces ready to sequence.
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                            <div>
+                                <p class="text-3xl font-serif text-white">3</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">First calls in 10 days</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-serif text-white">18/20</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">Leads matched ICP</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-serif text-white">6w</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">Research replaced</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-serif text-white">72h</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">Brief to delivery</p>
+                            </div>
+                        </div>
+                        <blockquote class="border-l-2 border-sift-gold pl-4 italic text-gray-400">
+                            "We went from a cold list to three booked calls in ten days. The buying triggers changed how we write our first touch entirely."
+                        </blockquote>
+                        <p class="text-sm text-gray-500 mt-3">— Head of Sales · Enterprise SaaS · Munich</p>
+                    </div>
+                    <div class="md:w-1/3 flex flex-col gap-4">
+                        <div class="card-glass rounded-2xl p-6">
+                            <p class="text-sift-gold text-xs uppercase tracking-widest mb-2">List-to-meeting</p>
+                            <p class="text-4xl font-serif text-white">&lt;2% → 11%</p>
+                            <p class="text-sm text-gray-500 mt-1">Cybersecurity · France · 3 months</p>
+                        </div>
+                        <div class="card-glass rounded-2xl p-6">
+                            <p class="text-sift-gold text-xs uppercase tracking-widest mb-2">Missed champion found</p>
+                            <p class="text-4xl font-serif text-white">€60k</p>
+                            <p class="text-sm text-gray-500 mt-1">B2B Services · Benelux · 1 meeting</p>
+                        </div>
+                        <div class="card-glass rounded-2xl p-6">
+                            <p class="text-sift-gold text-xs uppercase tracking-widest mb-2">Live demo</p>
+                            <p class="text-4xl font-serif text-white">7 days</p>
+                            <p class="text-sm text-gray-500 mt-1">Fintech · Nordic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                <div class="reveal card-glass rounded-2xl p-6">
+                    <iconify-icon icon="lucide:quote" class="text-sift-gold/30 text-3xl mb-4"></iconify-icon>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">"The ICP score alone saved us two hours of triage per run. We knew exactly who to call first."</p>
+                    <p class="text-xs text-gray-500">Sales Director, B2B SaaS · DACH</p>
+                </div>
+                <div class="reveal card-glass rounded-2xl p-6" style="transition-delay: 100ms;">
+                    <iconify-icon icon="lucide:quote" class="text-sift-gold/30 text-3xl mb-4"></iconify-icon>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">"Lynx workspaces changed how we prep for enterprise calls. We stopped winging it."</p>
+                    <p class="text-xs text-gray-500">Account Executive, Consulting · Benelux</p>
+                </div>
+                <div class="reveal card-glass rounded-2xl p-6" style="transition-delay: 200ms;">
+                    <iconify-icon icon="lucide:quote" class="text-sift-gold/30 text-3xl mb-4"></iconify-icon>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">"We now deliver SIFT-quality intelligence to three clients under our own brand. The Agency retainer pays for itself in month one."</p>
+                    <p class="text-xs text-gray-500">Founder, Growth Agency · London</p>
+                </div>
+                <div class="reveal card-glass rounded-2xl p-6" style="transition-delay: 300ms;">
+                    <iconify-icon icon="lucide:quote" class="text-sift-gold/30 text-3xl mb-4"></iconify-icon>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">"The buying triggers are the most underrated part. We went from generic cold email to hyper-relevant first lines overnight."</p>
+                    <p class="text-xs text-gray-500">Head of Outbound, Cybersecurity · Paris</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="reveal mb-20 text-center">
+                <p class="text-sift-gold uppercase tracking-[0.25em] text-xs mb-4 font-medium">Pricing</p>
+                <h2 class="text-4xl md:text-6xl font-serif">
+                    Start on-demand. <span class="italic text-gradient-gold">Scale with context.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+                <!-- On-demand Starter -->
+                <div class="reveal card-glass rounded-3xl p-8 flex flex-col">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">On-demand</p>
+                    <h3 class="text-2xl font-serif text-white mb-2">Argus Starter</h3>
+                    <p class="text-gray-400 text-sm mb-6">Single run for a focused outbound push.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-serif text-white">Pricing on request</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>One Argus run</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>Up to 20 scored leads</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>PDF + DOCX delivery</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-outline w-full text-center py-3 rounded-full text-sm font-medium">Request Quote</a>
+                </div>
+
+                <!-- On-demand Recommended -->
+                <div class="reveal card-red rounded-3xl p-8 flex flex-col relative" style="transition-delay: 150ms;">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span class="bg-sift-gold text-sift-bg text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-wider">Recommended</span>
+                    </div>
+                    <p class="text-xs text-sift-gold uppercase tracking-widest mb-2">On-demand</p>
+                    <h3 class="text-2xl font-serif text-white mb-2">Argus + Lynx</h3>
+                    <p class="text-gray-300 text-sm mb-6">Scored list plus deep map of 5 priority accounts.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-serif text-white">Pricing on request</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-200 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>One Argus run</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>5 Lynx workspaces</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>Org charts + signal feeds</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>Export-ready formats</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-primary w-full text-center py-3 rounded-full text-sm font-medium">Start Brief</a>
+                </div>
+
+                <!-- Full Suite -->
+                <div class="reveal card-glass rounded-3xl p-8 flex flex-col" style="transition-delay: 300ms;">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">On-demand</p>
+                    <h3 class="text-2xl font-serif text-white mb-2">Full Suite</h3>
+                    <p class="text-gray-400 text-sm mb-6">Argus + Lynx + Intelligence + strategic session.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-serif text-white">€1,890</span>
+                        <span class="text-gray-500 text-sm"> / run</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>Full Suite delivery</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>Strategic analyst session</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:check" class="text-sift-gold flex-shrink-0"></iconify-icon>
+                            <span>Custom ICP refinement</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-outline w-full text-center py-3 rounded-full text-sm font-medium">Request Quote</a>
+                </div>
+            </div>
+
+            <!-- Retainers -->
+            <div class="reveal max-w-6xl mx-auto">
+                <h3 class="text-2xl font-serif text-center text-white mb-10">Retainers</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card-glass rounded-2xl p-6 text-center">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Base</p>
+                        <p class="text-xl font-serif text-white mb-4">2 Argus runs / month</p>
+                        <ul class="text-sm text-gray-400 space-y-2 mb-6">
+                            <li>40 leads / month</li>
+                            <li>Quarterly ICP review</li>
+                            <li>72h SLA</li>
+                            <li>Email support</li>
+                        </ul>
+                        <p class="text-sift-gold font-medium">Pricing on request</p>
+                    </div>
+                    <div class="card-glass rounded-2xl p-6 text-center">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Pro</p>
+                        <p class="text-xl font-serif text-white mb-4">4 Argus + Lynx / month</p>
+                        <ul class="text-sm text-gray-400 space-y-2 mb-6">
+                            <li>80 leads / month</li>
+                            <li>Monthly 60min strategy call</li>
+                            <li>Lynx included</li>
+                            <li>48h SLA</li>
+                        </ul>
+                        <p class="text-sift-gold font-medium">Pricing on request</p>
+                    </div>
+                    <div class="card-glass rounded-2xl p-6 text-center">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Agency</p>
+                        <p class="text-xl font-serif text-white mb-4">Unlimited runs · fair use</p>
+                        <ul class="text-sm text-gray-400 space-y-2 mb-6">
+                            <li>Full suite access</li>
+                            <li>Dedicated account manager</li>
+                            <li>White-label PDF + DOCX</li>
+                            <li>Same-day priority SLA</li>
+                        </ul>
+                        <p class="text-sift-gold font-medium">€3,490 / month</p>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-8">First Argus run free for qualified agencies. Custom builds available on request.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-32 relative border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="reveal mb-20 text-center">
+                <p class="text-sift-gold uppercase tracking-[0.25em] text-xs mb-4 font-medium">FAQ</p>
+                <h2 class="text-4xl md:text-6xl font-serif">
+                    Questions, <span class="italic text-gradient-gold">answered</span>
+                </h2>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="reveal faq-item card-glass rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg text-white font-medium pr-4">How quickly will I receive my deliverables?</h3>
+                        <iconify-icon icon="lucide:plus" class="faq-icon text-sift-gold flex-shrink-0 transition-transform duration-300"></iconify-icon>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 leading-relaxed">Standard SLA is 72 hours from brief confirmation. Pro and Agency retainers get 48h and same-day priority respectively. Full Suite runs are prioritised.</p>
+                    </div>
+                </div>
+
+                <div class="reveal faq-item card-glass rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)" style="transition-delay: 100ms;">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg text-white font-medium pr-4">What if the leads don't match my ICP?</h3>
+                        <iconify-icon icon="lucide:plus" class="faq-icon text-sift-gold flex-shrink-0 transition-transform duration-300"></iconify-icon>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 leading-relaxed">We offer a free revision if more than 20% of the leads fall outside the agreed ICP criteria. Your alignment brief is the foundation — we honour it.</p>
+                    </div>
+                </div>
+
+                <div class="reveal faq-item card-glass rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)" style="transition-delay: 200ms;">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg text-white font-medium pr-4">Can I start on-demand and move to a retainer?</h3>
+                        <iconify-icon icon="lucide:plus" class="faq-icon text-sift-gold flex-shrink-0 transition-transform duration-300"></iconify-icon>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 leading-relaxed">Yes. Most clients begin with an on-demand Argus + Lynx run, then upgrade to a retainer once the signal-driven workflow is embedded.</p>
+                    </div>
+                </div>
+
+                <div class="reveal faq-item card-glass rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)" style="transition-delay: 300ms;">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg text-white font-medium pr-4">What does "first run free for qualified agencies" mean?</h3>
+                        <iconify-icon icon="lucide:plus" class="faq-icon text-sift-gold flex-shrink-0 transition-transform duration-300"></iconify-icon>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 leading-relaxed">Agencies running outbound for clients can receive a free Argus Starter run. We confirm eligibility within 24 hours of your brief.</p>
+                    </div>
+                </div>
+
+                <div class="reveal faq-item card-glass rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)" style="transition-delay: 400ms;">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg text-white font-medium pr-4">In what format are deliverables sent?</h3>
+                        <iconify-icon icon="lucide:plus" class="faq-icon text-sift-gold flex-shrink-0 transition-transform duration-300"></iconify-icon>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 leading-relaxed">Argus runs arrive as PDF + DOCX. Lynx workspaces are shared via link. Intelligence briefs include a document plus a live analyst session.</p>
+                    </div>
+                </div>
+
+                <div class="reveal faq-item card-glass rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)" style="transition-delay: 500ms;">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg text-white font-medium pr-4">Do you offer custom builds?</h3>
+                        <iconify-icon icon="lucide:plus" class="faq-icon text-sift-gold flex-shrink-0 transition-transform duration-300"></iconify-icon>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 leading-relaxed">Yes. For teams with specific data-source, CRM integration or workflow requirements, we design custom builds on request.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-[50vw] h-[50vw] orb orb-red max-w-[600px] max-h-[600px] opacity-20"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="reveal max-w-4xl mx-auto text-center mb-16">
+                <p class="text-sift-gold uppercase tracking-[0.25em] text-xs mb-4 font-medium">Start</p>
+                <h2 class="text-4xl md:text-6xl font-serif mb-6">
+                    Send the brief. <span class="italic text-gradient-gold">We'll handle the rest.</span>
+                </h2>
+                <p class="text-lg text-gray-400">Proposal within 24 hours. Delivery within 72.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="reveal">
+                    <form action="https://formspree.io/f/general@sifttechnology.com" method="POST" class="card-glass rounded-3xl p-8 md:p-10 space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">First name</label>
+                                <input type="text" name="first_name" required class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-sift-gold/50 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Last name</label>
+                                <input type="text" name="last_name" required class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-sift-gold/50 transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Company</label>
+                            <input type="text" name="company" required class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-sift-gold/50 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Work email</label>
+                            <input type="email" name="email" required class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-sift-gold/50 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Product of interest</label>
+                            <select name="product" required class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sift-gold/50 transition-colors">
+                                <option value="">Select an option</option>
+                                <option value="argus-starter">Argus Starter</option>
+                                <option value="argus-lynx">Argus + Lynx</option>
+                                <option value="full-suite">Full Suite</option>
+                                <option value="base-retainer">Base Retainer</option>
+                                <option value="pro-retainer">Pro Retainer</option>
+                                <option value="agency-retainer">Agency Retainer</option>
+                                <option value="custom">Custom build</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Target market & geography</label>
+                            <input type="text" name="market" class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-sift-gold/50 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Target role(s)</label>
+                            <input type="text" name="roles" class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-sift-gold/50 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">ICP details</label>
+                            <textarea name="icp" rows="4" class="w-full bg-sift-bg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-sift-gold/50 transition-colors resize-none" placeholder="Tell us about your ideal customer profile, buying triggers, and any specific accounts in mind."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full py-4 rounded-full text-sm font-semibold inline-flex items-center justify-center gap-2">
+                            <span>Send ICP Brief</span>
+                            <iconify-icon icon="lucide:send" class="text-base"></iconify-icon>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="reveal flex flex-col justify-center space-y-10" style="transition-delay: 150ms;">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">What happens next</p>
+                        <ol class="space-y-4 text-gray-300">
+                            <li class="flex items-start gap-4">
+                                <span class="w-6 h-6 rounded-full bg-sift-gold/10 text-sift-gold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                                <span>We review your ICP brief manually.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="w-6 h-6 rounded-full bg-sift-gold/10 text-sift-gold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                                <span>Proposal arrives within 24 hours.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="w-6 h-6 rounded-full bg-sift-gold/10 text-sift-gold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                                <span>One alignment call if needed (30 min).</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="w-6 h-6 rounded-full bg-sift-gold/10 text-sift-gold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                                <span>Run confirmed — delivery in 72 hours.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="w-6 h-6 rounded-full bg-sift-gold/10 text-sift-gold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">5</span>
+                                <span>Free revision if leads miss the brief.</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="divider-gold"></div>
+
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Email us directly</p>
+                        <a href="mailto:general@sifttechnology.com?subject=SIFT — ICP Brief" class="text-2xl md:text-3xl font-serif text-white hover:text-sift-gold transition-colors">
+                            general@sifttechnology.com
+                        </a>
+                        <p class="text-sm text-gray-500 mt-2">Response within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 bg-sift-bg relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-16">
+                <div class="w-full md:w-auto">
+                    <h2 class="text-[12vw] md:text-[10vw] leading-[0.8] tracking-tighter text-white/[0.03] font-bold select-none pointer-events-none font-serif">
+                        SIFT
+                    </h2>
+                </div>
+                
+                <div class="flex flex-col gap-8 md:text-right">
+                    <div class="flex flex-col gap-4 text-gray-400">
+                        <a href="mailto:general@sifttechnology.com" class="hover:text-sift-gold transition-colors">general@sifttechnology.com</a>
+                        <a href="https://www.sifttechnology.com/" class="hover:text-sift-gold transition-colors">sifttechnology.com</a>
+                    </div>
+                    <p class="text-sm text-gray-600">© 2025 SIFT Signal Intelligence. All rights reserved.</p>
+                </div>
+            </div>
+            
+            <div class="divider-gold mb-8"></div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+                <p>Signal Intelligence for EMEA outbound teams.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#process" class="hover:text-sift-gold transition-colors">Process</a>
+                    <a href="#engines" class="hover:text-sift-gold transition-colors">Engines</a>
+                    <a href="#pricing" class="hover:text-sift-gold transition-colors">Pricing</a>
+                    <a href="#contact" class="hover:text-sift-gold transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Reveal on scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 2. Navbar scroll effect
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('py-4', 'bg-sift-bg/85', 'backdrop-blur-md', 'border-b', 'border-white/5');
+                nav.classList.remove('py-6', 'bg-transparent');
+            } else {
+                nav.classList.remove('py-4', 'bg-sift-bg/85', 'backdrop-blur-md', 'border-b', 'border-white/5');
+                nav.classList.add('py-6', 'bg-transparent');
+            }
+        });
+
+        // 3. Hero parallax fade
+        const heroContent = document.getElementById('hero-content');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            if (scrolled < 1000) {
+                heroContent.style.transform = `translateY(${scrolled * 0.35}px)`;
+                heroContent.style.opacity = Math.max(0, 1 - scrolled / 700);
+            }
+        });
+
+        // 4. Update time clock
+        function updateTime() {
+            const clockEl = document.getElementById('current-time');
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            clockEl.textContent = `${hours}:${minutes} ${ampm}`;
+        }
+        setInterval(updateTime, 60000);
+        updateTime();
+
+        // 5. FAQ Accordion
+        function toggleFaq(item) {
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        // 6. Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
