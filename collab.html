@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Collab — Your team's shared workspace | SIFT</title>
+<meta name="description" content="Collab keeps notes, files, tasks and calendar in one shared workspace — where every Argus list and Lynx brief lands."/>
+<link rel="icon" href="assets/logo.svg"/>
+<meta name="theme-color" content="#FDF8ED"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<style>
+:root{
+  --bg:#FDF8ED; --card:#FFFFFF; --panel:#F7F0DE;
+  --accent:#C9943A; --accent-dim:#8A6618; --accent-soft:#F6E8C9; --accent-bright:#E0A94C;
+  --ok:#3FA974; --info:#5B8DEF; --teal:#2FA39A;
+  --text:#1B1710; --text-dim:#6B5F49; --text-faint:#9C8F73;
+  --border:#EDE1C4; --border-strong:#DFCC9C;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.container{max-width:1180px;margin:0 auto;padding:0 40px;width:100%;}
+
+.tour{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+.slide{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:center;padding:84px 0 32px;position:relative;}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:16px 0;background:rgba(253,248,237,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.nav-logo{font-weight:800;font-size:18px;letter-spacing:-0.01em;flex-shrink:0;}
+.nav-logo span{color:var(--accent-dim);}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.nav-cta{background:var(--accent);color:#fff;padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;transition:all 200ms;}
+.nav-cta:hover{background:var(--accent-dim);}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);transition:color 200ms;}
+.nav-back:hover{color:var(--accent-dim);}
+
+.progress{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:10px;}
+.progress .d{width:7px;height:7px;border-radius:50%;background:var(--border-strong);transition:all 250ms;cursor:pointer;}
+.progress .d.active{background:var(--accent);transform:scale(1.4);}
+@media(max-width:760px){.progress{display:none;}}
+
+.headline{font-weight:800;letter-spacing:-0.02em;line-height:1.08;}
+.headline .accent{color:var(--accent);}
+h1.headline{font-size:clamp(38px,5.5vw,60px);}
+h2.headline{font-size:clamp(24px,3vw,34px);}
+.step-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--accent-dim);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sub{color:var(--text-dim);font-size:15px;margin-top:14px;max-width:460px;line-height:1.65;}
+.takeaways{margin-top:20px;display:flex;flex-direction:column;gap:9px;}
+.takeaways li{font-size:13.5px;color:var(--text-dim);padding-left:24px;position:relative;font-weight:500;}
+.takeaways li::before{content:'✓';position:absolute;left:0;color:var(--ok);font-weight:800;}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;font-size:13px;font-weight:700;transition:all 200ms;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-dim);transform:translateY(-1px);}
+.btn-outline{border:1.5px solid var(--border-strong);color:var(--text-dim);background:var(--card);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent-dim);}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px;}
+
+.duo{display:grid;grid-template-columns:0.85fr 1.15fr;gap:52px;align-items:center;}
+@media(max-width:900px){.duo{grid-template-columns:1fr;gap:24px;}}
+.screen{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 30px 70px rgba(27,23,16,0.10);overflow:hidden;}
+.screen-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--border);background:var(--panel);}
+.screen-dot{width:9px;height:9px;border-radius:50%;background:var(--border-strong);}
+.screen-title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);}
+.screen-body{padding:20px;}
+
+/* notes mock */
+.notes-mock{display:grid;grid-template-columns:0.9fr 1.1fr;min-height:230px;}
+.notes-side{border-right:1px solid var(--border);padding:14px;}
+.notes-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.folder-row{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;padding:5px 0;color:var(--text);}
+.folder-row iconify-icon{color:var(--accent);font-size:13px;}
+.note-row{display:flex;align-items:center;gap:7px;font-size:10.5px;padding:4px 0 4px 20px;color:var(--text-dim);}
+.note-row iconify-icon{font-size:11px;color:var(--text-faint);}
+.note-row.pin::after{content:'📌';font-size:8px;}
+.notes-main{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:18px;}
+.notes-main iconify-icon{font-size:30px;color:var(--border-strong);}
+.notes-main p{font-size:11px;color:var(--text-faint);}
+.notes-btn{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:8px 18px;border-radius:9px;}
+
+/* files mock */
+.files-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.files-title{font-weight:800;font-size:15px;}
+.files-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);}
+.files-search{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:7px 12px;font-size:10.5px;color:var(--text-faint);}
+.folder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+.folder-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;}
+.folder-card iconify-icon{color:var(--accent);font-size:16px;}
+.folder-card .fn{font-size:10px;font-weight:700;}
+.folder-card .fc{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-faint);}
+.dropzone{border:1.5px dashed var(--border-strong);border-radius:11px;padding:20px;text-align:center;font-size:10.5px;color:var(--text-dim);}
+.dropzone b{color:var(--accent-dim);}
+.dropzone .max{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-faint);margin-top:3px;}
+
+/* calendar mock */
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.cal-title{font-weight:800;font-size:14px;}
+.cal-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);}
+.cal-actions{display:flex;gap:6px;}
+.cal-chip{font-size:9px;font-weight:700;padding:5px 10px;border-radius:8px;border:1px solid var(--border-strong);color:var(--text-dim);}
+.cal-chip.hl{background:var(--accent);border-color:var(--accent);color:#fff;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.cal-grid .dow{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--text-faint);text-transform:uppercase;padding:6px 0;text-align:center;background:var(--bg);border-bottom:1px solid var(--border);}
+.cal-cell{min-height:34px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:8.5px;color:var(--text-faint);padding:3px 5px;text-align:right;}
+.cal-cell:nth-child(7n){border-right:none;}
+.cal-cell.today{background:var(--accent-soft);color:var(--accent-dim);font-weight:800;}
+.cal-cell .ev{display:block;text-align:left;background:var(--accent);color:#fff;font-size:6.5px;font-weight:700;border-radius:3px;padding:1px 4px;margin-top:2px;}
+.cal-cell .ev.teal{background:var(--accent-dim);}
+
+.cta-slide{text-align:center;}
+.cta-slide h2{font-size:clamp(30px,4.5vw,50px);}
+.cta-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);margin-top:14px;}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;animation:hintFloat 2.2s ease-in-out infinite;}
+@keyframes hintFloat{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,6px);}}
+
+@media(max-height:720px){
+  .slide{padding:72px 0 20px;}
+  h1.headline{font-size:clamp(30px,4.5vw,42px);}
+  h2.headline{font-size:clamp(20px,2.6vw,26px);}
+  .sub{font-size:12.5px;margin-top:8px;}
+  .takeaways li{font-size:12px;}
+  .screen-body{padding:14px;}
+  .duo{gap:32px;}
+  .notes-mock{min-height:190px;}
+}
+
+/* unified gold treatment */
+.headline .accent{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 45%,var(--accent-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:var(--accent-dim);display:inline-block;padding:0.02em 0.12em 0.14em;}
+.btn-primary{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 42%,var(--accent-dim) 100%);color:#fff;box-shadow:0 6px 20px rgba(201,148,58,0.22);}
+.btn-primary:hover{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 30%,var(--accent-dim) 100%);transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,148,58,0.34);}
+.nav-cta{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 45%,var(--accent-dim) 100%);}
+.nav-cta:hover{box-shadow:0 8px 24px rgba(201,148,58,0.3);transform:translateY(-1px);}
+.progress .d.active{background:var(--accent);box-shadow:0 0 0 3px rgba(201,148,58,0.18);}
+.step-eyebrow{gap:0;}
+
+.logo-mark{width:24px;height:24px;flex-shrink:0;display:block;color:var(--accent-dim);}
+.nav-logo{display:inline-flex;align-items:center;gap:9px;}
+
+/* primary CTA: darker gold so the white label clears AA across the whole gradient */
+.btn-primary,.nav-cta{background:linear-gradient(135deg,var(--gold-dim,var(--accent-dim)) 0%,#6f5213 100%)!important;color:#fff!important;}
+.btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#7a5a15 0%,#5d440f 100%)!important;}
+
+.lang-toggle{display:flex;align-items:center;gap:2px;border:1px solid var(--border-strong);border-radius:999px;padding:3px;}
+.lang-btn{padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:0.04em;border-radius:999px;color:var(--text-faint);transition:all 200ms;cursor:pointer;}
+.lang-btn.active{background:var(--text);color:var(--bg);}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="7.5" stroke="currentColor" stroke-width="1.8"></circle><polyline points="7.5,11.5 4.5,16 7.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline><polyline points="24.5,11.5 27.5,16 24.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg><span>SIFT <span>/ Collab</span></span></a>
+    <div class="nav-right">
+      <a href="products.html" class="nav-back" data-i18n="nav.back">← products</a>
+      <div class="lang-toggle"><span class="lang-btn active" data-lang="en">EN</span><span class="lang-btn" data-lang="it">IT</span></div>
+      <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Ask about Collab →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="progress" id="progress"></div>
+
+<div class="tour" id="tour">
+
+  <section class="slide" id="s1">
+    <div class="container" style="text-align:center;max-width:860px;">
+      <p class="step-eyebrow" style="justify-content:center;" data-i18n="s1.eyebrow">Product tour · Team Workspace</p>
+      <h1 class="headline"><span data-i18n="s1.h">One workspace where</span> <span class="accent" data-i18n="s1.he">nothing gets lost.</span></h1>
+      <p class="sub" style="margin:18px auto 0;max-width:560px;" data-i18n="s1.p">Notes, files, tasks, and calendar for your whole team — and the place where every Argus list and Lynx brief automatically lands, instead of dying in someone's inbox.</p>
+      <div style="margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary" data-i18n="cta.ask">Ask about Collab →</a>
+        <a href="products.html#collab" class="btn btn-outline" data-i18n="cta.back">Back to products</a>
+      </div>
+    </div>
+    <div class="scroll-hint"><span data-i18n="scroll">Scroll for the tour</span> <iconify-icon icon="lucide:chevron-down"></iconify-icon></div>
+  </section>
+
+  <section class="slide" id="s2">
+    <div class="container duo">
+      <div>
+        <p class="step-eyebrow" data-i18n="s2.eyebrow">Notes</p>
+        <h2 class="headline"><span data-i18n="s2.h">Your team's knowledge,</span> <span class="accent" data-i18n="s2.he">organized in folders.</span></h2>
+        <p class="sub" data-i18n="s2.p">Meeting recaps, account context, ideas — everything lives in shared folders instead of scattered docs. Pin what matters, and find any note in seconds.</p>
+        <ul class="takeaways">
+          <li data-i18n="s2.l1">Folders for business, meetings, projects</li>
+          <li data-i18n="s2.l2">Pinned notes stay on top</li>
+          <li data-i18n="s2.l3">Everything searchable by the whole team</li>
+        </ul>
+      </div>
+      <div class="screen">
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">collab — notes</span></div>
+        <div class="notes-mock">
+          <div class="notes-side">
+            <div class="notes-label" data-i18n="s2.nlabel">Notes</div>
+            <div class="folder-row"><iconify-icon icon="lucide:folder"></iconify-icon><span data-i18n="s2.f1">BUSINESS</span></div>
+            <div class="note-row pin"><iconify-icon icon="lucide:file"></iconify-icon><span data-i18n="s2.n1">Business notes</span></div>
+            <div class="note-row"><iconify-icon icon="lucide:file"></iconify-icon><span data-i18n="s2.n2">Startup innovative</span></div>
+            <div class="folder-row"><iconify-icon icon="lucide:folder"></iconify-icon><span data-i18n="s2.f2">CODING</span></div>
+            <div class="note-row"><iconify-icon icon="lucide:file"></iconify-icon><span data-i18n="s2.n3">ARGUS upgrades</span></div>
+            <div class="note-row"><iconify-icon icon="lucide:file"></iconify-icon>LYNX</div>
+            <div class="folder-row"><iconify-icon icon="lucide:folder"></iconify-icon><span data-i18n="s2.f3">MEETINGS</span></div>
+            <div class="note-row"><iconify-icon icon="lucide:file"></iconify-icon><span data-i18n="s2.n4">Meeting 16/06</span></div>
+          </div>
+          <div class="notes-main">
+            <iconify-icon icon="lucide:file-text"></iconify-icon>
+            <p data-i18n="s2.empty">Select a note, or create a new one</p>
+            <span class="notes-btn" data-i18n="s2.newnote">New note</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="s3">
+    <div class="container duo">
+      <div>
+        <p class="step-eyebrow" data-i18n="s3.eyebrow">Files</p>
+        <h2 class="headline"><span data-i18n="s3.h">Every deliverable, filed —</span> <span class="accent" data-i18n="s3.he">not forwarded.</span></h2>
+        <p class="sub" data-i18n="s3.p">Argus reports and Lynx briefs land here automatically, next to anything your team uploads. Drag and drop, organize in folders, mark private what's yours only.</p>
+        <ul class="takeaways">
+          <li data-i18n="s3.l1">Folders by project, client, or type</li>
+          <li data-i18n="s3.l2">Drag-and-drop upload, up to 50 MB per file</li>
+          <li data-i18n="s3.l3">Private mode for files only you can see</li>
+        </ul>
+      </div>
+      <div class="screen">
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">collab — files</span></div>
+        <div class="screen-body">
+          <div class="files-head">
+            <div><div class="files-title" data-i18n="s3.ftitle">Files</div><div class="files-meta" data-i18n="s3.fmeta">12 files · 4 folders</div></div>
+            <div class="files-search" data-i18n="s3.search">Search…</div>
+          </div>
+          <div class="folder-grid">
+            <div class="folder-card"><iconify-icon icon="lucide:folder"></iconify-icon><div><div class="fn">BUSINESS</div><div class="fc" data-i18n="s3.c4">7 files</div></div></div>
+            <div class="folder-card"><iconify-icon icon="lucide:folder"></iconify-icon><div><div class="fn" data-i18n="s3.d2">IMAGES</div><div class="fc" data-i18n="s3.c1">1 file</div></div></div>
+            <div class="folder-card"><iconify-icon icon="lucide:folder"></iconify-icon><div><div class="fn">TECH</div><div class="fc" data-i18n="s3.c2">2 files</div></div></div>
+            <div class="folder-card"><iconify-icon icon="lucide:folder"></iconify-icon><div><div class="fn">VIDEO</div><div class="fc" data-i18n="s3.c3">2 files</div></div></div>
+          </div>
+          <div class="dropzone"><iconify-icon icon="lucide:upload"></iconify-icon> <span data-i18n="s3.drop">Drag files here, or</span> <b data-i18n="s3.click">click to select</b><div class="max" data-i18n="s3.max">Max 50 MB per file</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="s4">
+    <div class="container duo">
+      <div>
+        <p class="step-eyebrow" data-i18n="s4.eyebrow">Calendar &amp; tasks</p>
+        <h2 class="headline"><span data-i18n="s4.h">Follow-ups that show up</span> <span class="accent" data-i18n="s4.he">where your team looks.</span></h2>
+        <p class="sub" data-i18n="s4.p">Assign a lead as a task, set the date, and it appears on the shared calendar — month, week, or agenda view. Meetings and deadlines in one place, synced for everyone.</p>
+        <ul class="takeaways">
+          <li data-i18n="s4.l1">Tasks and events on the same calendar</li>
+          <li data-i18n="s4.l2">Month, week and agenda views</li>
+          <li data-i18n="s4.l3">One click from a lead to a scheduled follow-up</li>
+        </ul>
+      </div>
+      <div class="screen">
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">collab — calendar</span></div>
+        <div class="screen-body">
+          <div class="cal-head">
+            <div><div class="cal-title" data-i18n="s4.month">August 2026</div><div class="cal-meta" data-i18n="s4.evts">7 events</div></div>
+            <div class="cal-actions"><span class="cal-chip" data-i18n="s4.newtask">+ New task</span><span class="cal-chip hl" data-i18n="s4.newev">+ New event</span></div>
+          </div>
+          <div class="cal-grid">
+            <div class="dow" data-i18n="s4.d0">Sun</div><div class="dow" data-i18n="s4.d1">Mon</div><div class="dow" data-i18n="s4.d2">Tue</div><div class="dow" data-i18n="s4.d3">Wed</div><div class="dow" data-i18n="s4.d4">Thu</div><div class="dow" data-i18n="s4.d5">Fri</div><div class="dow" data-i18n="s4.d6">Sat</div>
+            <div class="cal-cell">26</div><div class="cal-cell">27</div><div class="cal-cell">28</div><div class="cal-cell">29</div><div class="cal-cell">30</div><div class="cal-cell">31</div><div class="cal-cell today">1</div>
+            <div class="cal-cell">2</div><div class="cal-cell">3<span class="ev" data-i18n="s4.e1">SIFT meeting</span></div><div class="cal-cell">4</div><div class="cal-cell">5</div><div class="cal-cell">6<span class="ev teal" data-i18n="s4.e2">Follow-up</span></div><div class="cal-cell">7</div><div class="cal-cell">8</div>
+            <div class="cal-cell">9</div><div class="cal-cell">10</div><div class="cal-cell">11<span class="ev" data-i18n="s4.e3">Sales call</span></div><div class="cal-cell">12</div><div class="cal-cell">13</div><div class="cal-cell">14</div><div class="cal-cell">15</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide cta-slide" id="s5">
+    <div class="container">
+      <p class="step-eyebrow" style="justify-content:center;" data-i18n="s5.eyebrow">That's Collab</p>
+      <h2 class="headline"><span data-i18n="s5.h">Research becomes action,</span> <span class="accent" data-i18n="s5.he">in one shared place.</span></h2>
+      <div style="margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary" data-i18n="cta.ask">Ask about Collab →</a>
+        <a href="products.html" class="btn btn-outline" data-i18n="s5.back">Back to all products</a>
+      </div>
+      <p class="cta-note" data-i18n="s5.note">Bundled with the complete stack · ask us for a walkthrough</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ─── i18n ─── */
+const I18N = {
+  en: {
+    "nav.back":"← products","nav.cta":"Ask about Collab →","cta.ask":"Ask about Collab →","cta.back":"Back to products","scroll":"Scroll for the tour",
+    "s1.eyebrow":"Product tour · Team Workspace","s1.h":"One workspace where","s1.he":"nothing gets lost.",
+    "s1.p":"Notes, files, tasks, and calendar for your whole team — and the place where every Argus list and Lynx brief automatically lands, instead of dying in someone's inbox.",
+    "s2.eyebrow":"Notes","s2.h":"Your team's knowledge,","s2.he":"organized in folders.",
+    "s2.p":"Meeting recaps, account context, ideas — everything lives in shared folders instead of scattered docs. Pin what matters, and find any note in seconds.",
+    "s2.l1":"Folders for business, meetings, projects","s2.l2":"Pinned notes stay on top","s2.l3":"Everything searchable by the whole team",
+    "s2.nlabel":"Notes","s2.f1":"BUSINESS","s2.n1":"Business notes","s2.n2":"Innovative startups","s2.f2":"CODING","s2.n3":"ARGUS upgrades","s2.f3":"MEETINGS","s2.n4":"Meeting 16/06",
+    "s2.empty":"Select a note, or create a new one","s2.newnote":"New note",
+    "s3.eyebrow":"Files","s3.h":"Every deliverable, filed —","s3.he":"not forwarded.",
+    "s3.p":"Argus reports and Lynx briefs land here automatically, next to anything your team uploads. Drag and drop, organize in folders, mark private what's yours only.",
+    "s3.l1":"Folders by project, client, or type","s3.l2":"Drag-and-drop upload, up to 50 MB per file","s3.l3":"Private mode for files only you can see",
+    "s3.ftitle":"Files","s3.fmeta":"12 files · 4 folders","s3.search":"Search…","s3.d2":"IMAGES","s3.c1":"1 file","s3.c2":"2 files","s3.c3":"2 files","s3.c4":"7 files",
+    "s3.drop":"Drag files here, or","s3.click":"click to select","s3.max":"Max 50 MB per file",
+    "s4.eyebrow":"Calendar &amp; tasks","s4.h":"Follow-ups that show up","s4.he":"where your team looks.",
+    "s4.p":"Assign a lead as a task, set the date, and it appears on the shared calendar — month, week, or agenda view. Meetings and deadlines in one place, synced for everyone.",
+    "s4.l1":"Tasks and events on the same calendar","s4.l2":"Month, week and agenda views","s4.l3":"One click from a lead to a scheduled follow-up",
+    "s4.month":"August 2026","s4.evts":"7 events","s4.newtask":"+ New task","s4.newev":"+ New event",
+    "s4.d0":"Sun","s4.d1":"Mon","s4.d2":"Tue","s4.d3":"Wed","s4.d4":"Thu","s4.d5":"Fri","s4.d6":"Sat",
+    "s4.e1":"SIFT meeting","s4.e2":"Follow-up","s4.e3":"Sales call",
+    "s5.eyebrow":"That's Collab","s5.h":"Research becomes action,","s5.he":"in one shared place.","s5.back":"Back to all products","s5.note":"Bundled with the complete stack · ask us for a walkthrough"
+  },
+  it: {
+    "nav.back":"← prodotti","nav.cta":"Chiedici di Collab →","cta.ask":"Chiedici di Collab →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour",
+    "s1.eyebrow":"Il prodotto · Spazio di lavoro","s1.h":"Un unico spazio dove","s1.he":"non si perde niente.",
+    "s1.p":"Note, file, attività e calendario per tutto il tuo team, e il posto dove arrivano in automatico tutte le liste di Argus e le analisi di Lynx, invece di finire sepolte in una casella di posta.",
+    "s2.eyebrow":"Le note","s2.h":"Quello che sa il tuo team,","s2.he":"ordinato in cartelle.",
+    "s2.p":"Resoconti di riunione, informazioni sui clienti, idee: tutto vive in cartelle condivise invece che in documenti sparsi. Metti in evidenza quello che conta e ritrovi qualsiasi nota in pochi secondi.",
+    "s2.l1":"Cartelle per business, riunioni, progetti","s2.l2":"Le note in evidenza restano sempre in alto","s2.l3":"Tutto ricercabile da tutto il team",
+    "s2.nlabel":"Note","s2.f1":"BUSINESS","s2.n1":"Appunti business","s2.n2":"Startup innovative","s2.f2":"SVILUPPO","s2.n3":"Migliorie ARGUS","s2.f3":"RIUNIONI","s2.n4":"Riunione 16/06",
+    "s2.empty":"Scegli una nota, oppure creane una nuova","s2.newnote":"Nuova nota",
+    "s3.eyebrow":"I file","s3.h":"Ogni consegna archiviata,","s3.he":"non girata per email.",
+    "s3.p":"Le analisi di Argus e di Lynx arrivano qui in automatico, insieme a tutto quello che carica il tuo team. Trascini i file, li organizzi in cartelle e segni come privato quello che vuoi tenere solo per te.",
+    "s3.l1":"Cartelle per progetto, cliente o tipo di file","s3.l2":"Carichi trascinando, fino a 50 MB per file","s3.l3":"Modalità privata per i file che vedi solo tu",
+    "s3.ftitle":"File","s3.fmeta":"12 file · 4 cartelle","s3.search":"Cerca…","s3.d2":"IMMAGINI","s3.c1":"1 file","s3.c2":"2 file","s3.c3":"2 file","s3.c4":"7 file",
+    "s3.drop":"Trascina i file qui, oppure","s3.click":"clicca per selezionarli","s3.max":"Massimo 50 MB per file",
+    "s4.eyebrow":"Calendario e attività","s4.h":"I promemoria compaiono","s4.he":"dove il tuo team guarda già.",
+    "s4.p":"Assegni un contatto come attività, imposti la data e compare sul calendario condiviso, in vista mese, settimana o agenda. Riunioni e scadenze in un unico posto, sincronizzate per tutti.",
+    "s4.l1":"Attività ed eventi sullo stesso calendario","s4.l2":"Viste per mese, settimana e agenda","s4.l3":"Da un contatto a un promemoria in calendario con un clic",
+    "s4.month":"agosto 2026","s4.evts":"7 eventi","s4.newtask":"+ Nuova attività","s4.newev":"+ Nuovo evento",
+    "s4.d0":"Dom","s4.d1":"Lun","s4.d2":"Mar","s4.d3":"Mer","s4.d4":"Gio","s4.d5":"Ven","s4.d6":"Sab",
+    "s4.e1":"Riunione SIFT","s4.e2":"Da richiamare","s4.e3":"Chiamata cliente",
+    "s5.eyebrow":"Questo è Collab","s5.h":"La ricerca diventa azione,","s5.he":"in un unico posto condiviso.","s5.back":"Torna a tutti i prodotti","s5.note":"Compreso nel pacchetto completo · chiedici una dimostrazione"
+  }
+};
+function applyLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const v = I18N[lang] && I18N[lang][el.getAttribute('data-i18n')];
+    if(v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+  try{ localStorage.setItem('sift-lang', lang); }catch(e){}
+}
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click', ()=>applyLang(b.dataset.lang)));
+let savedLang='en';
+try{ savedLang = localStorage.getItem('sift-lang') || 'en'; }catch(e){}
+applyLang(savedLang);
+
+const slides = [...document.querySelectorAll('.slide')];
+const progress = document.getElementById('progress');
+slides.forEach((s,i)=>{
+  const dot = document.createElement('div');
+  dot.className = 'd' + (i===0?' active':'');
+  dot.addEventListener('click', ()=> s.scrollIntoView({behavior:'smooth'}));
+  progress.appendChild(dot);
+});
+const dots = [...progress.children];
+const tour = document.getElementById('tour');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const idx = slides.indexOf(e.target);
+      dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+    }
+  });
+},{root:tour, threshold:0.6});
+slides.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

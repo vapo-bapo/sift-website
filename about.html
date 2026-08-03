@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>How it works — Method &amp; team | SIFT</title>
 <meta name="description" content="How SIFT turns public signals into a usable shortlist: define the fit, research the signals, map the account, deliver in 72 hours."/>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23FFFDF5'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23c9943a' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23d34e24' stroke-width='1' opacity='0.6'/%3E%3Ccircle cx='16' cy='16' r='1.8' fill='%23c9943a'/%3E%3C/svg%3E"/>
+<link rel="icon" href="assets/logo.svg"/>
 <meta name="theme-color" content="#FFFDF5"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -46,8 +46,13 @@ ul{list-style:none;}
 @keyframes floatB{0%,100%{transform:translateY(0) translateX(0) rotate(0deg);}50%{transform:translateY(40px) translateX(-30px) rotate(5deg);}}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 800ms cubic-bezier(0.22,1,0.36,1),transform 800ms cubic-bezier(0.22,1,0.36,1);}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 760ms cubic-bezier(0.16,1,0.3,1),transform 760ms cubic-bezier(0.16,1,0.3,1);}
 .reveal.in{opacity:1;transform:none;}
+.reveal.settled{transition:none;transform:none;opacity:1;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important;}}
+/* responsive spacing scale */
+@media(max-width:760px){.container{padding:0 24px;}}
+@media(max-width:480px){.container{padding:0 18px;}}
 
 /* nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:20px 0;transition:background 400ms,backdrop-filter 400ms,border-color 400ms;border-bottom:1px solid transparent;}
@@ -60,8 +65,8 @@ ul{list-style:none;}
 .lang-toggle{display:flex;align-items:center;gap:2px;border:1px solid var(--border-strong);border-radius:999px;padding:3px;}
 .lang-btn{padding:5px 11px;font-size:10.5px;font-weight:700;letter-spacing:0.04em;border-radius:999px;color:var(--text-faint);transition:all 200ms;cursor:pointer;}
 .lang-btn.active{background:var(--text);color:var(--bg);}
-.nav-cta{padding:10px 22px;border-radius:999px;font-size:12.5px;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--gold-dim));color:#fff;transition:transform 250ms,box-shadow 250ms;}
-.nav-cta:hover{transform:scale(1.03);box-shadow:0 10px 30px rgba(201,148,58,0.28);}
+.nav-cta{padding:10px 22px;border-radius:999px;font-size:12.5px;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--gold-dim));color:#fff;transition:transform 480ms cubic-bezier(0.22,1,0.36,1),box-shadow 480ms cubic-bezier(0.22,1,0.36,1);}
+.nav-cta:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 10px 30px rgba(201,148,58,0.28);}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
 .nav-hamburger span{width:22px;height:1.5px;background:var(--text-dim);display:block;transition:transform 200ms,opacity 200ms;}
 .nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
@@ -75,9 +80,9 @@ ul{list-style:none;}
 @media(min-width:861px){.mobile-panel{display:none !important;}}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:0.02em;transition:all 250ms;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:0.02em;transition:transform 480ms cubic-bezier(0.22,1,0.36,1),box-shadow 480ms cubic-bezier(0.22,1,0.36,1),background 480ms ease,color 380ms ease,border-color 480ms ease;}
 .btn-primary{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dim) 100%);color:#fff;}
-.btn-primary:hover{transform:scale(1.03);box-shadow:0 10px 34px rgba(201,148,58,0.28);}
+.btn-primary:hover{transform:translateY(-2px) scale(1.025);box-shadow:0 12px 36px rgba(201,148,58,0.30);}
 .btn-outline{border:1px solid var(--border-strong);color:var(--text-dim);}
 .btn-outline:hover{border-color:var(--text);color:var(--text);}
 .btn .arr{transition:transform 250ms;}
@@ -111,8 +116,8 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .section-lead{color:var(--text-dim);font-size:15.5px;line-height:1.8;max-width:560px;margin-top:20px;font-weight:300;}
 
 /* cards (light) */
-.card-glass{background:var(--card);border:1px solid var(--border);border-radius:20px;transition:all 350ms cubic-bezier(0.22,1,0.36,1);}
-.card-glass:hover{border-color:var(--border-strong);box-shadow:0 20px 50px rgba(23,19,16,0.08);transform:translateY(-4px);}
+.card-glass{background:var(--card);border:1px solid var(--border);border-radius:20px;transition:transform 620ms cubic-bezier(0.22,1,0.36,1),box-shadow 620ms cubic-bezier(0.22,1,0.36,1),border-color 620ms ease;will-change:transform;}
+.card-glass:hover{border-color:var(--border-strong);box-shadow:0 22px 54px rgba(23,19,16,0.09);transform:translateY(-5px) scale(1.012);}
 
 /* stats */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;}
@@ -124,7 +129,10 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 /* process */
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px;}
 .process-card{padding:32px 26px;display:flex;flex-direction:column;gap:20px;}
-.process-num{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold-dim);}
+.process-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:600;line-height:1;color:var(--gold-dim);letter-spacing:-0.01em;transition:transform 500ms cubic-bezier(0.22,1,0.36,1),color 500ms;}
+.process-card:hover .process-num{transform:scale(1.08);color:var(--gold);}
+.process-card:nth-child(even) .process-num{color:var(--red);}
+.process-card:nth-child(even):hover .process-num{color:var(--red-bright,#FF5A2E);}
 .process-ic{width:44px;height:44px;border-radius:14px;background:rgba(201,148,58,0.10);display:flex;align-items:center;justify-content:center;color:var(--gold-dim);font-size:22px;}
 .process-card:nth-child(2) .process-ic,.process-card:nth-child(4) .process-ic{background:rgba(194,69,31,0.10);color:var(--red);}
 .process-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:var(--text);}
@@ -169,7 +177,12 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 
 /* guarantees */
 .guarantees-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:56px;}
-.gcard{background:var(--card);padding:32px 26px;display:flex;flex-direction:column;gap:12px;}
+.gcard{background:var(--card);padding:32px 26px;display:flex;flex-direction:column;gap:12px;position:relative;transition:background-color 900ms cubic-bezier(0.33,1,0.68,1);}
+.gcard::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(150deg,rgba(201,148,58,0.10),rgba(201,148,58,0.02) 60%,transparent);transition:opacity 900ms cubic-bezier(0.33,1,0.68,1);}
+.gcard:hover::before{opacity:1;}
+.gcard>*{position:relative;z-index:1;}
+.gcard-ic{transition:transform 900ms cubic-bezier(0.33,1,0.68,1);transform-origin:left center;}
+.gcard:hover .gcard-ic{transform:scale(1.1);}
 .gcard-ic{width:34px;height:34px;color:var(--gold-dim);font-size:22px;}
 .gcard:nth-child(2) .gcard-ic{color:var(--red);}
 .gcard h4{font-size:14.5px;font-weight:600;color:var(--text);}
@@ -313,17 +326,103 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .cform-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:26px;flex-wrap:wrap;}
 .cform-note{font-size:11px;color:var(--text-faint);max-width:280px;line-height:1.6;}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:44px;}.cform-row{grid-template-columns:1fr;}}
+
+/* ── spacing + responsive polish ───────────────────────── */
+.section{padding-block:clamp(56px,7.5vw,116px);}
+.h2{margin-bottom:0;}
+.section-lead{margin-top:18px;}
+img,iconify-icon,svg{max-width:100%;}
+:target{scroll-margin-top:96px;}
+@media(max-width:1024px){
+  .container{max-width:100%;}
+  .duo,.prow-grid{gap:40px;}
+}
+@media(max-width:760px){
+  .nav{padding:14px 0;}
+  .btn{padding:13px 24px;}
+  .hero{padding-top:120px;}
+  .page-hero{padding-top:124px;}
+  .cta-inner{padding:36px 26px;}
+  .footer-nav{margin-left:0;width:100%;gap:18px;}
+  .footer-inner{gap:16px;}
+}
+@media(max-width:480px){
+  .section{padding-block:clamp(44px,10vw,64px);}
+  .btn{width:100%;justify-content:center;}
+  .hero-ctas,.cta-actions{width:100%;}
+  .stats-row,.stat{text-align:left;}
+}
+
+/* ── line-breaking ─────────────────────────────────────── */
+/* display headings: even line lengths, no orphan word on the last line */
+h1,h2,.headline,.h2,.hero-title,.page-hero-title,.prow-name{text-wrap:balance;hyphens:none;}
+/* small headings: let them fill the line naturally, only avoid a lone trailing word */
+h3,h4,.pcard-name,.engine h3,.process-card h3,.gcard h4{text-wrap:pretty;hyphens:none;}
+/* body copy: no orphans, no hyphen breaks, no mid-word splits */
+p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,.engine p,.gcard p,.who-cols p,.takeaways li{text-wrap:pretty;hyphens:none;overflow-wrap:break-word;word-break:normal;}
+/* single-line UI elements never wrap */
+.nav-cta,.nav-link,.pcard-scope,.engine-tag,.rec-badge,.eyebrow,.step-eyebrow,.pcard-tier,.footer-link{white-space:nowrap;}
+.btn{white-space:nowrap;}
+/* buttons inside cards wrap instead of forcing the track wider */
+.pcard .btn,.engine .btn,.hero-chip .btn,.card-glass .btn,.gcard .btn{white-space:normal;text-align:center;}
+/* grid tracks must be allowed to shrink below their content min-content */
+.pgrid,.engines-grid,.process-grid,.guarantees-grid,.hero-chips,.feat-grid{grid-auto-columns:minmax(0,1fr);}
+.pgrid>*,.engines-grid>*,.process-grid>*,.guarantees-grid>*,.hero-chips>*,.feat-grid>*{min-width:0;}
+.collab-incl span{white-space:nowrap;}
+@media(max-width:520px){.btn,.nav-cta,.collab-incl span{white-space:normal;}}
+
+/* ── numbers / eyebrow labels grow softly with their card ──── */
+.hero-chip-num,.pcard-tier,.prow-tag,.rec-badge,.step-eyebrow .n,.stat-num,.process-num,.engine-tag{
+  display:inline-block;transform-origin:left center;
+  transition:transform 700ms cubic-bezier(0.33,1,0.68,1),color 700ms cubic-bezier(0.33,1,0.68,1);
+}
+.engine-tag{transform-origin:right center;}
+.hero-chip:hover .hero-chip-num,
+.pcard:hover .pcard-tier,
+.pcard:hover .rec-badge,
+.prow:hover .prow-tag{transform:scale(1.12);color:var(--gold-dim);}
+.hero-chip,.pcard{transition:border-color 700ms ease,transform 700ms cubic-bezier(0.33,1,0.68,1),box-shadow 700ms cubic-bezier(0.33,1,0.68,1);}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(23,19,16,0.09);border-color:var(--border-strong);}
+.hero-chip-name,.pcard-name{transition:transform 700ms cubic-bezier(0.33,1,0.68,1);transform-origin:left center;}
+.hero-chip:hover .hero-chip-name,.pcard:hover .pcard-name{transform:scale(1.03);}
+@media(prefers-reduced-motion:reduce){.hero-chip-num,.pcard-tier,.prow-tag,.rec-badge,.stat-num,.process-num,.engine-tag,.hero-chip-name,.pcard-name{transition:none;transform:none!important;}}
+
+/* pricing block (about page) */
+.price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:44px;}
+.price-grid>*{min-width:0;}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px 28px;transition:border-color 620ms ease,transform 620ms cubic-bezier(0.22,1,0.36,1),box-shadow 620ms cubic-bezier(0.22,1,0.36,1);}
+.price-card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:0 20px 48px rgba(23,19,16,0.08);}
+.price-ic{width:42px;height:42px;border-radius:12px;background:rgba(201,148,58,0.10);color:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:18px;transition:transform 620ms cubic-bezier(0.22,1,0.36,1);}
+.price-card:hover .price-ic{transform:scale(1.08);}
+.price-card h4{font-size:15px;font-weight:600;margin-bottom:9px;color:var(--text);}
+.price-card p{font-size:13.5px;color:var(--text-dim);line-height:1.7;font-weight:300;}
+.price-note{display:flex;align-items:flex-start;gap:12px;margin-top:24px;padding:16px 20px;border-radius:14px;background:rgba(201,148,58,0.07);border:1px solid rgba(201,148,58,0.22);font-size:13px;color:var(--text-dim);line-height:1.65;}
+.price-note iconify-icon{color:var(--gold-dim);font-size:17px;flex-shrink:0;margin-top:1px;}
+@media(max-width:900px){.price-grid{grid-template-columns:1fr;}}
+
+/* brand mark */
+.logo-mark{width:26px;height:26px;flex-shrink:0;display:block;color:var(--gold-dim);}
+.nav-logo{display:inline-flex;align-items:center;gap:10px;}
+.footer-logo{display:inline-flex;align-items:center;gap:9px;}
+.footer-logo .logo-mark{width:20px;height:20px;opacity:0.75;}
+
+/* outline buttons on the dark closing panel */
+.cta-inner .btn-outline{color:#FFFDF5;border-color:rgba(255,253,245,0.45);background:transparent;}
+.cta-inner .btn-outline:hover{color:var(--void,#15110b);background:#FFFDF5;border-color:#FFFDF5;}
+
+/* primary CTA: darker gold so the white label clears AA across the whole gradient */
+.btn-primary,.nav-cta{background:linear-gradient(135deg,var(--gold-dim,var(--accent-dim)) 0%,#6f5213 100%)!important;color:#fff!important;}
+.btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#7a5a15 0%,#5d440f 100%)!important;}
 </style>
 </head>
 <body>
 <div class="noise"></div>
 <nav class="nav" id="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo gold-text">SIFT</a>
+    <a href="index.html" class="nav-logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="7.5" stroke="currentColor" stroke-width="1.8"></circle><polyline points="7.5,11.5 4.5,16 7.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline><polyline points="24.5,11.5 27.5,16 24.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg><span class="gold-text">SIFT</span></a>
     <div class="nav-links">
       <a href="products.html" class="nav-link" data-i18n="nav.products">Products</a>
       <a href="about.html" class="nav-link" data-i18n="nav.how">How it works</a>
-      <a href="pricing.html" class="nav-link" data-i18n="nav.pricing">Pricing</a>
       <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
       <div class="lang-toggle">
         <span class="lang-btn active" data-lang="en">EN</span>
@@ -337,7 +436,6 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 <div class="mobile-panel" id="mobilePanel">
   <a href="products.html" class="nav-link" data-i18n="nav.products">Products</a>
   <a href="about.html" class="nav-link" data-i18n="nav.how">How it works</a>
-  <a href="pricing.html" class="nav-link" data-i18n="nav.pricing">Pricing</a>
   <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
   <div class="lang-toggle">
     <span class="lang-btn active" data-lang="en">EN</span>
@@ -349,7 +447,6 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 <section class="page-hero">
   <div class="container page-hero-inner">
     <h1 class="page-hero-title reveal in"><span data-i18n="about.h1a">How we work.</span><br/><em data-i18n="about.h1b">And who you're working with.</em></h1>
-    <p class="page-hero-desc reveal in" data-i18n="about.hero.desc">No scraper dressed up as intelligence. Public signals, read by hand, turned into a shortlist your reps can use the same day.</p>
   </div>
 </section>
 
@@ -359,7 +456,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
     <h2 class="h2 reveal" style="max-width:760px;" data-i18n="about.who.h2">We read the signals a company leaves in public <em>and turn them into a shortlist your reps can open a call with.</em></h2>
     <div class="who-cols" style="margin-top:48px;">
       <div class="reveal"><h4 data-i18n="about.who.1t">Who you're working with</h4><p data-i18n="about.who.1p">Your brief goes to one analyst, working across Europe, from first read to final list, with no handoffs and no offshore queue in between. The person who reads your brief is the person who builds it. That's deliberate: judgement doesn't outsource well.</p></div>
-      <div class="reveal"><h4 data-i18n="about.who.2t">What we won't do</h4><p data-i18n="about.who.2p">We won't invent a buying signal to pad a list, and we won't pass off a scrape as a relationship. If the fit isn't there, we tell you instead of filling the gap with noise. Every signal we cite traces back to a public source you could check yourself.</p></div>
+      <div class="reveal"><h4 data-i18n="about.who.2t">What we won't do</h4><p data-i18n="about.who.2p">We won't invent a buying signal to pad a list, and we won't hand you a data dump with a score on top. Every account on your list is there because the analysis says it belongs.</p></div>
     </div>
   </div>
 </section>
@@ -367,13 +464,13 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 <section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
     <p class="eyebrow reveal" data-i18n="about.method.eyebrow">The method</p>
-    <h2 class="h2 reveal"><span data-i18n="about.method.h1">From raw signal</span><br/><em data-i18n="about.method.h2">to plain English.</em></h2>
-    <p class="section-lead reveal" data-i18n="about.method.lead">Four steps, one throughline: at every stage we turn data into language a person can actually read and act on.</p>
+    <h2 class="h2 reveal"><span data-i18n="about.method.h1">From scattered traces</span><br/><em data-i18n="about.method.h2">to a reason to call.</em></h2>
+    <p class="section-lead reveal" data-i18n="about.method.lead">The public web is full of fragments. Four steps to turn them into something worth acting on: we collect, connect, weigh and interpret, and what reaches you is already a judgement, not a data set.</p>
     <div class="timeline">
       <div class="tl-step reveal"><div class="tl-n">01</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl1.tag">With you · 30 minutes</span><h3><span data-i18n="about.tl1.h">We define the fit</span> <em data-i18n="about.tl1.he">in your words.</em></h3><p data-i18n="about.tl1.p">No filter forms or checkbox builders. You describe your ideal customer in a sentence, and we work from that, the way you'd brief a colleague.</p></div></div>
-      <div class="tl-step reveal"><div class="tl-n">02</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl2.tag">Argus · Lead Lists</span><h3><span data-i18n="about.tl2.h">We research</span> <em data-i18n="about.tl2.he">the signals.</em></h3><p data-i18n="about.tl2.p">Argus surfaces the accounts that are actually moving, then writes out why, so a fit score never arrives without a reason in plain language.</p></div></div>
-      <div class="tl-step reveal"><div class="tl-n">03</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl3.tag">Lynx · Account Intelligence</span><h3><span data-i18n="about.tl3.h">We map</span> <em data-i18n="about.tl3.he">the account.</em></h3><p data-i18n="about.tl3.p">For priority accounts, Lynx builds the picture an SDR can't pull from a CRM, and describes the way in as a person would, not as an org chart to decode.</p></div></div>
-      <div class="tl-step reveal"><div class="tl-n">04</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl4.tag">72-hour SLA</span><h3><span data-i18n="about.tl4.h">You get it</span> <em data-i18n="about.tl4.he">paste-ready.</em></h3><p data-i18n="about.tl4.p">Every line reads like a human wrote it, because the whole point is language you can use, not a dashboard you have to interpret.</p></div></div>
+      <div class="tl-step reveal"><div class="tl-n">02</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl2.tag">Argus · Lead Lists</span><h3><span data-i18n="about.tl2.h">We turn data</span> <em data-i18n="about.tl2.he">into intent.</em></h3><p data-i18n="about.tl2.p">A job posting, a funding round and a new hire mean little on their own. We cross-reference them, weigh them against your ICP and read what they add up to: this company is moving, and this is why now is the moment.</p></div></div>
+      <div class="tl-step reveal"><div class="tl-n">03</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl3.tag">Lynx · Account Intelligence</span><h3><span data-i18n="about.tl3.h">We reconstruct</span> <em data-i18n="about.tl3.he">the whole picture.</em></h3><p data-i18n="about.tl3.p">On priority accounts we go further: who really decides, who influences the budget, where the opening is. It's the picture no CRM holds, because it doesn't exist anywhere until someone builds it.</p></div></div>
+      <div class="tl-step reveal"><div class="tl-n">04</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl4.tag">72-hour delivery</span><h3><span data-i18n="about.tl4.h">You get the answer,</span> <em data-i18n="about.tl4.he">not the homework.</em></h3><p data-i18n="about.tl4.p">What lands in Collab is the conclusion of the analysis, not its raw material: which companies, why now, who to speak to and how to open. The interpretation is already done.</p></div></div>
     </div>
   </div>
 </section>
@@ -384,10 +481,40 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
     <h2 class="h2 reveal"><span data-i18n="guar.h1">Promises we'll</span><br/><em data-i18n="guar.h2">put in writing.</em></h2>
     <div class="guarantees-grid">
       <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:refresh-cw"></iconify-icon></div><h4 data-i18n="guar.1t">Free re-run</h4><p data-i18n="guar.1p">If more than 20% of a list falls outside your agreed ICP, we re-run it at no charge. You tell us what's off, we go back to the research.</p></div>
-      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:shield-check"></iconify-icon></div><h4 data-i18n="guar.2t">Reviewed by hand</h4><p data-i18n="guar.2p">An analyst reads every brief and list before it ships. No unchecked scrape leaves the building without a person behind it.</p></div>
-      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:globe"></iconify-icon></div><h4 data-i18n="guar.3t">Sources you can cite</h4><p data-i18n="guar.3p">Every trigger traces back to something public: research you could defend in a meeting, not a black-box score.</p></div>
+      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:shield-check"></iconify-icon></div><h4 data-i18n="guar.2t">Interpreted by an analyst</h4><p data-i18n="guar.2p">A person reads every list and every brief before it ships, and decides what the signals actually mean for your deal. Nothing leaves here as raw data.</p></div>
+      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:globe"></iconify-icon></div><h4 data-i18n="guar.3t">Our reading, your evidence</h4><p data-i18n="guar.3p">Anyone can find a job posting. The work is knowing which ones mean budget is moving. We do that reading for you, and cite the evidence behind it so you can defend the call in a meeting.</p></div>
       <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:clock"></iconify-icon></div><h4 data-i18n="guar.4t">72 hours, scheduled</h4><p data-i18n="guar.4p">A confirmed brief turns into a delivered shortlist in three days, slotted on the calendar and not sitting in a queue.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <p class="eyebrow reveal" data-i18n="price.eyebrow">What it costs</p>
+    <h2 class="h2 reveal"><span data-i18n="price.h1">The price follows</span><br/><em data-i18n="price.h2">the brief.</em></h2>
+    <p class="section-lead reveal" data-i18n="price.lead">We don't publish a price list, because no two briefs are the same. What a run costs depends on how wide the market is, how deep you need to go, and how often you need it.</p>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <div class="price-ic"><iconify-icon icon="lucide:sliders-horizontal"></iconify-icon></div>
+        <h4 data-i18n="price.f1t">What moves the number</h4>
+        <p data-i18n="price.f1p">The size of your target market, whether you need Argus alone or Lynx account maps and a strategic brief on top, and whether it's one run or a monthly rhythm.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-ic"><iconify-icon icon="lucide:layout-grid"></iconify-icon></div>
+        <h4 data-i18n="price.f2t">Collab is always included</h4>
+        <p data-i18n="price.f2p">Every engagement comes with the shared workspace at no extra cost, so lists and briefs land somewhere your team can actually use them. It can also be taken on its own.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-ic"><iconify-icon icon="lucide:message-square-text"></iconify-icon></div>
+        <h4 data-i18n="price.f3t">How we get to a number</h4>
+        <p data-i18n="price.f3p">Send us your ICP and what you're trying to hit. We reply within 24 hours with a scoped proposal, cost included, and you decide before anything is committed.</p>
+      </div>
+    </div>
+    <div class="price-note reveal">
+      <iconify-icon icon="lucide:info"></iconify-icon>
+      <span data-i18n="price.note">One-off runs and monthly retainers both exist. Which one fits is part of the same conversation, not a decision you have to make upfront.</span>
+    </div>
+    <div class="reveal" style="margin-top:28px;"><a href="contact.html" class="btn btn-primary"><span data-i18n="price.cta">Send a brief, get a price</span> <span class="arr">→</span></a></div>
   </div>
 </section>
 
@@ -406,11 +533,10 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 
 <footer class="footer">
   <div class="container footer-inner">
-    <a href="index.html" class="footer-logo">SIFT</a>
+    <a href="index.html" class="footer-logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="7.5" stroke="currentColor" stroke-width="1.8"></circle><polyline points="7.5,11.5 4.5,16 7.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline><polyline points="24.5,11.5 27.5,16 24.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg><span>SIFT</span></a>
     <nav class="footer-nav">
       <a href="products.html" class="footer-link" data-i18n="nav.products">Products</a>
       <a href="about.html" class="footer-link" data-i18n="nav.how">How it works</a>
-      <a href="pricing.html" class="footer-link" data-i18n="nav.pricing">Pricing</a>
       <a href="contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
     </nav>
     <a href="https://www.linkedin.com/company/sift-aicompany/" class="footer-social" target="_blank" rel="noopener" aria-label="SIFT on LinkedIn"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
@@ -427,8 +553,55 @@ if(hamburger&&mobilePanel){
   mobilePanel.querySelectorAll('.nav-link,.btn').forEach(el=>el.addEventListener('click',()=>{mobilePanel.classList.remove('open');hamburger.classList.remove('open');}));
 }
 (function(){const path=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.nav-link').forEach(a=>{if(a.getAttribute('href')===path)a.classList.add('active');});})();
-const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>{if(!el.classList.contains('in'))io.observe(el);});
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const items = [...document.querySelectorAll('.reveal')];
+  if(reduce){ items.forEach(el=>el.classList.add('in','settled')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      const sibs = [...(el.parentElement ? el.parentElement.children : [])].filter(c=>c.classList.contains('reveal') && !c.classList.contains('in'));
+      const i = Math.max(0, sibs.indexOf(el));
+      el.style.transitionDelay = (Math.min(i,5)*60)+'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+      // clear transient styles once done so nothing stays as a containing block
+      setTimeout(()=>{ el.style.transitionDelay=''; el.classList.add('settled'); }, 900 + i*60);
+    });
+  },{threshold:0.08, rootMargin:'0px 0px -8% 0px'});
+  items.forEach(el=>{ if(!el.classList.contains('in')) io.observe(el); });
+  // safety net: anything still hidden after load (e.g. observer missed it) is shown
+  window.addEventListener('load', ()=>{ setTimeout(()=>{
+    document.querySelectorAll('.reveal:not(.in)').forEach(el=>{
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    });
+  }, 400); });
+})();
+/* section depth on scroll — opacity only, never on hero/footer, always reset when in view */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const secs = [...document.querySelectorAll('section')].filter((s,i)=> i>0 && s.offsetHeight>260 && !s.querySelector('[style*="sticky"], .sticky-visual'));
+  if(!secs.length) return;
+  const onScroll = ()=>{
+    const vh = window.innerHeight;
+    // near the end of the page nothing should fade — the last stretch stays fully readable
+    const nearEnd = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - vh*0.9);
+    const atBottom = nearEnd;
+    secs.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      if(atBottom || r.bottom < -200 || r.top > vh){ s.style.opacity=''; return; }
+      const out = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height*0.9)));
+      s.style.opacity = String(1 - out*0.45);
+    });
+  };
+  let tick=false;
+  const run=()=>{ if(!tick){ tick=true; requestAnimationFrame(()=>{ onScroll(); tick=false; }); } };
+  window.addEventListener('scroll', run, {passive:true});
+  window.addEventListener('resize', run, {passive:true});
+  onScroll();
+})();
 
 /* ─── i18n ─────────────────────────────────────────────── */
 const I18N = {
@@ -440,8 +613,8 @@ const I18N = {
     "hero.meta1":"ARGUS ONLINE","hero.meta2":"72H DELIVERY SLA","hero.meta3":"EUROPEAN COVERAGE",
     "trust.label":"Built for B2B revenue teams across Europe",
     "stats.1":"Delivery SLA","stats.2":"Fit score per contact","stats.3":"Accounts mapped per run","stats.4":"Signal feed per account",
-    "method.eyebrow":"Why teams trust the work","method.h1":"Research you can read,","method.h2":"not decode.",
-    "method.lead":"Most data tools hand you rows, codes, and dashboards to interpret. We don't. Every SIFT deliverable is written in plain, natural language: the reason an account is worth a call, said the way a person would say it.",
+    "method.eyebrow":"Where the value is","method.h1":"We don't find data.","method.h2":"We read it.",
+    "method.lead":"The raw material is public: anyone can see a hiring page or a funding round. The value is in what those fragments mean together. We connect them, weigh them, and turn them into a buying signal, written in plain language: why this company, why now, and where to start.",
     "nla.badge":"Natural-Language Analysis · NLA","nla.h1":"Plain language is","nla.h2":"the whole point.",
     "nla.body":"A fit score tells you <strong>that</strong> an account matters. NLA tells you <strong>why</strong>, in a sentence your rep can paste straight into an email. No legend to learn, no black box to trust.",
     "nla.demoLabel":"One lead, read two ways","nla.rawK":"Raw data","nla.sift":"SIFT / NLA",
@@ -450,89 +623,103 @@ const I18N = {
     "process.1t":"Define the fit","process.1p":"We align on your ICP: firmographics, tech, triggers, and roles that mark a real prospect.",
     "process.2t":"Research the signals","process.2p":"Argus surfaces accounts that are moving: hiring, funding, tech adoption, intent, all public.",
     "process.3t":"Map the account","process.3p":"Lynx builds the picture on your top accounts: stakeholders, structure, cleanest way in.",
-    "process.4t":"Deliver, ready to use","process.4p":"A scored list, Lynx workspaces, and a written brief, delivered within 72 hours and ready to sequence.",
+    "process.4t":"Delivered into Collab","process.4p":"Everything lands in Collab, your shared workspace: the scored list, the account maps, the written brief. Delivered within 72 hours, ready to sequence.",
     "engines.eyebrow":"Three engines","engines.h1":"One stack.","engines.h2":"Full coverage.",
-    "engines.lead":"Start with Argus for the list. Add Lynx when you need depth on a handful of accounts. Add Strategist when one deal is worth a full brief.",
+    "engines.lead":"Start with Argus for the list. Add Lynx when a deal is worth a deep account map or a full strategic brief.",
     "engines.tag1":"01 · Lead Lists","engines.sub1":"Precision lead lists","engines.p1":"Built to match your ICP. Every contact arrives with a fit score, a cited reason they're buying now, and a one-line way in.",
     "engines.li1a":"Up to 20 qualified leads per run","engines.li1b":"Per-contact fit score (0–100)","engines.li1c":"Buying trigger, cited and sourced",
     "engines.tag2":"02 · Account Intel","engines.sub2":"Deep account mapping","engines.p2":"A dedicated workspace for each of your five warmest accounts: who decides, how they're connected, what's changed.",
     "engines.li2a":"5 workspaces for priority accounts","engines.li2b":"Full decision-maker org chart","engines.li2c":"90-day signal feed + contextual chat",
     "engines.tag3":"03 · Strategic Brief","engines.sub3":"Full strategic brief","engines.p3":"One target company, taken apart properly: competitive picture, who holds the budget, a live session to walk it through.",
     "engines.li3a":"Deep-dive on one target company","engines.li3b":"Competitive landscape analysis","engines.li3c":"Direct analyst line for 30 days",
-    "engines.delivery":"Delivery","engines.d1":"PDF + DOCX in 72h","engines.d2":"Shared workspace links","engines.d3":"Document + live session",
+    "engines.delivery":"Delivery","engines.d1":"PDF + DOCX, filed in Collab","engines.d2":"Account files, filed in Collab","engines.d3":"Document + live session",
+    "price.eyebrow":"What it costs","price.h1":"The price follows","price.h2":"the brief.",
+    "price.lead":"We don't publish a price list, because no two briefs are the same. What a run costs depends on how wide the market is, how deep you need to go, and how often you need it.",
+    "price.f1t":"What moves the number","price.f1p":"The size of your target market, whether you need Argus alone or Lynx account maps and a strategic brief on top, and whether it's one run or a monthly rhythm.",
+    "price.f2t":"Collab is always included","price.f2p":"Every engagement comes with the shared workspace at no extra cost, so lists and briefs land somewhere your team can actually use them. It can also be taken on its own.",
+    "price.f3t":"How we get to a number","price.f3p":"Send us your ICP and what you're trying to hit. We reply within 24 hours with a scoped proposal, cost included, and you decide before anything is committed.",
+    "price.note":"One-off runs and monthly retainers both exist. Which one fits is part of the same conversation, not a decision you have to make upfront.",
+    "price.cta":"Send a brief, get a price",
     "guar.eyebrow":"What we stand behind","guar.h1":"Promises we'll","guar.h2":"put in writing.",
     "guar.1t":"Free re-run","guar.1p":"If more than 20% of a list falls outside your agreed ICP, we re-run it at no charge. You tell us what's off, we go back to the research.",
-    "guar.2t":"Reviewed by hand","guar.2p":"An analyst reads every brief and list before it ships. No unchecked scrape leaves the building without a person behind it.",
-    "guar.3t":"Sources you can cite","guar.3p":"Every trigger traces back to something public: research you could defend in a meeting, not a black-box score.",
+    "guar.2t":"Interpreted by an analyst","guar.2p":"A person reads every list and every brief before it ships, and decides what the signals actually mean for your deal. Nothing leaves here as raw data.",
+    "guar.3t":"Our reading, your evidence","guar.3p":"Anyone can find a job posting. The work is knowing which ones mean budget is moving. We do that reading for you, and cite the evidence behind it so you can defend the call in a meeting.",
     "guar.4t":"72 hours, scheduled","guar.4p":"A confirmed brief turns into a delivered shortlist in three days, slotted on the calendar and not sitting in a queue.",
-    "who.lead":"SIFT reads the signals a company leaves in public: who they're hiring, what they're funding, who just joined. It checks them by hand and turns them into a shortlist your reps can actually open a call with.",
+    "who.lead":"A hiring page is data. Eleven engineers hired six weeks after a new sales director arrived is a signal. Turning the first into the second is the work we do: reading scattered public traces and reconstructing what they mean for your deal.",
     "who.1t":"Who you're working with","who.1p":"Your brief goes to one analyst, working across Europe, from first read to final list, with no handoffs and no offshore queue in between. The person who reads your brief is the person who builds it.",
-    "who.2t":"What we won't do","who.2p":"We won't invent a buying signal to pad a list, and we won't pass off a scrape as a relationship. If the fit isn't there, we tell you instead of filling the gap with noise.",
+    "who.2t":"What we won't do","who.2p":"We won't invent a buying signal to pad a list, and we won't hand you a data dump with a score on top. If the signals don't add up to a real opportunity, we say so instead of filling the gap with noise.",
     "cta.h1":"Ready to scope","cta.h2":"your first run?","cta.btn":"Scope your run","cta.note":"Reply within 24 hours",
     "footer.copy":"© 2026 SIFT · Signal-driven outbound research · Plain-language research, no jargon, no black box.",
     "about.h1a":"How we work.","about.h1b":"And who you're working with.",
-    "about.hero.desc":"No scraper dressed up as intelligence. Public signals, read by hand, turned into a shortlist your reps can use the same day.",
-    "about.who.eyebrow":"Who we are","about.who.h2":"We read the signals a company leaves in public <em>and turn them into a shortlist your reps can open a call with.</em>",
+    "about.hero.desc":"Not a scraper dressed up as intelligence. Public traces, interpreted by analysts, turned into buying signals your reps can act on the same day.",
+    "about.who.eyebrow":"Who we are","about.who.h2":"Anyone can find public data. <em>The work is reading it, and knowing which fragments add up to a company that's ready to buy.</em>",
     "about.who.1t":"Who you're working with","about.who.1p":"Your brief goes to one analyst, working across Europe, from first read to final list, with no handoffs and no offshore queue in between. The person who reads your brief is the person who builds it. That's deliberate: judgement doesn't outsource well.",
-    "about.who.2t":"What we won't do","about.who.2p":"We won't invent a buying signal to pad a list, and we won't pass off a scrape as a relationship. If the fit isn't there, we tell you instead of filling the gap with noise. Every signal we cite traces back to a public source you could check yourself.",
-    "about.method.eyebrow":"The method","about.method.h1":"From raw signal","about.method.h2":"to plain English.",
-    "about.method.lead":"Four steps, one throughline: at every stage we turn data into language a person can actually read and act on.",
+    "about.who.2t":"What we won't do","about.who.2p":"We won't invent a buying signal to pad a list, and we won't pass off a scrape as a relationship. Every account on your list is there because the research says it belongs.",
+    "about.method.eyebrow":"The method","about.method.h1":"From scattered traces","about.method.h2":"to a reason to call.",
+    "about.method.lead":"The public web is full of fragments. Four steps to turn them into something worth acting on: we collect, connect, weigh and interpret, and what reaches you is already a judgement, not a data set.",
     "about.tl1.tag":"With you · 30 minutes","about.tl1.h":"We define the fit","about.tl1.he":"in your words.","about.tl1.p":"No filter forms or checkbox builders. You describe your ideal customer in a sentence, and we work from that, the way you'd brief a colleague.",
-    "about.tl2.tag":"Argus · Lead Lists","about.tl2.h":"We research","about.tl2.he":"the signals.","about.tl2.p":"Argus surfaces the accounts that are actually moving, then writes out why, so a fit score never arrives without a reason in plain language.",
-    "about.tl3.tag":"Lynx · Account Intelligence","about.tl3.h":"We map","about.tl3.he":"the account.","about.tl3.p":"For priority accounts, Lynx builds the picture an SDR can't pull from a CRM, and describes the way in as a person would, not as an org chart to decode.",
-    "about.tl4.tag":"72-hour SLA","about.tl4.h":"You get it","about.tl4.he":"paste-ready.","about.tl4.p":"Every line reads like a human wrote it, because the whole point is language you can use, not a dashboard you have to interpret.",
+    "about.tl2.tag":"Argus · Lead Lists","about.tl2.h":"We turn data","about.tl2.he":"into intent.","about.tl2.p":"A job posting, a funding round and a new hire mean little on their own. We cross-reference them, weigh them against your ICP and read what they add up to: this company is moving, and this is why now is the moment.",
+    "about.tl3.tag":"Lynx · Account Intelligence","about.tl3.h":"We reconstruct","about.tl3.he":"the whole picture.","about.tl3.p":"On priority accounts we go further: who really decides, who influences the budget, where the opening is. It's the picture no CRM holds, because it doesn't exist anywhere until someone builds it.",
+    "about.tl4.tag":"72-hour delivery","about.tl4.h":"You get the answer,","about.tl4.he":"not the homework.","about.tl4.p":"What lands in Collab is the conclusion of the analysis, not its raw material: which companies, why now, who to speak to and how to open. The interpretation is already done.",
     "about.cta.h1":"Send a brief.","about.cta.h2":"See the work for yourself.","about.cta.btn2":"See a sample brief"
   },
   it: {
-    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Richiedi una ricerca →",
-    "hero.eyebrow":"Ricerca sui segnali · Europea","hero.title1":"La tua pipeline,","hero.title2":"guidata dai segnali.",
-    "hero.body":"SIFT analizza i tuoi account più adatti e consegna al tuo team una shortlist valutata e pronta all'uso, così ogni commerciale arriva alla chiamata già preparato. Niente liste raschiate, niente supposizioni.",
-    "hero.cta1":"Richiedi la tua ricerca","hero.cta2":"Guarda un brief di esempio",
-    "hero.meta1":"ARGUS ATTIVO","hero.meta2":"SLA 72H","hero.meta3":"COPERTURA EUROPEA",
-    "trust.label":"Pensato per i team revenue B2B in tutta Europa",
-    "stats.1":"SLA di consegna","stats.2":"Punteggio per contatto","stats.3":"Account mappati per ricerca","stats.4":"Segnali per account",
-    "method.eyebrow":"Perché i team si fidano del lavoro","method.h1":"Ricerca da leggere,","method.h2":"non da decifrare.",
-    "method.lead":"La maggior parte degli strumenti dati ti consegna righe, codici e dashboard da interpretare. Noi no. Ogni deliverable SIFT è scritto in linguaggio naturale e chiaro: il motivo per cui un account merita una chiamata, detto come lo direbbe una persona.",
-    "nla.badge":"Analisi in Linguaggio Naturale · NLA","nla.h1":"Il linguaggio chiaro è","nla.h2":"tutto il punto.",
-    "nla.body":"Un punteggio ti dice <strong>che</strong> un account conta. La NLA ti dice <strong>perché</strong>, in una frase che il tuo commerciale può incollare direttamente in un'email. Nessuna legenda da imparare, nessuna scatola nera da cui fidarsi.",
-    "nla.demoLabel":"Un lead, letto in due modi","nla.rawK":"Dato grezzo","nla.sift":"SIFT / NLA",
-    "nla.demoV":"«Hanno appena raccolto un Series C e stanno assumendo 11 ingegneri. Il CRO sta ricostruendo l'outbound proprio ora. Punta su quanto riduci i tempi di ramp-up.»",
-    "process.eyebrow":"Il processo","process.h1":"Dal segnale alla sequenza","process.h2":"in quattro passi.",
-    "process.1t":"Definiamo il fit","process.1p":"Ci allineiamo sul tuo ICP: dati firmografici, stack tecnologico, trigger e ruoli che segnano un vero prospect.",
-    "process.2t":"Analizziamo i segnali","process.2p":"Argus individua gli account in movimento: assunzioni, funding, adozione tecnologica, intent, tutto pubblico.",
-    "process.3t":"Mappiamo l'account","process.3p":"Lynx costruisce il quadro sui tuoi account principali: stakeholder, struttura, il modo più pulito per entrare.",
-    "process.4t":"Consegniamo, pronto all'uso","process.4p":"Una lista valutata, gli spazi Lynx e un brief scritto, entro 72 ore, pronto da sequenziare.",
-    "engines.eyebrow":"Tre motori","engines.h1":"Un solo stack.","engines.h2":"Copertura completa.",
-    "engines.lead":"Inizia con Argus per la lista. Aggiungi Lynx quando serve profondità su alcuni account. Aggiungi Strategist quando un deal merita un brief completo.",
-    "engines.tag1":"01 · Liste di lead","engines.sub1":"Liste di lead precise","engines.p1":"Costruite sul tuo ICP. Ogni contatto arriva con un punteggio, un motivo citato per cui sta comprando ora, e un modo per entrare in una riga.",
-    "engines.li1a":"Fino a 20 lead qualificati per ricerca","engines.li1b":"Punteggio per contatto (0–100)","engines.li1c":"Trigger d'acquisto, citato e con fonte",
-    "engines.tag2":"02 · Account Intelligence","engines.sub2":"Mappatura approfondita degli account","engines.p2":"Uno spazio dedicato per ciascuno dei tuoi cinque account più caldi: chi decide, come sono connessi, cos'è cambiato.",
-    "engines.li2a":"5 spazi per gli account prioritari","engines.li2b":"Organigramma completo dei decisori","engines.li2c":"Feed segnali a 90 giorni + chat contestuale",
-    "engines.tag3":"03 · Brief strategico","engines.sub3":"Brief strategico completo","engines.p3":"Un'azienda target, analizzata a fondo: quadro competitivo, chi detiene davvero il budget, una sessione live per illustrarlo al team.",
-    "engines.li3a":"Approfondimento su un'azienda target","engines.li3b":"Analisi del panorama competitivo","engines.li3c":"Linea diretta con l'analista per 30 giorni",
-    "engines.delivery":"Consegna","engines.d1":"PDF + DOCX in 72h","engines.d2":"Link agli spazi condivisi","engines.d3":"Documento + sessione live",
-    "guar.eyebrow":"Le nostre garanzie","guar.h1":"Promesse che mettiamo","guar.h2":"per iscritto.",
-    "guar.1t":"Rilavorazione gratuita","guar.1p":"Se oltre il 20% di una lista è fuori dall'ICP concordato, la rifacciamo senza costi aggiuntivi. Ci dici cosa non va, noi torniamo alla ricerca.",
-    "guar.2t":"Revisionato a mano","guar.2p":"Un analista legge ogni brief e ogni lista prima che venga consegnata. Nessuno scraping non verificato esce dai nostri uffici senza una persona che lo abbia controllato.",
-    "guar.3t":"Fonti che puoi citare","guar.3p":"Ogni trigger risale a qualcosa di pubblico: ricerca che potresti difendere in una riunione, non un punteggio a scatola chiusa.",
-    "guar.4t":"72 ore, pianificate","guar.4p":"Un brief confermato diventa una shortlist consegnata in tre giorni, messa in calendario, non lasciata in coda.",
-    "who.lead":"SIFT legge i segnali che un'azienda lascia in pubblico: chi sta assumendo, cosa sta finanziando, chi è appena entrato. Li verifica a mano, e li trasforma in una shortlist con cui i tuoi commerciali possono davvero aprire una chiamata.",
-    "who.1t":"Con chi stai lavorando","who.1p":"Il tuo brief arriva a un solo analista, che lavora in tutta l'area europea, dalla prima lettura alla lista finale, senza passaggi di mano né code esternalizzate nel mezzo. Chi legge il tuo brief è chi lo costruisce.",
-    "who.2t":"Cosa non facciamo","who.2p":"Non inventiamo un segnale d'acquisto per riempire una lista, e non spacciamo uno scraping per una relazione. Se il fit non c'è, te lo diciamo invece di riempire il vuoto con rumore.",
-    "cta.h1":"Pronto ad avviare","cta.h2":"la tua prima ricerca?","cta.btn":"Richiedi la tua ricerca","cta.note":"Risposta entro 24 ore",
-    "footer.copy":"© 2026 SIFT · Ricerca outbound guidata dai segnali · Linguaggio chiaro, niente gergo, niente scatola nera.",
-    "about.h1a":"Come lavoriamo.","about.h1b":"E con chi stai lavorando.",
-    "about.hero.desc":"Nessuno scraper travestito da intelligence. Segnali pubblici, letti a mano, trasformati in una shortlist che i tuoi commerciali possono usare lo stesso giorno.",
-    "about.who.eyebrow":"Chi siamo","about.who.h2":"Leggiamo i segnali che un'azienda lascia in pubblico <em>e li trasformiamo in una shortlist con cui i tuoi commerciali possono aprire una chiamata.</em>",
-    "about.who.1t":"Con chi stai lavorando","about.who.1p":"Il tuo brief arriva a un solo analista, che lavora in tutta l'area europea, dalla prima lettura alla lista finale, senza passaggi di mano né code esternalizzate nel mezzo. Chi legge il tuo brief è chi lo costruisce. È una scelta deliberata: il giudizio non si esternalizza bene.",
-    "about.who.2t":"Cosa non facciamo","about.who.2p":"Non inventiamo un segnale d'acquisto per riempire una lista, e non spacciamo uno scraping per una relazione. Se il fit non c'è, te lo diciamo invece di riempire il vuoto con rumore. Ogni segnale che citiamo risale a una fonte pubblica che potresti verificare tu stesso.",
-    "about.method.eyebrow":"Il metodo","about.method.h1":"Dal segnale grezzo","about.method.h2":"all'inglese semplice.",
-    "about.method.lead":"Quattro passi, un solo filo conduttore: a ogni fase trasformiamo i dati in un linguaggio che una persona può davvero leggere e su cui può agire.",
-    "about.tl1.tag":"Con te · 30 minuti","about.tl1.h":"Definiamo il fit","about.tl1.he":"con le tue parole.","about.tl1.p":"Niente moduli a filtri o checklist. Descrivi il tuo cliente ideale in una frase, e noi lavoriamo da lì, come faresti con un collega.",
-    "about.tl2.tag":"Argus · Liste di lead","about.tl2.h":"Analizziamo","about.tl2.he":"i segnali.","about.tl2.p":"Argus individua gli account realmente in movimento, poi scrive il perché, così un punteggio non arriva mai senza un motivo in linguaggio chiaro.",
-    "about.tl3.tag":"Lynx · Account Intelligence","about.tl3.h":"Mappiamo","about.tl3.he":"l'account.","about.tl3.p":"Per gli account prioritari, Lynx costruisce il quadro che un SDR non può ricavare da un CRM, e descrive il modo per entrare come lo farebbe una persona, non come un organigramma da decifrare.",
-    "about.tl4.tag":"SLA 72 ore","about.tl4.h":"Lo ricevi","about.tl4.he":"pronto da incollare.","about.tl4.p":"Ogni riga si legge come se l'avesse scritta una persona, perché il punto è proprio un linguaggio utilizzabile, non una dashboard da interpretare.",
-    "about.cta.h1":"Mandaci un brief.","about.cta.h2":"Guarda tu stesso il lavoro.","about.cta.btn2":"Guarda un brief di esempio"
+    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Raccontaci cosa cerchi →",
+    "hero.eyebrow":"Ricerca basata sui segnali · Europa","hero.title1":"La tua pipeline,","hero.title2":"guidata dai segnali.",
+    "hero.body":"SIFT individua le aziende più in linea con quello che vendi e consegna al tuo team una lista già valutata e pronta da usare, così chi chiama sa già con chi sta parlando e perché. Niente liste comprate, niente telefonate al buio.",
+    "hero.cta1":"Raccontaci cosa cerchi","hero.cta2":"Vedi un esempio concreto",
+    "hero.meta1":"ARGUS ATTIVO","hero.meta2":"CONSEGNA IN 72 ORE","hero.meta3":"COPERTURA EUROPEA",
+    "trust.label":"Al servizio dei team commerciali B2B in tutta Europa",
+    "stats.1":"Tempi di consegna","stats.2":"Punteggio per contatto","stats.3":"Aziende studiate per ricerca","stats.4":"Segnali per azienda",
+    "method.eyebrow":"Dove sta il valore","method.h1":"Non troviamo dati.","method.h2":"Li interpretiamo.",
+    "method.lead":"La materia prima è pubblica: un annuncio di lavoro o un round di finanziamento li vede chiunque. Il valore sta nel capire cosa significano messi insieme. Noi li colleghiamo, li pesiamo e li trasformiamo in un segnale d'acquisto, scritto in parole chiare: perché proprio questa azienda, perché adesso e da dove partire.",
+    "nla.badge":"Analisi in Linguaggio Naturale · NLA","nla.h1":"Parlare chiaro","nla.h2":"è tutto il senso del lavoro.",
+    "nla.body":"Un punteggio ti dice <strong>quali</strong> aziende contano. La NLA ti dice <strong>perché</strong>, in una frase che il tuo commerciale può usare così com'è nella prima email. Nessuna legenda da studiare, nessun algoritmo da prendere per buono.",
+    "nla.demoLabel":"Lo stesso contatto, letto in due modi","nla.rawK":"Come lo vedono gli altri","nla.sift":"SIFT / NLA",
+    "nla.demoV":"«Hanno appena chiuso un round Series C e stanno assumendo 11 ingegneri. Il direttore commerciale sta rifacendo tutta la macchina di vendita in questo momento: parti da quanto fai rendere prima un nuovo venditore.»",
+    "process.eyebrow":"Il processo","process.h1":"Dal primo segnale","process.h2":"alla prima chiamata.",
+    "process.1t":"Capiamo chi cerchi","process.1p":"Mettiamo a fuoco insieme il tuo cliente ideale: settore, dimensione, tecnologie usate, segnali da tenere d'occhio e le figure con cui vale la pena parlare.",
+    "process.2t":"Leggiamo i segnali","process.2p":"Argus individua le aziende che si stanno muovendo: chi assume, chi ha appena raccolto capitali, chi cambia tecnologie. Tutte informazioni pubbliche.",
+    "process.3t":"Studiamo l'azienda","process.3p":"Su quelle che contano davvero, Lynx ricostruisce il quadro completo: chi decide, come è organizzata l'azienda e qual è la porta d'ingresso più facile.",
+    "process.4t":"Ti consegniamo tutto in Collab","process.4p":"Lista valutata, schede aziende e analisi scritta arrivano tutte in Collab, lo spazio di lavoro del tuo team. Entro 72 ore, già pronte da usare.",
+    "engines.eyebrow":"Tre strumenti","engines.h1":"Tre strumenti.","engines.h2":"Un solo modo di lavorare.",
+    "engines.lead":"Parti da Argus per avere la lista. Aggiungi Lynx quando una trattativa merita di essere studiata a fondo. Collab è incluso in entrambi, ma puoi anche prenderlo da solo.",
+    "engines.tag1":"Liste di contatti","engines.sub1":"Liste di contatti mirate","engines.p1":"Costruite su misura del tuo cliente ideale. Ogni contatto arriva con un punteggio, il motivo documentato per cui è il momento giusto per contattarlo e una frase con cui aprire il discorso.",
+    "engines.li1a":"Fino a 20 contatti qualificati per ricerca","engines.li1b":"Punteggio per contatto (0–100)","engines.li1c":"Il motivo per cui è pronto a comprare, con la fonte",
+    "engines.tag2":"Schede aziende","engines.sub2":"Mappatura approfondita degli account","engines.p2":"Uno spazio dedicato per ciascuno dei tuoi cinque account più caldi: chi decide, come sono connessi, cos'è cambiato.",
+    "engines.li2a":"5 schede per le aziende prioritarie","engines.li2b":"Organigramma completo dei decisori","engines.li2c":"Novità sull'azienda degli ultimi 90 giorni, sempre aggiornate",
+    "engines.tag3":"Spazio di lavoro","engines.sub3":"Incluso in ogni pacchetto","engines.p3":"Lo spazio condiviso dove arriva tutto quello che ti consegniamo, insieme a note, file, attività e calendario del tuo team.",
+    "engines.li3a":"Tutto archiviato in automatico, azienda per azienda","engines.li3b":"Attività assegnate ai tuoi venditori, con scadenza","engines.li3c":"Calendario condiviso e conversazioni per ogni azienda",
+    "engines.delivery":"Consegna","engines.d1":"PDF e Word, archiviati in Collab","engines.d2":"Schede aziende, archiviate in Collab","engines.d3":"Documento + sessione live",
+    "price.eyebrow":"Quanto costa","price.h1":"Il prezzo dipende","price.h2":"da cosa ti serve.",
+    "price.lead":"Non pubblichiamo listini, perché non esistono due richieste uguali. Quanto costa una ricerca dipende da quanto è ampio il mercato da coprire, da quanto vuoi scendere in profondità e da ogni quanto tempo ti serve.",
+    "price.f1t":"Da cosa dipende il prezzo","price.f1p":"Quanto è grande il mercato da coprire, se ti basta Argus o vuoi anche le schede aziende e l'analisi strategica di Lynx, e se ti serve una ricerca sola o un lavoro continuativo.",
+    "price.f2t":"Collab è sempre incluso","price.f2p":"Lo spazio di lavoro condiviso è compreso in ogni collaborazione, senza costi aggiuntivi: così tutto quello che ti consegniamo arriva dove il tuo team lo usa davvero. Se ti interessa solo quello, puoi prenderlo anche da solo.",
+    "price.f3t":"Come arriviamo a un numero","price.f3p":"Raccontaci che clienti cerchi e quale obiettivo vuoi raggiungere. Entro 24 ore ti mandiamo una proposta su misura con il costo, e decidi tu senza alcun impegno.",
+    "price.note":"Puoi scegliere una ricerca singola o un lavoro continuativo mese per mese. Quale sia la formula giusta lo capiamo insieme: non devi deciderlo prima di parlarci.",
+    "price.cta":"Raccontaci cosa cerchi, ti diamo un prezzo",
+    "guar.eyebrow":"Le nostre garanzie","guar.h1":"Quello che mettiamo","guar.h2":"nero su bianco.",
+    "guar.1t":"La rifacciamo gratis","guar.1p":"Se più di un contatto su cinque non corrisponde a quello che avevamo concordato, rifacciamo la ricerca senza farti pagare nulla. Tu ci dici cosa non va, noi ci rimettiamo al lavoro.",
+    "guar.2t":"Interpretato da un analista","guar.2p":"Una persona legge ogni lista e ogni analisi prima che ti arrivi, e stabilisce cosa significano davvero quei segnali per la tua trattativa. Da qui non esce mai un dato grezzo.",
+    "guar.3t":"L'interpretazione è nostra, le prove sono tue","guar.3p":"Un annuncio di lavoro lo trova chiunque. Il lavoro vero è capire quali annunci significano che si è mosso un budget. Quella lettura la facciamo noi, e ti diamo le prove su cui si basa, così puoi difenderla in riunione.",
+    "guar.4t":"Tre giorni, non uno di più","guar.4p":"Dal momento in cui confermi il brief, hai la lista in mano entro 72 ore. La mettiamo in calendario, non in coda.",
+    "who.lead":"Un annuncio di lavoro è un dato. Undici ingegneri assunti sei settimane dopo l'arrivo di un nuovo direttore commerciale è un segnale. Trasformare il primo nel secondo è esattamente il nostro lavoro: leggere tracce pubbliche sparse e ricostruire cosa significano per la tua trattativa.",
+    "who.1t":"Con chi stai lavorando","who.1p":"Il tuo brief viene seguito da un solo analista, dalla prima lettura fino alla lista finale. Nessun passaggio di consegne, nessun call center dall'altra parte del mondo: chi legge la tua richiesta è la stessa persona che ci lavora.",
+    "who.2t":"Cosa non facciamo","who.2p":"Non ci inventiamo segnali per allungare una lista e non ti consegniamo un mucchio di dati con un punteggio sopra. Se i segnali non compongono un'occasione vera, te lo diciamo invece di riempire il vuoto con rumore.",
+    "cta.h1":"Pronto a far partire","cta.h2":"la prima ricerca?","cta.btn":"Raccontaci cosa cerchi","cta.note":"Risposta entro 24 ore",
+    "footer.copy":"© 2026 SIFT · Ricerca commerciale guidata dai segnali · Parole chiare, niente gergo, niente scatole nere.",
+    "about.h1a":"Come lavoriamo.","about.h1b":"E chi ci lavora.",
+    "about.hero.desc":"Non un raccoglitore di dati spacciato per intelligenza. Tracce pubbliche, interpretate da analisti, trasformate in segnali d'acquisto su cui i tuoi commerciali possono agire lo stesso giorno.",
+    "about.who.eyebrow":"Chi siamo","about.who.h2":"I dati pubblici li trova chiunque. <em>Il lavoro sta nel leggerli, e nel capire quali frammenti compongono un'azienda pronta a comprare.</em>",
+    "about.who.1t":"Con chi stai lavorando","about.who.1p":"Il tuo brief viene seguito da un solo analista, dalla prima lettura fino alla lista finale. Nessun passaggio di consegne, nessun call center dall'altra parte del mondo: chi legge la tua richiesta è la stessa persona che ci lavora. È una scelta precisa, perché il giudizio non si può appaltare.",
+    "about.who.2t":"Cosa non facciamo","about.who.2p":"Non ci inventiamo segnali per allungare una lista e non spacciamo dati raccolti in automatico per contatti veri. Ogni azienda che trovi nella lista c'è perché la ricerca dice che ci deve stare.",
+    "about.method.eyebrow":"Il metodo","about.method.h1":"Da tracce sparse","about.method.h2":"a un motivo per chiamare.",
+    "about.method.lead":"Il web pubblico è pieno di frammenti. Quattro passaggi per trasformarli in qualcosa su cui vale la pena agire: raccogliamo, colleghiamo, pesiamo e interpretiamo. Quello che ti arriva è già un giudizio, non un insieme di dati.",
+    "about.tl1.tag":"Con te · 30 minuti","about.tl1.h":"Capiamo chi cerchi","about.tl1.he":"con le tue parole.","about.tl1.p":"Niente moduli da compilare né caselle da spuntare. Ci descrivi il tuo cliente ideale come lo racconteresti a un collega, e noi partiamo da lì.",
+    "about.tl2.tag":"Argus · Liste di contatti","about.tl2.h":"Trasformiamo i dati","about.tl2.he":"in segnali d'intento.","about.tl2.p":"Un annuncio di lavoro, un round di finanziamento e una nuova assunzione, presi singolarmente, dicono poco. Noi li incrociamo, li pesiamo rispetto al tuo cliente ideale e leggiamo cosa compongono: questa azienda si sta muovendo, ed ecco perché adesso è il momento.",
+    "about.tl3.tag":"Lynx · Schede aziende","about.tl3.h":"Ricostruiamo","about.tl3.he":"il quadro completo.","about.tl3.p":"Sulle aziende prioritarie andiamo più a fondo: chi decide davvero, chi pesa sul budget, dove si apre uno spiraglio. È il quadro che nessun CRM contiene, perché prima che qualcuno lo costruisca non esiste da nessuna parte.",
+    "about.tl4.tag":"Consegna in 72 ore","about.tl4.h":"Ricevi la risposta,","about.tl4.he":"non i compiti da fare.","about.tl4.p":"Quello che arriva in Collab è la conclusione dell'analisi, non la sua materia prima: quali aziende, perché adesso, con chi parlare e come aprire il discorso. L'interpretazione l'abbiamo già fatta noi.",
+    "about.cta.h1":"Raccontaci cosa cerchi.","about.cta.h2":"Poi giudica tu il lavoro.","about.cta.btn2":"Vedi un esempio concreto"
   }
 };
 function applyLang(lang){
