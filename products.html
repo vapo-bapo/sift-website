@@ -4,21 +4,23 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Products — Argus, Lynx &amp; Collab | SIFT</title>
-<meta name="description" content="Three tools for B2B outbound: Argus builds scored lead lists, Lynx maps priority accounts and delivers strategic briefs, and Collab is the shared workspace where it all lands."/>
+<meta name="description" content="Three separate licences for B2B sales teams: Argus finds the companies, Lynx profiles them, and Collab is where your team works."/>
 <link rel="icon" href="assets/logo.svg"/>
-<meta name="theme-color" content="#FFFDF5"/>
+<meta name="theme-color" content="#1B1F23"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>
 :root{
-  --bg:#FFFDF5; --bg-secondary:#F9F5E8; --card:#FFFFFF;
-  --void:#15110b;
-  --gold:#c9943a; --gold-bright:#e0a94c; --gold-dim:#8a6618;
-  --red:#c2451f; --red-bright:#FF5A2E;
-  --text:#171310; --text-dim:#4a3b28; --text-faint:#6b5940;
-  --border:#e8dfc8; --border-strong:#cfc0a0;
+  --bg:#1B1F23; --bg-secondary:#262B30; --card:#262B30;
+  --void:#0D1013;
+  --gold:#E2B04A; --gold-bright:#EBC26E; --gold-dim:#E2B04A;
+  --red:#7FC0AB; --red-bright:#9AD3C1;
+  --signal:#7FC0AB; --signal-bright:#9AD3C1;
+  --text:#F0EBDD; --text-dim:#D8D3C6; --text-faint:#939A9F;
+  --border:#343A40; --border-strong:#454C54;
+  color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;overflow-x:hidden;}
@@ -31,7 +33,7 @@ ul{list-style:none;}
 .serif{font-family:'Playfair Display',serif;}
 .container{max-width:1240px;margin:0 auto;padding:0 32px;}
 .gold-text{
-  background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold) 50%,var(--red) 120%);
+  background:linear-gradient(135deg,#E2B04A 0%,#7FC0AB 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   padding:0.05em 0.15em 0.22em;display:inline-block;line-height:1.3;
 }
@@ -40,8 +42,8 @@ ul{list-style:none;}
 .noise{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0.025;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
-.orb-gold{background:radial-gradient(circle,rgba(201,148,58,0.16) 0%,rgba(201,148,58,0) 70%);animation:floatA 18s ease-in-out infinite;}
-.orb-red{background:radial-gradient(circle,rgba(194,69,31,0.10) 0%,rgba(194,69,31,0) 70%);animation:floatB 22s ease-in-out infinite;}
+.orb-gold{background:radial-gradient(circle,rgba(226,176,74,0.16) 0%,rgba(226,176,74,0.0) 70%);animation:floatA 18s ease-in-out infinite;}
+.orb-red{background:radial-gradient(circle,rgba(127,192,171,0.1) 0%,rgba(127,192,171,0.0) 70%);animation:floatB 22s ease-in-out infinite;}
 @keyframes floatA{0%,100%{transform:translateY(0) translateX(0) scale(1);}33%{transform:translateY(-30px) translateX(15px) scale(1.05);}66%{transform:translateY(15px) translateX(-20px) scale(0.95);}}
 @keyframes floatB{0%,100%{transform:translateY(0) translateX(0) rotate(0deg);}50%{transform:translateY(40px) translateX(-30px) rotate(5deg);}}
 
@@ -56,7 +58,7 @@ ul{list-style:none;}
 
 /* nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:20px 0;transition:background 400ms,backdrop-filter 400ms,border-color 400ms;border-bottom:1px solid transparent;}
-.nav.scrolled{background:rgba(255,253,245,0.90);backdrop-filter:blur(16px);border-color:var(--border);}
+.nav.scrolled{background:rgba(27,31,35,0.90);backdrop-filter:blur(16px);border-color:var(--border);}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;letter-spacing:-0.01em;color:var(--text);}
 .nav-links{display:flex;align-items:center;gap:30px;}
@@ -65,14 +67,14 @@ ul{list-style:none;}
 .lang-toggle{display:flex;align-items:center;gap:2px;border:1px solid var(--border-strong);border-radius:999px;padding:3px;}
 .lang-btn{padding:5px 11px;font-size:10.5px;font-weight:700;letter-spacing:0.04em;border-radius:999px;color:var(--text-faint);transition:all 200ms;cursor:pointer;}
 .lang-btn.active{background:var(--text);color:var(--bg);}
-.nav-cta{padding:10px 22px;border-radius:999px;font-size:12.5px;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--gold-dim));color:#fff;transition:transform 480ms cubic-bezier(0.22,1,0.36,1),box-shadow 480ms cubic-bezier(0.22,1,0.36,1);}
-.nav-cta:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 10px 30px rgba(201,148,58,0.28);}
+.nav-cta{padding:10px 22px;border-radius:999px;font-size:12.5px;font-weight:600;background:#E2B04A;color:#1B1F23;transition:transform 480ms cubic-bezier(0.22,1,0.36,1),box-shadow 480ms cubic-bezier(0.22,1,0.36,1);}
+.nav-cta:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 10px 30px rgba(226,176,74,0.28);}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
 .nav-hamburger span{width:22px;height:1.5px;background:var(--text-dim);display:block;transition:transform 200ms,opacity 200ms;}
 .nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.mobile-panel{display:none;flex-direction:column;gap:18px;position:fixed;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:24px 32px;z-index:89;box-shadow:0 12px 30px rgba(23,19,16,0.1);}
+.mobile-panel{display:none;flex-direction:column;gap:18px;position:fixed;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:24px 32px;z-index:89;box-shadow:0 12px 30px rgba(0,0,0,0.25);}
 .mobile-panel.open{display:flex;}
 .mobile-panel .nav-link{font-size:15px;}
 .mobile-panel .btn{width:100%;justify-content:center;}
@@ -81,21 +83,21 @@ ul{list-style:none;}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:0.02em;transition:transform 480ms cubic-bezier(0.22,1,0.36,1),box-shadow 480ms cubic-bezier(0.22,1,0.36,1),background 480ms ease,color 380ms ease,border-color 480ms ease;}
-.btn-primary{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dim) 100%);color:#fff;}
-.btn-primary:hover{transform:translateY(-2px) scale(1.025);box-shadow:0 12px 36px rgba(201,148,58,0.30);}
+.btn-primary{background:#E2B04A;color:#1B1F23;}
+.btn-primary:hover{transform:translateY(-2px) scale(1.025);box-shadow:0 12px 36px rgba(226,176,74,0.3);}
 .btn-outline{border:1px solid var(--border-strong);color:var(--text-dim);}
 .btn-outline:hover{border-color:var(--text);color:var(--text);}
 .btn .arr{transition:transform 250ms;}
 .btn:hover .arr{transform:translateX(3px);}
 a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-visible,.lang-btn:focus-visible,.footer-social:focus-visible,.btn:focus-visible,.ptab:focus-visible,.intel-tab:focus-visible{outline:2px solid var(--gold-dim);outline-offset:3px;border-radius:6px;}
-.btn-onDark{background:#fff;color:var(--void);}
+.btn-onDark{background:#E2B04A;color:#1B1F23;}
 .btn-onDark:hover{background:var(--gold-bright);}
 .link-more{position:relative;display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:0.02em;color:var(--gold-dim);
-  background:linear-gradient(135deg,rgba(201,148,58,0.10),rgba(201,148,58,0.03));border:1.5px solid var(--gold);overflow:hidden;isolation:isolate;
+  background:linear-gradient(135deg,rgba(226,176,74,0.1),rgba(226,176,74,0.03));border:1.5px solid var(--gold);overflow:hidden;isolation:isolate;
   transition:color 420ms ease,border-color 480ms ease,transform 480ms cubic-bezier(0.22,1,0.36,1),box-shadow 480ms cubic-bezier(0.22,1,0.36,1);}
 .link-more::before{content:'';position:absolute;inset:0;z-index:-1;opacity:0;border-radius:inherit;transition:opacity 420ms ease;
   background:linear-gradient(135deg,var(--gold-bright) 0%,var(--gold) 45%,var(--gold-dim) 100%);}
-.link-more:hover,.link-more:focus-visible{color:var(--void);border-color:transparent;transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,148,58,0.32);}
+.link-more:hover,.link-more:focus-visible{color:var(--void);border-color:transparent;transform:translateY(-2px);box-shadow:0 12px 32px rgba(226,176,74,0.32);}
 .link-more:hover::before,.link-more:focus-visible::before{opacity:1;}
 .link-more .arr{transition:transform 420ms cubic-bezier(0.22,1,0.36,1);}
 .link-more:hover .arr{transform:translateX(4px);}
@@ -103,7 +105,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:150px 0 80px;}
 .hero-orbs{position:absolute;inset:0;z-index:0;overflow:hidden;}
-.hero-fade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent,rgba(255,253,245,0.4),var(--bg));z-index:1;}
+.hero-fade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent,rgba(27,31,35,0.4),var(--bg));z-index:1;}
 .hero-grid{position:absolute;inset:0;background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:0.6;z-index:1;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 50% 40%,#000,transparent);mask-image:radial-gradient(ellipse 70% 90% at 50% 40%,#000,transparent);}
 .hero-inner{position:relative;z-index:2;text-align:center;max-width:900px;margin:0 auto;}
 
@@ -118,7 +120,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 
 /* guarantees-style grid reused for compare footer if needed */
 .gcard{background:var(--card);padding:32px 26px;display:flex;flex-direction:column;gap:12px;position:relative;transition:background-color 900ms cubic-bezier(0.33,1,0.68,1);}
-.gcard::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(150deg,rgba(201,148,58,0.10),rgba(201,148,58,0.02) 60%,transparent);transition:opacity 900ms cubic-bezier(0.33,1,0.68,1);}
+.gcard::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(150deg,rgba(226,176,74,0.1),rgba(226,176,74,0.02) 60%,transparent);transition:opacity 900ms cubic-bezier(0.33,1,0.68,1);}
 .gcard:hover::before{opacity:1;}
 .gcard>*{position:relative;z-index:1;}
 .gcard-ic{transition:transform 900ms cubic-bezier(0.33,1,0.68,1);transform-origin:left center;}
@@ -146,12 +148,12 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .hero-chip{position:relative;display:flex;flex-direction:column;gap:7px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 24px 20px;overflow:hidden;isolation:isolate;
   transition:border-color 560ms ease,transform 560ms cubic-bezier(0.22,1,0.36,1),box-shadow 560ms cubic-bezier(0.22,1,0.36,1);}
 .hero-chip::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-bright),var(--gold) 45%,var(--red));transform:scaleY(0.28);transform-origin:top;transition:transform 620ms cubic-bezier(0.22,1,0.36,1);}
-.hero-chip::after{content:'';position:absolute;inset:0;z-index:-1;opacity:0;background:linear-gradient(150deg,rgba(201,148,58,0.12),rgba(201,148,58,0.02) 55%,transparent);transition:opacity 620ms ease;}
-.hero-chip:hover{border-color:var(--gold);transform:translateY(-5px);box-shadow:0 20px 46px rgba(201,148,58,0.16);}
+.hero-chip::after{content:'';position:absolute;inset:0;z-index:-1;opacity:0;background:linear-gradient(150deg,rgba(226,176,74,0.12),rgba(226,176,74,0.02) 55%,transparent);transition:opacity 620ms ease;}
+.hero-chip:hover{border-color:var(--gold);transform:translateY(-5px);box-shadow:0 20px 46px rgba(226,176,74,0.16);}
 .hero-chip:hover::before{transform:scaleY(1);}
 .hero-chip:hover::after{opacity:1;}
-.hero-chip-ic{width:38px;height:38px;border-radius:11px;background:rgba(201,148,58,0.12);color:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:4px;transition:transform 620ms cubic-bezier(0.22,1,0.36,1),background 620ms ease;}
-.hero-chip:hover .hero-chip-ic{transform:scale(1.1);background:rgba(201,148,58,0.2);}
+.hero-chip-ic{width:38px;height:38px;border-radius:11px;background:rgba(226,176,74,0.12);color:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:4px;transition:transform 620ms cubic-bezier(0.22,1,0.36,1),background 620ms ease;}
+.hero-chip:hover .hero-chip-ic{transform:scale(1.1);background:rgba(226,176,74,0.2);}
 .hero-chip-name{font-family:'Playfair Display',serif;font-size:34px;font-weight:600;color:var(--text);line-height:1.1;}
 .hero-chip-sub{font-size:12.5px;font-weight:700;color:var(--gold-dim);}
 .hero-chip-desc{font-size:13px;color:var(--text-dim);line-height:1.55;}
@@ -168,10 +170,10 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
   background:linear-gradient(135deg,var(--text) 0%,var(--gold-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .prow-tag{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;}
 .prow-body{font-size:15px;color:var(--text-dim);line-height:1.78;margin-bottom:26px;max-width:480px;font-weight:300;}
-.prow-panel{background:var(--void);border-radius:20px;padding:36px;box-shadow:0 24px 60px rgba(21,17,11,0.2);transition:transform 400ms cubic-bezier(0.22,1,0.36,1),box-shadow 400ms;}
-.prow-panel:hover{transform:scale(1.015) rotate(-0.3deg);box-shadow:0 30px 70px rgba(21,17,11,0.28);}
-.prow-panel-light{background:var(--card);border:1px solid var(--border);box-shadow:0 20px 50px rgba(23,19,16,0.08);}
-.prow-panel-light:hover{box-shadow:0 24px 60px rgba(23,19,16,0.12);}
+.prow-panel{background:var(--void);border-radius:20px;padding:36px;box-shadow:0 24px 60px rgba(0,0,0,0.5);transition:transform 400ms cubic-bezier(0.22,1,0.36,1),box-shadow 400ms;}
+.prow-panel:hover{transform:scale(1.015) rotate(-0.3deg);box-shadow:0 30px 70px rgba(0,0,0,0.55);}
+.prow-panel-light{background:var(--card);border:1px solid var(--border);box-shadow:0 20px 50px rgba(0,0,0,0.2);}
+.prow-panel-light:hover{box-shadow:0 24px 60px rgba(0,0,0,0.3);}
 .blob{position:absolute;z-index:-1;border-radius:42% 58% 65% 35%/45% 45% 55% 55%;filter:blur(60px);pointer-events:none;opacity:0.28;animation:blobMorph 14s ease-in-out infinite,blobFloat 17s ease-in-out infinite;}
 .blob-gold{background:radial-gradient(circle at 30% 30%,var(--gold-bright),var(--gold) 55%,transparent 100%);}
 .blob-red{background:radial-gradient(circle at 60% 40%,var(--red-bright),var(--red) 55%,transparent 100%);}
@@ -191,43 +193,43 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 /* strategic-brief sub-block inside Lynx */
 .subbrief{margin-top:56px;padding-top:48px;border-top:1px dashed var(--border-strong);}
 .subbrief-head{display:flex;align-items:center;gap:14px;margin-bottom:28px;flex-wrap:wrap;}
-.subbrief-badge{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);background:rgba(201,148,58,0.08);border:1px solid var(--border);border-radius:999px;padding:6px 14px;}
+.subbrief-badge{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);background:rgba(226,176,74,0.08);border:1px solid var(--border);border-radius:999px;padding:6px 14px;}
 .subbrief-head h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:var(--text);}
 
-.c-avail{display:inline-flex;align-items:center;gap:9px;background:rgba(201,148,58,0.08);border:1px solid var(--border-strong);border-radius:999px;padding:9px 18px;font-size:12.5px;font-weight:600;color:var(--gold-dim);margin-bottom:24px;}
+.c-avail{display:inline-flex;align-items:center;gap:9px;background:rgba(226,176,74,0.08);border:1px solid var(--border-strong);border-radius:999px;padding:9px 18px;font-size:12.5px;font-weight:600;color:var(--gold-dim);margin-bottom:24px;}
 .c-avail iconify-icon{font-size:16px;}
 /* collab mock panel */
-.cmock{background:var(--void);border-radius:20px;padding:28px;box-shadow:0 24px 60px rgba(21,17,11,0.2);transition:transform 400ms cubic-bezier(0.22,1,0.36,1),box-shadow 400ms;}
-.cmock:hover{transform:scale(1.015) rotate(0.3deg);box-shadow:0 30px 70px rgba(21,17,11,0.28);}
+.cmock{background:var(--void);border-radius:20px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,0.5);transition:transform 400ms cubic-bezier(0.22,1,0.36,1),box-shadow 400ms;}
+.cmock:hover{transform:scale(1.015) rotate(0.3deg);box-shadow:0 30px 70px rgba(0,0,0,0.55);}
 .cmock-label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.3);margin-bottom:18px;}
 .cmock-cal{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgba(255,253,245,0.08);border-radius:10px;overflow:hidden;margin-bottom:16px;}
 .cmock-dow{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:rgba(255,253,245,0.35);text-transform:uppercase;padding:6px 0;text-align:center;background:rgba(255,253,245,0.03);border-bottom:1px solid rgba(255,253,245,0.08);}
 .cmock-cell{min-height:36px;border-bottom:1px solid rgba(255,253,245,0.06);border-right:1px solid rgba(255,253,245,0.06);font-size:8.5px;color:rgba(255,253,245,0.35);padding:3px 5px;text-align:right;}
 .cmock-cell:nth-child(7n){border-right:none;}
-.cmock-cell.today{background:rgba(201,148,58,0.14);color:var(--gold-bright);font-weight:700;}
-.cmock-cell .ev{display:block;text-align:left;background:var(--gold);color:#15110b;font-size:6.5px;font-weight:700;border-radius:3px;padding:1px 4px;margin-top:2px;}
-.cmock-cell .ev.alt{background:rgba(255,253,245,0.25);color:#fff;}
+.cmock-cell.today{background:rgba(226,176,74,0.14);color:var(--gold-bright);font-weight:700;}
+.cmock-cell .ev{display:block;text-align:left;background:var(--gold);color:#0D1013;font-size:6.5px;font-weight:700;border-radius:3px;padding:1px 4px;margin-top:2px;}
+.cmock-cell .ev.alt{background:rgba(255,253,245,0.25);color:#1B1F23;}
 .cmock-rows{display:flex;flex-direction:column;}
 .cmock-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,253,245,0.08);}
 .cmock-row:last-child{border-bottom:none;}
-.cmock-ic{width:26px;height:26px;border-radius:8px;background:rgba(201,148,58,0.14);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.cmock-ic{width:26px;height:26px;border-radius:8px;background:rgba(226,176,74,0.14);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
 .cmock-name{font-size:12px;color:rgba(255,253,245,0.9);font-weight:500;}
 .cmock-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,253,245,0.4);margin-top:1px;}
-.cmock-chip{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;letter-spacing:0.06em;padding:3px 8px;border-radius:999px;background:rgba(201,148,58,0.14);color:var(--gold-bright);text-transform:uppercase;}
+.cmock-chip{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;letter-spacing:0.06em;padding:3px 8px;border-radius:999px;background:rgba(226,176,74,0.14);color:var(--gold-bright);text-transform:uppercase;}
 
 /* intel tabs (sample brief) */
-.intel-wrap{background:var(--void);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(21,17,11,0.2);}
+.intel-wrap{background:var(--void);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.5);}
 .intel-tabs-bar{display:flex;border-bottom:1px solid rgba(255,253,245,0.08);}
-.intel-tab{flex:1;padding:14px 10px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,253,245,0.4);text-align:center;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 180ms,border-color 180ms;background:none;font-family:'Inter',sans-serif;}
-.intel-tab.active{color:#FFFDF5;border-bottom-color:var(--gold);}
+.intel-tab{flex:1;padding:14px 10px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,253,245,0.4);text-align:center;cursor:pointer;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 180ms,border-color 180ms;background:none;font-family:'Inter',sans-serif;}
+.intel-tab.active{color:#F0EBDD;border-bottom-color:var(--gold);}
 .intel-pane{display:none;padding:28px 32px;}
 .intel-pane.active{display:block;}
 .intel-title{font-size:9px;font-weight:700;letter-spacing:0.16em;color:rgba(255,253,245,0.3);text-transform:uppercase;margin-bottom:12px;}
-.intel-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:#FFFDF5;margin-bottom:12px;}
+.intel-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:#F0EBDD;margin-bottom:12px;}
 .intel-body{font-size:13px;color:rgba(255,253,245,0.65);line-height:1.7;margin-bottom:14px;}
-.intel-hl{background:rgba(212,175,55,0.08);border-left:2px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:8px;font-size:12px;color:rgba(255,253,245,0.8);line-height:1.6;}
+.intel-hl{background:rgba(226,176,74,0.08);border-left:2px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:8px;font-size:12px;color:rgba(255,253,245,0.8);line-height:1.6;}
 .intel-stake{padding:12px;background:rgba(255,253,245,0.03);border-radius:8px;border:1px solid rgba(255,253,245,0.06);margin-bottom:10px;}
-.intel-stake .nm{font-size:13px;font-weight:500;color:#FFFDF5;margin-bottom:3px;}
+.intel-stake .nm{font-size:13px;font-weight:500;color:#F0EBDD;margin-bottom:3px;}
 .intel-stake .rl{font-size:10.5px;color:var(--gold-bright);margin-bottom:5px;}
 .intel-stake .ds{font-size:12px;color:rgba(255,253,245,0.55);line-height:1.55;}
 .intel-note{font-size:11px;color:rgba(255,253,245,0.35);font-style:italic;margin-top:12px;}
@@ -243,7 +245,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .compare-table td:first-child{font-size:13.5px;color:var(--text);}
 .compare-table .ck{color:var(--gold-dim);font-size:15px;}
 .compare-table .nd{color:var(--text-faint);}
-.compare-table .col-mid{background:rgba(201,148,58,0.05);}
+.compare-table .col-mid{background:rgba(226,176,74,0.05);}
 
 /* anchor offset for in-page nav */
 [id]{scroll-margin-top:90px;}
@@ -303,7 +305,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .pcard:hover .rec-badge,
 .prow:hover .prow-tag{transform:scale(1.12);color:var(--gold-dim);}
 .hero-chip,.pcard{transition:border-color 700ms ease,transform 700ms cubic-bezier(0.33,1,0.68,1),box-shadow 700ms cubic-bezier(0.33,1,0.68,1);}
-.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(23,19,16,0.09);border-color:var(--border-strong);}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,0.225);border-color:var(--border-strong);}
 .hero-chip-name,.pcard-name{transition:transform 700ms cubic-bezier(0.33,1,0.68,1);transform-origin:left center;}
 .hero-chip:hover .hero-chip-name,.pcard:hover .pcard-name{transform:scale(1.03);}
 @media(prefers-reduced-motion:reduce){.hero-chip-num,.pcard-tier,.prow-tag,.rec-badge,.stat-num,.process-num,.engine-tag,.hero-chip-name,.pcard-name{transition:none;transform:none!important;}}
@@ -313,7 +315,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 #sample.flash .subbrief-head h3{animation:hlPulse 2.4s cubic-bezier(0.22,1,0.36,1) 1;}
 #sample.flash .intel-wrap{animation:hlRing 2.4s cubic-bezier(0.22,1,0.36,1) 1;}
 @keyframes hlPulse{0%{color:var(--text);}18%{color:var(--gold-dim);transform:translateY(-2px);}100%{color:var(--text);transform:none;}}
-@keyframes hlRing{0%{box-shadow:0 24px 60px rgba(21,17,11,0.2),0 0 0 0 rgba(201,148,58,0);}18%{box-shadow:0 24px 60px rgba(21,17,11,0.2),0 0 0 6px rgba(201,148,58,0.28);}100%{box-shadow:0 24px 60px rgba(21,17,11,0.2),0 0 0 0 rgba(201,148,58,0);}}
+@keyframes hlRing{0%{box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 0 rgba(226,176,74,0.0);}18%{box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 6px rgba(226,176,74,0.28);}100%{box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 0 rgba(226,176,74,0.0);}}
 @media(prefers-reduced-motion:reduce){#sample.flash .subbrief-head h3,#sample.flash .intel-wrap{animation:none;}}
 
 /* brand mark */
@@ -323,12 +325,12 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .footer-logo .logo-mark{width:20px;height:20px;opacity:0.75;}
 
 /* outline buttons on the dark closing panel */
-.cta-inner .btn-outline{color:#FFFDF5;border-color:rgba(255,253,245,0.45);background:transparent;}
-.cta-inner .btn-outline:hover{color:var(--void,#15110b);background:#FFFDF5;border-color:#FFFDF5;}
+.cta-inner .btn-outline{color:#F0EBDD;border-color:rgba(255,253,245,0.45);background:transparent;}
+.cta-inner .btn-outline:hover{color:var(--void,#0D1013);background:#F0EBDD;border-color:#F0EBDD;}
 
 /* primary CTA: darker gold so the white label clears AA across the whole gradient */
-.btn-primary,.nav-cta{background:linear-gradient(135deg,var(--gold-dim,var(--accent-dim)) 0%,#6f5213 100%)!important;color:#fff!important;}
-.btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#7a5a15 0%,#5d440f 100%)!important;}
+.btn-primary,.nav-cta{background:#E2B04A!important;color:#1B1F23!important;}
+.btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#E2B04A 0%,#C9973A 100%)!important;}
 </style>
 </head>
 <body>
@@ -345,7 +347,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
         <span class="lang-btn" data-lang="it">IT</span>
       </div>
     </div>
-    <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Scope a run →</a>
+    <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Book a call →</a>
     <div class="nav-hamburger"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -357,7 +359,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     <span class="lang-btn active" data-lang="en">EN</span>
     <span class="lang-btn" data-lang="it">IT</span>
   </div>
-  <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta">Scope a run →</a>
+  <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta">Book a call →</a>
 </div>
 
 <section class="page-hero">
@@ -367,7 +369,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     <div class="hero-chips reveal in">
       <a href="#argus" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:radar"></iconify-icon></span><span class="hero-chip-name">Argus</span><span class="hero-chip-sub" data-i18n="prod.hero.c1n">Finds and scores</span><span class="hero-chip-desc" data-i18n="prod.hero.c1d">The accounts ready to buy, scored 0–100.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump">Jump to Argus</span><span class="arr">→</span></span></a>
       <a href="#lynx" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:git-branch"></iconify-icon></span><span class="hero-chip-name">Lynx</span><span class="hero-chip-sub" data-i18n="prod.hero.c2n">Maps and briefs</span><span class="hero-chip-desc" data-i18n="prod.hero.c2d">The ones that matter, taken apart properly.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump2">Jump to Lynx</span><span class="arr">→</span></span></a>
-      <a href="#collab" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:layout-grid"></iconify-icon></span><span class="hero-chip-name">Collab</span><span class="hero-chip-sub" data-i18n="prod.hero.c3n">Keeps it moving</span><span class="hero-chip-desc" data-i18n="prod.hero.c3d">One workspace where it all lands.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump3">Jump to Collab</span><span class="arr">→</span></span></a>
+      <a href="#collab" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:layout-grid"></iconify-icon></span><span class="hero-chip-name">Collab</span><span class="hero-chip-sub" data-i18n="prod.hero.c3n">Keeps it moving</span><span class="hero-chip-desc" data-i18n="prod.hero.c3d">Where your team works on all of it.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump3">Jump to Collab</span><span class="arr">→</span></span></a>
     </div>
   </div>
 </section>
@@ -380,15 +382,15 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <h2 class="prow-name reveal">Argus</h2>
       <p class="prow-body reveal" data-i18n="prod.a.body">Argus builds precision lead lists from your ICP alone, no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.</p>
       <ul class="prow-feat-list reveal">
-        <li data-i18n="prod.a.li1">Up to 20 qualified leads per run</li>
+        <li data-i18n="prod.a.li1">Up to 80 qualified leads per report</li>
         <li data-i18n="prod.a.li2">Per-contact fit score (0–100)</li>
         <li data-i18n="prod.a.li3">Buying trigger, cited and sourced</li>
         <li data-i18n="prod.a.li4">One-line outreach hook per contact</li>
-        <li data-i18n="prod.a.li5">PDF + DOCX delivery within 72 hours</li>
-        <li data-i18n="prod.a.li6">Exportable to any CRM or sequencer</li>
+        <li data-i18n="prod.a.li5">Delivered inside ARGUS within two working days</li>
+        <li data-i18n="prod.a.li6">Download as PDF or DOCX</li>
       </ul>
       <div class="reveal" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Scope your run</span> <span class="arr">→</span></a>
+        <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a>
         <a href="argus.html" class="link-more"><span data-i18n="prod.a.more">Full Argus details</span> <span class="arr">→</span></a>
       </div>
     </div>
@@ -396,7 +398,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <div class="prow-panel-label" data-i18n="prod.a.sample">ARGUS · SAMPLE OUTPUT</div>
       <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r1n">VP of Engineering</div><div class="prow-row-tag" data-i18n="prod.a.r1t">Hiring 11 ML engineers, Q1 expansion</div></div><div class="prow-score">94</div></div>
       <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r2n">Head of Sales Ops</div><div class="prow-row-tag" data-i18n="prod.a.r2t">Series C raised · expanding DACH</div></div><div class="prow-score">88</div></div>
-      <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r3n">Director, GTM Europe</div><div class="prow-row-tag" data-i18n="prod.a.r3t">New VP Sales appointed 5 weeks ago</div></div><div class="prow-score">83</div></div>
+      <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r3n">Sales Director, Italy</div><div class="prow-row-tag" data-i18n="prod.a.r3t">New VP Sales appointed 5 weeks ago</div></div><div class="prow-score">83</div></div>
       <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r4n">CRO</div><div class="prow-row-tag" data-i18n="prod.a.r4t">Migrating CRM stack → HubSpot</div></div><div class="prow-score">79</div></div>
     </div>
   </div>
@@ -413,20 +415,20 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
         <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.l.r3n">CFO, budget holder</div><div class="prow-row-tag" data-i18n="prod.l.r3t">Approves spend above threshold, Q1 cycle</div></div></div>
       </div>
       <div style="order:2;">
-        <p class="prow-tag reveal" data-i18n="prod.l.tag">Account Intelligence &amp; Strategic Briefs</p>
+        <p class="prow-tag reveal" data-i18n="prod.l.tag">Company profiles &amp; Moirai</p>
         <h2 class="prow-name reveal">Lynx</h2>
-        <p class="prow-body reveal" data-i18n="prod.l.body">Lynx opens a dedicated workspace on your five priority accounts: decision-maker map, 90-day signal feed, contextual chat. When one deal is worth more, it expands into a full strategic brief with a live analyst walkthrough.</p>
+        <p class="prow-body reveal" data-i18n="prod.l.body">Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When one deal is worth more, it expands into a full strategic brief.</p>
         <ul class="prow-feat-list reveal">
-          <li data-i18n="prod.l.li1">Dedicated workspace per account (×5)</li>
-          <li data-i18n="prod.l.li2">Full decision-maker org chart</li>
+          <li data-i18n="prod.l.li1">A full profile for every company on your list</li>
+          <li data-i18n="prod.l.li2">The decision makers, by name and role</li>
           <li data-i18n="prod.l.li3">Stakeholder roles, LinkedIn, entry points</li>
-          <li data-i18n="prod.l.li4">90-day news and intent signal feed</li>
-          <li data-i18n="prod.l.li5">Contextual chat per account</li>
-          <li data-i18n="prod.l.li6">Deep-dive strategic brief on any one target</li>
-          <li data-i18n="prod.l.li7">Competitive analysis + direct analyst line for 30 days</li>
+          <li data-i18n="prod.l.li4">News from the last 90 days, each with its source and date</li>
+          <li data-i18n="prod.l.li5">Moirai, a chat to ask your profiles anything</li>
+          <li data-i18n="prod.l.li6">A people list that updates over time, exportable</li>
+          <li data-i18n="prod.l.li7">For 30 days after delivery, ask the person who wrote your profiles anything about them</li>
         </ul>
         <div class="reveal" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-          <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Scope your run</span> <span class="arr">→</span></a>
+          <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a>
           <a href="lynx.html" class="link-more"><span data-i18n="prod.l.more">Full Lynx details</span> <span class="arr">→</span></a>
         </div>
       </div>
@@ -440,18 +442,18 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     <div>
       <p class="prow-tag reveal" data-i18n="prod.c.tag">Team Workspace</p>
       <h2 class="prow-name reveal">Collab</h2>
-      <p class="prow-body reveal" data-i18n="prod.c.body">Collab is the shared workspace where every Argus list and Lynx brief lands, alongside your team's own notes, files, tasks, and calendar. Nothing gets buried in an inbox.</p>
-      <p class="c-avail reveal"><iconify-icon icon="lucide:package-check"></iconify-icon><span data-i18n="prod.c.avail">Included with every SIFT service, and also available on its own.</span></p>
+      <p class="prow-body reveal" data-i18n="prod.c.body">Collab is where your team works: notes and pages, folders and files, spreadsheets with their full history, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.</p>
+      <p class="c-avail reveal"><iconify-icon icon="lucide:package-check"></iconify-icon><span data-i18n="prod.c.avail">A separate product: use it on its own, or alongside our research. Your reports are delivered in ARGUS and LYNX, not here.</span></p>
       <ul class="prow-feat-list reveal">
         <li data-i18n="prod.c.li1">Shared notes, files and tasks in one hub</li>
-        <li data-i18n="prod.c.li2">Calendar view synced to your outreach calendar</li>
-        <li data-i18n="prod.c.li3">Task assignment per lead or account</li>
-        <li data-i18n="prod.c.li4">Team chat scoped to each account</li>
-        <li data-i18n="prod.c.li5">Every Argus and Lynx deliverable auto-filed</li>
-        <li data-i18n="prod.c.li6">Fully configurable around how your team already works</li>
+        <li data-i18n="prod.c.li2">Shared calendar with month, week and agenda views</li>
+        <li data-i18n="prod.c.li3">Tasks assigned to people, with due dates</li>
+        <li data-i18n="prod.c.li4">A team chat</li>
+        <li data-i18n="prod.c.li5">For every note and file, you choose who sees it</li>
+        <li data-i18n="prod.c.li6">Organized the way your team already works</li>
       </ul>
       <div class="reveal" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Scope your run</span> <span class="arr">→</span></a>
+        <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a>
         <a href="collab.html" class="link-more"><span data-i18n="prod.c.more">Full Collab details</span> <span class="arr">→</span></a>
       </div>
     </div>
@@ -463,7 +465,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
         <div class="cmock-cell">10</div><div class="cmock-cell">11</div><div class="cmock-cell">12<span class="ev" data-i18n="prod.c.ev3">Sales call</span></div><div class="cmock-cell">13</div><div class="cmock-cell">14</div><div class="cmock-cell">15</div><div class="cmock-cell">16</div>
       </div>
       <div class="cmock-rows">
-        <div class="cmock-row"><span class="cmock-ic"><iconify-icon icon="lucide:file-text"></iconify-icon></span><div><div class="cmock-name">argus_run_0731.pdf</div><div class="cmock-sub" data-i18n="prod.c.r1">Auto-filed · 19 leads</div></div><span class="cmock-chip">Argus</span></div>
+        <div class="cmock-row"><span class="cmock-ic"><iconify-icon icon="lucide:file-text"></iconify-icon></span><div><div class="cmock-name">client_brief_Q3.pdf</div><div class="cmock-sub" data-i18n="prod.c.r1">Uploaded by Sara · shared with the team</div></div><span class="cmock-chip">File</span></div>
         <div class="cmock-row"><span class="cmock-ic"><iconify-icon icon="lucide:notebook-pen"></iconify-icon></span><div><div class="cmock-name" data-i18n="prod.c.r2n">Meeting notes, Q3 outbound</div><div class="cmock-sub" data-i18n="prod.c.r2">Shared · updated 2h ago</div></div><span class="cmock-chip" data-i18n="prod.c.r2c">Notes</span></div>
         <div class="cmock-row"><span class="cmock-ic"><iconify-icon icon="lucide:check-square"></iconify-icon></span><div><div class="cmock-name" data-i18n="prod.c.r3n">Call VP Engineering, fit 94</div><div class="cmock-sub" data-i18n="prod.c.r3">Assigned to Marco · due Fri</div></div><span class="cmock-chip" data-i18n="prod.c.r3c">Task</span></div>
       </div>
@@ -486,8 +488,8 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <div class="intel-pane active" data-pane="overview">
         <div class="intel-title" data-i18n="prod.lb.ov.label">Target company</div>
         <div class="intel-name" data-i18n="prod.lb.ov.name">Arcturus GmbH, Enterprise SaaS</div>
-        <p class="intel-body" data-i18n="prod.lb.ov.body">A fictional Munich-based enterprise software company, scaling its European go-to-market after a Series C. Decision-making authority sits with the CRO and a recently appointed VP GTM.</p>
-        <div class="intel-hl" data-i18n="prod.lb.ov.hl1">New VP GTM appointed 5 weeks ago, signalling intent to rebuild the outbound motion. Likely entry window.</div>
+        <p class="intel-body" data-i18n="prod.lb.ov.body">A fictional Munich-based enterprise software company, growing its sales team after a Series C. Decision-making authority sits with the CRO and a recently appointed VP GTM.</p>
+        <div class="intel-hl" data-i18n="prod.lb.ov.hl1">New VP GTM appointed 5 weeks ago, probably rebuilding the outbound motion. Likely entry window.</div>
         <div class="intel-hl" data-i18n="prod.lb.ov.hl2">Hiring 11 sales engineers in DACH suggests expansion into the technical buyer segment.</div>
         <div class="prow-row" style="border-color:rgba(255,253,245,0.08);"><div class="prow-row-name" style="color:rgba(255,253,245,0.6);" data-i18n="prod.lb.ov.k1">Employees</div><div class="prow-score" style="font-size:14px;">1,800+</div></div>
         <div class="prow-row" style="border-color:rgba(255,253,245,0.08);"><div class="prow-row-name" style="color:rgba(255,253,245,0.6);" data-i18n="prod.lb.ov.k2">Last funding</div><div class="prow-score" style="font-size:14px;" data-i18n="prod.lb.ov.v2">Series C</div></div>
@@ -507,7 +509,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
         <div class="intel-hl" style="margin-bottom:0;" data-i18n="prod.lb.sig.3">↑ Migrating CRM stack: integration window open</div>
       </div>
     </div>
-    <div class="reveal" style="margin-top:32px;"><a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Scope your run</span> <span class="arr">→</span></a></div>
+    <div class="reveal" style="margin-top:32px;"><a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a></div>
   </div>
 </section>
 
@@ -609,21 +611,21 @@ document.querySelectorAll('.intel-tab').forEach(tab=>{
 /* ─── i18n ─────────────────────────────────────────────── */
 const I18N = {
   en: {
-    "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","nav.cta":"Scope a run →",
+    "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","nav.cta":"Book a call →",
     "footer.copy":"© 2026 SIFT · Signal-driven outbound research · Plain-language research, no jargon, no black box.",
-    "cta.btn":"Scope your run",
+    "cta.btn":"Book a call",
     "prod.h1a":"Three tools,","prod.h1b":"one workflow.",
     "prod.hero.jump":"Jump to Argus","prod.hero.jump2":"Jump to Lynx","prod.hero.jump3":"Jump to Collab",
-    "prod.hero.c1n":"Finds and scores","prod.hero.c1d":"The accounts ready to buy, scored 0–100.","prod.hero.c2n":"Maps and briefs","prod.hero.c2d":"The ones that matter, taken apart properly.","prod.hero.c3n":"Keeps it moving","prod.hero.c3d":"One workspace where it all lands.",
+    "prod.hero.c1n":"Finds and scores","prod.hero.c1d":"The accounts ready to buy, scored 0–100.","prod.hero.c2n":"Maps and briefs","prod.hero.c2d":"The ones that matter, taken apart properly.","prod.hero.c3n":"Keeps it moving","prod.hero.c3d":"Where your team works on all of it.",
     "prod.a.tag":"Lead Lists","prod.a.body":"Argus builds precision lead lists from your ICP alone, no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.",
-    "prod.a.li1":"Up to 20 qualified leads per run","prod.a.li2":"Per-contact fit score (0–100)","prod.a.li3":"Buying trigger, cited and sourced","prod.a.li4":"One-line outreach hook per contact","prod.a.li5":"PDF + DOCX delivery within 72 hours","prod.a.li6":"Exportable to any CRM or sequencer","prod.a.more":"Full Argus details",
+    "prod.a.li1":"Up to 80 qualified leads per report","prod.a.li2":"Per-contact fit score (0–100)","prod.a.li3":"Buying trigger, cited and sourced","prod.a.li4":"One-line outreach hook per contact","prod.a.li5":"Delivered inside ARGUS within two working days","prod.a.li6":"Download as PDF or DOCX","prod.a.more":"Full Argus details",
     "prod.a.sample":"ARGUS · SAMPLE OUTPUT",
     "prod.a.r1n":"VP of Engineering","prod.a.r1t":"Hiring 11 ML engineers, Q1 expansion",
     "prod.a.r2n":"Head of Sales Ops","prod.a.r2t":"Series C raised · expanding DACH",
-    "prod.a.r3n":"Director, GTM Europe","prod.a.r3t":"New VP Sales appointed 5 weeks ago",
+    "prod.a.r3n":"Sales Director, Italy","prod.a.r3t":"New VP Sales appointed 5 weeks ago",
     "prod.a.r4n":"CRO","prod.a.r4t":"Migrating CRM stack → HubSpot",
-    "prod.l.tag":"Account Intelligence &amp; Strategic Briefs","prod.l.body":"Lynx opens a dedicated workspace on your five priority accounts: decision-maker map, 90-day signal feed, contextual chat. When one deal is worth more, it expands into a full strategic brief with a live analyst walkthrough.",
-    "prod.l.li1":"Dedicated workspace per account (×5)","prod.l.li2":"Full decision-maker org chart","prod.l.li3":"Stakeholder roles, LinkedIn, entry points","prod.l.li4":"90-day news and intent signal feed","prod.l.li5":"Contextual chat per account","prod.l.li6":"Deep-dive strategic brief on any one target","prod.l.li7":"Competitive analysis + direct analyst line for 30 days","prod.l.more":"Full Lynx details",
+    "prod.l.tag":"Company profiles &amp; Moirai","prod.l.body":"Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When one deal is worth more, it expands into a full strategic brief.",
+    "prod.l.li1":"A full profile for every company on your list","prod.l.li2":"The decision makers, by name and role","prod.l.li3":"Stakeholder roles, LinkedIn, entry points","prod.l.li4":"News from the last 90 days, each with its source and date","prod.l.li5":"Moirai, a chat to ask your profiles anything","prod.l.li6":"A people list that updates over time, exportable","prod.l.li7":"For 30 days after delivery, ask the person who wrote your profiles anything about them","prod.l.more":"Full Lynx details",
     "prod.l.sample":"LYNX · ACCOUNT MAP",
     "prod.l.r1n":"CRO, primary champion","prod.l.r1t":"Open to new tooling per recent commentary",
     "prod.l.r2n":"VP Revenue Ops, influencer","prod.l.r2t":"Controls tooling budget, CRM decisions",
@@ -631,8 +633,8 @@ const I18N = {
     "prod.lb.flag":"Included with Lynx: strategic brief · illustrative sample","prod.lb.head":"What a full strategic brief looks like",
     "prod.lb.tab1":"Overview","prod.lb.tab2":"Stakeholders","prod.lb.tab3":"Signals",
     "prod.lb.ov.label":"Target company","prod.lb.ov.name":"Arcturus GmbH, Enterprise SaaS",
-    "prod.lb.ov.body":"A fictional Munich-based enterprise software company, scaling its European go-to-market after a Series C. Decision-making authority sits with the CRO and a recently appointed VP GTM.",
-    "prod.lb.ov.hl1":"New VP GTM appointed 5 weeks ago, signalling intent to rebuild the outbound motion. Likely entry window.",
+    "prod.lb.ov.body":"A fictional Munich-based enterprise software company, growing its sales team after a Series C. Decision-making authority sits with the CRO and a recently appointed VP GTM.",
+    "prod.lb.ov.hl1":"New VP GTM appointed 5 weeks ago, probably rebuilding the outbound motion. Likely entry window.",
     "prod.lb.ov.hl2":"Hiring 11 sales engineers in DACH suggests expansion into the technical buyer segment.",
     "prod.lb.ov.k1":"Employees","prod.lb.ov.k2":"Last funding","prod.lb.ov.v2":"Series C","prod.lb.ov.k3":"Fit score",
     "prod.lb.ov.note":"Names, figures and signals shown here are illustrative and do not represent a real company or client.",
@@ -642,32 +644,32 @@ const I18N = {
     "prod.lb.stk.r3":"CFO, BUDGET HOLDER","prod.lb.stk.d3":"Approves tooling above a certain threshold. Involved in Q1 budget cycles from January.",
     "prod.lb.sig.label":"Buying signals",
     "prod.lb.sig.1":"↑ Hiring 11 sales engineers: DACH expansion signal","prod.lb.sig.2":"↑ New VP GTM appointed 5 weeks ago: outbound rebuild likely","prod.lb.sig.3":"↑ Migrating CRM stack: integration window open",
-    "prod.c.tag":"Team Workspace","prod.c.body":"Collab is the shared workspace where every Argus list and Lynx brief lands, alongside your team's own notes, files, tasks, and calendar. Nothing gets buried in an inbox.",
-    "prod.c.avail":"Included with every SIFT service, and also available on its own.","prod.c.mock":"COLLAB · SHARED WORKSPACE","prod.c.ev1":"Team meeting","prod.c.ev2":"Follow-up","prod.c.ev3":"Sales call","prod.c.r1":"Auto-filed · 19 leads","prod.c.r2n":"Meeting notes, Q3 outbound","prod.c.r2":"Shared · updated 2h ago","prod.c.r2c":"Notes","prod.c.r3n":"Call VP Engineering, fit 94","prod.c.r3":"Assigned to Marco · due Fri","prod.c.r3c":"Task",
-    "prod.c.li6":"Fully configurable around how your team already works","prod.c.li1":"Shared notes, files and tasks in one hub","prod.c.li2":"Calendar view synced to your outreach calendar","prod.c.li3":"Task assignment per lead or account","prod.c.li4":"Team chat scoped to each account","prod.c.li5":"Every Argus and Lynx deliverable auto-filed","prod.c.more":"Full Collab details",
+    "prod.c.tag":"Team Workspace","prod.c.body":"Collab is where your team works: notes and pages, folders and files, spreadsheets with their full history, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
+    "prod.c.avail":"A separate product: use it on its own, or alongside our research. Your reports are delivered in ARGUS and LYNX, not here.","prod.c.mock":"COLLAB · SHARED WORKSPACE","prod.c.ev1":"Team meeting","prod.c.ev2":"Follow-up","prod.c.ev3":"Sales call","prod.c.r1":"Uploaded by Sara · shared with the team","prod.c.r2n":"Meeting notes, Q3 outbound","prod.c.r2":"Shared · updated 2h ago","prod.c.r2c":"Notes","prod.c.r3n":"Call VP Engineering, fit 94","prod.c.r3":"Assigned to Marco · due Fri","prod.c.r3c":"Task",
+    "prod.c.li6":"Organized the way your team already works","prod.c.li1":"Shared notes, files and tasks in one hub","prod.c.li2":"Shared calendar with month, week and agenda views","prod.c.li3":"Tasks assigned to people, with due dates","prod.c.li4":"A team chat","prod.c.li5":"For every note and file, you choose who sees it","prod.c.more":"Full Collab details",
     "prod.cmp.eyebrow":"Compare","prod.cmp.h1":"What's included","prod.cmp.h2":"in each stack.",
     "prod.cmp.col0":"Feature","prod.cmp.col1":"Argus Starter","prod.cmp.col2":"Argus + Lynx","prod.cmp.col3":"Complete + Collab",
     "prod.cmp.f1":"Qualified lead list","prod.cmp.f2":"Fit score per contact","prod.cmp.f3":"Buying trigger (cited)","prod.cmp.f4":"Outreach hook per contact","prod.cmp.f5":"PDF + DOCX delivery",
-    "prod.cmp.f6":"Lynx workspaces (×5)","prod.cmp.f7":"Decision-maker org chart","prod.cmp.f8":"90-day signal feed",
-    "prod.cmp.f10":"Strategic brief on one target","prod.cmp.f12":"Direct analyst line (30d)",
+    "prod.cmp.f6":"Lynx company profiles","prod.cmp.f7":"Decision-maker org chart","prod.cmp.f8":"News from the last 90 days, with source",
+    "prod.cmp.f10":"Strategic brief on one target","prod.cmp.f12":"Questions on the report for 30 days",
     "prod.cmp.f13":"Collab shared workspace","prod.cmp.f14":"Team notes, files, tasks &amp; calendar"
   },
   it: {
-    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Raccontaci cosa cerchi →",
+    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Prenota una call →",
     "footer.copy":"© 2026 SIFT · Ricerca commerciale guidata dai segnali · Parole chiare, niente gergo, niente scatole nere.",
-    "cta.btn":"Raccontaci cosa cerchi",
+    "cta.btn":"Prenota una call",
     "prod.h1a":"Tre strumenti,","prod.h1b":"un unico modo di lavorare.",
     "prod.hero.jump":"Vai ad Argus","prod.hero.jump2":"Vai a Lynx","prod.hero.jump3":"Vai a Collab",
-    "prod.hero.c1n":"Trova e valuta","prod.hero.c1d":"Le aziende pronte a comprare, con un punteggio da 0 a 100.","prod.hero.c2n":"Studia a fondo","prod.hero.c2d":"Quelle che contano davvero, analizzate pezzo per pezzo.","prod.hero.c3n":"Tiene tutto in ordine","prod.hero.c3d":"Un unico spazio dove arriva ogni cosa.",
+    "prod.hero.c1n":"Trova e valuta","prod.hero.c1d":"Le aziende pronte a comprare, con un punteggio da 0 a 100.","prod.hero.c2n":"Studia a fondo","prod.hero.c2d":"Quelle che contano davvero, analizzate pezzo per pezzo.","prod.hero.c3n":"Tiene tutto in ordine","prod.hero.c3d":"Dove il tuo team lavora su tutto.",
     "prod.a.tag":"Liste di contatti","prod.a.body":"Argus costruisce liste mirate partendo solo dal tuo cliente ideale, senza raccogliere dati alla rinfusa. Tiene d'occhio chi assume, chi raccoglie capitali, chi cambia i vertici e chi cambia tecnologie, poi dà a ogni contatto un punteggio da 0 a 100 spiegando perché proprio adesso è il momento giusto.",
-    "prod.a.li1":"Fino a 20 contatti qualificati per ricerca","prod.a.li2":"Un punteggio da 0 a 100 per ogni contatto","prod.a.li3":"Il motivo per cui sta comprando, con la fonte","prod.a.li4":"Una frase pronta con cui aprire il discorso","prod.a.li5":"Consegna in PDF e Word entro 72 ore","prod.a.li6":"Esportabile in qualsiasi CRM o strumento di invio","prod.a.more":"Scopri Argus nel dettaglio",
+    "prod.a.li1":"Fino a 80 lead qualificati per report","prod.a.li2":"Un punteggio da 0 a 100 per ogni contatto","prod.a.li3":"Il motivo per cui sta comprando, con la fonte","prod.a.li4":"Una frase pronta con cui aprire il discorso","prod.a.li5":"Consegnato dentro ARGUS in due giorni lavorativi","prod.a.li6":"Scaricabile in PDF e Word","prod.a.more":"Scopri Argus nel dettaglio",
     "prod.a.sample":"ARGUS · ESEMPIO DI RISULTATO",
     "prod.a.r1n":"VP of Engineering","prod.a.r1t":"Sta assumendo 11 ingegneri, espansione nel primo trimestre",
     "prod.a.r2n":"Head of Sales Ops","prod.a.r2t":"Round Series C chiuso · si espande in Germania",
-    "prod.a.r3n":"Direttore commerciale Europa","prod.a.r3t":"Nuovo capo vendite arrivato 5 settimane fa",
+    "prod.a.r3n":"Direttore commerciale Italia","prod.a.r3t":"Nuovo capo vendite arrivato 5 settimane fa",
     "prod.a.r4n":"CRO","prod.a.r4t":"Sta cambiando CRM → HubSpot",
-    "prod.l.tag":"Schede aziende e analisi strategiche","prod.l.body":"Lynx apre una scheda dedicata sulle cinque aziende su cui punti di più: chi decide, cosa è successo negli ultimi 90 giorni e una chat per farci domande. Quando una trattativa vale di più, la scheda diventa un'analisi strategica completa, presentata dal vivo dal nostro analista.",
-    "prod.l.li1":"Una scheda dedicata per ogni azienda (×5)","prod.l.li2":"Organigramma completo di chi decide","prod.l.li3":"Ruoli, profili LinkedIn e da dove conviene entrare","prod.l.li4":"Novità e segnali degli ultimi 90 giorni","prod.l.li5":"Una chat per fare domande sull'azienda","prod.l.li6":"Analisi strategica approfondita su un'azienda","prod.l.li7":"Studio dei concorrenti e analista a disposizione per 30 giorni","prod.l.more":"Scopri Lynx nel dettaglio",
+    "prod.l.tag":"Schede aziende e Moirai","prod.l.body":"Lynx prende una lista, la tua o una di Argus, e fa la scheda di ogni azienda: chi decide, cosa è successo negli ultimi 90 giorni e qual è la strada più semplice per entrare. Tiene una lista persone che resta viva, e con Moirai chiedi qualunque cosa sulle schede. Quando una trattativa vale di più, diventa un'analisi strategica completa.",
+    "prod.l.li1":"Una scheda completa per ogni azienda della lista","prod.l.li2":"I decisori, con nome e ruolo","prod.l.li3":"Ruoli, profili LinkedIn e da dove conviene entrare","prod.l.li4":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data","prod.l.li5":"Moirai, una chat per chiedere qualunque cosa sulle schede","prod.l.li6":"Una lista persone che si aggiorna nel tempo, esportabile","prod.l.li7":"Per 30 giorni dopo la consegna, chiedi a chi ha scritto le schede qualunque cosa su di esse","prod.l.more":"Scopri Lynx nel dettaglio",
     "prod.l.sample":"LYNX · CHI DECIDE",
     "prod.l.r1n":"Direttore commerciale, il tuo alleato","prod.l.r1t":"Dalle sue dichiarazioni pubbliche, è aperto a nuovi strumenti",
     "prod.l.r2n":"Responsabile operations, ha voce in capitolo","prod.l.r2t":"Decide sul budget per gli strumenti e sul CRM",
@@ -675,7 +677,7 @@ const I18N = {
     "prod.lb.flag":"Incluso in Lynx: analisi strategica · esempio dimostrativo","prod.lb.head":"Com'è fatta un'analisi strategica completa",
     "prod.lb.tab1":"Panoramica","prod.lb.tab2":"Stakeholder","prod.lb.tab3":"Segnali",
     "prod.lb.ov.label":"Azienda target","prod.lb.ov.name":"Arcturus GmbH, Enterprise SaaS",
-    "prod.lb.ov.body":"Un'azienda software inventata, con sede a Monaco, che sta allargando le vendite in Europa dopo aver chiuso un round Series C. Le decisioni passano dal direttore commerciale e da un responsabile vendite arrivato da poco.",
+    "prod.lb.ov.body":"Un'azienda software inventata, con sede a Monaco, che sta allargando la squadra commerciale dopo aver chiuso un round Series C. Le decisioni passano dal direttore commerciale e da un responsabile vendite arrivato da poco.",
     "prod.lb.ov.hl1":"Nuovo responsabile vendite da 5 settimane: probabile riorganizzazione della macchina commerciale. È il momento buono per farsi avanti.",
     "prod.lb.ov.hl2":"Sta assumendo 11 tecnici commerciali in Germania: segno che punta sui clienti più tecnici.",
     "prod.lb.ov.k1":"Dipendenti","prod.lb.ov.k2":"Ultimo round","prod.lb.ov.v2":"Series C","prod.lb.ov.k3":"Punteggio",
@@ -686,14 +688,14 @@ const I18N = {
     "prod.lb.stk.r3":"DIRETTORE FINANZIARIO · FIRMA LA SPESA","prod.lb.stk.d3":"Deve approvare ogni acquisto oltre una certa cifra. Da gennaio è impegnato con il budget annuale.",
     "prod.lb.sig.label":"Segnali che è il momento giusto",
     "prod.lb.sig.1":"↑ Assume 11 tecnici commerciali: si sta espandendo in Germania","prod.lb.sig.2":"↑ Nuovo responsabile vendite da 5 settimane: rifarà la macchina commerciale","prod.lb.sig.3":"↑ Sta cambiando CRM: è il momento buono per proporre integrazioni",
-    "prod.c.tag":"Spazio di lavoro condiviso","prod.c.body":"Collab è lo spazio condiviso dove arrivano tutte le liste di Argus e le analisi di Lynx, insieme a note, file, attività e calendario del tuo team. Niente si perde più in una casella di posta.",
-    "prod.c.avail":"Compreso in tutti i servizi SIFT, ma puoi prenderlo anche da solo.","prod.c.mock":"COLLAB · SPAZIO CONDIVISO","prod.c.ev1":"Riunione team","prod.c.ev2":"Da richiamare","prod.c.ev3":"Chiamata cliente","prod.c.r1":"Archiviato in automatico · 19 contatti","prod.c.r2n":"Note riunione, vendite terzo trimestre","prod.c.r2":"Condiviso · aggiornato 2 ore fa","prod.c.r2c":"Note","prod.c.r3n":"Chiamare il responsabile tecnico, punteggio 94","prod.c.r3":"Assegnato a Marco · entro venerdì","prod.c.r3c":"Attività",
-    "prod.c.li6":"Si configura su misura di come lavora già il tuo team","prod.c.li1":"Note, file e attività condivisi in un unico posto","prod.c.li2":"Calendario allineato con le tue attività commerciali","prod.c.li3":"Attività assegnate per singolo contatto o azienda","prod.c.li4":"Una conversazione di team per ogni azienda","prod.c.li5":"Tutto quello che producono Argus e Lynx archiviato in automatico","prod.c.more":"Scopri Collab nel dettaglio",
-    "prod.cmp.eyebrow":"Confronto","prod.cmp.h1":"Cosa è incluso","prod.cmp.h2":"in ogni pacchetto.",
+    "prod.c.tag":"Spazio di lavoro condiviso","prod.c.body":"Collab è dove lavora il tuo team: note e pagine, cartelle e file, fogli di calcolo con tutta la cronologia, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
+    "prod.c.avail":"Un prodotto a sé: puoi usarlo da solo, o insieme alle nostre ricerche. I report arrivano in ARGUS e LYNX, non qui.","prod.c.mock":"COLLAB · SPAZIO CONDIVISO","prod.c.ev1":"Riunione team","prod.c.ev2":"Da richiamare","prod.c.ev3":"Chiamata cliente","prod.c.r1":"Caricato da Sara · condiviso con il team","prod.c.r2n":"Note riunione, vendite terzo trimestre","prod.c.r2":"Condiviso · aggiornato 2 ore fa","prod.c.r2c":"Note","prod.c.r3n":"Chiamare il responsabile tecnico, punteggio 94","prod.c.r3":"Assegnato a Marco · entro venerdì","prod.c.r3c":"Attività",
+    "prod.c.li6":"Organizzato come lavora già il tuo team","prod.c.li1":"Note, file e attività condivisi in un unico posto","prod.c.li2":"Calendario condiviso con vista mese, settimana e agenda","prod.c.li3":"Attività assegnate alle persone, con scadenza","prod.c.li4":"Una chat di team","prod.c.li5":"Per ogni nota e file scegli tu chi lo vede","prod.c.more":"Scopri Collab nel dettaglio",
+    "prod.cmp.eyebrow":"Confronto","prod.cmp.h1":"Cosa è incluso","prod.cmp.h2":"in ogni licenza.",
     "prod.cmp.col0":"Funzionalità","prod.cmp.col1":"Argus Starter","prod.cmp.col2":"Argus + Lynx","prod.cmp.col3":"Completo + Collab",
     "prod.cmp.f1":"Lista di lead qualificati","prod.cmp.f2":"Punteggio per contatto","prod.cmp.f3":"Trigger d'acquisto (citato)","prod.cmp.f4":"Spunto di contatto per contatto","prod.cmp.f5":"Consegna PDF + DOCX",
-    "prod.cmp.f6":"Spazi Lynx (×5)","prod.cmp.f7":"Organigramma dei decisori","prod.cmp.f8":"Feed segnali a 90 giorni",
-    "prod.cmp.f10":"Brief strategico su un target","prod.cmp.f12":"Linea diretta con l'analista (30gg)",
+    "prod.cmp.f6":"Schede aziende Lynx","prod.cmp.f7":"Organigramma dei decisori","prod.cmp.f8":"Novità degli ultimi 90 giorni, con fonte",
+    "prod.cmp.f10":"Brief strategico su un target","prod.cmp.f12":"Domande sul report per 30 giorni",
     "prod.cmp.f13":"Spazio di lavoro Collab","prod.cmp.f14":"Note, file, task e calendario di team"
   }
 };
