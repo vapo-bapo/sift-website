@@ -4,20 +4,22 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Argus — Signal-scored lead lists | SIFT</title>
-<meta name="description" content="Argus watches public hiring, funding, and technology signals across your market and turns them into a scored, cited lead list within 72 hours."/>
+<meta name="description" content="Argus reads public hiring, funding and technology signals across your market and turns them into a scored, sourced lead list in two working days."/>
 <link rel="icon" href="assets/logo.svg"/>
-<meta name="theme-color" content="#FDF8ED"/>
+<meta name="theme-color" content="#1B1F23"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>
 :root{
-  --bg:#FDF8ED; --card:#FFFFFF; --panel:#EAF5F3;
-  --accent:#C9943A; --accent-dim:#8A6618; --accent-soft:#F6E8C9; --accent-bright:#E0A94C;
-  --ok:#3FA974; --info:#5B8DEF; --purple:#8B6CD9;
-  --text:#1B1710; --text-dim:#6B5F49; --text-faint:#9C8F73;
-  --border:#EDE1C4; --border-strong:#DFCC9C;
+  --bg:#1B1F23; --card:#262B30; --panel:#22272C;
+  --accent:#E2B04A; --accent-dim:#E2B04A; --accent-soft:rgba(226,176,74,0.14); --accent-bright:#EBC26E;
+  --ok:#7FC0AB; --info:#7FA8EF; --purple:#A891E6;
+  --text:#F0EBDD; --text-dim:#D8D3C6; --text-faint:#939A9F;
+  --border:#343A40; --border-strong:#454C54;
+  --signal:#7FC0AB;
+  color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;}
@@ -29,12 +31,12 @@ ul{list-style:none;}
 .tour{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
 .slide{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:center;padding:84px 0 32px;position:relative;}
 
-.nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:16px 0;background:rgba(253,248,237,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:16px 0;background:rgba(27,31,35,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
 .nav-logo{font-weight:800;font-size:18px;letter-spacing:-0.01em;flex-shrink:0;}
 .nav-logo span{color:var(--accent-dim);}
 .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
-.nav-cta{background:var(--accent);color:#fff;padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;transition:all 200ms;}
+.nav-cta{background:var(--accent);color:#1B1F23;padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;transition:all 200ms;}
 .nav-cta:hover{background:var(--accent-dim);}
 .nav-back{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);transition:color 200ms;}
 .nav-back:hover{color:var(--accent-dim);}
@@ -55,7 +57,7 @@ h2.headline{font-size:clamp(24px,3vw,34px);}
 .takeaways li::before{content:'✓';position:absolute;left:0;color:var(--ok);font-weight:800;}
 
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;font-size:13px;font-weight:700;transition:all 200ms;}
-.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary{background:var(--accent);color:#1B1F23;}
 .btn-primary:hover{background:var(--accent-dim);transform:translateY(-1px);}
 .btn-outline{border:1.5px solid var(--border-strong);color:var(--text-dim);background:var(--card);}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent-dim);}
@@ -64,7 +66,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* two-column presentation: copy left, screen right */
 .duo{display:grid;grid-template-columns:0.85fr 1.15fr;gap:52px;align-items:center;}
 @media(max-width:900px){.duo{grid-template-columns:1fr;gap:24px;}}
-.screen{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 30px 70px rgba(27,23,16,0.10);overflow:hidden;}
+.screen{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,0.25);overflow:hidden;}
 .screen-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--border);background:var(--panel);}
 .screen-dot{width:9px;height:9px;border-radius:50%;background:var(--border-strong);}
 .screen-title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);}
@@ -75,20 +77,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .stat-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;}
 .stat-ic{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;margin-bottom:10px;}
 .stat-ic.amber{background:var(--accent-soft);color:var(--accent-dim);}
-.stat-ic.purple{background:rgba(201,148,58,0.07);color:var(--accent-dim);}
-.stat-ic.blue{background:rgba(201,148,58,0.15);color:var(--accent-dim);}
+.stat-ic.purple{background:rgba(226,176,74,0.07);color:var(--accent-dim);}
+.stat-ic.blue{background:rgba(226,176,74,0.15);color:var(--accent-dim);}
 .stat-num{font-size:22px;font-weight:800;letter-spacing:-0.02em;}
 .stat-label{font-size:11px;color:var(--text-dim);margin-top:2px;font-weight:600;}
 .list-title{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin:14px 0 8px;display:flex;align-items:center;gap:8px;}
 .count-chip{background:var(--accent-soft);color:var(--accent-dim);border-radius:999px;padding:1px 7px;font-size:9px;font-weight:700;}
 .prow-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
 .prow-item:last-child{border-bottom:none;}
-.avatar{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;color:#fff;flex-shrink:0;}
+.avatar{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;color:#1B1F23;flex-shrink:0;}
 .prow-name{font-weight:700;font-size:11.5px;}
 .prow-domain{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);}
 .tag{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;padding:3px 7px;border-radius:999px;letter-spacing:0.04em;}
 .tag-medium{background:var(--accent-soft);color:var(--accent-dim);}
-.tag-monitored{background:#E1F3EA;color:var(--ok);}
+.tag-monitored{background:rgba(127,192,171,0.14);color:var(--ok);}
 
 /* archive mock */
 .arc-card{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 14px;margin-bottom:8px;}
@@ -145,19 +147,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 /* unified gold treatment */
 .headline .accent{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 45%,var(--accent-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:var(--accent-dim);display:inline-block;padding:0.02em 0.12em 0.14em;}
-.btn-primary{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 42%,var(--accent-dim) 100%);color:#fff;box-shadow:0 6px 20px rgba(201,148,58,0.22);}
-.btn-primary:hover{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 30%,var(--accent-dim) 100%);transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,148,58,0.34);}
+.btn-primary{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 42%,var(--accent-dim) 100%);color:#1B1F23;box-shadow:0 6px 20px rgba(226,176,74,0.22);}
+.btn-primary:hover{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 30%,var(--accent-dim) 100%);transform:translateY(-2px);box-shadow:0 12px 32px rgba(226,176,74,0.34);}
 .nav-cta{background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 45%,var(--accent-dim) 100%);}
-.nav-cta:hover{box-shadow:0 8px 24px rgba(201,148,58,0.3);transform:translateY(-1px);}
-.progress .d.active{background:var(--accent);box-shadow:0 0 0 3px rgba(201,148,58,0.18);}
+.nav-cta:hover{box-shadow:0 8px 24px rgba(226,176,74,0.3);transform:translateY(-1px);}
+.progress .d.active{background:var(--accent);box-shadow:0 0 0 3px rgba(226,176,74,0.18);}
 .step-eyebrow{gap:0;}
 
 .logo-mark{width:24px;height:24px;flex-shrink:0;display:block;color:var(--accent-dim);}
 .nav-logo{display:inline-flex;align-items:center;gap:9px;}
 
 /* primary CTA: darker gold so the white label clears AA across the whole gradient */
-.btn-primary,.nav-cta{background:linear-gradient(135deg,var(--gold-dim,var(--accent-dim)) 0%,#6f5213 100%)!important;color:#fff!important;}
-.btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#7a5a15 0%,#5d440f 100%)!important;}
+.btn-primary,.nav-cta{background:#E2B04A!important;color:#1B1F23!important;}
+.btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#E2B04A 0%,#C9973A 100%)!important;}
 
 .lang-toggle{display:flex;align-items:center;gap:2px;border:1px solid var(--border-strong);border-radius:999px;padding:3px;}
 .lang-btn{padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:0.04em;border-radius:999px;color:var(--text-faint);transition:all 200ms;cursor:pointer;}
@@ -171,7 +173,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <div class="nav-right">
       <a href="products.html" class="nav-back" data-i18n="nav.back">← products</a>
       <div class="lang-toggle"><span class="lang-btn active" data-lang="en">EN</span><span class="lang-btn" data-lang="it">IT</span></div>
-      <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Scope a run →</a>
+      <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Book a call →</a>
     </div>
   </div>
 </nav>
@@ -186,7 +188,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <h1 class="headline"><span data-i18n="s1.h">Argus finds the companies</span> <span class="accent" data-i18n="s1.he">ready to buy from you.</span></h1>
       <p class="sub" style="margin:18px auto 0;max-width:560px;" data-i18n="s1.p">It reads the public signals a company can't hide (hiring, funding, new leadership, tech changes) and turns them into a scored lead list your reps can call the same day.</p>
       <div style="margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary" data-i18n="cta.run">Scope your run →</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="cta.run">Book a call →</a>
         <a href="products.html#argus" class="btn btn-outline" data-i18n="cta.back">Back to products</a>
       </div>
     </div>
@@ -198,11 +200,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div>
         <p class="step-eyebrow" data-i18n="s2.eyebrow">Your command center</p>
         <h2 class="headline"><span data-i18n="s2.h">Open Argus and see your whole market</span> <span class="accent" data-i18n="s2.he">at a glance.</span></h2>
-        <p class="sub" data-i18n="s2.p">This is the home screen your team lands on: how many accounts are being monitored, how many reports are ready, and one button to launch a new discovery run.</p>
+        <p class="sub" data-i18n="s2.p">This is the home screen your team lands on: how many accounts you've researched, how many reports are ready, and one button to send us a new request.</p>
         <ul class="takeaways">
-          <li data-i18n="s2.l1">Accounts monitored continuously, not on request</li>
+          <li data-i18n="s2.l1">Every account you've researched, in one place</li>
           <li data-i18n="s2.l2">Every report archived and ready to reopen</li>
-          <li data-i18n="s2.l3">New run launched in one click</li>
+          <li data-i18n="s2.l3">A new request in one click: we take it from there</li>
         </ul>
       </div>
       <div class="screen">
@@ -214,9 +216,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
             <div class="stat-card"><div class="stat-ic blue"><iconify-icon icon="lucide:zap"></iconify-icon></div><div class="stat-num" style="font-size:15px;">ARGUS</div><div class="stat-label" data-i18n="s2.k3">Discover Leads</div></div>
           </div>
           <div class="list-title"><span data-i18n="s2.recent">Recent portfolio</span> <span class="count-chip">11</span></div>
-          <div class="prow-item"><div class="avatar" style="background:#C9943A;">N</div><div style="flex:1;"><div class="prow-name">NORTHBAY</div><div class="prow-domain">northbay.example · 39m ago</div></div><span class="tag tag-medium">MEDIUM</span><span class="tag tag-monitored">MONITORED</span></div>
-          <div class="prow-item"><div class="avatar" style="background:#B08430;">M</div><div style="flex:1;"><div class="prow-name">MERIDIA</div><div class="prow-domain">meridia.example · 39m ago</div></div><span class="tag tag-medium">MEDIUM</span><span class="tag tag-monitored">MONITORED</span></div>
-          <div class="prow-item"><div class="avatar" style="background:#8A6618;">A</div><div style="flex:1;"><div class="prow-name">ALTAVIA</div><div class="prow-domain">altavia.example · 39m ago</div></div><span class="tag tag-medium">MEDIUM</span><span class="tag tag-monitored">MONITORED</span></div>
+          <div class="prow-item"><div class="avatar" style="background:#E2B04A;">N</div><div style="flex:1;"><div class="prow-name">NORTHBAY</div><div class="prow-domain">northbay.example · 39m ago</div></div><span class="tag tag-medium">MEDIUM</span><span class="tag tag-monitored">IN PORTFOLIO</span></div>
+          <div class="prow-item"><div class="avatar" style="background:#C9973A;">M</div><div style="flex:1;"><div class="prow-name">MERIDIA</div><div class="prow-domain">meridia.example · 39m ago</div></div><span class="tag tag-medium">MEDIUM</span><span class="tag tag-monitored">IN PORTFOLIO</span></div>
+          <div class="prow-item"><div class="avatar" style="background:#A88437;">A</div><div style="flex:1;"><div class="prow-name">ALTAVIA</div><div class="prow-domain">altavia.example · 39m ago</div></div><span class="tag tag-medium">MEDIUM</span><span class="tag tag-monitored">IN PORTFOLIO</span></div>
         </div>
       </div>
     </div>
@@ -227,7 +229,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div>
         <p class="step-eyebrow" data-i18n="s3.eyebrow">The archive</p>
         <h2 class="headline"><span data-i18n="s3.h">Every search you run</span> <span class="accent" data-i18n="s3.he">stays yours.</span></h2>
-        <p class="sub" data-i18n="s3.p">Every run is saved to Collab, your shared workspace, with its full results: how many companies were scanned, how many qualified, and how long it took. Download any report as PDF or DOCX, whenever you need it.</p>
+        <p class="sub" data-i18n="s3.p">Every run is saved in Argus with its full results: how many companies were scanned, how many qualified, and how long it took. Download any report as PDF or DOCX, whenever you need it.</p>
         <ul class="takeaways">
           <li data-i18n="s3.l1">Full history of every run, never lost</li>
           <li data-i18n="s3.l2">Leads vs. scanned ratio visible instantly</li>
@@ -253,7 +255,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           </div>
           <div class="arc-card">
             <div class="arc-top">
-              <div><div class="arc-title" data-i18n="s3.a3">Fast-growing SMEs, southern Europe</div><div class="arc-meta">Jun 24, 2026 · 21m 39s</div></div>
+              <div><div class="arc-title" data-i18n="s3.a3">Fast-growing SMEs, North-East Italy</div><div class="arc-meta">Jun 24, 2026 · 21m 39s</div></div>
               <div class="arc-nums"><div class="arc-num ok"><div class="n">10</div><div class="l">Leads</div></div><div class="arc-num"><div class="n">223</div><div class="l">Scanned</div></div></div>
             </div>
             <div class="arc-bar"><span style="width:4%;background:var(--ok);"></span><span style="width:9%;background:var(--accent);"></span></div>
@@ -292,7 +294,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           <div class="exec-cols">
             <div class="exec-col"><h5 data-i18n="s4.e1t">Key findings</h5><p data-i18n="s4.e1p">60% of qualified leads sit in early problem-awareness.</p></div>
             <div class="exec-col"><h5 data-i18n="s4.e2t">Market dynamics</h5><p data-i18n="s4.e2p">The segment reacts to external triggers, not proactive innovation.</p></div>
-            <div class="exec-col"><h5 data-i18n="s4.e3t">Priority actions</h5><p data-i18n="s4.e3p">Contact Verano Pack (77) within 5 working days.</p></div>
+            <div class="exec-col"><h5 data-i18n="s4.e3t">Priority actions</h5><p data-i18n="s4.e3p">Contact the top-scoring lead (77) within 5 working days.</p></div>
           </div>
         </div>
       </div>
@@ -323,7 +325,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           <div class="lead-row">
             <span class="rank">#2</span>
             <div class="gauge" style="background:conic-gradient(var(--accent) 0turn 0.77turn, var(--border) 0turn);"><span class="n">77</span></div>
-            <div style="flex:1;"><div class="lead-name">Verano Pack</div><div class="lead-why"><b data-i18n="why">Why·</b> <span data-i18n="s5.w2">New e-commerce build signals active digital investment.</span></div></div>
+            <div style="flex:1;"><div class="lead-name">Valtrena Pack</div><div class="lead-why"><b data-i18n="why">Why·</b> <span data-i18n="s5.w2">New e-commerce build signals active digital investment.</span></div></div>
             <span class="tag tag-medium">Partial data</span>
           </div>
           <div class="lead-row">
@@ -340,12 +342,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <section class="slide cta-slide" id="s6">
     <div class="container">
       <p class="step-eyebrow" style="justify-content:center;" data-i18n="s6.eyebrow">That's Argus</p>
-      <h2 class="headline"><span data-i18n="s6.h">A scored, cited lead list.</span> <span class="accent" data-i18n="s6.he">In 72 hours.</span></h2>
+      <h2 class="headline"><span data-i18n="s6.h">A scored, cited lead list.</span> <span class="accent" data-i18n="s6.he">In two working days.</span></h2>
       <div style="margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary">Scope your run →</a>
+        <a href="contact.html" class="btn btn-primary" data-i18n="cta.run">Book a call →</a>
         <a href="lynx.html" class="btn btn-outline" data-i18n="s6.next">Next: see Lynx →</a>
       </div>
-      <p class="cta-note" data-i18n="s6.note">Reply within 24 hours · 72h delivery SLA</p>
+      <p class="cta-note" data-i18n="s6.note">Reply within 24 hours · delivery in two working days</p>
     </div>
   </section>
 
@@ -355,17 +357,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* ─── i18n ─── */
 const I18N = {
   en: {
-    "nav.back":"← products","nav.cta":"Scope a run →","cta.run":"Scope your run →","cta.back":"Back to products","scroll":"Scroll for the tour","why":"Why·",
+    "nav.back":"← products","nav.cta":"Book a call →","cta.run":"Book a call →","cta.back":"Back to products","scroll":"Scroll for the tour","why":"Why·",
     "s1.eyebrow":"Product tour · Lead Lists","s1.h":"Argus finds the companies","s1.he":"ready to buy from you.",
     "s1.p":"It reads the public signals a company can't hide (hiring, funding, new leadership, tech changes) and turns them into a scored lead list your reps can call the same day.",
     "s2.eyebrow":"Your command center","s2.h":"Open Argus and see your whole market","s2.he":"at a glance.",
-    "s2.p":"This is the home screen your team lands on: how many accounts are being monitored, how many reports are ready, and one button to launch a new discovery run.",
-    "s2.l1":"Accounts monitored continuously, not on request","s2.l2":"Every report archived and ready to reopen","s2.l3":"New run launched in one click",
+    "s2.p":"This is the home screen your team lands on: how many accounts you've researched, how many reports are ready, and one button to send us a new request.",
+    "s2.l1":"Every account you've researched, in one place","s2.l2":"Every report archived and ready to reopen","s2.l3":"A new request in one click: we take it from there",
     "s2.k1":"Portfolio Accounts","s2.k2":"Reports Generated","s2.k3":"Discover Leads","s2.recent":"Recent portfolio",
     "s3.eyebrow":"The archive","s3.h":"Every search you run","s3.he":"stays yours.",
-    "s3.p":"Every run is saved to Collab, your shared workspace, with its full results: how many companies were scanned, how many qualified, and how long it took. Download any report as PDF or DOCX, whenever you need it.",
+    "s3.p":"Every run is saved in Argus with its full results: how many companies were scanned, how many qualified, and how long it took. Download any report as PDF or DOCX, whenever you need it.",
     "s3.l1":"Full history of every run, never lost","s3.l2":"Leads vs. scanned ratio visible instantly","s3.l3":"Export to PDF / DOCX in one click",
-    "s3.a1":"Packaging manufacturers, paper and plastics","s3.a2":"Eyewear manufacturers, mid-market","s3.a3":"Fast-growing SMEs, southern Europe",
+    "s3.a1":"Packaging manufacturers, paper and plastics","s3.a2":"Eyewear manufacturers, mid-market","s3.a3":"Fast-growing SMEs, North-East Italy",
     "s4.eyebrow":"The report","s4.h":"Clear numbers, and a summary","s4.he":"written for humans.",
     "s4.p":"Each report opens with your original search criteria and the hard numbers, then an executive summary in plain language: what we found, how the market is moving, and which leads to contact first.",
     "s4.l1":"Searched → analyzed → qualified, at a glance","s4.l2":"Key findings and market dynamics in plain words","s4.l3":"Priority actions: who to call, and by when",
@@ -373,25 +375,25 @@ const I18N = {
     "s4.ov1":"Searched","s4.ov2":"Analyzed","s4.ov3":"Qualified","s4.ov4":"Avg score","s4.ov5":"Insights",
     "s4.e1t":"Key findings","s4.e1p":"60% of qualified leads sit in early problem-awareness.",
     "s4.e2t":"Market dynamics","s4.e2p":"The segment reacts to external triggers, not proactive innovation.",
-    "s4.e3t":"Priority actions","s4.e3p":"Contact Verano Pack (77) within 5 working days.",
+    "s4.e3t":"Priority actions","s4.e3p":"Contact the top-scoring lead (77) within 5 working days.",
     "s5.eyebrow":"The leads","s5.h":"Every contact has a score","s5.he":"and a reason why.",
     "s5.p":"No black-box ranking. Each lead shows its fit score out of 100 and a plain-language reason: the specific public signal that says this company is worth a call right now.",
     "s5.l1":"Fit score 0–100 on every contact","s5.l2":"The trigger, cited, so you can verify it yourself","s5.l3":"Filter by score, signal type, or buying phase",
     "s5.w1":"Positioned as a leader in secondary and tertiary packaging.","s5.w2":"New e-commerce build signals active digital investment.","s5.w3":"New compliance rules create urgent need for traceability tooling.",
-    "s6.eyebrow":"That's Argus","s6.h":"A scored, cited lead list.","s6.he":"In 72 hours.","s6.next":"Next: see Lynx →","s6.note":"Reply within 24 hours · 72h delivery SLA"
+    "s6.eyebrow":"That's Argus","s6.h":"A scored, cited lead list.","s6.he":"In two working days.","s6.next":"Next: see Lynx →","s6.note":"Reply within 24 hours · delivery in two working days"
   },
   it: {
-    "nav.back":"← prodotti","nav.cta":"Raccontaci cosa cerchi →","cta.run":"Raccontaci cosa cerchi →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour","why":"Perché·",
+    "nav.back":"← prodotti","nav.cta":"Prenota una call →","cta.run":"Prenota una call →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour","why":"Perché·",
     "s1.eyebrow":"Il prodotto · Liste di contatti","s1.h":"Argus trova le aziende","s1.he":"pronte a comprare da te.",
     "s1.p":"Legge i segnali pubblici che un'azienda non può nascondere (chi assume, chi raccoglie capitali, chi cambia ai vertici, chi cambia tecnologie) e li trasforma in una lista di contatti già valutata, che i tuoi commerciali possono chiamare lo stesso giorno.",
     "s2.eyebrow":"La tua centrale operativa","s2.h":"Apri Argus e vedi tutto il tuo mercato","s2.he":"in un colpo d'occhio.",
-    "s2.p":"È la schermata da cui parte il tuo team: quante aziende stiamo tenendo d'occhio, quante analisi sono pronte e un pulsante per avviare una nuova ricerca.",
-    "s2.l1":"Aziende monitorate in continuo, non solo su richiesta","s2.l2":"Ogni analisi archiviata e sempre riapribile","s2.l3":"Nuova ricerca avviata con un clic",
+    "s2.p":"Questa è la schermata da cui parte il tuo team: quante aziende hai studiato, quanti report sono pronti, e un pulsante per mandarci una nuova richiesta.",
+    "s2.l1":"Tutte le aziende che hai studiato, in un posto solo","s2.l2":"Ogni analisi archiviata e sempre riapribile","s2.l3":"Una nuova richiesta con un clic: al resto pensiamo noi",
     "s2.k1":"Aziende seguite","s2.k2":"Analisi generate","s2.k3":"Cerca contatti","s2.recent":"Aggiunte di recente",
     "s3.eyebrow":"L'archivio","s3.h":"Ogni ricerca che fai","s3.he":"resta tua.",
-    "s3.p":"Ogni ricerca viene salvata in Collab, il tuo spazio condiviso, con tutti i risultati: quante aziende abbiamo esaminato, quante si sono qualificate e quanto tempo è servito. Puoi scaricare qualsiasi analisi in PDF o Word, quando ti serve.",
+    "s3.p":"Ogni ricerca resta salvata in Argus con tutti i risultati: quante aziende abbiamo guardato, quante sono qualificate e quanto tempo ci è voluto. Scarichi ogni report in PDF o Word, quando ti serve.",
     "s3.l1":"Lo storico completo di ogni ricerca, mai perso","s3.l2":"Vedi subito quante aziende si sono qualificate","s3.l3":"Esporti in PDF o Word con un clic",
-    "s3.a1":"Produttori di imballaggi in carta e plastica","s3.a2":"Produttori di occhiali, fascia media","s3.a3":"PMI in forte crescita, Europa meridionale",
+    "s3.a1":"Produttori di imballaggi in carta e plastica","s3.a2":"Produttori di occhiali, fascia media","s3.a3":"PMI in crescita, Nord-Est",
     "s4.eyebrow":"L'analisi","s4.h":"Numeri chiari e un riassunto","s4.he":"scritto per le persone.",
     "s4.p":"Ogni analisi apre con i criteri che ci hai dato e i numeri concreti, poi un riassunto in parole semplici: cosa abbiamo trovato, come si sta muovendo il mercato e chi conviene contattare per primo.",
     "s4.l1":"Esaminate → analizzate → qualificate, a colpo d'occhio","s4.l2":"Cosa emerge e come si muove il mercato, in parole semplici","s4.l3":"Le priorità: chi chiamare, ed entro quando",
@@ -399,12 +401,12 @@ const I18N = {
     "s4.ov1":"Esaminate","s4.ov2":"Analizzate","s4.ov3":"Qualificate","s4.ov4":"Punteggio medio","s4.ov5":"Spunti",
     "s4.e1t":"Cosa emerge","s4.e1p":"Il 60% delle aziende qualificate è ancora all'inizio: sa di avere il problema, ma non cerca soluzioni.",
     "s4.e2t":"Come si muove il mercato","s4.e2p":"È un settore che si muove quando qualcosa lo costringe, non per spinta all'innovazione.",
-    "s4.e3t":"Da fare subito","s4.e3p":"Contattare Verano Pack (77) entro 5 giorni lavorativi.",
+    "s4.e3t":"Da fare subito","s4.e3p":"Contattare il lead con il punteggio più alto (77) entro 5 giorni lavorativi.",
     "s5.eyebrow":"I contatti","s5.h":"Ogni contatto ha un punteggio","s5.he":"e una spiegazione.",
     "s5.p":"Nessuna classifica a scatola chiusa. Ogni contatto arriva con il suo punteggio su 100 e il motivo scritto in parole semplici: il segnale pubblico preciso che dice perché questa azienda vale una telefonata adesso.",
     "s5.l1":"Un punteggio da 0 a 100 per ogni contatto","s5.l2":"Il segnale, con la fonte che puoi verificare","s5.l3":"Filtri per punteggio, tipo di segnale o fase d'acquisto",
     "s5.w1":"Si presenta come punto di riferimento negli imballaggi secondari e terziari.","s5.w2":"Ha appena rifatto l'e-commerce: sta investendo sul digitale.","s5.w3":"Nuove regole di settore rendono urgente un sistema di tracciabilità.",
-    "s6.eyebrow":"Questo è Argus","s6.h":"Una lista valutata, con le fonti.","s6.he":"In 72 ore.","s6.next":"Prossimo: scopri Lynx →","s6.note":"Ti rispondiamo entro 24 ore · consegna in 72 ore"
+    "s6.eyebrow":"Questo è Argus","s6.h":"Una lista valutata, con le fonti.","s6.he":"In due giorni lavorativi.","s6.next":"Prossimo: scopri Lynx →","s6.note":"Ti rispondiamo entro 24 ore · consegna in due giorni lavorativi"
   }
 };
 function applyLang(lang){
