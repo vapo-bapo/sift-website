@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>How it works — Method &amp; team | SIFT</title>
-<meta name="description" content="How SIFT turns public signals into a usable shortlist: define the fit, research the signals, map the account, deliver in a matter of days."/>
+<title>Privacy notice | SIFT</title>
+<meta name="description" content="How SIFT handles personal data: what we collect, why, on what legal basis, how long we keep it and how to exercise your rights."/>
 <link rel="icon" href="assets/logo.svg"/>
 <meta name="theme-color" content="#F7FCFA"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -389,19 +389,6 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .hero-chip:hover .hero-chip-name,.pcard:hover .pcard-name{transform:scale(1.03);}
 @media(prefers-reduced-motion:reduce){.hero-chip-num,.pcard-tier,.prow-tag,.rec-badge,.stat-num,.process-num,.engine-tag,.hero-chip-name,.pcard-name{transition:none;transform:none!important;}}
 
-/* pricing block (about page) */
-.price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:44px;}
-.price-grid>*{min-width:0;}
-.price-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px 28px;transition:border-color 620ms ease,transform 620ms cubic-bezier(0.22,1,0.36,1),box-shadow 620ms cubic-bezier(0.22,1,0.36,1);}
-.price-card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,0.2);}
-.price-ic{width:42px;height:42px;border-radius:12px;background:rgba(226,176,74,0.1);color:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:18px;transition:transform 620ms cubic-bezier(0.22,1,0.36,1);}
-.price-card:hover .price-ic{transform:scale(1.08);}
-.price-card h4{font-size:15px;font-weight:600;margin-bottom:9px;color:var(--text);}
-.price-card p{font-size:13.5px;color:var(--text-dim);line-height:1.7;font-weight:300;}
-.price-note{display:flex;align-items:flex-start;gap:12px;margin-top:24px;padding:16px 20px;border-radius:14px;background:rgba(226,176,74,0.07);border:1px solid rgba(226,176,74,0.22);font-size:13px;color:var(--text-dim);line-height:1.65;}
-.price-note iconify-icon{color:var(--gold-dim);font-size:17px;flex-shrink:0;margin-top:1px;}
-@media(max-width:900px){.price-grid{grid-template-columns:1fr;}}
-
 /* brand mark */
 .logo-mark{width:26px;height:26px;flex-shrink:0;display:block;color:var(--gold-dim);}
 .nav-logo{display:inline-flex;align-items:center;gap:10px;}
@@ -416,10 +403,24 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .btn-primary,.nav-cta{background:#E2B04A!important;color:#1B1F23!important;}
 .btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#E2B04A 0%,#C9973A 100%)!important;}
 </style>
-<link rel="canonical" href="https://www.sifttechnology.com/about.html"/>
-<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="How it works — Method &amp; team | SIFT"/><meta property="og:description" content="How SIFT turns public signals into a usable shortlist: define the fit, research the signals, map the account, deliver in a matter of days."/><meta property="og:url" content="https://www.sifttechnology.com/about.html"/>
+<link rel="canonical" href="https://www.sifttechnology.com/privacy.html"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="Privacy notice | SIFT"/><meta property="og:description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply within 24 hours."/><meta property="og:url" content="https://www.sifttechnology.com/privacy.html"/>
 <meta name="twitter:card" content="summary"/>
 <link rel="stylesheet" href="assets/theme.css"/>
+<style>
+.priv{padding:clamp(40px,6vw,72px) 0 clamp(64px,8vw,110px)}
+.priv .doc{max-width:760px}
+.priv h2{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-.015em;margin:44px 0 12px;color:var(--ink)}
+.priv p,.priv li{font-size:15.5px;line-height:1.7;color:var(--ink-dim);margin:0 0 12px}
+.priv ul{list-style:disc;padding-left:22px;margin:0 0 14px}
+.priv a{color:var(--emerald);text-decoration:underline;text-underline-offset:3px}
+.priv .upd{font-size:13px;color:var(--text-faint);margin-bottom:8px}
+.priv .ph{background:rgba(111,235,189,.35);padding:0 4px;border-radius:4px;font-style:normal}
+.tw{overflow-x:auto;margin:6px 0 16px}.priv table{border-collapse:collapse;width:100%;font-size:14.5px}
+.priv th,.priv td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--ink-dim)}
+.priv th{color:var(--ink);font-weight:600}
+[data-block]{display:none}[data-block].on{display:block}
+</style>
 </head>
 <body>
 <div class="noise"></div>
@@ -451,89 +452,86 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 </div>
 
 <section class="page-hero">
-  <div class="container page-hero-inner">
-    <h1 class="page-hero-title reveal in"><span data-i18n="about.h1a">How we work.</span><br/><em data-i18n="about.h1b">And who you're working with.</em></h1>
-  </div>
-</section>
-
-<section class="section">
   <div class="container">
-    <p class="eyebrow reveal" data-i18n="about.who.eyebrow">Who we are</p>
-    <h2 class="h2 reveal" style="max-width:760px;" data-i18n="about.who.h2">We read the signals a company leaves in public <em>and turn them into a shortlist your reps can open a call with.</em></h2>
-    <div class="who-cols" style="margin-top:48px;">
-      <div class="reveal"><h4 data-i18n="about.who.1t">Who you're working with</h4><p data-i18n="about.who.1p">Your brief is followed by one person, from first read to final list. The person who reads your brief is the one who writes your report. It stays with one person because judgement is hard to hand off.</p></div>
-      <div class="reveal"><h4 data-i18n="about.who.2t">What we won't do</h4><p data-i18n="about.who.2p">We won't invent a buying signal to pad a list, and we won't hand you a data dump with a score on top. Every account on your list is there because the analysis says it belongs.</p></div>
-    </div>
+    <h1 class="page-hero-title"><span data-i18n="priv.h1">Privacy</span> <em data-i18n="priv.h2">notice.</em></h1>
   </div>
 </section>
-
-<section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <p class="eyebrow reveal" data-i18n="about.method.eyebrow">The method</p>
-    <h2 class="h2 reveal"><span data-i18n="about.method.h1">From scattered traces</span><br/><em data-i18n="about.method.h2">to a reason to call.</em></h2>
-    <p class="section-lead reveal" data-i18n="about.method.lead">The public web is full of fragments. Four steps to turn them into something worth acting on: we collect, connect, weigh and interpret, and what reaches you is already a judgement, not a data set.</p>
-    <div class="timeline">
-      <div class="tl-step reveal"><div class="tl-n">01</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl1.tag">With you · 30 minutes</span><h3><span data-i18n="about.tl1.h">We define the fit</span> <em data-i18n="about.tl1.he">in your words.</em></h3><p data-i18n="about.tl1.p">No filter forms or checkbox builders. You describe your ideal customer in a sentence, and we work from that, the way you'd brief a colleague.</p></div></div>
-      <div class="tl-step reveal"><div class="tl-n">02</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl2.tag">Argus · Lead Lists</span><h3><span data-i18n="about.tl2.h">We turn data</span> <em data-i18n="about.tl2.he">into signals.</em></h3><p data-i18n="about.tl2.p">A job posting, a funding round and a new hire mean little on their own. We cross-reference them, weigh them against your ICP and read what they add up to: this company is moving, and this is why now is the moment.</p></div></div>
-      <div class="tl-step reveal"><div class="tl-n">03</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl3.tag">Lynx · Account Intelligence</span><h3><span data-i18n="about.tl3.h">We reconstruct</span> <em data-i18n="about.tl3.he">the whole picture.</em></h3><p data-i18n="about.tl3.p">On priority accounts we go further: who really decides, who influences the budget, where the opening is. It's the picture no CRM holds, because it doesn't exist anywhere until someone builds it.</p></div></div>
-      <div class="tl-step reveal"><div class="tl-n">04</div><div class="tl-content"><span class="tl-tag" data-i18n="about.tl4.tag">A matter of days</span><h3><span data-i18n="about.tl4.h">You get the answer,</span> <em data-i18n="about.tl4.he">not the homework.</em></h3><p data-i18n="about.tl4.p">What lands in ARGUS and LYNX is the conclusion of the analysis, not its raw material: which companies, why now, who to speak to and how to open. The interpretation is already done, and we explain it when we hand it over.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2 class="h2 reveal"><span data-i18n="guar.h1">What we</span><br/><em data-i18n="guar.h2">guarantee.</em></h2>
-    <div class="guarantees-grid">
-      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:clock"></iconify-icon></div><h4 data-i18n="guar.1t">Very short turnaround, a matter of days.</h4><p data-i18n="guar.1p">From the moment you confirm the brief, the list reaches you in a matter of days, and we explain it when we hand it over.</p></div>
-      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:link"></iconify-icon></div><h4 data-i18n="guar.2t">Every reading comes with its source.</h4><p data-i18n="guar.2p">If we tell you a company has just won a public tender, the link to the award notice is right there next to it.</p></div>
-      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:message-circle"></iconify-icon></div><h4 data-i18n="guar.3t">Questions answered for 30 days.</h4><p data-i18n="guar.3p">After delivery, you can ask the person who wrote your report anything about it, for 30 days.</p></div>
-      <div class="gcard reveal"><div class="gcard-ic"><iconify-icon icon="lucide:mail"></iconify-icon></div><h4 data-i18n="guar.4t">A reply within 24 hours.</h4><p data-i18n="guar.4p">Whatever you write to us, someone answers the same day or the next.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <h2 class="h2 reveal"><span data-i18n="price.h1">A flat fee,</span><br/><em data-i18n="price.h2">no credit counter.</em></h2>
-    <p class="section-lead reveal" data-i18n="price.lead">When you subscribe you pay a flat fee, with your reports included. There's no credit counter to watch, and no surprise at the end of the month.</p>
-    <div class="price-grid">
-      <div class="price-card reveal">
-        <div class="price-ic"><iconify-icon icon="lucide:sliders-horizontal"></iconify-icon></div>
-        <h4 data-i18n="price.f1t">What moves the number</h4>
-        <p data-i18n="price.f1p">Whether you need Argus, Lynx or both, how wide your market is, and how many reports a month your team can actually work.</p>
-      </div>
-      <div class="price-card reveal">
-        <div class="price-ic"><iconify-icon icon="lucide:layout-grid"></iconify-icon></div>
-        <h4 data-i18n="price.f2t">Three separate licences</h4>
-        <p data-i18n="price.f2p">ARGUS, LYNX and COLLAB are bought separately. If you already have a list, you only need LYNX. Collab is a workspace of its own, not the place your reports are delivered.</p>
-      </div>
-      <div class="price-card reveal">
-        <div class="price-ic"><iconify-icon icon="lucide:message-square-text"></iconify-icon></div>
-        <h4 data-i18n="price.f3t">How we get to a number</h4>
-        <p data-i18n="price.f3p">Tell us who you're looking for and what you're trying to hit. We reply within 24 hours, talk it through on a call, and you decide before anything is committed.</p>
-      </div>
-    </div>
-    <div class="price-note reveal">
-      <iconify-icon icon="lucide:info"></iconify-icon>
-      <span data-i18n="price.note">Take what you need. We won't make you buy the rest.</span>
-    </div>
-    <div class="reveal" style="margin-top:28px;"><a href="contact.html" class="btn btn-primary"><span data-i18n="price.cta">Book a call</span> <span class="arr">→</span></a></div>
-  </div>
-</section>
-
-<section class="cta">
-  <div class="container">
-    <div class="cta-inner reveal">
-      <div class="cta-glow"></div>
-      <h2 class="cta-title"><span data-i18n="about.cta.h1">Send a brief.</span><br/><em data-i18n="about.cta.h2">See the work for yourself.</em></h2>
-      <div class="cta-actions">
-        <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
+<section class="priv"><div class="container"><div class="doc">
+<div data-block="en"><p class="upd">Last updated: <span class="ph">[publication date]</span></p>
+<h2>1. Who we are</h2>
+<p>The data controller is <strong>SIFT S.r.l.</strong>, based at <span class="ph">[full address]</span>, VAT number <span class="ph">[number]</span>, registered with the Companies Register of <span class="ph">[city]</span> ("SIFT" or "we").</p>
+<p>For any question about this notice or your data, write to <a href="mailto:privacy@sifttechnology.com">privacy@sifttechnology.com</a>.</p>
+<h2>2. Who this notice is for</h2>
+<p>It covers the people whose data we handle for our presentation and sales activities:</p>
+<ul><li>people who visit sifttechnology.com</li><li>people who write to us or fill in a contact form</li><li>people who take part in our surveys</li><li>professionals we contact to offer our services</li></ul>
+<p>It does not cover the data we handle on behalf of our clients when we deliver the service: for that data the client is the controller, and the rules are in the contract and the data processing agreement.</p>
+<h2>3. What data we handle</h2>
+<ul><li><strong>Website browsing data</strong>: IP address, browser type, pages visited, date and time.</li><li><strong>Contact details you give us</strong>: first name, last name, company, role, email address, phone number if you give one, and the content of your message.</li><li><strong>Survey answers</strong>: your answers, the company name if you choose to give it, and your email address if you ask to receive the results.</li><li><strong>Professional details of business contacts</strong>: first name, last name, role, company, public professional profile and public information about the company you work for.</li></ul>
+<p>We do not handle special categories of data, such as data about health, political or religious opinions, and we ask you not to send us any.</p>
+<h2>4. Why we use it and on what basis</h2>
+<p><strong>4.1 Running the website.</strong> We use browsing data to keep the website working, keep it secure and understand, in aggregate, how it is used. Legal basis: our legitimate interest in running a secure and working website.</p>
+<p><strong>4.2 Replying to people who write to us.</strong> We use the data you send to reply and follow up on your request. Legal basis: steps taken at your request before a contract, or our legitimate interest in replying.</p>
+<p><strong>4.3 Surveys.</strong> We use the answers to carry out market research and publish the results, <strong>always in aggregate form and not traceable to you</strong>. If you leave your email, we use it <strong>only</strong> to send you the results. Legal basis: your consent, which you give with the dedicated checkbox and can withdraw at any time.</p>
+<p><strong>4.4 Offering our services to professionals: our legitimate interest.</strong> We contact professionals at companies that, based on public information, may be interested in our services. The data comes from <strong>public professional sources</strong>, such as company websites, public registers and public professional profiles. The first contact happens through professional platforms or by phone; <strong>we do not send commercial emails without your prior consent</strong>. If you ask us to write to you by email, even during a phone call, we record your consent with its date and content. Legal basis: our legitimate interest in developing our business with companies that may be interested, balanced against your rights; for email, your consent. You can object at any time, and from then on we do not contact you again.</p>
+<p><strong>4.5 Legal obligations and defending our rights.</strong> We may handle data to comply with the law or to defend a right of ours in court.</p>
+<h2>5. Do you have to give us your data?</h2>
+<p>No. You can browse the website, take part in a survey without leaving your email and choose not to hear from us. If you do not give us the data we need to answer a request of yours, though, we cannot follow it up.</p>
+<h2>6. Who we share the data with</h2>
+<p>The data is handled by authorised and instructed SIFT staff, and by suppliers who support our activities and are appointed as data processors under a written agreement. The categories of supplier are:</p>
+<ul><li>website hosting and infrastructure services</li><li>services to build and collect forms and surveys</li><li>email services</li><li>tools to manage business contacts</li><li>professional advisers, such as accountants and lawyers, when needed</li></ul>
+<p>We do not sell your data and we do not pass it to third parties for their own marketing.</p>
+<p><strong>Transfers outside the European Union.</strong> We prefer suppliers that keep data in the European Union. If a supplier transfers data outside the Union, it does so only on the basis of a European Commission adequacy decision or the standard contractual clauses approved by the Commission.</p>
+<h2>7. How long we keep the data</h2>
+<div class="tw"><table><thead><tr><th>Data</th><th>Retention</th></tr></thead><tbody><tr><td>Browsing data</td><td><span class="ph">[to be defined]</span></td></tr><tr><td>Messages and contact requests</td><td>As long as needed to handle them and, if no business relationship follows, up to 12 months after the last exchange</td></tr><tr><td>Email left in the survey</td><td>Up to 30 days after the results are sent, and in any case no more than 6 months after collection</td></tr><tr><td>Survey answers</td><td>Kept only in anonymous, aggregate form</td></tr><tr><td>Business contacts who have not replied</td><td>12 months after the last contact</td></tr><tr><td>Business contacts in an ongoing negotiation</td><td>For the length of the negotiation, then under the rules that apply to clients, or up to 12 months after it closes</td></tr><tr><td>People who asked not to be contacted again</td><td>Only name and company, on an exclusion list, for as long as needed to respect the request</td></tr></tbody></table></div>
+<p>When the period ends, the data is deleted or made anonymous.</p>
+<h2>8. Your rights</h2>
+<p>You can ask us at any time to:</p>
+<ul><li>tell you whether we handle your data and give you a copy</li><li>correct or complete it</li><li>delete it</li><li>restrict its use</li><li>give it to you in a readable format and transfer it to another controller, when the processing is based on consent or on a contract</li><li><strong>object</strong> to processing based on our legitimate interest, including commercial contact, at any time and without giving a reason</li><li><strong>withdraw the consent</strong> you gave us, without affecting what was done before the withdrawal</li></ul>
+<p>To exercise them, write to <a href="mailto:privacy@sifttechnology.com">privacy@sifttechnology.com</a>. We reply <strong>within one month</strong>, extendable by two more months in complex cases, and if so we tell you.</p>
+<p>If you think the processing does not comply with the law, you can lodge a complaint with the <strong>Garante per la protezione dei dati personali</strong>, <a href="https://www.garanteprivacy.it" rel="noopener">www.garanteprivacy.it</a>.</p>
+<h2>9. Automated decisions</h2>
+<p>We do not take decisions that have legal effects on you, or that affect you significantly, based solely on automated processing.</p>
+<h2>10. Changes to this notice</h2>
+<p>We may update this notice when our activities or the law change. The version in force is always this page, with the update date at the top.</p>
+</div>
+<div data-block="it"><p class="upd">Ultimo aggiornamento: <span class="ph">[data di pubblicazione]</span></p>
+<h2>1. Chi siamo</h2>
+<p>Il titolare del trattamento è <strong>SIFT S.r.l.</strong>, con sede in <span class="ph">[indirizzo completo]</span>, partita IVA <span class="ph">[numero]</span>, iscritta al Registro delle Imprese di <span class="ph">[città]</span> (di seguito "SIFT" o "noi").</p>
+<p>Per qualsiasi domanda su questa informativa o sui tuoi dati puoi scriverci a <a href="mailto:privacy@sifttechnology.com">privacy@sifttechnology.com</a>.</p>
+<h2>2. A chi si rivolge questa informativa</h2>
+<p>Riguarda le persone i cui dati trattiamo per le nostre attività di presentazione e vendita:</p>
+<ul><li>chi visita il sito sifttechnology.com</li><li>chi ci scrive o compila un modulo di contatto</li><li>chi partecipa ai nostri sondaggi</li><li>i professionisti che contattiamo per proporre i nostri servizi</li></ul>
+<p>Non riguarda i dati che trattiamo per conto dei nostri clienti quando eroghiamo il servizio: per quelli il titolare è il cliente, e le regole sono nel contratto e nell'accordo sul trattamento dei dati.</p>
+<h2>3. Quali dati trattiamo</h2>
+<ul><li><strong>Dati di navigazione del sito</strong>: indirizzo IP, tipo di browser, pagine visitate, data e ora.</li><li><strong>Dati di contatto che ci fornisci</strong>: nome, cognome, azienda, ruolo, indirizzo email, numero di telefono se lo indichi, e il contenuto del tuo messaggio.</li><li><strong>Risposte ai sondaggi</strong>: le risposte alle domande, il nome dell'azienda se scegli di indicarlo, e l'indirizzo email se chiedi di ricevere i risultati.</li><li><strong>Dati professionali dei contatti commerciali</strong>: nome, cognome, ruolo, azienda, profilo professionale pubblico e informazioni pubbliche sull'azienda per cui lavori.</li></ul>
+<p>Non trattiamo categorie particolari di dati, come quelli relativi alla salute, alle opinioni politiche o religiose, e ti chiediamo di non inviarcene.</p>
+<h2>4. Perché li trattiamo e su quale base</h2>
+<p><strong>4.1 Gestire il sito.</strong> Usiamo i dati di navigazione per far funzionare il sito, garantirne la sicurezza e capire, in forma aggregata, come viene usato. Base giuridica: il nostro legittimo interesse a gestire un sito sicuro e funzionante.</p>
+<p><strong>4.2 Rispondere a chi ci scrive.</strong> Usiamo i dati che ci mandi per risponderti e dare seguito alla tua richiesta. Base giuridica: l'esecuzione di misure precontrattuali richieste da te, oppure il nostro legittimo interesse a rispondere.</p>
+<p><strong>4.3 Sondaggi.</strong> Usiamo le risposte per condurre ricerche di mercato e pubblicarne i risultati, <strong>sempre in forma aggregata e non riconducibile a te</strong>. Se lasci l'email, la usiamo <strong>solo</strong> per mandarti i risultati. Base giuridica: il tuo consenso, che dai con l'apposita casella e puoi revocare in qualsiasi momento.</p>
+<p><strong>4.4 Proporre i nostri servizi a professionisti: il nostro legittimo interesse.</strong> Contattiamo professionisti di aziende che, sulla base di informazioni pubbliche, potrebbero essere interessate ai nostri servizi. I dati provengono da <strong>fonti pubbliche professionali</strong>, come siti aziendali, registri pubblici e profili professionali pubblici. Il primo contatto avviene tramite piattaforme professionali o per telefono; <strong>non inviamo email commerciali senza un tuo consenso preventivo</strong>. Se ci chiedi di poterti scrivere via email, anche durante una telefonata, registriamo il tuo consenso con data e contenuto. Base giuridica: il nostro legittimo interesse a sviluppare la nostra attività presso aziende potenzialmente interessate, bilanciato con i tuoi diritti; per l'email, il tuo consenso. Puoi opporti in qualsiasi momento, e da quel momento non ti contattiamo più.</p>
+<p><strong>4.5 Obblighi di legge e difesa dei nostri diritti.</strong> Possiamo trattare i dati per adempiere a obblighi di legge o per difendere un nostro diritto in sede giudiziaria.</p>
+<h2>5. È obbligatorio fornirci i dati?</h2>
+<p>No. Puoi navigare il sito, partecipare a un sondaggio senza lasciare l'email e scegliere di non ricevere comunicazioni da noi. Se non ci dai i dati necessari a rispondere a una tua richiesta, però, non potremo darle seguito.</p>
+<h2>6. A chi comunichiamo i dati</h2>
+<p>I dati sono trattati dalle persone di SIFT autorizzate e istruite a farlo, e da fornitori che ci supportano nelle attività, nominati responsabili del trattamento con un accordo scritto. Le categorie di fornitori sono:</p>
+<ul><li>servizi di hosting e infrastruttura del sito</li><li>servizi per la creazione e la raccolta di moduli e sondaggi</li><li>servizi di posta elettronica</li><li>strumenti di gestione dei contatti commerciali</li><li>consulenti professionali, come commercialisti e legali, quando necessario</li></ul>
+<p>Non vendiamo i tuoi dati e non li cediamo a terzi per loro finalità di marketing.</p>
+<p><strong>Trasferimenti fuori dall'Unione europea.</strong> Privilegiamo fornitori che conservano i dati nell'Unione europea. Se un fornitore trasferisce dati fuori dall'Unione, lo fa solo sulla base di una decisione di adeguatezza della Commissione europea o delle clausole contrattuali tipo approvate dalla Commissione.</p>
+<h2>7. Per quanto tempo conserviamo i dati</h2>
+<div class="tw"><table><thead><tr><th>Dati</th><th>Durata</th></tr></thead><tbody><tr><td>Dati di navigazione</td><td><span class="ph">[da definire]</span></td></tr><tr><td>Messaggi e richieste di contatto</td><td>Per il tempo necessario a gestirli e, se non ne nasce un rapporto commerciale, fino a 12 mesi dall'ultimo scambio</td></tr><tr><td>Email lasciata nel sondaggio</td><td>Fino a 30 giorni dopo l'invio dei risultati, e comunque non oltre 6 mesi dalla raccolta</td></tr><tr><td>Risposte al sondaggio</td><td>Conservate solo in forma anonima e aggregata</td></tr><tr><td>Dati dei contatti commerciali senza risposta</td><td>12 mesi dall'ultimo contatto</td></tr><tr><td>Dati dei contatti commerciali con cui è in corso una trattativa</td><td>Per la durata della trattativa, e poi secondo le regole applicabili ai clienti o fino a 12 mesi dalla sua chiusura</td></tr><tr><td>Chi ci ha chiesto di non essere più contattato</td><td>Solo nome e azienda, in un elenco di esclusione, per il tempo necessario a rispettare la sua richiesta</td></tr></tbody></table></div>
+<p>Alla scadenza i dati vengono cancellati o resi anonimi.</p>
+<h2>8. I tuoi diritti</h2>
+<p>Puoi chiederci in qualsiasi momento di:</p>
+<ul><li>sapere se trattiamo tuoi dati e riceverne una copia</li><li>correggerli o completarli</li><li>cancellarli</li><li>limitarne il trattamento</li><li>riceverli in un formato leggibile e trasferirli a un altro titolare, quando il trattamento si basa sul consenso o su un contratto</li><li><strong>opporti</strong> al trattamento basato sul nostro legittimo interesse, compreso il contatto commerciale, in qualsiasi momento e senza dover motivare</li><li><strong>revocare il consenso</strong> che ci hai dato, senza che questo tocchi quanto fatto prima della revoca</li></ul>
+<p>Per esercitarli scrivi a <a href="mailto:privacy@sifttechnology.com">privacy@sifttechnology.com</a>. Rispondiamo <strong>entro un mese</strong>, prorogabile di altri due nei casi complessi, e in quel caso te lo diciamo.</p>
+<p>Se ritieni che il trattamento non rispetti la normativa, puoi proporre reclamo al <strong>Garante per la protezione dei dati personali</strong>, <a href="https://www.garanteprivacy.it" rel="noopener">www.garanteprivacy.it</a>.</p>
+<h2>9. Decisioni automatizzate</h2>
+<p>Non prendiamo decisioni che producano effetti giuridici su di te, o che ti riguardino in modo significativo, basate unicamente su un trattamento automatizzato.</p>
+<h2>10. Modifiche a questa informativa</h2>
+<p>Possiamo aggiornare questa informativa quando cambiano le nostre attività o la normativa. La versione in vigore è sempre questa pagina, con la data di aggiornamento in cima.</p>
+</div>
+</div></div></section>
 <footer class="footer">
   <div class="container footer-inner">
     <a href="index.html" class="footer-logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="7.5" stroke="currentColor" stroke-width="1.8"></circle><polyline points="7.5,11.5 4.5,16 7.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline><polyline points="24.5,11.5 27.5,16 24.5,20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg><span>SIFT</span></a>
@@ -637,13 +635,6 @@ const I18N = {
     "engines.tag3":"03 · Strategic Brief","engines.sub3":"A separate product","engines.p3":"Where your team keeps its work: notes and pages, folders and files, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
     "engines.li3a":"You choose who sees each note and file","engines.li3b":"Tasks assigned to people, with due dates","engines.li3c":"Shared calendar and team chat",
     "engines.delivery":"Delivery","engines.d1":"Inside ARGUS, as PDF and DOCX","engines.d2":"Inside LYNX, with Moirai","engines.d3":"Sold on its own",
-    "price.eyebrow":"What it costs","price.h1":"A flat fee,","price.h2":"no credit counter.",
-    "price.lead":"When you subscribe you pay a flat fee, with your reports included. There's no credit counter to watch, and no surprise at the end of the month.",
-    "price.f1t":"What moves the number","price.f1p":"Whether you need Argus, Lynx or both, how wide your market is, and how many reports a month your team can actually work.",
-    "price.f2t":"Three separate licences","price.f2p":"ARGUS, LYNX and COLLAB are bought separately. If you already have a list, you only need LYNX. Collab is a workspace of its own, not the place your reports are delivered.",
-    "price.f3t":"How we get to a number","price.f3p":"Tell us who you're looking for and what you're trying to hit. We reply within 24 hours, talk it through on a call, and you decide before anything is committed.",
-    "price.note":"Take what you need. We won't make you buy the rest.",
-    "price.cta":"Book a call",
     "guar.eyebrow":"What we stand behind","guar.h1":"What we","guar.h2":"guarantee.",
     "guar.1t":"Very short turnaround, a matter of days.","guar.1p":"From the moment you confirm the brief, the list reaches you in a matter of days, and we explain it when we hand it over.",
     "guar.2t":"Every reading comes with its source.","guar.2p":"If we tell you a company has just won a public tender, the link to the award notice is right there next to it.",
@@ -654,18 +645,23 @@ const I18N = {
     "who.2t":"What we won't do","who.2p":"We won't invent a buying signal to pad a list, and we won't hand you a data dump with a score on top. If the signals don't add up to a real opportunity, we say so instead of filling the gap with noise.",
     "cta.h1":"Tell us who","cta.h2":"you're looking for.","cta.btn":"Book a call","cta.note":"Reply within 24 hours",
     "footer.copy":"© 2026 SIFT · Research on public sources, written for B2B sales teams.",
-    "about.h1a":"How we work.","about.h1b":"And who you're working with.",
-    "about.hero.desc":"Not a scraper dressed up as intelligence. Public traces, interpreted by people, turned into buying signals your reps can act on the same day.",
-    "about.who.eyebrow":"Who we are","about.who.h2":"Anyone can find public data. <em>The work is reading it, and knowing which fragments add up to a company that's ready to buy.</em>",
-    "about.who.1t":"Who you're working with","about.who.1p":"Your brief is followed by one person, from first read to final list. The person who reads your brief is the one who writes your report. It stays with one person because judgement is hard to hand off.",
-    "about.who.2t":"What we won't do","about.who.2p":"We won't invent a buying signal to pad a list, and we won't hand you a scraped list and call it research. Every account on your list is there for a reason we can show you.",
-    "about.method.eyebrow":"The method","about.method.h1":"From scattered traces","about.method.h2":"to a reason to call.",
-    "about.method.lead":"The public web is full of fragments. Four steps to turn them into something worth acting on: we collect, connect, weigh and interpret, and what reaches you is already a judgement, not a data set.",
-    "about.tl1.tag":"With you · 30 minutes","about.tl1.h":"We define the fit","about.tl1.he":"in your words.","about.tl1.p":"No filter forms or checkbox builders. You describe your ideal customer in a sentence, and we work from that, the way you'd brief a colleague.",
-    "about.tl2.tag":"Argus · Lead Lists","about.tl2.h":"We turn data","about.tl2.he":"into signals.","about.tl2.p":"A job posting, a funding round and a new hire mean little on their own. We cross-reference them, weigh them against your ICP and read what they add up to: this company is moving, and this is why now is the moment.",
-    "about.tl3.tag":"Lynx · Account Intelligence","about.tl3.h":"We reconstruct","about.tl3.he":"the whole picture.","about.tl3.p":"On priority accounts we go further: who really decides, who influences the budget, where the opening is. It's the picture no CRM holds, because it doesn't exist anywhere until someone builds it.",
-    "about.tl4.tag":"A matter of days","about.tl4.h":"You get the answer,","about.tl4.he":"not the homework.","about.tl4.p":"What lands in ARGUS and LYNX is the conclusion of the analysis, not its raw material: which companies, why now, who to speak to and how to open. The interpretation is already done, and we explain it when we hand it over.",
-    "about.cta.h1":"Send a brief.","about.cta.h2":"See the work for yourself.","about.cta.btn2":"See a sample brief"
+    "contact.h1a":"Tell us who","contact.h1b":"you're looking for.",
+    "contact.hero.desc":"Describe your ideal customer in your own words. We reply within 24 hours to set up a call.",
+    "contact.tag1":"A signal scan starts","contact.tag2":"with a brief.",
+    "contact.body":"Fill in your ICP, target market, and what you're trying to accomplish. We read it by hand and reply within 24 hours to set up a call.",
+    "contact.email.label":"Email","contact.response.label":"Response time","contact.response.val":"Within 24 hours","contact.sla.label":"Delivery","contact.sla.val":"A matter of days from brief confirmation",
+    "contact.next.title":"What happens next",
+    "contact.next.1":"We review your ICP brief by hand","contact.next.2":"We reply within 24 hours","contact.next.3":"A 30-minute call to define who you're looking for","contact.next.4":"Brief confirmed: delivery in a matter of days","contact.next.5":"We explain the report when we hand it over",
+    "contact.first":"First name","contact.last":"Last name","contact.company":"Company","contact.company.ph":"Company name","contact.email2":"Work email",
+    "contact.plan.label":"What are you looking for?","contact.plan.ph":"Select a product",
+    "contact.plan.o1":"ARGUS: find companies I don't know yet","contact.plan.o2":"LYNX: profile companies I already have","contact.plan.o3":"ARGUS and LYNX together",
+    "contact.plan.o4":"COLLAB: a workspace for my team","contact.plan.o5":"Not sure yet, recommend something","contact.plan.o6":"Agency: multi-client","contact.plan.o7":"Not sure yet, recommend something","contact.plan.o8":"Custom build: let's talk",
+    "contact.market.label":"Target market &amp; geography","contact.market.ph":"e.g. Manufacturing SMEs, North-East Italy, 20–200 employees",
+    "contact.roles.label":"Target role(s)","contact.roles.ph":"e.g. Head of Sales, VP Engineering, CFO",
+    "contact.icp.label":"Your ICP: tell us more","contact.icp.ph":"What problem do you solve? What signals suggest a company is ready to buy?",
+    "priv.h1":"Privacy","priv.h2":"notice.","contact.consent":"I agree that SIFT may use the details I've submitted to respond to my enquiry. We won't share your information or add you to a marketing list without consent.",
+    "contact.form.note":"Every brief is read by hand. We reply within 24 hours.","contact.form.submit":"Book a call",
+    "contact.success.h":"Brief received.","contact.success.p":"We'll read your brief and reply within 24 hours to set up a call."
   },
   it: {
     "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Prenota una call →",
@@ -695,13 +691,6 @@ const I18N = {
     "engines.tag3":"Spazio di lavoro","engines.sub3":"Un prodotto a sé","engines.p3":"Dove il tuo team tiene il suo lavoro: note e pagine, cartelle e file, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
     "engines.li3a":"Per ogni nota e file scegli tu chi lo vede","engines.li3b":"Attività assegnate alle persone, con scadenza","engines.li3c":"Calendario condiviso e chat di team",
     "engines.delivery":"Consegna","engines.d1":"Dentro ARGUS, in PDF e Word","engines.d2":"Dentro LYNX, con Moirai","engines.d3":"Si compra da solo",
-    "price.eyebrow":"Quanto costa","price.h1":"Un canone fisso,","price.h2":"nessun contatore di crediti.",
-    "price.lead":"Quando ti abboni paghi un canone fisso, con i report inclusi. Nessun contatore di crediti da tenere d'occhio, nessuna sorpresa a fine mese.",
-    "price.f1t":"Cosa cambia il numero","price.f1p":"Se ti serve Argus, Lynx o tutti e due, quanto è ampio il tuo mercato e quanti report al mese il tuo team riesce davvero a lavorare.",
-    "price.f2t":"Tre licenze separate","price.f2p":"ARGUS, LYNX e COLLAB si comprano separatamente. Se una lista ce l'hai già, ti serve solo LYNX. Collab è uno spazio di lavoro a sé, non il posto dove arrivano i report.",
-    "price.f3t":"Come arriviamo a un numero","price.f3p":"Dicci chi stai cercando e cosa vuoi ottenere. Ti rispondiamo entro 24 ore, ne parliamo in una call, e decidi prima di impegnarti in qualcosa.",
-    "price.note":"Prendi quello che ti serve. Il resto non te lo facciamo comprare.",
-    "price.cta":"Prenota una call",
     "guar.eyebrow":"Le nostre garanzie","guar.h1":"Cosa ti","guar.h2":"garantiamo.",
     "guar.1t":"Tempi brevissimi, questione di giorni.","guar.1p":"Dal momento in cui confermi il brief, la lista ti arriva in pochi giorni, e te la spieghiamo quando te la consegniamo.",
     "guar.2t":"Ogni lettura arriva con la sua fonte.","guar.2p":"Se ti diciamo che un'azienda ha appena vinto una gara pubblica, accanto trovi il link all'esito della gara.",
@@ -712,18 +701,23 @@ const I18N = {
     "who.2t":"Cosa non facciamo","who.2p":"Non ci inventiamo segnali per allungare una lista e non ti consegniamo un mucchio di dati con un punteggio sopra. Se i segnali non compongono un'occasione vera, te lo diciamo invece di riempire il vuoto con rumore.",
     "cta.h1":"Dicci chi","cta.h2":"stai cercando.","cta.btn":"Prenota una call","cta.note":"Risposta entro 24 ore",
     "footer.copy":"© 2026 SIFT · Ricerca su fonti pubbliche, scritta per i team commerciali B2B.",
-    "about.h1a":"Come lavoriamo.","about.h1b":"E chi ci lavora.",
-    "about.hero.desc":"Non un raccoglitore di dati spacciato per intelligenza. Tracce pubbliche, interpretate da persone, trasformate in segnali d'acquisto su cui i tuoi commerciali possono agire lo stesso giorno.",
-    "about.who.eyebrow":"Chi siamo","about.who.h2":"I dati pubblici li trova chiunque. <em>Il lavoro sta nel leggerli, e nel capire quali frammenti compongono un'azienda pronta a comprare.</em>",
-    "about.who.1t":"Con chi stai lavorando","about.who.1p":"Il tuo brief lo segue una sola persona, dalla prima lettura fino alla lista finale. Chi legge il tuo brief è la stessa persona che scrive il tuo report. È una scelta precisa, perché il giudizio non si può appaltare.",
-    "about.who.2t":"Cosa non facciamo","about.who.2p":"Non ci inventiamo segnali per allungare una lista e non ti consegniamo una lista raccolta in automatico spacciandola per ricerca. Ogni azienda nella tua lista c'è per un motivo che possiamo mostrarti.",
-    "about.method.eyebrow":"Il metodo","about.method.h1":"Da tracce sparse","about.method.h2":"a un motivo per chiamare.",
-    "about.method.lead":"Il web pubblico è pieno di frammenti. Quattro passaggi per trasformarli in qualcosa su cui vale la pena agire: raccogliamo, colleghiamo, pesiamo e interpretiamo. Quello che ti arriva è già un giudizio, non un insieme di dati.",
-    "about.tl1.tag":"Con te · 30 minuti","about.tl1.h":"Capiamo chi cerchi","about.tl1.he":"con le tue parole.","about.tl1.p":"Niente moduli da compilare né caselle da spuntare. Ci descrivi il tuo cliente ideale come lo racconteresti a un collega, e noi partiamo da lì.",
-    "about.tl2.tag":"Argus · Liste di contatti","about.tl2.h":"Trasformiamo i dati","about.tl2.he":"in segnali.","about.tl2.p":"Un annuncio di lavoro, un round di finanziamento e una nuova assunzione, presi singolarmente, dicono poco. Noi li incrociamo, li pesiamo rispetto al tuo cliente ideale e leggiamo cosa compongono: questa azienda si sta muovendo, ed ecco perché adesso è il momento.",
-    "about.tl3.tag":"Lynx · Schede aziende","about.tl3.h":"Ricostruiamo","about.tl3.he":"il quadro completo.","about.tl3.p":"Sulle aziende prioritarie andiamo più a fondo: chi decide davvero, chi pesa sul budget, dove si apre uno spiraglio. È il quadro che nessun CRM contiene, perché prima che qualcuno lo costruisca non esiste da nessuna parte.",
-    "about.tl4.tag":"Questione di giorni","about.tl4.h":"Ricevi la risposta,","about.tl4.he":"non i compiti da fare.","about.tl4.p":"Quello che arriva in ARGUS e LYNX è la conclusione dell'analisi, non la sua materia prima: quali aziende, perché adesso, con chi parlare e come aprire. L'interpretazione è già fatta, e te la spieghiamo quando te la consegniamo.",
-    "about.cta.h1":"Raccontaci cosa cerchi.","about.cta.h2":"Poi giudica tu il lavoro.","about.cta.btn2":"Vedi un esempio concreto"
+    "contact.h1a":"Dicci chi","contact.h1b":"stai cercando.",
+    "contact.hero.desc":"Descrivi a parole tue il tuo cliente ideale. Ti rispondiamo entro 24 ore per fissare una call.",
+    "contact.tag1":"Ogni ricerca parte","contact.tag2":"da una conversazione.",
+    "contact.body":"Raccontaci il tuo cliente ideale, il mercato e cosa vuoi ottenere. Leggiamo tutto di persona e ti rispondiamo entro 24 ore per fissare una call.",
+    "contact.email.label":"Email","contact.response.label":"Ti rispondiamo","contact.response.val":"Entro 24 ore","contact.sla.label":"Tempi di consegna","contact.sla.val":"Pochi giorni dalla conferma del brief",
+    "contact.next.title":"Cosa succede dopo che scrivi",
+    "contact.next.1":"Leggiamo la tua richiesta di persona","contact.next.2":"Ti rispondiamo entro 24 ore","contact.next.3":"Una call di mezz'ora per definire chi stai cercando","contact.next.4":"Brief confermato: consegna in pochi giorni","contact.next.5":"Ti spieghiamo il report quando te lo consegniamo",
+    "contact.first":"Nome","contact.last":"Cognome","contact.company":"Azienda","contact.company.ph":"Come si chiama la tua azienda","contact.email2":"Email aziendale",
+    "contact.plan.label":"Cosa ti serve?","contact.plan.ph":"Scegli una soluzione",
+    "contact.plan.o1":"ARGUS: trovare aziende che non conosco","contact.plan.o2":"LYNX: schede sulle aziende che ho già","contact.plan.o3":"ARGUS e LYNX insieme",
+    "contact.plan.o4":"COLLAB: uno spazio di lavoro per il team","contact.plan.o5":"Non lo so ancora, consigliatemi voi","contact.plan.o6":"Agenzia, lavoro su più clienti","contact.plan.o7":"Non lo so ancora, consigliatemi voi","contact.plan.o8":"Qualcosa di su misura, parliamone",
+    "contact.market.label":"In quale mercato e area geografica","contact.market.ph":"es. PMI manifatturiere, Nord-Est, 20-200 dipendenti",
+    "contact.roles.label":"Con chi vuoi parlare","contact.roles.ph":"es. direttore vendite, responsabile IT, direttore finanziario",
+    "contact.icp.label":"Raccontaci meglio chi cerchi","contact.icp.ph":"Che problema risolvi ai tuoi clienti? Da cosa capisci che un'azienda è pronta a comprare?",
+    "priv.h1":"Informativa","priv.h2":"privacy.","contact.consent":"Acconsento che SIFT usi questi dati per rispondere alla mia richiesta. Non li cediamo a nessuno e non ti iscriviamo a newsletter senza il tuo consenso.",
+    "contact.form.note":"Ogni richiesta la leggiamo di persona. Ti rispondiamo entro 24 ore.","contact.form.submit":"Prenota una call",
+    "contact.success.h":"Richiesta ricevuta.","contact.success.p":"Leggiamo la tua richiesta e ti rispondiamo entro 24 ore per fissare una call."
   }
 };
 function applyLang(lang){
@@ -747,6 +741,35 @@ document.querySelectorAll('.lang-btn').forEach(b=>{
 let savedLang='en';
 try{ savedLang = localStorage.getItem('sift-lang') || 'en'; }catch(e){}
 applyLang(savedLang);
+</script>
+<script>
+const planParam = new URLSearchParams(location.search).get('plan');
+if (planParam) {
+  const sel = document.getElementById('planSelect');
+  if (sel) {
+    const map = { 'argus': 'ARGUS', 'lynx': 'LYNX', 'argus-lynx': 'ARGUS + LYNX', 'collab': 'COLLAB' };
+    const target = map[planParam] || '';
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === target) { sel.selectedIndex = i; break; }
+    }
+  }
+}
+const form = document.getElementById('contactForm');
+const success = document.getElementById('formSuccess');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    form.style.display = 'none';
+    success.style.display = 'block';
+  });
+}
+</script>
+<script>
+(function(){function sw(l){document.querySelectorAll('[data-block]').forEach(function(b){b.classList.toggle('on',b.dataset.block===l)})}
+var l='en';try{l=localStorage.getItem('sift-lang')||'en'}catch(e){}sw(l);
+document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){sw(b.dataset.lang)})});
+document.documentElement.dataset.p=1})();
 </script>
 </body>
 </html>

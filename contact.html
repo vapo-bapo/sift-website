@@ -491,7 +491,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
         <div style="display:flex;align-items:flex-start;gap:10px;padding:18px 0 4px;">
           <input type="checkbox" id="f-consent" name="consent" required style="margin-top:3px;flex-shrink:0;"/>
           <label for="f-consent" style="font-size:11.5px;color:var(--text-faint);line-height:1.6;" data-i18n="contact.consent">I agree that SIFT may use the details I've submitted to respond to my enquiry. We won't share your information or add you to a marketing list without consent.</label>
-        </div>
+        </div><p class="priv-short" style="font-size:11.5px;color:var(--text-faint);line-height:1.6;margin:-6px 0 0;" data-i18n="contact.priv">Data controller: SIFT S.r.l. We use your details to reply to your request, as a step before a contract or on the basis of our legitimate interest in replying. You can object at any time by writing to privacy@sifttechnology.com. <a href="privacy.html">Full privacy notice</a>.</p>
         <div class="cform-foot">
           <p class="cform-note" data-i18n="contact.form.note">Every brief is read by hand. We reply within 24 hours.</p>
           <button type="submit" class="btn btn-primary"><span data-i18n="contact.form.submit">Book a call</span> <span class="arr">→</span></button>
@@ -512,6 +512,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <a href="products.html" class="footer-link" data-i18n="nav.products">Products</a>
       <a href="about.html" class="footer-link" data-i18n="nav.how">How it works</a>
       <a href="contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
+      <a href="privacy.html" class="footer-link">Privacy</a>
     </nav>
     <a href="https://www.linkedin.com/company/sift-aicompany/" class="footer-social" target="_blank" rel="noopener" aria-label="SIFT on LinkedIn"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
     <p class="footer-copy" data-i18n="footer.copy">© 2026 SIFT · Research on public sources, written for B2B sales teams.</p>
@@ -631,7 +632,7 @@ const I18N = {
     "contact.market.label":"Target market &amp; geography","contact.market.ph":"e.g. Manufacturing SMEs, North-East Italy, 20–200 employees",
     "contact.roles.label":"Target role(s)","contact.roles.ph":"e.g. Head of Sales, VP Engineering, CFO",
     "contact.icp.label":"Your ICP: tell us more","contact.icp.ph":"What problem do you solve? What signals suggest a company is ready to buy?",
-    "contact.consent":"I agree that SIFT may use the details I've submitted to respond to my enquiry. We won't share your information or add you to a marketing list without consent.",
+    "contact.consent":"I have read the <a href=\"privacy.html\">privacy notice</a>. SIFT will use these details to reply to my enquiry.","contact.priv":"Data controller: SIFT S.r.l. We use your details to reply to your request, as a step before a contract or on the basis of our legitimate interest in replying. You can object at any time by writing to privacy@sifttechnology.com. <a href=\"privacy.html\">Full privacy notice</a>.",
     "contact.form.note":"Every brief is read by hand. We reply within 24 hours.","contact.form.submit":"Book a call",
     "contact.success.h":"Brief received.","contact.success.p":"We'll read your brief and reply within 24 hours to set up a call."
   },
@@ -687,7 +688,7 @@ const I18N = {
     "contact.market.label":"In quale mercato e area geografica","contact.market.ph":"es. PMI manifatturiere, Nord-Est, 20-200 dipendenti",
     "contact.roles.label":"Con chi vuoi parlare","contact.roles.ph":"es. direttore vendite, responsabile IT, direttore finanziario",
     "contact.icp.label":"Raccontaci meglio chi cerchi","contact.icp.ph":"Che problema risolvi ai tuoi clienti? Da cosa capisci che un'azienda è pronta a comprare?",
-    "contact.consent":"Acconsento che SIFT usi questi dati per rispondere alla mia richiesta. Non li cediamo a nessuno e non ti iscriviamo a newsletter senza il tuo consenso.",
+    "contact.consent":"Ho letto l'<a href=\"privacy.html\">informativa privacy</a>. SIFT userà questi dati per rispondere alla mia richiesta.","contact.priv":"Titolare del trattamento: SIFT S.r.l. Usiamo i tuoi dati per rispondere alla tua richiesta, come passo prima di un contratto o sulla base del nostro legittimo interesse a risponderti. Puoi opporti in qualsiasi momento scrivendo a privacy@sifttechnology.com. <a href=\"privacy.html\">Informativa completa</a>.",
     "contact.form.note":"Ogni richiesta la leggiamo di persona. Ti rispondiamo entro 24 ore.","contact.form.submit":"Prenota una call",
     "contact.success.h":"Richiesta ricevuta.","contact.success.p":"Leggiamo la tua richiesta e ti rispondiamo entro 24 ore per fissare una call."
   }
