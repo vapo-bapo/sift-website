@@ -1,0 +1,83 @@
+/* SIFT theme layer: Smeraldo palette, Sora headings, Menta fluo. Loaded after each page's inline style. */
+:root{
+  --graphite:#003D32; --graphite-2:#0A5143; --line-dark:#1F6757;
+  --ivory:#F7FCFA; --ivory-2:#EEF7F3; --mint-dim:#D2F1E5; --mint-grey:#86D3BA;
+  --emerald:#00775D; --emerald-2:#1F9C7B;
+  --fluo:#6FEBBD; --fluo-2:#3FE0A9; --fluo-3:#34D9A2; --fluo-hi:#8CF0CC; --fluo-pale:#DDF6EC;
+  --ink:#06241E; --ink-dim:#3F5A52; --logo:#0B0F0E;
+  --display:'Sora','Inter',system-ui,sans-serif;
+  --grad-light:linear-gradient(95deg,#00775D 0%,#1F9C7B 100%);
+  --grad-dark:linear-gradient(95deg,#C7F1E0 0%,#86D6B7 50%,#4DB592 100%);
+  /* remap of the legacy variables used by the pages */
+  --bg:var(--ivory); --bg-secondary:var(--ivory-2); --card:#FFFFFF; --panel:#FFFFFF; --void:var(--graphite);
+  --gold:var(--emerald); --gold-bright:var(--emerald); --gold-dim:var(--emerald);
+  --red:var(--emerald); --red-bright:var(--emerald-2); --signal:var(--emerald); --ok:var(--emerald);
+  --accent:var(--emerald); --accent-dim:var(--emerald); --accent-bright:var(--emerald-2); --accent-soft:rgba(0,119,93,.1);
+  --text:var(--ink); --text-dim:var(--ink-dim); --text-faint:#5C746C;
+  --border:rgba(6,36,30,.13); --border-strong:rgba(6,36,30,.28);
+  color-scheme:light;
+}
+body{background:var(--ivory)!important;color:var(--ink)}
+.noise,.hero-grid,.hero-fade,.orb,.blob{display:none!important}
+/* headings: Sora, soft green gradient on the accent part */
+.serif,.hero-title,.h2,.page-hero-title,.headline,.nav-logo.__x{font-family:var(--display)!important}
+.hero-title,.h2,.page-hero-title,h1.headline,h2.headline{font-weight:600!important;letter-spacing:-.035em!important;line-height:1.12!important;color:var(--ink)!important;font-style:normal!important}
+.hero-title em,.h2 em,.page-hero-title em,.headline .accent,.gold-text{font-style:normal!important;font-weight:600!important;
+  background:var(--grad-light)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;padding:0 0 .14em!important;display:inline!important}
+h3,.pcard-name,.prow-name,.gcard h3,.faq-q,.step-title{font-family:var(--display)}
+/* logo stays black, Playfair wordmark */
+.nav-logo,.footer-logo,.f-logo{color:var(--logo)!important;font-family:'Playfair Display',serif!important;opacity:1!important}
+.nav-logo .logo-mark,.footer-logo .logo-mark{color:var(--logo)}
+/* nav */
+.nav{background:rgba(247,252,250,.88)!important;backdrop-filter:blur(14px);border-bottom:1px solid var(--border)!important}
+.nav.scrolled{background:rgba(247,252,250,.94)!important}
+.nav-link{color:var(--ink-dim)!important}.nav-link:hover,.nav-link.active{color:var(--ink)!important}
+.lang-toggle{border-color:var(--border-strong)!important}
+.lang-btn{color:var(--ink-dim)!important}.lang-btn.active{background:var(--graphite)!important;color:var(--ivory)!important}
+.nav-hamburger span{background:var(--ink)!important}
+.mobile-panel{background:var(--ivory)!important;box-shadow:0 12px 30px rgba(6,36,30,.12)!important}
+/* buttons: fluo gradient, graphite text */
+.btn-primary,.nav-cta,.btn-onDark,.btn-amber{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 45%,var(--fluo-3) 100%)!important;color:var(--graphite)!important;box-shadow:none!important;animation:none!important}
+.btn-primary:hover,.nav-cta:hover,.btn-onDark:hover{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 100%)!important;box-shadow:0 10px 28px rgba(63,224,169,.35)!important}
+.btn-outline{border-color:rgba(6,36,30,.45)!important;color:var(--ink)!important}.btn-outline:hover{border-color:var(--ink)!important;color:var(--ink)!important}
+mark{background:linear-gradient(transparent 62%,rgba(111,235,189,.75) 62%);color:inherit;padding:0 .08em}
+:focus-visible{outline:2px solid var(--emerald)!important;outline-offset:3px}
+/* dark panels: graphite with light text */
+.nla,.prow-panel:not(.prow-panel-light),.cmock,.intel-wrap,.cta-inner{
+  --text:#F7FCFA; --text-dim:#C7F1E0; --text-faint:#86D3BA; --border:#1F6757; --border-strong:#2D7A68; --card:#0A5143; --panel:#05473A;
+  --gold:#6FEBBD; --gold-bright:#8CF0CC; --gold-dim:#6FEBBD; --red:#6FEBBD; --accent:#6FEBBD; --accent-dim:#6FEBBD; --signal:#6FEBBD; --ok:#6FEBBD;
+  background:var(--graphite)!important;color:#F7FCFA;box-shadow:0 24px 60px rgba(0,61,50,.28)!important}
+.cta-inner{background:linear-gradient(160deg,#0A5143,#003D32)!important}
+.cta-inner .h2,.nla .h2,.cta-inner h2{color:#F7FCFA!important}
+.cta-inner .h2 em,.cta-inner h2 em{background:var(--grad-dark)!important;-webkit-background-clip:text!important;background-clip:text!important}
+/* cards */
+.card-glass,.price-card,.process-mini,.faq-item,.hero-chip,.prow-panel-light{background:#fff!important;border-color:var(--border)!important;box-shadow:0 10px 30px rgba(6,36,30,.06)!important}
+.who{background:var(--ivory-2)!important}
+/* footer */
+.footer{border-top:1px solid var(--border)!important}.footer-link,.footer-copy{color:var(--ink-dim)!important}.footer-link:hover{color:var(--emerald)!important}
+.footer-social{border-color:var(--border-strong)!important;color:var(--ink-dim)!important}.footer-social:hover{color:var(--graphite)!important;border-color:var(--fluo-3)!important;background:var(--fluo)!important}
+/* tour pages (argus, lynx, collab): graphite background, fluo accent */
+body:has(#tour){
+  --bg:#003D32; --card:#0A5143; --panel:#05473A; --text:#F7FCFA; --text-dim:#C7F1E0; --text-faint:#86D3BA;
+  --border:#1F6757; --border-strong:#2D7A68; --accent:#6FEBBD; --accent-dim:#6FEBBD; --accent-bright:#8CF0CC; --accent-soft:rgba(111,235,189,.14);
+  --ok:#6FEBBD; --signal:#6FEBBD; --gold:#6FEBBD; --gold-dim:#6FEBBD; color-scheme:dark;
+  background:#003D32!important;color:#F7FCFA}
+body:has(#tour) .nav{background:rgba(0,61,50,.92)!important;border-bottom-color:#1F6757!important}
+body:has(#tour) .nav-logo,body:has(#tour) .nav-logo .logo-mark{color:#F7FCFA!important}
+body:has(#tour) .nav-back,body:has(#tour) .lang-btn{color:#86D3BA!important}
+body:has(#tour) .lang-btn.active{background:#F7FCFA!important;color:#003D32!important}
+body:has(#tour) .headline{color:#F7FCFA!important}
+body:has(#tour) .headline .accent{background:var(--grad-dark)!important;-webkit-background-clip:text!important;background-clip:text!important}
+body:has(#tour) .btn-outline{border-color:#86D3BA!important;color:#F7FCFA!important}
+body:has(#tour) .step-eyebrow{color:#6FEBBD!important}
+.contact-tagline,.cta-title,.hero-chip-name,.intel-name,.pcard-name,.process-num,.prow-score,.stat-num,.tl-n,.prow-name,h2.prow-name,th,.price-num,.price-name{font-family:var(--display)!important;font-style:normal!important}
+.prow-score,.stat-num,.process-num,.tl-n,.price-num{letter-spacing:-.02em}
+.contact-tagline em,.cta-title em{font-style:normal!important}
+body:has(#tour) .nav-logo{color:#F7FCFA!important}
+body:has(#tour) .nav-logo span{color:#6FEBBD!important}
+.nav-logo *,.footer-logo *{color:var(--logo)!important;-webkit-text-fill-color:currentColor!important;background:none!important}
+body:has(#tour) .nav-logo,body:has(#tour) .nav-logo *{color:#F7FCFA!important}
+body:has(#tour) .nav-logo span{color:#6FEBBD!important}
+.tl-content h3,.tl-content h3 em,.step h3,.step h3 em,h3 em{font-family:var(--display)!important;font-style:normal!important;font-weight:600}
+.tl-content h3 em,h3 em{color:var(--emerald)}
+.tl-n{color:var(--emerald)}
