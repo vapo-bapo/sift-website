@@ -81,3 +81,21 @@ body:has(#tour) .nav-logo span{color:#6FEBBD!important}
 .tl-content h3,.tl-content h3 em,.step h3,.step h3 em,h3 em{font-family:var(--display)!important;font-style:normal!important;font-weight:600}
 .tl-content h3 em,h3 em{color:var(--emerald)}
 .tl-n{color:var(--emerald)}
+
+/* ---- green backgrounds for the inner pages (not the tour pages) ---- */
+body:not(:has(#tour)){--bg-secondary:#D3EFE2;--bg:#E6F5EE;background:linear-gradient(180deg,#E6F5EE 0%,#E6F5EE 100%)!important}
+body:not(:has(#tour)) .page-hero{position:relative;background:
+  radial-gradient(60% 120% at 88% 0%,rgba(111,235,189,.55) 0%,rgba(111,235,189,0) 62%),
+  linear-gradient(180deg,#A9E6CE 0%,#C9EFDD 55%,#E6F5EE 100%)!important;border-bottom:0!important}
+body:not(:has(#tour)) .section{background:transparent}
+body:not(:has(#tour)) .section:nth-of-type(even){background:linear-gradient(180deg,#D3EFE2 0%,#CBEBDC 100%)}
+body:not(:has(#tour)) .who{background:linear-gradient(180deg,#CBEBDC,#D3EFE2)!important}
+body:not(:has(#tour)) section[style*="bg-secondary"]{background:linear-gradient(180deg,#CBEBDC,#D6F0E4)!important;border-color:rgba(0,61,50,.12)!important}
+body:not(:has(#tour)) .priv{background:transparent}
+body:not(:has(#tour)) .nav,body:not(:has(#tour)) .nav.scrolled{background:rgba(214,240,228,.9)!important}
+body:not(:has(#tour)) .footer{background:#003D32;border-top:0!important}
+body:not(:has(#tour)) .footer-link,body:not(:has(#tour)) .footer-copy{color:#C7F1E0!important}
+body:not(:has(#tour)) .footer-link:hover{color:#6FEBBD!important}
+body:not(:has(#tour)) .footer .footer-logo,body:not(:has(#tour)) .footer .footer-logo *{color:#F7FCFA!important}
+body:not(:has(#tour)) .footer-social{color:#C7F1E0!important;border-color:#2D7A68!important}
+body:not(:has(#tour)) .card-glass,body:not(:has(#tour)) .price-card,body:not(:has(#tour)) .process-mini,body:not(:has(#tour)) .faq-item,body:not(:has(#tour)) .hero-chip{box-shadow:0 14px 36px rgba(0,61,50,.10)!important;border-color:rgba(0,61,50,.10)!important}
