@@ -82,20 +82,63 @@ body:has(#tour) .nav-logo span{color:#6FEBBD!important}
 .tl-content h3 em,h3 em{color:var(--emerald)}
 .tl-n{color:var(--emerald)}
 
-/* ---- green backgrounds for the inner pages (not the tour pages) ---- */
-body:not(:has(#tour)){--bg-secondary:#D3EFE2;--bg:#E6F5EE;background:linear-gradient(180deg,#E6F5EE 0%,#E6F5EE 100%)!important}
-body:not(:has(#tour)) .page-hero{position:relative;background:
-  radial-gradient(60% 120% at 88% 0%,rgba(111,235,189,.55) 0%,rgba(111,235,189,0) 62%),
-  linear-gradient(180deg,#A9E6CE 0%,#C9EFDD 55%,#E6F5EE 100%)!important;border-bottom:0!important}
-body:not(:has(#tour)) .section{background:transparent}
-body:not(:has(#tour)) .section:nth-of-type(even){background:linear-gradient(180deg,#D3EFE2 0%,#CBEBDC 100%)}
-body:not(:has(#tour)) .who{background:linear-gradient(180deg,#CBEBDC,#D3EFE2)!important}
-body:not(:has(#tour)) section[style*="bg-secondary"]{background:linear-gradient(180deg,#CBEBDC,#D6F0E4)!important;border-color:rgba(0,61,50,.12)!important}
-body:not(:has(#tour)) .priv{background:transparent}
-body:not(:has(#tour)) .nav,body:not(:has(#tour)) .nav.scrolled{background:rgba(214,240,228,.9)!important}
-body:not(:has(#tour)) .footer{background:#003D32;border-top:0!important}
-body:not(:has(#tour)) .footer-link,body:not(:has(#tour)) .footer-copy{color:#C7F1E0!important}
-body:not(:has(#tour)) .footer-link:hover{color:#6FEBBD!important}
-body:not(:has(#tour)) .footer .footer-logo,body:not(:has(#tour)) .footer .footer-logo *{color:#F7FCFA!important}
-body:not(:has(#tour)) .footer-social{color:#C7F1E0!important;border-color:#2D7A68!important}
-body:not(:has(#tour)) .card-glass,body:not(:has(#tour)) .price-card,body:not(:has(#tour)) .process-mini,body:not(:has(#tour)) .faq-item,body:not(:has(#tour)) .hero-chip{box-shadow:0 14px 36px rgba(0,61,50,.10)!important;border-color:rgba(0,61,50,.10)!important}
+
+/* =====================================================================
+   Inner pages: white base, dark rounded "floating" panels, gradients.
+   Built page by page, not a copy of the home layout.
+   ===================================================================== */
+.pg-products,.pg-about,.pg-contact,.pg-privacy{
+  --dk-text:#F7FCFA;--dk-dim:#C7F1E0;--dk-faint:#86D3BA;--dk-line:#1F6757;--dk-card:#0A5143;
+}
+.pg-products .nav,.pg-about .nav,.pg-contact .nav,.pg-privacy .nav,.pg-products .nav.scrolled,.pg-about .nav.scrolled,.pg-contact .nav.scrolled,.pg-privacy .nav.scrolled{background:rgba(247,252,250,.88)!important}
+/* dark scope: flips the text variables */
+.pg-products .page-hero,.pg-products #lynx,.pg-about .method,.pg-contact .page-hero,.pg-privacy .page-hero{
+  --text:var(--dk-text);--text-dim:var(--dk-dim);--text-faint:var(--dk-faint);--border:var(--dk-line);--border-strong:#2D7A68;--card:var(--dk-card);
+  --gold:#6FEBBD;--gold-bright:#8CF0CC;--gold-dim:#6FEBBD;--red:#6FEBBD;--accent:#6FEBBD;--signal:#6FEBBD;--ok:#6FEBBD;color:var(--dk-text)}
+/* floating dark hero */
+.pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{
+  position:relative;overflow:hidden;margin:84px 16px 0;padding:72px 0 64px;border:0!important;border-radius:40px;
+  background:radial-gradient(52% 90% at 92% 8%,rgba(111,235,189,.30) 0%,rgba(111,235,189,0) 70%),radial-gradient(40% 70% at 4% 100%,rgba(63,224,169,.18) 0%,rgba(63,224,169,0) 70%),linear-gradient(160deg,#0A5143 0%,#003D32 55%,#00302A 100%)}
+.pg-products .page-hero-title,.pg-contact .page-hero-title,.pg-privacy .page-hero-title{color:#F7FCFA!important}
+.pg-products .page-hero-title em,.pg-contact .page-hero-title em,.pg-privacy .page-hero-title em{background:var(--grad-dark)!important;-webkit-background-clip:text!important;background-clip:text!important}
+.pg-contact .page-hero-desc{color:#C7F1E0}
+/* ---------- PRODUCTS ---------- */
+.pg-products .hero-chip{background:rgba(255,255,255,.07)!important;border:1px solid rgba(199,241,224,.22)!important;box-shadow:none!important;backdrop-filter:blur(6px)}
+.pg-products .hero-chip *{color:inherit}
+.pg-products .hero-chip-name{color:#F7FCFA!important}.pg-products .hero-chip-sub{color:#6FEBBD!important}.pg-products .hero-chip-desc,.pg-products .hero-chip p{color:#C7F1E0!important}
+.pg-products .prow{padding-block:clamp(64px,8vw,112px)}
+.pg-products #argus{background:#fff}
+.pg-products #lynx{position:relative;margin:0 16px;border-radius:40px;background:radial-gradient(60% 80% at 8% 0%,rgba(111,235,189,.16),rgba(111,235,189,0) 70%),linear-gradient(170deg,#003D32,#00302A)}
+.pg-products #lynx .prow-name{color:#F7FCFA!important}
+.pg-products #lynx .prow-panel{background:#0A5143!important;box-shadow:0 24px 60px rgba(0,0,0,.35)!important;border:1px solid #1F6757}
+.pg-products #lynx .prow-body,.pg-products #lynx .prow-feat-list li{color:#C7F1E0!important}
+.pg-products #lynx .btn-outline{border-color:#86D3BA!important;color:#F7FCFA!important}
+.pg-products #collab{background:linear-gradient(180deg,#fff 0%,#E3F6EE 100%)}
+.pg-products #sample{background:#fff!important;border-top:0!important}
+.pg-products .prow-name{font-weight:600!important;letter-spacing:-.04em;font-size:clamp(44px,6vw,76px)!important}
+.pg-products #argus .prow-name,.pg-products #collab .prow-name{background:none!important;color:#06241E!important;-webkit-text-fill-color:#06241E!important}
+.pg-products #lynx .prow-name{background:none!important;-webkit-text-fill-color:#F7FCFA!important}
+.pg-products .prow-tag{color:var(--emerald)!important}.pg-products #lynx .prow-tag{color:#6FEBBD!important}
+/* ---------- ABOUT ---------- */
+.pg-about .page-hero{border:0!important;padding:150px 0 40px;background:radial-gradient(48% 90% at 100% 0%,rgba(111,235,189,.35),rgba(111,235,189,0) 70%),#F7FCFA}
+.pg-about .section:nth-of-type(1){background:#F7FCFA}
+.pg-about .method{margin:0 16px;border-radius:40px;padding-inline:0;border:0!important;background:radial-gradient(55% 70% at 100% 0%,rgba(111,235,189,.18),rgba(111,235,189,0) 70%),linear-gradient(170deg,#0A5143,#003D32 60%,#00302A)!important}
+.pg-about .method .h2{color:#F7FCFA!important}
+.pg-about .method .h2 em{background:var(--grad-dark)!important;-webkit-background-clip:text!important;background-clip:text!important}
+.pg-about .method .tl-tag{background:rgba(111,235,189,.14)!important;border-color:#2D7A68!important;color:#6FEBBD!important}
+.pg-about .method .tl-n{color:#6FEBBD;border-color:#2D7A68!important}
+.pg-about .method h3,.pg-about .method h3 em{color:#F7FCFA!important}.pg-about .method h3 em{color:#6FEBBD!important}
+.pg-about .method .tl-step{border-color:#1F6757!important}
+.pg-about .section-lead{color:inherit}
+.pg-about .method .section-lead,.pg-about .method p{color:#C7F1E0!important}
+.pg-about section[style*="bg-secondary"]:not(.method){background:linear-gradient(135deg,#fff 0%,#DDF4EA 100%)!important;border:0!important}
+/* ---------- CONTACT ---------- */
+.pg-contact .page-hero{padding:72px 0 56px}
+.pg-contact .section{background:linear-gradient(180deg,#F7FCFA 0%,#fff 100%)}
+.pg-contact .cform{background:#fff;border-radius:28px;padding:36px;box-shadow:0 30px 70px rgba(0,61,50,.12);border:1px solid rgba(0,61,50,.08)}
+.pg-contact .contact-grid{align-items:start}
+/* ---------- PRIVACY ---------- */
+.pg-privacy .page-hero{padding:64px 0 48px}
+.pg-privacy .priv{background:#fff}
+.pg-privacy .priv .ph{background:rgba(111,235,189,.4)}
+@media(max-width:760px){.pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin:76px 10px 0;border-radius:28px}.pg-products #lynx,.pg-about .method{margin:0 10px;border-radius:28px}.pg-contact .cform{padding:24px}}
