@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#F7FCFA"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>
 :root{
@@ -22,10 +22,10 @@
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;}
 a{color:inherit;text-decoration:none;}
 ul{list-style:none;}
-.mono{font-family:'JetBrains Mono',monospace;}
+.mono{font-family:'Inter',sans-serif;}
 .container{max-width:1180px;margin:0 auto;padding:0 40px;width:100%;}
 
 .tour{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
@@ -38,7 +38,7 @@ ul{list-style:none;}
 .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
 .nav-cta{background:var(--accent);color:#1B1F23;padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;transition:all 200ms;}
 .nav-cta:hover{background:var(--accent-dim);}
-.nav-back{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);transition:color 200ms;}
+.nav-back{font-family:'Inter',sans-serif;font-size:11px;color:var(--text-faint);transition:color 200ms;}
 .nav-back:hover{color:var(--accent-dim);}
 
 .progress{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:10px;}
@@ -50,7 +50,7 @@ ul{list-style:none;}
 .headline .accent{color:var(--accent);}
 h1.headline{font-size:clamp(38px,5.5vw,60px);}
 h2.headline{font-size:clamp(24px,3vw,34px);}
-.step-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--accent-dim);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.step-eyebrow{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--accent-dim);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sub{color:var(--text-dim);font-size:15px;margin-top:14px;max-width:460px;line-height:1.65;}
 .takeaways{margin-top:20px;display:flex;flex-direction:column;gap:9px;}
 .takeaways li{font-size:13.5px;color:var(--text-dim);padding-left:24px;position:relative;font-weight:500;}
@@ -69,7 +69,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .screen{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,0.25);overflow:hidden;}
 .screen-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--border);background:var(--panel);}
 .screen-dot{width:9px;height:9px;border-radius:50%;background:var(--border-strong);}
-.screen-title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);}
+.screen-title{margin-left:10px;font-family:'Inter',sans-serif;font-size:10px;color:var(--text-faint);}
 .screen-body{padding:20px;}
 
 /* dashboard mock bits */
@@ -81,14 +81,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .stat-ic.blue{background:rgba(226,176,74,0.15);color:var(--accent-dim);}
 .stat-num{font-size:22px;font-weight:800;letter-spacing:-0.02em;}
 .stat-label{font-size:11px;color:var(--text-dim);margin-top:2px;font-weight:600;}
-.list-title{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin:14px 0 8px;display:flex;align-items:center;gap:8px;}
+.list-title{font-family:'Inter',sans-serif;font-size:9.5px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin:14px 0 8px;display:flex;align-items:center;gap:8px;}
 .count-chip{background:var(--accent-soft);color:var(--accent-dim);border-radius:999px;padding:1px 7px;font-size:9px;font-weight:700;}
 .prow-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
 .prow-item:last-child{border-bottom:none;}
 .avatar{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;color:#1B1F23;flex-shrink:0;}
 .prow-name{font-weight:700;font-size:11.5px;}
-.prow-domain{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);}
-.tag{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;padding:3px 7px;border-radius:999px;letter-spacing:0.04em;}
+.prow-domain{font-family:'Inter',sans-serif;font-size:9.5px;color:var(--text-faint);}
+.tag{font-family:'Inter',sans-serif;font-size:8px;font-weight:700;padding:3px 7px;border-radius:999px;letter-spacing:0.04em;}
 .tag-medium{background:var(--accent-soft);color:var(--accent-dim);}
 .tag-monitored{background:rgba(127,192,171,0.14);color:var(--ok);}
 
@@ -97,42 +97,42 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .arc-card:last-child{margin-bottom:0;}
 .arc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
 .arc-title{font-weight:700;font-size:11.5px;margin-bottom:3px;}
-.arc-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);}
+.arc-meta{font-family:'Inter',sans-serif;font-size:9px;color:var(--text-faint);}
 .arc-nums{display:flex;gap:14px;flex-shrink:0;}
 .arc-num{text-align:center;}
 .arc-num .n{font-size:14px;font-weight:800;}
 .arc-num.ok .n{color:var(--ok);}
-.arc-num .l{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--text-faint);text-transform:uppercase;}
+.arc-num .l{font-family:'Inter',sans-serif;font-size:7.5px;color:var(--text-faint);text-transform:uppercase;}
 .arc-bar{height:4px;border-radius:3px;background:var(--border);margin-top:8px;overflow:hidden;display:flex;}
 .arc-bar span{height:100%;}
 
 /* report detail mock */
 .crit-box{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:10px;}
-.crit-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.crit-label{font-family:'Inter',sans-serif;font-size:8px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
 .ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:10px;}
 .ov-cell{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:8px 4px;text-align:center;}
 .ov-cell .n{font-size:14px;font-weight:800;}
 .ov-cell .n.ok{color:var(--ok);}
 .ov-cell .n.warn{color:var(--accent-dim);}
-.ov-cell .l{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--text-faint);text-transform:uppercase;margin-top:2px;}
+.ov-cell .l{font-family:'Inter',sans-serif;font-size:7px;color:var(--text-faint);text-transform:uppercase;margin-top:2px;}
 .exec-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
-.exec-col h5{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
+.exec-col h5{font-family:'Inter',sans-serif;font-size:8px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
 .exec-col p{font-size:10px;color:var(--text-dim);line-height:1.5;}
 
 /* leads mock */
 .lead-row{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:10px 12px;margin-bottom:7px;}
 .lead-row:last-child{margin-bottom:0;}
-.rank{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);width:18px;}
+.rank{font-family:'Inter',sans-serif;font-size:9px;color:var(--text-faint);width:18px;}
 .gauge{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
 .gauge .n{font-size:11px;font-weight:800;background:var(--bg);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 .lead-name{font-weight:700;font-size:11.5px;}
 .lead-why{font-size:10px;color:var(--text-dim);margin-top:2px;line-height:1.45;}
-.lead-why b{color:var(--accent-dim);font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;}
+.lead-why b{color:var(--accent-dim);font-family:'Inter',sans-serif;font-size:8px;text-transform:uppercase;}
 
 .cta-slide{text-align:center;}
 .cta-slide h2{font-size:clamp(30px,4.5vw,50px);}
-.cta-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);margin-top:14px;}
-.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;animation:hintFloat 2.2s ease-in-out infinite;}
+.cta-note{font-family:'Inter',sans-serif;font-size:11px;color:var(--text-faint);margin-top:14px;}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:10px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;animation:hintFloat 2.2s ease-in-out infinite;}
 @keyframes hintFloat{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,6px);}}
 
 @media(max-height:720px){
@@ -236,7 +236,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         <p class="sub" data-i18n="s3.p">Every run is saved in Argus with its full results: how many companies were scanned, how many qualified, and how long it took. Download any report as PDF or DOCX, whenever you need it.</p>
         <ul class="takeaways">
           <li data-i18n="s3.l1">Full history of every run, never lost</li>
-          <li data-i18n="s3.l2">Leads vs. scanned ratio visible instantly</li>
+          <li data-i18n="s3.l2">Qualified-to-scanned ratio visible at a glance</li>
           <li data-i18n="s3.l3">Export to PDF / DOCX in one click</li>
         </ul>
       </div>
@@ -335,7 +335,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           <div class="lead-row">
             <span class="rank">#3</span>
             <div class="gauge" style="background:conic-gradient(var(--accent) 0turn 0.74turn, var(--border) 0turn);"><span class="n">–</span></div>
-            <div style="flex:1;"><div class="lead-name" data-i18n="lead.C">Packaging company C</div><div class="lead-why"><b data-i18n="why">Why·</b> <span data-i18n="s5.w3">New compliance rules create urgent need for traceability tooling.</span></div></div>
+            <div style="flex:1;"><div class="lead-name" data-i18n="lead.C">Packaging company C</div><div class="lead-why"><b data-i18n="why">Why·</b> <span data-i18n="s5.w3">New compliance rules create an urgent need for traceability tooling.</span></div></div>
             <span class="tag tag-monitored" data-i18n="d.solid">Solid data</span>
           </div>
         </div>
@@ -387,7 +387,7 @@ const I18N = {
     "s2.k1":"Portfolio Accounts","s2.k2":"Reports Generated","s2.k3":"Discover Leads","s2.recent":"Recent portfolio",
     "s3.eyebrow":"The archive","s3.h":"Every search you run","s3.he":"stays yours.",
     "s3.p":"Every run is saved in Argus with its full results: how many companies were scanned, how many qualified, and how long it took. Download any report as PDF or DOCX, whenever you need it.",
-    "s3.l1":"Full history of every run, never lost","s3.l2":"Leads vs. scanned ratio visible instantly","s3.l3":"Export to PDF / DOCX in one click",
+    "s3.l1":"Full history of every run, never lost","s3.l2":"Qualified-to-scanned ratio visible at a glance","s3.l3":"Export to PDF / DOCX in one click",
     "s3.a1":"Packaging manufacturers, paper and plastics","s3.a2":"Eyewear manufacturers, mid-market","s3.a3":"Fast-growing SMEs, North-East Italy",
     "s4.eyebrow":"The report","s4.h":"Clear numbers, and a summary","s4.he":"in plain language.",
     "s4.p":"Each report opens with your original search criteria and the hard numbers, then an executive summary in plain language: what we found, how the market is moving, and which leads to contact first.",
@@ -400,7 +400,7 @@ const I18N = {
     "s5.eyebrow":"The leads","s5.h":"Every contact has a score","s5.he":"and a reason why.",
     "s5.p":"Each lead shows its fit score out of 100 and a plain-language reason: the specific public signal that says this company is worth a call right now.",
     "s5.l1":"Fit score 0–100 on every contact","s5.l2":"The trigger, cited, so you can verify it yourself","s5.l3":"Filter by score, signal type, or buying phase",
-    "s5.w1":"Positioned as a leader in secondary and tertiary packaging.","s5.w2":"New e-commerce build signals active digital investment.","s5.w3":"New compliance rules create urgent need for traceability tooling.",
+    "s5.w1":"Positioned as a leader in secondary and tertiary packaging.","s5.w2":"New e-commerce build signals active digital investment.","s5.w3":"New compliance rules create an urgent need for traceability tooling.",
     "s6.eyebrow":"That's Argus","s6.h":"A scored, cited lead list.","s6.he":"In a matter of days.","s6.next":"Next: see Lynx →","s6.note":"Reply within 24 hours · delivery in a matter of days"
   },
   it: {
@@ -423,7 +423,7 @@ const I18N = {
 
     "nav.back":"← prodotti","nav.cta":"Prenota una call →","cta.run":"Prenota una call →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour","why":"Perché·",
     "s1.eyebrow":"Il prodotto · Liste di contatti","s1.h":"Argus trova le aziende","s1.he":"pronte a comprare da te.",
-    "s1.p":"Legge i segnali pubblici che un'azienda non può nascondere (chi assume, chi raccoglie capitali, chi cambia ai vertici, chi cambia tecnologie) e li trasforma in una lista di contatti già valutata, che i tuoi commerciali possono chiamare lo stesso giorno.",
+    "s1.p":"Legge i segnali pubblici che un'azienda non può nascondere (chi assume, chi raccoglie capitali, chi cambia i vertici, chi cambia tecnologie) e li trasforma in una lista di contatti già valutata, che i tuoi commerciali possono chiamare lo stesso giorno.",
     "s2.eyebrow":"La tua centrale operativa","s2.h":"Apri Argus e vedi tutto il tuo mercato","s2.he":"in un colpo d'occhio.",
     "s2.p":"Questa è la schermata da cui parte il tuo team: quante aziende hai studiato, quanti report sono pronti, e un pulsante per mandarci una nuova richiesta.",
     "s2.l1":"Tutte le aziende che hai studiato, in un posto solo","s2.l2":"Ogni analisi archiviata e sempre riapribile","s2.l3":"Una nuova richiesta con un clic: al resto pensiamo noi",

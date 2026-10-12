@@ -30,7 +30,7 @@ body{
 }
 a{color:inherit;text-decoration:none;}
 ul{list-style:none;}
-.serif{font-family:'Playfair Display',serif;}
+.serif{font-family:var(--display);}
 .container{max-width:1240px;margin:0 auto;padding:0 32px;}
 .gold-text{
   background:linear-gradient(135deg,#E2B04A 0%,#7FC0AB 100%);
@@ -113,7 +113,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .section{padding:clamp(64px,9vw,128px) 0;position:relative;}
 .eyebrow{font-size:11px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:0.24em;margin-bottom:16px;font-weight:700;display:flex;align-items:center;gap:12px;}
 .eyebrow::before{content:'';display:block;width:22px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--red));flex-shrink:0;}
-.h2{font-family:'Playfair Display',serif;font-size:clamp(34px,4.6vw,58px);font-weight:500;line-height:1.35;padding-bottom:0.16em;letter-spacing:-0.015em;color:var(--text);}
+.h2{font-family:var(--display);font-size:clamp(34px,4.6vw,58px);font-weight:500;line-height:1.35;padding-bottom:0.16em;letter-spacing:-0.015em;color:var(--text);}
 .h2 em{font-style:italic;font-weight:400;display:inline-block;padding:0.05em 0.15em 0.2em;line-height:1.3;
   background:linear-gradient(135deg,var(--gold-dim) 0%,var(--red) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .section-lead{color:var(--text-dim);font-size:15.5px;line-height:1.8;max-width:560px;margin-top:20px;font-weight:300;}
@@ -141,7 +141,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 <style>
 .page-hero{padding:150px 0 64px;border-bottom:1px solid var(--border);}
 .page-hero-inner{display:flex;flex-direction:column;gap:24px;}
-.page-hero-title{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,76px);font-weight:500;line-height:1.35;padding-bottom:0.18em;letter-spacing:-0.015em;color:var(--text);}
+.page-hero-title{font-family:var(--display);font-size:clamp(42px,6vw,76px);font-weight:500;line-height:1.35;padding-bottom:0.18em;letter-spacing:-0.015em;color:var(--text);}
 .page-hero-title em{font-style:italic;font-weight:400;display:inline-block;padding:0.05em 0.15em 0.2em;line-height:1.3;background:linear-gradient(135deg,var(--gold-dim) 0%,var(--red) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .page-hero-desc{font-size:16px;color:var(--text-dim);line-height:1.7;max-width:640px;font-weight:300;}
 .hero-chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:900px;}
@@ -154,7 +154,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .hero-chip:hover::after{opacity:1;}
 .hero-chip-ic{width:38px;height:38px;border-radius:11px;background:rgba(226,176,74,0.12);color:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:4px;transition:transform 620ms cubic-bezier(0.22,1,0.36,1),background 620ms ease;}
 .hero-chip:hover .hero-chip-ic{transform:scale(1.1);background:rgba(226,176,74,0.2);}
-.hero-chip-name{font-family:'Playfair Display',serif;font-size:34px;font-weight:600;color:var(--text);line-height:1.1;}
+.hero-chip-name{font-family:var(--display);font-size:34px;font-weight:600;color:var(--text);line-height:1.1;}
 .hero-chip-sub{font-size:12.5px;font-weight:700;color:var(--gold-dim);}
 .hero-chip-desc{font-size:13px;color:var(--text-dim);line-height:1.55;}
 .hero-chip-go{margin-top:auto;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--gold-dim);letter-spacing:0.02em;}
@@ -166,7 +166,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 /* product rows */
 .prow{position:relative;padding:clamp(56px,7vw,96px) 0;border-top:1px solid var(--border);overflow:hidden;}
 .prow-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
-.prow-name{font-family:'Playfair Display',serif;font-size:clamp(44px,6vw,80px);font-weight:600;line-height:1.42;padding:0.1em 0 0.18em;letter-spacing:-0.02em;margin-bottom:16px;
+.prow-name{font-family:var(--display);font-size:clamp(44px,6vw,80px);font-weight:600;line-height:1.42;padding:0.1em 0 0.18em;letter-spacing:-0.02em;margin-bottom:16px;
   background:linear-gradient(135deg,var(--text) 0%,var(--gold-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .prow-tag{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;}
 .prow-body{font-size:15px;color:var(--text-dim);line-height:1.78;margin-bottom:26px;max-width:480px;font-weight:300;}
@@ -184,7 +184,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .prow-row:last-child{border-bottom:none;}
 .prow-row-name{font-size:13.5px;color:rgba(255,253,245,0.9);}
 .prow-row-tag{font-size:10.5px;color:rgba(255,253,245,0.4);margin-top:2px;}
-.prow-score{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--gold-bright);}
+.prow-score{font-family:var(--display);font-size:20px;font-weight:600;color:var(--gold-bright);}
 .prow-feat-list{display:flex;flex-direction:column;gap:10px;margin-bottom:26px;}
 .prow-feat-list li{font-size:13.5px;color:var(--text-dim);padding-left:18px;position:relative;font-weight:300;}
 .prow-feat-list li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
@@ -194,7 +194,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .subbrief{margin-top:56px;padding-top:48px;border-top:1px dashed var(--border-strong);}
 .subbrief-head{display:flex;align-items:center;gap:14px;margin-bottom:28px;flex-wrap:wrap;}
 .subbrief-badge{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);background:rgba(226,176,74,0.08);border:1px solid var(--border);border-radius:999px;padding:6px 14px;}
-.subbrief-head h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:var(--text);}
+.subbrief-head h3{font-family:var(--display);font-size:24px;font-weight:500;color:var(--text);}
 
 .c-avail{display:inline-flex;align-items:center;gap:9px;background:rgba(226,176,74,0.08);border:1px solid var(--border-strong);border-radius:999px;padding:9px 18px;font-size:12.5px;font-weight:600;color:var(--gold-dim);margin-bottom:24px;}
 .c-avail iconify-icon{font-size:16px;}
@@ -203,7 +203,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .cmock:hover{transform:scale(1.015) rotate(0.3deg);box-shadow:0 30px 70px rgba(0,0,0,0.55);}
 .cmock-label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.3);margin-bottom:18px;}
 .cmock-cal{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgba(255,253,245,0.08);border-radius:10px;overflow:hidden;margin-bottom:16px;}
-.cmock-dow{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:rgba(255,253,245,0.35);text-transform:uppercase;padding:6px 0;text-align:center;background:rgba(255,253,245,0.03);border-bottom:1px solid rgba(255,253,245,0.08);}
+.cmock-dow{font-family:'Inter',sans-serif;font-size:7.5px;color:rgba(255,253,245,0.35);text-transform:uppercase;padding:6px 0;text-align:center;background:rgba(255,253,245,0.03);border-bottom:1px solid rgba(255,253,245,0.08);}
 .cmock-cell{min-height:36px;border-bottom:1px solid rgba(255,253,245,0.06);border-right:1px solid rgba(255,253,245,0.06);font-size:8.5px;color:rgba(255,253,245,0.35);padding:3px 5px;text-align:right;}
 .cmock-cell:nth-child(7n){border-right:none;}
 .cmock-cell.today{background:rgba(226,176,74,0.14);color:var(--gold-bright);font-weight:700;}
@@ -214,8 +214,8 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .cmock-row:last-child{border-bottom:none;}
 .cmock-ic{width:26px;height:26px;border-radius:8px;background:rgba(226,176,74,0.14);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
 .cmock-name{font-size:12px;color:rgba(255,253,245,0.9);font-weight:500;}
-.cmock-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,253,245,0.4);margin-top:1px;}
-.cmock-chip{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;letter-spacing:0.06em;padding:3px 8px;border-radius:999px;background:rgba(226,176,74,0.14);color:var(--gold-bright);text-transform:uppercase;}
+.cmock-sub{font-family:'Inter',sans-serif;font-size:9px;color:rgba(255,253,245,0.4);margin-top:1px;}
+.cmock-chip{margin-left:auto;font-family:'Inter',sans-serif;font-size:7.5px;font-weight:700;letter-spacing:0.06em;padding:3px 8px;border-radius:999px;background:rgba(226,176,74,0.14);color:var(--gold-bright);text-transform:uppercase;}
 
 /* intel tabs (sample brief) */
 .intel-wrap{background:var(--void);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.5);}
@@ -225,7 +225,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .intel-pane{display:none;padding:28px 32px;}
 .intel-pane.active{display:block;}
 .intel-title{font-size:9px;font-weight:700;letter-spacing:0.16em;color:rgba(255,253,245,0.3);text-transform:uppercase;margin-bottom:12px;}
-.intel-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:#F0EBDD;margin-bottom:12px;}
+.intel-name{font-family:var(--display);font-size:20px;font-weight:500;color:#F0EBDD;margin-bottom:12px;}
 .intel-body{font-size:13px;color:rgba(255,253,245,0.65);line-height:1.7;margin-bottom:14px;}
 .intel-hl{background:rgba(226,176,74,0.08);border-left:2px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:8px;font-size:12px;color:rgba(255,253,245,0.8);line-height:1.6;}
 .intel-stake{padding:12px;background:rgba(255,253,245,0.03);border-radius:8px;border:1px solid rgba(255,253,245,0.06);margin-bottom:10px;}
@@ -239,7 +239,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .compare-table{width:100%;border-collapse:collapse;min-width:560px;}
 .compare-table th,.compare-table td{padding:14px 18px;text-align:center;border-bottom:1px solid var(--border);}
 .compare-table th:first-child,.compare-table td:first-child{text-align:left;}
-.compare-table th{font-family:'Playfair Display',serif;font-size:19px;font-weight:500;padding-bottom:18px;border-bottom:1px solid var(--border-strong);color:var(--text);}
+.compare-table th{font-family:var(--display);font-size:19px;font-weight:500;padding-bottom:18px;border-bottom:1px solid var(--border-strong);color:var(--text);}
 .compare-table th:first-child{font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--text-faint);text-transform:uppercase;}
 .compare-table td{font-size:13px;color:var(--text-dim);}
 .compare-table td:first-child{font-size:13.5px;color:var(--text);}
@@ -370,106 +370,41 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
   <div class="container page-hero-inner">
     <div class="blob blob-gold" style="width:280px;height:280px;top:-40px;right:-40px;"></div>
     <h1 class="page-hero-title reveal in"><span data-i18n="prod.h1a">Three tools,</span><br/><em data-i18n="prod.h1b">one workflow.</em></h1>
-    <p class="flow reveal in"><a href="#argus">Argus</a><i>&rarr;</i><a href="#lynx">Lynx</a><i>&rarr;</i><a href="#collab">Collab</a></p>
+    <div class="hero-chips reveal in">
+      <a href="#s-argus" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:radar"></iconify-icon></span><span class="hero-chip-name">Argus</span><span class="hero-chip-sub" data-i18n="prod.hero.c1n">Finds and scores</span><span class="hero-chip-desc" data-i18n="prod.hero.c1d">The accounts ready to buy, scored 0–100.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump">Jump to Argus</span><span class="arr">→</span></span></a>
+      <a href="#s-lynx" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:git-branch"></iconify-icon></span><span class="hero-chip-name">Lynx</span><span class="hero-chip-sub" data-i18n="prod.hero.c2n">Maps and briefs</span><span class="hero-chip-desc" data-i18n="prod.hero.c2d">The ones that matter, taken apart properly.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump2">Jump to Lynx</span><span class="arr">→</span></span></a>
+      <a href="#s-collab" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:layout-grid"></iconify-icon></span><span class="hero-chip-name">Collab</span><span class="hero-chip-sub" data-i18n="prod.hero.c3n">Keeps it moving</span><span class="hero-chip-desc" data-i18n="prod.hero.c3d">Where your team works on all of it.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump3">Jump to Collab</span><span class="arr">→</span></span></a>
+    </div>
   </div>
 </section>
 
-<section class="prow" id="argus">
-  <div class="container prow-grid">
-    <div class="blob blob-gold" style="width:300px;height:300px;top:-40px;left:-60px;"></div>
-    <div>
-      <p class="prow-tag reveal" data-i18n="prod.a.tag">Lead Lists</p>
-      <h2 class="prow-name reveal">Argus</h2>
-      <p class="prow-body reveal" data-i18n="prod.a.body">Argus builds precision lead lists from your ICP alone, no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.</p>
-      <ul class="prow-feat-list reveal">
-        <li data-i18n="prod.a.li1">Up to 80 qualified leads per report</li>
-        <li data-i18n="prod.a.li2">Per-contact fit score (0–100)</li>
-        <li data-i18n="prod.a.li3">Buying trigger, cited and sourced</li>
-        <li data-i18n="prod.a.li4">One-line outreach hook per contact</li>
-        <li data-i18n="prod.a.li5">Delivered inside ARGUS in a matter of days</li>
-        <li data-i18n="prod.a.li6">Download as PDF or DOCX</li>
-      </ul>
-      <div class="reveal" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a>
+<section class="suite" id="suite">
+  <div class="container">
+    <div class="suite-grid">
+      <div class="suite-col reveal" id="s-argus">
+        <p class="suite-tag" data-i18n="prod.a.tag">Lead Lists</p>
+        <h2 class="suite-name">Argus</h2>
+        <p class="suite-body" data-i18n="prod.a.body">Argus builds precision lead lists from your ICP alone, with no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.</p>
+        <ul class="suite-list"><li data-i18n="prod.a.li1">Up to 80 qualified leads per report</li><li data-i18n="prod.a.li2">Per-contact fit score (0–100)</li><li data-i18n="prod.a.li3">Buying trigger, cited and sourced</li><li data-i18n="prod.a.li4">One-line outreach hook per contact</li><li data-i18n="prod.a.li5">Delivered inside ARGUS in a matter of days</li><li data-i18n="prod.a.li6">Download as PDF or DOCX</li></ul>
         <a href="argus.html" class="link-more"><span data-i18n="prod.a.more">Full Argus details</span> <span class="arr">→</span></a>
       </div>
-    </div>
-    <div class="prow-panel reveal">
-      <div class="prow-panel-label" data-i18n="prod.a.sample">ARGUS · SAMPLE OUTPUT</div>
-      <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r1n">VP of Engineering</div><div class="prow-row-tag" data-i18n="prod.a.r1t">Hiring 11 ML engineers, Q1 expansion</div></div><div class="prow-score">–</div></div>
-      <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r2n">Head of Sales Ops</div><div class="prow-row-tag" data-i18n="prod.a.r2t">Funding round closed · expanding abroad</div></div><div class="prow-score">–</div></div>
-      <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r3n">Sales Director, Italy</div><div class="prow-row-tag" data-i18n="prod.a.r3t">New head of sales appointed recently</div></div><div class="prow-score">–</div></div>
-      <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.a.r4n">CRO</div><div class="prow-row-tag" data-i18n="prod.a.r4t">Changing its CRM stack</div></div><div class="prow-score">–</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="prow" id="lynx">
-  <div class="container">
-    <div class="blob blob-red" style="width:300px;height:300px;bottom:-40px;right:-60px;"></div>
-    <div class="prow-grid">
-      <div class="prow-panel reveal" style="order:1;">
-        <div class="prow-panel-label" data-i18n="prod.l.sample">LYNX · ACCOUNT MAP</div>
-        <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.l.r1n">CRO, primary champion</div><div class="prow-row-tag" data-i18n="prod.l.r1t">Open to new tooling per recent commentary</div></div></div>
-        <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.l.r2n">VP Revenue Ops, influencer</div><div class="prow-row-tag" data-i18n="prod.l.r2t">Controls tooling budget, CRM decisions</div></div></div>
-        <div class="prow-row"><div><div class="prow-row-name" data-i18n="prod.l.r3n">CFO, budget holder</div><div class="prow-row-tag" data-i18n="prod.l.r3t">Approves spend above threshold, Q1 cycle</div></div></div>
+      <div class="suite-col reveal" id="s-lynx">
+        <p class="suite-tag" data-i18n="prod.l.tag">Company profiles &amp; Moirai</p>
+        <h2 class="suite-name">Lynx</h2>
+        <p class="suite-body" data-i18n="prod.l.body">Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When a single deal justifies it, it expands into a full strategic brief.</p>
+        <ul class="suite-list"><li data-i18n="prod.l.li1">A full profile for every company on your list</li><li data-i18n="prod.l.li2">The decision makers, by name and role</li><li data-i18n="prod.l.li3">Stakeholder roles, LinkedIn, entry points</li><li data-i18n="prod.l.li4">News from the last 90 days, each with its source and date</li><li data-i18n="prod.l.li5">Moirai, a chat to ask your profiles anything</li><li data-i18n="prod.l.li6">A people list that updates over time, exportable</li><li data-i18n="prod.l.li7">For 30 days after delivery, ask the person who wrote your profiles anything about them</li></ul>
+        <a href="lynx.html" class="link-more"><span data-i18n="prod.l.more">Full Lynx details</span> <span class="arr">→</span></a>
       </div>
-      <div style="order:2;">
-        <p class="prow-tag reveal" data-i18n="prod.l.tag">Company profiles &amp; Moirai</p>
-        <h2 class="prow-name reveal">Lynx</h2>
-        <p class="prow-body reveal" data-i18n="prod.l.body">Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When one deal is worth more, it expands into a full strategic brief.</p>
-        <ul class="prow-feat-list reveal">
-          <li data-i18n="prod.l.li1">A full profile for every company on your list</li>
-          <li data-i18n="prod.l.li2">The decision makers, by name and role</li>
-          <li data-i18n="prod.l.li3">Stakeholder roles, LinkedIn, entry points</li>
-          <li data-i18n="prod.l.li4">News from the last 90 days, each with its source and date</li>
-          <li data-i18n="prod.l.li5">Moirai, a chat to ask your profiles anything</li>
-          <li data-i18n="prod.l.li6">A people list that updates over time, exportable</li>
-          <li data-i18n="prod.l.li7">For 30 days after delivery, ask the person who wrote your profiles anything about them</li>
-        </ul>
-        <div class="reveal" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-          <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a>
-          <a href="lynx.html" class="link-more"><span data-i18n="prod.l.more">Full Lynx details</span> <span class="arr">→</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="prow" id="collab">
-  <div class="container prow-grid">
-    <div class="blob blob-gold" style="width:260px;height:260px;top:-30px;left:-50px;"></div>
-    <div>
-      <p class="prow-tag reveal" data-i18n="prod.c.tag">Team Workspace</p>
-      <h2 class="prow-name reveal">Collab</h2>
-      <p class="prow-body reveal" data-i18n="prod.c.body">Collab is where your team works: notes and pages, folders and files, spreadsheets with their full history, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.</p>
-      <p class="c-avail reveal"><iconify-icon icon="lucide:package-check"></iconify-icon><span data-i18n="prod.c.avail">A separate product: use it on its own, or alongside our research. Your reports are delivered in ARGUS and LYNX, not here.</span></p>
-      <ul class="prow-feat-list reveal">
-        <li data-i18n="prod.c.li1">Shared notes, files and tasks in one hub</li>
-        <li data-i18n="prod.c.li2">Shared calendar with month, week and agenda views</li>
-        <li data-i18n="prod.c.li3">Tasks assigned to people, with due dates</li>
-        <li data-i18n="prod.c.li4">A team chat</li>
-        <li data-i18n="prod.c.li5">For every note and file, you choose who sees it</li>
-        <li data-i18n="prod.c.li6">Organised the way your team already works</li>
-      </ul>
-      <div class="reveal" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a>
+      <div class="suite-col reveal" id="s-collab">
+        <p class="suite-tag" data-i18n="prod.c.tag">Team Workspace</p>
+        <h2 class="suite-name">Collab</h2>
+        <p class="suite-body" data-i18n="prod.c.body">Collab is where your team works: notes and pages, folders and files, spreadsheets with their full history, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.</p>
+        <p class="c-avail"><iconify-icon icon="lucide:package-check"></iconify-icon><span data-i18n="prod.c.avail">A separate product: use it on its own, or alongside our research. Your reports are delivered in ARGUS and LYNX, not here.</span></p>
+        <ul class="suite-list"><li data-i18n="prod.c.li1">Shared notes, files and tasks in one hub</li><li data-i18n="prod.c.li2">Shared calendar with month, week and agenda views</li><li data-i18n="prod.c.li3">Tasks assigned to people, with due dates</li><li data-i18n="prod.c.li4">A team chat</li><li data-i18n="prod.c.li5">For every note and file, you choose who sees it</li><li data-i18n="prod.c.li6">Organised the way your team already works</li></ul>
         <a href="collab.html" class="link-more"><span data-i18n="prod.c.more">Full Collab details</span> <span class="arr">→</span></a>
       </div>
     </div>
-    <div class="cmock reveal">
-      <div class="cmock-label" data-i18n="prod.c.mock">COLLAB · SHARED WORKSPACE</div>
-      <div class="cmock-cal">
-        <div class="cmock-dow">Mon</div><div class="cmock-dow">Tue</div><div class="cmock-dow">Wed</div><div class="cmock-dow">Thu</div><div class="cmock-dow">Fri</div><div class="cmock-dow">Sat</div><div class="cmock-dow">Sun</div>
-        <div class="cmock-cell">3</div><div class="cmock-cell">4<span class="ev" data-i18n="prod.c.ev1">Team meeting</span></div><div class="cmock-cell">5</div><div class="cmock-cell today">6<span class="ev alt" data-i18n="prod.c.ev2">Follow-up</span></div><div class="cmock-cell">7</div><div class="cmock-cell">8</div><div class="cmock-cell">9</div>
-        <div class="cmock-cell">10</div><div class="cmock-cell">11</div><div class="cmock-cell">12<span class="ev" data-i18n="prod.c.ev3">Sales call</span></div><div class="cmock-cell">13</div><div class="cmock-cell">14</div><div class="cmock-cell">15</div><div class="cmock-cell">16</div>
-      </div>
-      <div class="cmock-rows">
-        <div class="cmock-row"><span class="cmock-ic"><iconify-icon icon="lucide:file-text"></iconify-icon></span><div><div class="cmock-name">client_brief_Q3.pdf</div><div class="cmock-sub" data-i18n="prod.c.r1">Uploaded by Sara · shared with the team</div></div><span class="cmock-chip">File</span></div>
-        <div class="cmock-row"><span class="cmock-ic"><iconify-icon icon="lucide:notebook-pen"></iconify-icon></span><div><div class="cmock-name" data-i18n="prod.c.r2n">Meeting notes, Q3 outbound</div><div class="cmock-sub" data-i18n="prod.c.r2">Shared · updated 2h ago</div></div><span class="cmock-chip" data-i18n="prod.c.r2c">Notes</span></div>
-        <div class="cmock-row"><span class="cmock-ic"><iconify-icon icon="lucide:check-square"></iconify-icon></span><div><div class="cmock-name" data-i18n="prod.c.r3n">Call the VP Engineering</div><div class="cmock-sub" data-i18n="prod.c.r3">Assigned to Marco · due Fri</div></div><span class="cmock-chip" data-i18n="prod.c.r3c">Task</span></div>
-      </div>
-    </div>
+    <div class="suite-cta reveal"><a href="contact.html" class="btn btn-primary"><span data-i18n="cta.btn">Book a call</span> <span class="arr">→</span></a></div>
   </div>
 </section>
 
@@ -619,17 +554,17 @@ const I18N = {
     "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","nav.cta":"Book a call →",
     "footer.copy":"© 2026 SIFT · Research on public sources, written for B2B sales teams.",
     "cta.btn":"Book a call",
-    "prod.h1a":"One workflow.","prod.h1b":"From list to first call.",
+    "prod.h1a":"Three tools.","prod.h1b":"Take what you need.",
     "prod.hero.jump":"Jump to Argus","prod.hero.jump2":"Jump to Lynx","prod.hero.jump3":"Jump to Collab",
     "prod.hero.c1n":"Finds and scores","prod.hero.c1d":"The accounts ready to buy, scored 0–100.","prod.hero.c2n":"Maps and briefs","prod.hero.c2d":"The ones that matter, taken apart properly.","prod.hero.c3n":"Keeps it moving","prod.hero.c3d":"Where your team keeps its work.",
-    "prod.a.tag":"Lead Lists","prod.a.body":"Argus builds precision lead lists from your ICP alone, no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.",
+    "prod.a.tag":"Lead Lists","prod.a.body":"Argus builds precision lead lists from your ICP alone, with no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.",
     "prod.a.li1":"Up to 80 qualified leads per report","prod.a.li2":"Per-contact fit score (0–100)","prod.a.li3":"Buying trigger, cited and sourced","prod.a.li4":"One-line outreach hook per contact","prod.a.li5":"Delivered inside ARGUS in a matter of days","prod.a.li6":"Download as PDF or DOCX","prod.a.more":"Full Argus details",
     "prod.a.sample":"ARGUS · SAMPLE OUTPUT",
     "prod.a.r1n":"VP of Engineering","prod.a.r1t":"Hiring in the engineering team",
     "prod.a.r2n":"Head of Sales Ops","prod.a.r2t":"Funding round closed · expanding abroad",
     "prod.a.r3n":"Sales Director, Italy","prod.a.r3t":"New head of sales appointed recently",
     "prod.a.r4n":"CRO","prod.a.r4t":"Changing its CRM stack",
-    "prod.l.tag":"Company profiles &amp; Moirai","prod.l.body":"Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When one deal is worth more, it expands into a full strategic brief.",
+    "prod.l.tag":"Company profiles &amp; Moirai","prod.l.body":"Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When a single deal justifies it, it expands into a full strategic brief.",
     "prod.l.li1":"A full profile for every company on your list","prod.l.li2":"The decision makers, by name and role","prod.l.li3":"Stakeholder roles, LinkedIn, entry points","prod.l.li4":"News from the last 90 days, each with its source and date","prod.l.li5":"Moirai, a chat to ask your profiles anything","prod.l.li6":"A people list that updates over time, exportable","prod.l.li7":"For 30 days after delivery, ask the person who wrote your profiles anything about them","prod.l.more":"Full Lynx details",
     "prod.l.sample":"LYNX · ACCOUNT MAP",
     "prod.l.r1n":"CRO, primary champion","prod.l.r1t":"Open to new tooling per recent commentary",
@@ -667,7 +602,7 @@ const I18N = {
     "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Prenota una call →",
     "footer.copy":"© 2026 SIFT · Ricerca su fonti pubbliche, scritta per i team commerciali B2B.",
     "cta.btn":"Prenota una call",
-    "prod.h1a":"Un solo flusso.","prod.h1b":"Dalla lista alla prima chiamata.",
+    "prod.h1a":"Tre strumenti.","prod.h1b":"Prendi quello che ti serve.",
     "prod.hero.jump":"Vai ad Argus","prod.hero.jump2":"Vai a Lynx","prod.hero.jump3":"Vai a Collab",
     "prod.hero.c1n":"Trova e valuta","prod.hero.c1d":"Le aziende pronte a comprare, con un punteggio da 0 a 100.","prod.hero.c2n":"Studia a fondo","prod.hero.c2d":"Quelle che contano davvero, analizzate pezzo per pezzo.","prod.hero.c3n":"Tiene tutto in ordine","prod.hero.c3d":"Dove il tuo team tiene il suo lavoro.",
     "prod.a.tag":"Liste di contatti","prod.a.body":"Argus costruisce liste mirate partendo solo dal tuo cliente ideale, senza raccogliere dati alla rinfusa. Tiene d'occhio chi assume, chi raccoglie capitali, chi cambia i vertici e chi cambia tecnologie, poi dà a ogni contatto un punteggio da 0 a 100 spiegando perché proprio adesso è il momento giusto.",
@@ -678,7 +613,7 @@ const I18N = {
     "prod.a.r3n":"Direttore commerciale Italia","prod.a.r3t":"Nuovo capo vendite arrivato da poco",
     "prod.a.r4n":"CRO","prod.a.r4t":"Sta cambiando CRM",
     "prod.l.tag":"Schede aziende e Moirai","prod.l.body":"Lynx prende una lista, la tua o una di Argus, e fa la scheda di ogni azienda: chi decide, cosa è successo negli ultimi 90 giorni e qual è la strada più semplice per entrare. Tiene una lista persone che resta viva, e con Moirai chiedi qualunque cosa sulle schede. Quando una trattativa vale di più, diventa un'analisi strategica completa.",
-    "prod.l.li1":"Una scheda completa per ogni azienda della lista","prod.l.li2":"I decisori, con nome e ruolo","prod.l.li3":"Ruoli, profili LinkedIn e da dove conviene entrare","prod.l.li4":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data","prod.l.li5":"Moirai, una chat per chiedere qualunque cosa sulle schede","prod.l.li6":"Una lista persone che si aggiorna nel tempo, esportabile","prod.l.li7":"Per 30 giorni dopo la consegna, chiedi a chi ha scritto le schede qualunque cosa su di esse","prod.l.more":"Scopri Lynx nel dettaglio",
+    "prod.l.li1":"Una scheda completa per ogni azienda della lista","prod.l.li2":"I decisori, con nome e ruolo","prod.l.li3":"Ruoli, profili LinkedIn e da dove conviene entrare","prod.l.li4":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data","prod.l.li5":"Moirai, una chat per chiedere qualunque cosa sulle schede","prod.l.li6":"Una lista persone che si aggiorna nel tempo, esportabile","prod.l.li7":"Per 30 giorni dopo la consegna, chiedi a chi ha scritto le schede qualunque cosa sulle schede","prod.l.more":"Scopri Lynx nel dettaglio",
     "prod.l.sample":"LYNX · CHI DECIDE",
     "prod.l.r1n":"Direttore commerciale, il tuo alleato","prod.l.r1t":"Dalle sue dichiarazioni pubbliche, è aperto a nuovi strumenti",
     "prod.l.r2n":"Responsabile operations, ha voce in capitolo","prod.l.r2t":"Decide sul budget per gli strumenti e sul CRM",
@@ -698,7 +633,7 @@ const I18N = {
     "prod.lb.sig.label":"Segnali che è il momento giusto",
     "prod.lb.sig.1":"↑ Assume tecnici commerciali: si sta espandendo","prod.lb.sig.2":"↑ Nuovo responsabile vendite arrivato da poco: rifarà la macchina commerciale","prod.lb.sig.3":"↑ Sta cambiando CRM: è il momento buono per proporre integrazioni",
     "prod.c.tag":"Spazio di lavoro condiviso","prod.c.body":"Collab è dove il tuo team tiene il suo lavoro: note e pagine, cartelle e file, fogli di calcolo con tutta la cronologia, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
-    "prod.c.avail":"Un prodotto a sé: puoi usarlo da solo, o insieme alle nostre ricerche. I report arrivano in ARGUS e LYNX, non qui.","prod.c.mock":"COLLAB · SPAZIO CONDIVISO","prod.c.ev1":"Riunione team","prod.c.ev2":"Da richiamare","prod.c.ev3":"Chiamata cliente","prod.c.r1":"Caricato da Sara · condiviso con il team","prod.c.r2n":"Note riunione, vendite terzo trimestre","prod.c.r2":"Condiviso · aggiornato 2 ore fa","prod.c.r2c":"Note","prod.c.r3n":"Chiamare il responsabile tecnico","prod.c.r3":"Assegnato a Marco · entro venerdì","prod.c.r3c":"Attività",
+    "prod.c.avail":"Un prodotto a sé: puoi usarlo da solo, o insieme alle nostre ricerche. I report arrivano in ARGUS e LYNX, non qui.","prod.c.mock":"COLLAB · SPAZIO CONDIVISO","prod.c.ev1":"Riunione team","prod.c.ev2":"Da richiamare","prod.c.ev3":"Chiamata cliente","prod.c.r1":"Caricato da Sara · condiviso con il team","prod.c.r2n":"Verbali delle riunioni, vendite del terzo trimestre","prod.c.r2":"Condiviso · aggiornato 2 ore fa","prod.c.r2c":"Note","prod.c.r3n":"Chiamare il responsabile tecnico","prod.c.r3":"Assegnato a Marco · entro venerdì","prod.c.r3c":"Attività",
     "prod.c.li6":"Organizzato come lavora già il tuo team","prod.c.li1":"Note, file e attività condivisi in un unico posto","prod.c.li2":"Calendario condiviso con vista mese, settimana e agenda","prod.c.li3":"Attività assegnate alle persone, con scadenza","prod.c.li4":"Una chat di team","prod.c.li5":"Per ogni nota e file scegli tu chi lo vede","prod.c.more":"Scopri Collab nel dettaglio",
     "prod.cmp.eyebrow":"Confronto","prod.cmp.h1":"Cosa è incluso","prod.cmp.h2":"in ogni licenza.",
     "prod.cmp.col0":"Funzionalità","prod.cmp.col1":"Argus Starter","prod.cmp.col2":"Argus + Lynx","prod.cmp.col3":"Completo + Collab",

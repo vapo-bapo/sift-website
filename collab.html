@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#F7FCFA"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>
 :root{
@@ -22,10 +22,10 @@
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;}
 a{color:inherit;text-decoration:none;}
 ul{list-style:none;}
-.mono{font-family:'JetBrains Mono',monospace;}
+.mono{font-family:'Inter',sans-serif;}
 .container{max-width:1180px;margin:0 auto;padding:0 40px;width:100%;}
 
 .tour{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
@@ -38,7 +38,7 @@ ul{list-style:none;}
 .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
 .nav-cta{background:var(--accent);color:#1B1F23;padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;transition:all 200ms;}
 .nav-cta:hover{background:var(--accent-dim);}
-.nav-back{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);transition:color 200ms;}
+.nav-back{font-family:'Inter',sans-serif;font-size:11px;color:var(--text-faint);transition:color 200ms;}
 .nav-back:hover{color:var(--accent-dim);}
 
 .progress{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:10px;}
@@ -50,7 +50,7 @@ ul{list-style:none;}
 .headline .accent{color:var(--accent);}
 h1.headline{font-size:clamp(38px,5.5vw,60px);}
 h2.headline{font-size:clamp(24px,3vw,34px);}
-.step-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--accent-dim);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.step-eyebrow{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--accent-dim);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sub{color:var(--text-dim);font-size:15px;margin-top:14px;max-width:460px;line-height:1.65;}
 .takeaways{margin-top:20px;display:flex;flex-direction:column;gap:9px;}
 .takeaways li{font-size:13.5px;color:var(--text-dim);padding-left:24px;position:relative;font-weight:500;}
@@ -68,13 +68,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .screen{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,0.25);overflow:hidden;}
 .screen-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--border);background:var(--panel);}
 .screen-dot{width:9px;height:9px;border-radius:50%;background:var(--border-strong);}
-.screen-title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);}
+.screen-title{margin-left:10px;font-family:'Inter',sans-serif;font-size:10px;color:var(--text-faint);}
 .screen-body{padding:20px;}
 
 /* notes mock */
 .notes-mock{display:grid;grid-template-columns:0.9fr 1.1fr;min-height:230px;}
 .notes-side{border-right:1px solid var(--border);padding:14px;}
-.notes-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.notes-label{font-family:'Inter',sans-serif;font-size:8.5px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
 .folder-row{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;padding:5px 0;color:var(--text);}
 .folder-row iconify-icon{color:var(--accent);font-size:13px;}
 .note-row{display:flex;align-items:center;gap:7px;font-size:10.5px;padding:4px 0 4px 20px;color:var(--text-dim);}
@@ -88,26 +88,26 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* files mock */
 .files-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .files-title{font-weight:800;font-size:15px;}
-.files-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);}
+.files-meta{font-family:'Inter',sans-serif;font-size:9px;color:var(--text-faint);}
 .files-search{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:7px 12px;font-size:10.5px;color:var(--text-faint);}
 .folder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
 .folder-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;}
 .folder-card iconify-icon{color:var(--accent);font-size:16px;}
 .folder-card .fn{font-size:10px;font-weight:700;}
-.folder-card .fc{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-faint);}
+.folder-card .fc{font-family:'Inter',sans-serif;font-size:8px;color:var(--text-faint);}
 .dropzone{border:1.5px dashed var(--border-strong);border-radius:11px;padding:20px;text-align:center;font-size:10.5px;color:var(--text-dim);}
 .dropzone b{color:var(--accent-dim);}
-.dropzone .max{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-faint);margin-top:3px;}
+.dropzone .max{font-family:'Inter',sans-serif;font-size:8.5px;color:var(--text-faint);margin-top:3px;}
 
 /* calendar mock */
 .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 .cal-title{font-weight:800;font-size:14px;}
-.cal-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);}
+.cal-meta{font-family:'Inter',sans-serif;font-size:9px;color:var(--text-faint);}
 .cal-actions{display:flex;gap:6px;}
 .cal-chip{font-size:9px;font-weight:700;padding:5px 10px;border-radius:8px;border:1px solid var(--border-strong);color:var(--text-dim);}
 .cal-chip.hl{background:var(--accent);border-color:var(--accent);color:#1B1F23;}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.cal-grid .dow{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--text-faint);text-transform:uppercase;padding:6px 0;text-align:center;background:var(--bg);border-bottom:1px solid var(--border);}
+.cal-grid .dow{font-family:'Inter',sans-serif;font-size:7.5px;color:var(--text-faint);text-transform:uppercase;padding:6px 0;text-align:center;background:var(--bg);border-bottom:1px solid var(--border);}
 .cal-cell{min-height:34px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:8.5px;color:var(--text-faint);padding:3px 5px;text-align:right;}
 .cal-cell:nth-child(7n){border-right:none;}
 .cal-cell.today{background:var(--accent-soft);color:var(--accent-dim);font-weight:800;}
@@ -116,8 +116,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 .cta-slide{text-align:center;}
 .cta-slide h2{font-size:clamp(30px,4.5vw,50px);}
-.cta-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-faint);margin-top:14px;}
-.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;animation:hintFloat 2.2s ease-in-out infinite;}
+.cta-note{font-family:'Inter',sans-serif;font-size:11px;color:var(--text-faint);margin-top:14px;}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:10px;color:var(--text-faint);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;animation:hintFloat 2.2s ease-in-out infinite;}
 @keyframes hintFloat{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,6px);}}
 
 @media(max-height:720px){
@@ -192,7 +192,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         <h2 class="headline"><span data-i18n="s2.h">Your team's knowledge,</span> <span class="accent" data-i18n="s2.he">organised in folders.</span></h2>
         <p class="sub" data-i18n="s2.p">Meeting recaps, account context, ideas: everything lives in shared folders instead of scattered docs. Pin what matters, and find any note in seconds.</p>
         <ul class="takeaways">
-          <li data-i18n="s2.l1">Folders for business, meetings, projects</li>
+          <li data-i18n="s2.l1">Folders for clients, meetings, projects</li>
           <li data-i18n="s2.l2">Pinned notes stay on top</li>
           <li data-i18n="s2.l3">Everything searchable by the whole team</li>
         </ul>
@@ -305,7 +305,7 @@ const I18N = {
     "s1.p":"Notes, files, tasks and calendar for your whole team, in one place instead of scattered across inboxes and drives. It's a separate product: your reports are delivered in ARGUS and LYNX, not here.",
     "s2.eyebrow":"Notes","s2.h":"Your team's knowledge,","s2.he":"organised in folders.",
     "s2.p":"Meeting recaps, account context, ideas: everything lives in shared folders instead of scattered docs. Pin what matters, and find any note in seconds.",
-    "s2.l1":"Folders for business, meetings, projects","s2.l2":"Pinned notes stay on top","s2.l3":"Everything searchable by the whole team",
+    "s2.l1":"Folders for clients, meetings, projects","s2.l2":"Pinned notes stay on top","s2.l3":"Everything searchable by the whole team",
     "s2.nlabel":"Notes","s2.f1":"BUSINESS","s2.n1":"Business notes","s2.n2":"Innovative startups","s2.f2":"CODING","s2.n3":"ARGUS upgrades","s2.f3":"MEETINGS","s2.n4":"Meeting 16/06",
     "s2.empty":"Select a note, or create a new one","s2.newnote":"New note",
     "s3.eyebrow":"Files","s3.h":"Every file, in one place,","s3.he":"not in someone's inbox.",
@@ -326,8 +326,8 @@ const I18N = {
     "s1.eyebrow":"Il prodotto · Spazio di lavoro","s1.h":"Un unico spazio dove","s1.he":"non si perde niente.",
     "s1.p":"Note, file, attività e calendario per tutto il team, in un posto solo invece che sparsi fra caselle email e drive. È un prodotto a sé: i report arrivano in ARGUS e LYNX, non qui.",
     "s2.eyebrow":"Le note","s2.h":"Quello che sa il tuo team,","s2.he":"ordinato in cartelle.",
-    "s2.p":"Resoconti di riunione, informazioni sui clienti, idee: tutto vive in cartelle condivise invece che in documenti sparsi. Metti in evidenza quello che conta e ritrovi qualsiasi nota in pochi secondi.",
-    "s2.l1":"Cartelle per business, riunioni, progetti","s2.l2":"Le note in evidenza restano sempre in alto","s2.l3":"Tutto ricercabile da tutto il team",
+    "s2.p":"Verbali di riunione, informazioni sui clienti, idee: tutto vive in cartelle condivise invece che in documenti sparsi. Metti in evidenza quello che conta e ritrovi qualsiasi nota in pochi secondi.",
+    "s2.l1":"Cartelle per clienti, riunioni, progetti","s2.l2":"Le note in evidenza restano sempre in alto","s2.l3":"Tutto si trova con la ricerca, per tutto il team",
     "s2.nlabel":"Note","s2.f1":"BUSINESS","s2.n1":"Appunti business","s2.n2":"Startup innovative","s2.f2":"SVILUPPO","s2.n3":"Migliorie ARGUS","s2.f3":"RIUNIONI","s2.n4":"Riunione 16/06",
     "s2.empty":"Scegli una nota, oppure creane una nuova","s2.newnote":"Nuova nota",
     "s3.eyebrow":"I file","s3.h":"Ogni file, in un posto solo,","s3.he":"non nella casella di qualcuno.",
