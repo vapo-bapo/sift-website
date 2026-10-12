@@ -37,8 +37,8 @@ h3,.pcard-name,.prow-name,.gcard h3,.faq-q,.step-title{font-family:var(--display
 .nav-hamburger span{background:var(--ink)!important}
 .mobile-panel{background:var(--ivory)!important;box-shadow:0 12px 30px rgba(6,36,30,.12)!important}
 /* buttons: fluo gradient, graphite text */
-.btn-primary,.nav-cta,.btn-onDark,.btn-amber{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 45%,var(--fluo-3) 100%)!important;color:var(--graphite)!important;box-shadow:none!important;animation:none!important}
-.btn-primary:hover,.nav-cta:hover,.btn-onDark:hover{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 100%)!important;box-shadow:0 10px 28px rgba(63,224,169,.35)!important}
+.btn-primary,.nav-cta,.btn-onDark,.btn-amber{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 45%,var(--fluo-3) 100%)!important;color:var(--graphite)!important;box-shadow:0 0 0 5px #0A5143!important;animation:none!important}
+.btn-primary:hover,.nav-cta:hover,.btn-onDark:hover{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 100%)!important;box-shadow:0 0 0 5px #0A5143,0 10px 28px rgba(63,224,169,.35)!important}
 .btn-outline{border-color:rgba(6,36,30,.45)!important;color:var(--ink)!important}.btn-outline:hover{border-color:var(--ink)!important;color:var(--ink)!important}
 mark{background:linear-gradient(transparent 62%,rgba(111,235,189,.75) 62%);color:inherit;padding:0 .08em}
 :focus-visible{outline:2px solid var(--emerald)!important;outline-offset:3px}
