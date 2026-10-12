@@ -221,3 +221,5 @@ body:has(#tour) .duo{grid-template-columns:.9fr 1.1fr}
 body:has(#tour) h1.headline{font-size:clamp(42px,5.6vw,76px)}
 body:has(#tour) .slide .container{max-width:1240px;padding-left:72px;padding-right:96px}
 @media(max-width:900px){body:has(#tour) .slide .container{padding-left:24px;padding-right:24px}}
+body:has(#tour) .co-avatar{background:var(--p-dacc)!important;color:var(--p-d1)!important}
+body:has(#tour) .co-avatar:nth-of-type(2n){filter:saturate(.75) brightness(.9)}
