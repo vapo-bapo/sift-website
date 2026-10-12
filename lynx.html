@@ -193,20 +193,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · board</span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · board · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="board-title">LYNX</div>
           <div class="board-meta" data-i18n="s2.meta">Lists · companies · unassigned</div>
-          <div class="list-title"><span data-i18n="s2.lists">Lists</span> <span class="count-chip"><span class="sk" aria-hidden="true"></span></span></div>
+          <div class="list-title"><span data-i18n="s2.lists">Lists</span> <span class="count-chip">4</span></div>
           <div class="board-grid">
             <div class="list-card dashed"><iconify-icon icon="lucide:plus"></iconify-icon><span data-i18n="s2.newlist">New list</span></div>
             <div class="list-card">
               <h4>Q3 Outbound</h4>
-              <div class="list-nums"><div><div class="n"><span class="sk" aria-hidden="true"></span></div><div class="l" data-i18n="s2.co">Companies</div></div><div><div class="n"><span class="sk" aria-hidden="true"></span></div><div class="l" data-i18n="s2.pr">Profiles</div></div></div>
+              <div class="list-nums"><div><div class="n">18</div><div class="l" data-i18n="s2.co">Companies</div></div><div><div class="n">14</div><div class="l" data-i18n="s2.pr">Profiles</div></div></div>
               <div class="owner-row"><span class="owner-dot">S</span> <span data-i18n="s2.shared">Shared with the team</span></div>
             </div>
           </div>
-          <div class="list-title"><span data-i18n="s2.companies">Companies</span> <span class="count-chip"><span class="sk" aria-hidden="true"></span></span></div>
+          <div class="list-title"><span data-i18n="s2.companies">Companies</span> <span class="count-chip">18</span></div>
           <div class="company-grid">
             <div class="co-card"><div class="co-avatar" style="background:#E2B04A;">A</div><div><div class="co-name" data-i18n="co.A">Company A</div><div class="co-domain">company-a.example</div></div></div>
             <div class="co-card"><div class="co-avatar" style="background:#C9973A;">B</div><div><div class="co-name" data-i18n="co.B">Company B</div><div class="co-domain">company-b.example</div></div></div>
@@ -234,15 +234,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         <p class="sub" style="font-size:11px;font-style:italic;margin-top:14px;" data-i18n="s3.note">Sample data, illustrative, not a real client.</p>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · account file</span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · account file · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="case-cols">
             <div>
               <div class="case-tag" data-i18n="s3.target">Target company</div>
               <div class="case-name" data-i18n="s3.cname">Example company</div>
-              <div class="case-row"><span data-i18n="s3.emp">Employees</span><span class="v"><span class="sk" aria-hidden="true"></span></span></div>
-              <div class="case-row"><span data-i18n="s3.fund">Last funding</span><span class="v"><span class="sk" aria-hidden="true"></span></span></div>
-              <div class="case-row"><span data-i18n="s3.fit">Fit score</span><span class="v"><span class="sk" aria-hidden="true"></span></span></div>
+              <div class="case-row"><span data-i18n="s3.emp">Employees</span><span class="v">84</span></div>
+              <div class="case-row"><span data-i18n="s3.fund">Last funding</span><span class="v">2025</span></div>
+              <div class="case-row"><span data-i18n="s3.fit">Fit score</span><span class="v">82</span></div>
             </div>
             <div>
               <div class="stake-card"><div class="stake-role" data-i18n="s3.r1">CRO · primary champion</div><div class="stake-name" data-i18n="nm.p">Name Surname</div><div class="stake-desc" data-i18n="s3.d1">Open to new tooling per recent public commentary.</div></div>
@@ -268,7 +268,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · strategic brief</span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · strategic brief · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="case-tag" data-i18n="s4.tag">Example company · strategic brief</div>
           <div class="brief-sec" data-i18n="s4.sec1">Entry windows</div>
@@ -306,6 +306,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* ─── i18n ─── */
 const I18N = {
   en: {
+    "ex":"Example data",
     "co.A":"Company A",
     "co.B":"Company B",
     "co.C":"Company C",
@@ -341,6 +342,7 @@ const I18N = {
     "s5.eyebrow":"That's Lynx","s5.h":"Every company profiled.","s5.he":"One deal, taken apart.","s5.next":"Next: see Collab →","s5.note":"Reply within 24 hours · delivery in a matter of days"
   },
   it: {
+    "ex":"Dati d'esempio",
     "co.A":"Azienda A",
     "co.B":"Azienda B",
     "co.C":"Azienda C",
