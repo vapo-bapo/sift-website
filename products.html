@@ -370,11 +370,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
   <div class="container page-hero-inner">
     <div class="blob blob-gold" style="width:280px;height:280px;top:-40px;right:-40px;"></div>
     <h1 class="page-hero-title reveal in"><span data-i18n="prod.h1a">Three tools,</span><br/><em data-i18n="prod.h1b">one workflow.</em></h1>
-    <div class="hero-chips reveal in">
-      <a href="#argus" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:radar"></iconify-icon></span><span class="hero-chip-name">Argus</span><span class="hero-chip-sub" data-i18n="prod.hero.c1n">Finds and scores</span><span class="hero-chip-desc" data-i18n="prod.hero.c1d">The accounts ready to buy, scored 0–100.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump">Jump to Argus</span><span class="arr">→</span></span></a>
-      <a href="#lynx" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:git-branch"></iconify-icon></span><span class="hero-chip-name">Lynx</span><span class="hero-chip-sub" data-i18n="prod.hero.c2n">Maps and briefs</span><span class="hero-chip-desc" data-i18n="prod.hero.c2d">The ones that matter, taken apart properly.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump2">Jump to Lynx</span><span class="arr">→</span></span></a>
-      <a href="#collab" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:layout-grid"></iconify-icon></span><span class="hero-chip-name">Collab</span><span class="hero-chip-sub" data-i18n="prod.hero.c3n">Keeps it moving</span><span class="hero-chip-desc" data-i18n="prod.hero.c3d">Where your team works on all of it.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump3">Jump to Collab</span><span class="arr">→</span></span></a>
-    </div>
+    <p class="flow reveal in"><a href="#argus">Argus</a><i>&rarr;</i><a href="#lynx">Lynx</a><i>&rarr;</i><a href="#collab">Collab</a></p>
   </div>
 </section>
 
@@ -623,7 +619,7 @@ const I18N = {
     "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","nav.cta":"Book a call →",
     "footer.copy":"© 2026 SIFT · Research on public sources, written for B2B sales teams.",
     "cta.btn":"Book a call",
-    "prod.h1a":"Three tools.","prod.h1b":"Take what you need.",
+    "prod.h1a":"One workflow.","prod.h1b":"From list to first call.",
     "prod.hero.jump":"Jump to Argus","prod.hero.jump2":"Jump to Lynx","prod.hero.jump3":"Jump to Collab",
     "prod.hero.c1n":"Finds and scores","prod.hero.c1d":"The accounts ready to buy, scored 0–100.","prod.hero.c2n":"Maps and briefs","prod.hero.c2d":"The ones that matter, taken apart properly.","prod.hero.c3n":"Keeps it moving","prod.hero.c3d":"Where your team keeps its work.",
     "prod.a.tag":"Lead Lists","prod.a.body":"Argus builds precision lead lists from your ICP alone, no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.",
@@ -671,7 +667,7 @@ const I18N = {
     "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Prenota una call →",
     "footer.copy":"© 2026 SIFT · Ricerca su fonti pubbliche, scritta per i team commerciali B2B.",
     "cta.btn":"Prenota una call",
-    "prod.h1a":"Tre strumenti.","prod.h1b":"Prendi quello che ti serve.",
+    "prod.h1a":"Un solo flusso.","prod.h1b":"Dalla lista alla prima chiamata.",
     "prod.hero.jump":"Vai ad Argus","prod.hero.jump2":"Vai a Lynx","prod.hero.jump3":"Vai a Collab",
     "prod.hero.c1n":"Trova e valuta","prod.hero.c1d":"Le aziende pronte a comprare, con un punteggio da 0 a 100.","prod.hero.c2n":"Studia a fondo","prod.hero.c2d":"Quelle che contano davvero, analizzate pezzo per pezzo.","prod.hero.c3n":"Tiene tutto in ordine","prod.hero.c3d":"Dove il tuo team tiene il suo lavoro.",
     "prod.a.tag":"Liste di contatti","prod.a.body":"Argus costruisce liste mirate partendo solo dal tuo cliente ideale, senza raccogliere dati alla rinfusa. Tiene d'occhio chi assume, chi raccoglie capitali, chi cambia i vertici e chi cambia tecnologie, poi dà a ogni contatto un punteggio da 0 a 100 spiegando perché proprio adesso è il momento giusto.",
@@ -729,5 +725,6 @@ let savedLang='en';
 try{ savedLang = localStorage.getItem('sift-lang') || 'en'; }catch(e){}
 applyLang(savedLang);
 </script>
+<script src="assets/wrap.js" defer></script>
 </body>
 </html>
