@@ -217,9 +217,24 @@ body:has(#tour) :focus-visible{outline:3px solid var(--p-accent);outline-offset:
 @media(prefers-reduced-motion:reduce){body:has(#tour) .screen{transition:none;transform:none!important}}
 body:has(#tour) .slide .container{max-width:1320px}
 body:has(#tour) #s1 .container{max-width:1000px!important}
-body:has(#tour) .duo{grid-template-columns:.9fr 1.1fr}
+@media(min-width:901px){body:has(#tour) .duo{grid-template-columns:.9fr 1.1fr}}
 body:has(#tour) h1.headline{font-size:clamp(42px,5.6vw,76px)}
 body:has(#tour) .slide .container{max-width:1240px;padding-left:72px;padding-right:96px}
 @media(max-width:900px){body:has(#tour) .slide .container{padding-left:24px;padding-right:24px}}
 body:has(#tour) .co-avatar{background:var(--p-dacc)!important;color:var(--p-d1)!important}
 body:has(#tour) .co-avatar:nth-of-type(2n){filter:saturate(.75) brightness(.9)}
+
+/* tour su mobile: scorrimento normale, niente snap obbligatorio */
+@media(max-width:900px){
+ html:has(#tour),body:has(#tour){height:auto!important;overflow:auto!important}
+ body:has(#tour) #tour{height:auto!important;overflow:visible!important;scroll-snap-type:none!important}
+ body:has(#tour) .slide{min-height:0!important;scroll-snap-align:none!important;scroll-snap-stop:normal!important;overflow:visible!important;padding:72px 0 48px!important}
+ body:has(#tour) #progress{display:none!important}
+}
+body:has(#tour) #progress .d{border:0;padding:0;cursor:pointer}
+.tour-lang{position:fixed;top:18px;right:20px;z-index:95;display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.9);border:1px solid var(--p-line)}
+.tour-lang .lang-btn{border:0;background:transparent;font:700 11px/1 var(--sans);padding:7px 11px;border-radius:999px;color:var(--p-dim);cursor:pointer}
+.tour-lang .lang-btn.active{background:var(--p-ink);color:#fff}
+.tour-foot{display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;padding:26px 24px 8px;font-size:13px;color:var(--p-dim)}
+.tour-foot a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){.tour-lang{top:12px;right:12px}}

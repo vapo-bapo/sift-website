@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Products — Argus, Lynx &amp; Collab | SIFT</title>
+<title>Products: Argus, Lynx &amp; Collab | SIFT</title>
 <meta name="description" content="Three separate licences for B2B sales teams: Argus finds the companies, Lynx profiles them, and Collab is where your team works."/>
 <link rel="icon" href="assets/logo.svg"/>
 <meta name="theme-color" content="#F7FCFA"/>
@@ -48,9 +48,9 @@ ul{list-style:none;}
 @keyframes floatB{0%,100%{transform:translateY(0) translateX(0) rotate(0deg);}50%{transform:translateY(40px) translateX(-30px) rotate(5deg);}}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 760ms cubic-bezier(0.16,1,0.3,1),transform 760ms cubic-bezier(0.16,1,0.3,1);}
-.reveal.in{opacity:1;transform:none;}
-.reveal.settled{transition:none;transform:none;opacity:1;}
+.js .reveal{opacity:0;transform:translateY(32px);transition:opacity 760ms cubic-bezier(0.16,1,0.3,1),transform 760ms cubic-bezier(0.16,1,0.3,1);}
+.js .reveal.in{opacity:1;transform:none;}
+.js .reveal.settled{transition:none;transform:none;opacity:1;}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important;}}
 /* responsive spacing scale */
 @media(max-width:760px){.container{padding:0 24px;}}
@@ -333,9 +333,10 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#E2B04A 0%,#C9973A 100%)!important;}
 </style>
 <link rel="canonical" href="https://www.sifttechnology.com/products.html"/>
-<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="Products — Argus, Lynx &amp; Collab | SIFT"/><meta property="og:description" content="Three separate licences for B2B sales teams: Argus finds the companies, Lynx profiles them, and Collab is where your team works."/><meta property="og:url" content="https://www.sifttechnology.com/products.html"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="Products: Argus, Lynx &amp; Collab | SIFT"/><meta property="og:description" content="Three separate licences for B2B sales teams: Argus finds the companies, Lynx profiles them, and Collab is where your team works."/><meta property="og:url" content="https://www.sifttechnology.com/products.html"/>
 <meta name="twitter:card" content="summary"/>
 <link rel="stylesheet" href="assets/theme.css"/>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="pg-products">
 <div class="noise"></div>
@@ -371,7 +372,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     <div class="blob blob-gold" style="width:280px;height:280px;top:-40px;right:-40px;"></div>
     <h1 class="page-hero-title reveal in"><span data-i18n="prod.h1a">Three tools,</span><br/><em data-i18n="prod.h1b">one workflow.</em></h1>
     <div class="hero-chips reveal in">
-      <a href="#argus" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:radar"></iconify-icon></span><span class="hero-chip-name">Argus</span><span class="hero-chip-sub" data-i18n="prod.hero.c1n">Finds and scores</span><span class="hero-chip-desc" data-i18n="prod.hero.c1d">The accounts ready to buy, scored 0–100.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump">Jump to Argus</span><span class="arr">→</span></span></a>
+      <a href="#argus" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:radar"></iconify-icon></span><span class="hero-chip-name">Argus</span><span class="hero-chip-sub" data-i18n="prod.hero.c1n">Finds and scores</span><span class="hero-chip-desc" data-i18n="prod.hero.c1d">The accounts ready to buy, scored out of 100.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump">Jump to Argus</span><span class="arr">→</span></span></a>
       <a href="#lynx" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:git-branch"></iconify-icon></span><span class="hero-chip-name">Lynx</span><span class="hero-chip-sub" data-i18n="prod.hero.c2n">Maps and briefs</span><span class="hero-chip-desc" data-i18n="prod.hero.c2d">The ones that matter, taken apart properly.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump2">Jump to Lynx</span><span class="arr">→</span></span></a>
       <a href="#collab" class="hero-chip"><span class="hero-chip-ic"><iconify-icon icon="lucide:layout-grid"></iconify-icon></span><span class="hero-chip-name">Collab</span><span class="hero-chip-sub" data-i18n="prod.hero.c3n">Keeps it moving</span><span class="hero-chip-desc" data-i18n="prod.hero.c3d">Where your team works on all of it.</span><span class="hero-chip-go"><span data-i18n="prod.hero.jump3">Jump to Collab</span><span class="arr">→</span></span></a>
     </div>
@@ -384,10 +385,10 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     <div>
       <p class="prow-tag reveal" data-i18n="prod.a.tag">Lead Lists</p>
       <h2 class="prow-name reveal">Argus</h2>
-      <p class="prow-body reveal" data-i18n="prod.a.body">Argus builds precision lead lists from your ICP alone, with no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.</p>
+      <p class="prow-body reveal" data-i18n="prod.a.body">Argus builds lead lists from your ICP alone, with no generic scraping. It reads hiring, funding, leadership, and tech-stack changes when your search runs, then scores every contact 0 to 100 with a cited reason they're worth calling this week.</p>
       <ul class="prow-feat-list reveal">
         <li data-i18n="prod.a.li1">Up to 80 qualified leads per report</li>
-        <li data-i18n="prod.a.li2">Per-contact fit score (0–100)</li>
+        <li data-i18n="prod.a.li2">Per-contact fit score (0 to 100)</li>
         <li data-i18n="prod.a.li3">Buying trigger, cited and sourced</li>
         <li data-i18n="prod.a.li4">One-line outreach hook per contact</li>
         <li data-i18n="prod.a.li5">Delivered inside ARGUS in a matter of days</li>
@@ -421,14 +422,14 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <div style="order:2;">
         <p class="prow-tag reveal" data-i18n="prod.l.tag">Company profiles &amp; Moirai</p>
         <h2 class="prow-name reveal">Lynx</h2>
-        <p class="prow-body reveal" data-i18n="prod.l.body">Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When a single deal justifies it, it expands into a full strategic brief.</p>
+        <p class="prow-body reveal" data-i18n="prod.l.body">Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It names the decision makers, and Moirai lets you ask the profiles anything. When a single deal justifies it, it expands into a full strategic brief.</p>
         <ul class="prow-feat-list reveal">
           <li data-i18n="prod.l.li1">A full profile for every company on your list</li>
           <li data-i18n="prod.l.li2">The decision makers, by name and role</li>
           <li data-i18n="prod.l.li3">Stakeholder roles, LinkedIn, entry points</li>
           <li data-i18n="prod.l.li4">News from the last 90 days, each with its source and date</li>
           <li data-i18n="prod.l.li5">Moirai, a chat to ask your profiles anything</li>
-          <li data-i18n="prod.l.li6">A people list that updates over time, exportable</li>
+          <li data-i18n="prod.l.li6">The decision makers by name and role, exportable</li>
           <li data-i18n="prod.l.li7">For 30 days after delivery, ask the person who wrote your profiles anything about them</li>
         </ul>
         <div class="reveal" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
@@ -492,8 +493,8 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <div class="intel-pane active" data-pane="overview">
         <div class="intel-title" data-i18n="prod.lb.ov.label">Target company</div>
         <div class="intel-name" data-i18n="prod.lb.ov.name">Example company, enterprise software</div>
-        <p class="intel-body" data-i18n="prod.lb.ov.body">An example enterprise software company, growing its sales team after a funding round. Decision-making authority sits with the CRO and a recently appointed VP GTM.</p>
-        <div class="intel-hl" data-i18n="prod.lb.ov.hl1">New VP GTM appointed recently, probably rebuilding the outbound motion. Likely entry window.</div>
+        <p class="intel-body" data-i18n="prod.lb.ov.body">An example enterprise software company, growing its sales team after a funding round. Decision-making authority sits with the CRO and a recently appointed Sales Director.</p>
+        <div class="intel-hl" data-i18n="prod.lb.ov.hl1">New Sales Director appointed recently, probably rebuilding the outbound motion. Likely entry window.</div>
         <div class="intel-hl" data-i18n="prod.lb.ov.hl2">Hiring sales engineers suggests expansion into the technical buyer segment.</div>
         <div class="prow-row" style="border-color:rgba(255,253,245,0.08);"><div class="prow-row-name" style="color:rgba(255,253,245,0.6);" data-i18n="prod.lb.ov.k1">Employees</div><div class="prow-score" style="font-size:14px;">–</div></div>
         <div class="prow-row" style="border-color:rgba(255,253,245,0.08);"><div class="prow-row-name" style="color:rgba(255,253,245,0.6);" data-i18n="prod.lb.ov.k2">Last funding</div><div class="prow-score" style="font-size:14px;" >–</div></div>
@@ -509,7 +510,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <div class="intel-pane" data-pane="signals">
         <div class="intel-title" data-i18n="prod.lb.sig.label">Buying signals</div>
         <div class="intel-hl" data-i18n="prod.lb.sig.1">↑ Hiring sales engineers: expansion signal</div>
-        <div class="intel-hl" data-i18n="prod.lb.sig.2">↑ New VP GTM appointed recently: outbound rebuild likely</div>
+        <div class="intel-hl" data-i18n="prod.lb.sig.2">↑ New Sales Director appointed recently: outbound rebuild likely</div>
         <div class="intel-hl" style="margin-bottom:0;" data-i18n="prod.lb.sig.3">↑ Migrating CRM stack: integration window open</div>
       </div>
     </div>
@@ -565,29 +566,7 @@ if(hamburger&&mobilePanel){
     });
   }, 400); });
 })();
-/* section depth on scroll — opacity only, never on hero/footer, always reset when in view */
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const secs = [...document.querySelectorAll('section')].filter((s,i)=> i>0 && s.offsetHeight>260 && !s.querySelector('[style*="sticky"], .sticky-visual'));
-  if(!secs.length) return;
-  const onScroll = ()=>{
-    const vh = window.innerHeight;
-    // near the end of the page nothing should fade — the last stretch stays fully readable
-    const nearEnd = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - vh*0.9);
-    const atBottom = nearEnd;
-    secs.forEach(s=>{
-      const r = s.getBoundingClientRect();
-      if(atBottom || r.bottom < -200 || r.top > vh){ s.style.opacity=''; return; }
-      const out = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height*0.9)));
-      s.style.opacity = String(1 - out*0.45);
-    });
-  };
-  let tick=false;
-  const run=()=>{ if(!tick){ tick=true; requestAnimationFrame(()=>{ onScroll(); tick=false; }); } };
-  window.addEventListener('scroll', run, {passive:true});
-  window.addEventListener('resize', run, {passive:true});
-  onScroll();
-})();
+
 document.querySelectorAll('.intel-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     const wrap = tab.closest('.intel-wrap');
@@ -625,16 +604,16 @@ const I18N = {
     "cta.btn":"Book a call",
     "prod.h1a":"Three tools.","prod.h1b":"Take what you need.",
     "prod.hero.jump":"Jump to Argus","prod.hero.jump2":"Jump to Lynx","prod.hero.jump3":"Jump to Collab",
-    "prod.hero.c1n":"Finds and scores","prod.hero.c1d":"The accounts ready to buy, scored 0–100.","prod.hero.c2n":"Maps and briefs","prod.hero.c2d":"The ones that matter, taken apart properly.","prod.hero.c3n":"Keeps it moving","prod.hero.c3d":"Where your team keeps its work.",
-    "prod.a.tag":"Lead Lists","prod.a.body":"Argus builds precision lead lists from your ICP alone, with no generic scraping. It watches hiring, funding, leadership, and tech-stack changes across your market, then scores every contact 0–100 with a cited reason they're in-market now.",
-    "prod.a.li1":"Up to 80 qualified leads per report","prod.a.li2":"Per-contact fit score (0–100)","prod.a.li3":"Buying trigger, cited and sourced","prod.a.li4":"One-line outreach hook per contact","prod.a.li5":"Delivered inside ARGUS in a matter of days","prod.a.li6":"Download as PDF or DOCX","prod.a.more":"Full Argus details",
+    "prod.hero.c1n":"Finds and scores","prod.hero.c1d":"The accounts ready to buy, scored out of 100.","prod.hero.c2n":"Maps and briefs","prod.hero.c2d":"The ones that matter, taken apart properly.","prod.hero.c3n":"Keeps it moving","prod.hero.c3d":"Where your team keeps its work.",
+    "prod.a.tag":"Lead Lists","prod.a.body":"Argus builds lead lists from your ICP alone, with no generic scraping. It reads hiring, funding, leadership, and tech-stack changes when your search runs, then scores every contact 0 to 100 with a cited reason they're worth calling this week.",
+    "prod.a.li1":"Up to 80 qualified leads per report","prod.a.li2":"Per-contact fit score (0 to 100)","prod.a.li3":"Buying trigger, cited and sourced","prod.a.li4":"One-line outreach hook per contact","prod.a.li5":"Delivered inside ARGUS in a matter of days","prod.a.li6":"Download as PDF or DOCX","prod.a.more":"Full Argus details",
     "prod.a.sample":"ARGUS · SAMPLE OUTPUT",
     "prod.a.r1n":"VP of Engineering","prod.a.r1t":"Hiring in the engineering team",
     "prod.a.r2n":"Head of Sales Ops","prod.a.r2t":"Funding round closed · expanding abroad",
     "prod.a.r3n":"Sales Director, Italy","prod.a.r3t":"New head of sales appointed recently",
     "prod.a.r4n":"CRO","prod.a.r4t":"Changing its CRM stack",
-    "prod.l.tag":"Company profiles &amp; Moirai","prod.l.body":"Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It keeps a people list that stays alive, and Moirai lets you ask the profiles anything. When a single deal justifies it, it expands into a full strategic brief.",
-    "prod.l.li1":"A full profile for every company on your list","prod.l.li2":"The decision makers, by name and role","prod.l.li3":"Stakeholder roles, LinkedIn, entry points","prod.l.li4":"News from the last 90 days, each with its source and date","prod.l.li5":"Moirai, a chat to ask your profiles anything","prod.l.li6":"A people list that updates over time, exportable","prod.l.li7":"For 30 days after delivery, ask the person who wrote your profiles anything about them","prod.l.more":"Full Lynx details",
+    "prod.l.tag":"Company profiles &amp; Moirai","prod.l.body":"Lynx takes a list, yours or one from Argus, and profiles every company on it: who decides, what happened in the last 90 days, and the easiest way in. It names the decision makers, and Moirai lets you ask the profiles anything. When a single deal justifies it, it expands into a full strategic brief.",
+    "prod.l.li1":"A full profile for every company on your list","prod.l.li2":"The decision makers, by name and role","prod.l.li3":"Stakeholder roles, LinkedIn, entry points","prod.l.li4":"News from the last 90 days, each with its source and date","prod.l.li5":"Moirai, a chat to ask your profiles anything","prod.l.li6":"The decision makers by name and role, exportable","prod.l.li7":"For 30 days after delivery, ask the person who wrote your profiles anything about them","prod.l.more":"Full Lynx details",
     "prod.l.sample":"LYNX · ACCOUNT MAP",
     "prod.l.r1n":"CRO, primary champion","prod.l.r1t":"Open to new tooling per recent commentary",
     "prod.l.r2n":"VP Revenue Ops, influencer","prod.l.r2t":"Controls tooling budget, CRM decisions",
@@ -642,8 +621,8 @@ const I18N = {
     "prod.lb.flag":"Included with Lynx: strategic brief · illustrative sample","prod.lb.head":"What a full strategic brief looks like",
     "prod.lb.tab1":"Overview","prod.lb.tab2":"Stakeholders","prod.lb.tab3":"Signals",
     "prod.lb.ov.label":"Target company","prod.lb.ov.name":"Example company, enterprise software",
-    "prod.lb.ov.body":"An example enterprise software company, growing its sales team after a funding round. Decision-making authority sits with the CRO and a recently appointed VP GTM.",
-    "prod.lb.ov.hl1":"New VP GTM appointed recently, probably rebuilding the outbound motion. Likely entry window.",
+    "prod.lb.ov.body":"An example enterprise software company, growing its sales team after a funding round. Decision-making authority sits with the CRO and a recently appointed Sales Director.",
+    "prod.lb.ov.hl1":"New Sales Director appointed recently, probably rebuilding the outbound motion. Likely entry window.",
     "prod.lb.ov.hl2":"Hiring sales engineers suggests expansion into the technical buyer segment.",
     "prod.lb.ov.k1":"Employees","prod.lb.ov.k2":"Last funding","prod.lb.ov.v2":"Series C","prod.lb.ov.k3":"Fit score",
     "prod.lb.ov.note":"Names, figures and signals shown here are illustrative and do not represent a real company or client.",
@@ -652,7 +631,7 @@ const I18N = {
     "prod.lb.stk.r2":"VP REVENUE OPS, INFLUENCER","prod.lb.stk.d2":"Controls tooling budget and CRM decisions. Key to any vendor evaluation process.",
     "prod.lb.stk.r3":"CFO, BUDGET HOLDER","prod.lb.stk.d3":"Approves tooling above a certain threshold. Involved in the yearly budget cycle.",
     "prod.lb.sig.label":"Buying signals",
-    "prod.lb.sig.1":"↑ Hiring sales engineers: expansion signal","prod.lb.sig.2":"↑ New VP GTM appointed recently: outbound rebuild likely","prod.lb.sig.3":"↑ Migrating CRM stack: integration window open",
+    "prod.lb.sig.1":"↑ Hiring sales engineers: expansion signal","prod.lb.sig.2":"↑ New Sales Director appointed recently: outbound rebuild likely","prod.lb.sig.3":"↑ Migrating CRM stack: integration window open",
     "prod.c.tag":"Team Workspace","prod.c.body":"Collab is where your team keeps its work: notes and pages, folders and files, spreadsheets with their full history, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
     "prod.c.avail":"A separate product: use it on its own, or alongside our research. Your reports are delivered in ARGUS and LYNX, not here.","prod.c.mock":"COLLAB · SHARED WORKSPACE","prod.c.ev1":"Team meeting","prod.c.ev2":"Follow-up","prod.c.ev3":"Sales call","prod.c.r1":"Uploaded by Sara · shared with the team","prod.c.r2n":"Meeting notes, Q3 outbound","prod.c.r2":"Shared · updated 2h ago","prod.c.r2c":"Notes","prod.c.r3n":"Call the VP Engineering","prod.c.r3":"Assigned to Marco · due Fri","prod.c.r3c":"Task",
     "prod.c.li6":"Organised the way your team already works","prod.c.li1":"Shared notes, files and tasks in one hub","prod.c.li2":"Shared calendar with month, week and agenda views","prod.c.li3":"Tasks assigned to people, with due dates","prod.c.li4":"A team chat","prod.c.li5":"For every note and file, you choose who sees it","prod.c.more":"Full Collab details",
@@ -681,8 +660,8 @@ const I18N = {
     "prod.a.r2n":"Responsabile Sales Ops","prod.a.r2t":"Round di finanziamento chiuso · si espande all'estero",
     "prod.a.r3n":"Direttore commerciale Italia","prod.a.r3t":"Nuovo capo vendite arrivato da poco",
     "prod.a.r4n":"CRO","prod.a.r4t":"Sta cambiando CRM",
-    "prod.l.tag":"Schede aziende e Moirai","prod.l.body":"Lynx prende una lista, la tua o una di Argus, e fa la scheda di ogni azienda: chi decide, cosa è successo negli ultimi 90 giorni e qual è la strada più semplice per entrare. Tiene una lista persone che resta viva, e con Moirai chiedi qualunque cosa sulle schede. Quando una trattativa vale di più, diventa un'analisi strategica completa.",
-    "prod.l.li1":"Una scheda completa per ogni azienda della lista","prod.l.li2":"I decisori, con nome e ruolo","prod.l.li3":"Ruoli, profili LinkedIn e da dove conviene entrare","prod.l.li4":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data","prod.l.li5":"Moirai, una chat per chiedere qualunque cosa sulle schede","prod.l.li6":"Una lista persone che si aggiorna nel tempo, esportabile","prod.l.li7":"Per 30 giorni dopo la consegna, chiedi a chi ha scritto le schede qualunque cosa sulle schede","prod.l.more":"Scopri Lynx nel dettaglio",
+    "prod.l.tag":"Schede aziende e Moirai","prod.l.body":"Lynx prende una lista, la tua o una di Argus, e fa la scheda di ogni azienda: chi decide, cosa è successo negli ultimi 90 giorni e qual è la strada più semplice per entrare. Indica i decisori per nome e ruolo, e con Moirai chiedi qualunque cosa sulle schede. Quando una trattativa vale di più, diventa un'analisi strategica completa.",
+    "prod.l.li1":"Una scheda completa per ogni azienda della lista","prod.l.li2":"I decisori, con nome e ruolo","prod.l.li3":"Ruoli, profili LinkedIn e da dove conviene entrare","prod.l.li4":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data","prod.l.li5":"Moirai, una chat per chiedere qualunque cosa sulle schede","prod.l.li6":"I decisori per nome e ruolo, esportabili","prod.l.li7":"Per 30 giorni dopo la consegna, chiedi a chi ha scritto le schede qualunque cosa sulle schede","prod.l.more":"Scopri Lynx nel dettaglio",
     "prod.l.sample":"LYNX · CHI DECIDE",
     "prod.l.r1n":"Direttore commerciale, il tuo alleato","prod.l.r1t":"Dalle sue dichiarazioni pubbliche, è aperto a nuovi strumenti",
     "prod.l.r2n":"Responsabile operations, ha voce in capitolo","prod.l.r2t":"Decide sul budget per gli strumenti e sul CRM",

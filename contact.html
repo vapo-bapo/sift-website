@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact — Book a call | SIFT</title>
+<title>Contact: Book a call | SIFT</title>
 <meta name="description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply within 24 hours."/>
 <link rel="icon" href="assets/logo.svg"/>
 <meta name="theme-color" content="#F7FCFA"/>
@@ -48,9 +48,9 @@ ul{list-style:none;}
 @keyframes floatB{0%,100%{transform:translateY(0) translateX(0) rotate(0deg);}50%{transform:translateY(40px) translateX(-30px) rotate(5deg);}}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 760ms cubic-bezier(0.16,1,0.3,1),transform 760ms cubic-bezier(0.16,1,0.3,1);}
-.reveal.in{opacity:1;transform:none;}
-.reveal.settled{transition:none;transform:none;opacity:1;}
+.js .reveal{opacity:0;transform:translateY(32px);transition:opacity 760ms cubic-bezier(0.16,1,0.3,1),transform 760ms cubic-bezier(0.16,1,0.3,1);}
+.js .reveal.in{opacity:1;transform:none;}
+.js .reveal.settled{transition:none;transform:none;opacity:1;}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important;}}
 /* responsive spacing scale */
 @media(max-width:760px){.container{padding:0 24px;}}
@@ -232,6 +232,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
   .process-grid{grid-template-columns:1fr;}
   .guarantees-grid{grid-template-columns:1fr;}
 }
+.contact-card{padding:40px 36px}.contact-card-h{font-family:var(--display,Sora,sans-serif);font-size:28px;font-weight:600;margin:0 0 12px}.contact-card-p{font-size:15px;line-height:1.65;margin:0 0 26px;color:var(--text-dim)}
 </style>
 
 <style>
@@ -404,9 +405,10 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#E2B04A 0%,#C9973A 100%)!important;}
 </style>
 <link rel="canonical" href="https://www.sifttechnology.com/contact.html"/>
-<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="Contact — Book a call | SIFT"/><meta property="og:description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply within 24 hours."/><meta property="og:url" content="https://www.sifttechnology.com/contact.html"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="Contact: Book a call | SIFT"/><meta property="og:description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply within 24 hours."/><meta property="og:url" content="https://www.sifttechnology.com/contact.html"/>
 <meta name="twitter:card" content="summary"/>
 <link rel="stylesheet" href="assets/theme.css"/>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="pg-contact">
 <div class="noise"></div>
@@ -440,7 +442,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 <section class="page-hero">
   <div class="container page-hero-inner">
     <h1 class="page-hero-title reveal in"><span data-i18n="contact.h1a">Tell us who</span><br/><em data-i18n="contact.h1b">you're looking for.</em></h1>
-    <p class="page-hero-desc reveal in" data-i18n="contact.hero.desc">Describe your ideal customer in your own words. We reply within 24 hours to set up a call.</p>
+    <p class="page-hero-desc reveal in" data-i18n="contact.hero.desc">Write to us about your ideal customer, in your own words. We reply within 24 hours to set up a call.</p>
   </div>
 </section>
 
@@ -448,11 +450,11 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
   <div class="container contact-grid">
     <div class="reveal">
       <h2 class="contact-tagline"><span data-i18n="contact.tag1">A signal scan starts</span><br/><em data-i18n="contact.tag2">with a brief.</em></h2>
-      <p class="contact-body" data-i18n="contact.body">Fill in your ICP, target market, and what you're trying to accomplish. We read it by hand and reply within 24 hours to set up a call.</p>
+      <p class="contact-body" data-i18n="contact.body">Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply within 24 hours to set up a call.</p>
       <div class="cdetails">
         <div><div class="cdetail-label" data-i18n="contact.email.label">Email</div><a href="mailto:general@sifttechnology.com" class="cdetail-val" style="color:var(--gold-dim);">general@sifttechnology.com</a></div>
         <div><div class="cdetail-label" data-i18n="contact.response.label">Response time</div><span class="cdetail-val" data-i18n="contact.response.val">Within 24 hours</span></div>
-        <div><div class="cdetail-label" data-i18n="contact.sla.label">Delivery</div><span class="cdetail-val" data-i18n="contact.sla.val">A matter of days from brief confirmation</span></div>
+        <div><div class="cdetail-label" data-i18n="contact.sla.label">Delivery</div><span class="cdetail-val" data-i18n="contact.sla.val">A matter of days from confirming the brief</span></div>
       </div>
       <div class="process-mini">
         <div class="process-mini-title" data-i18n="contact.next.title">What happens next</div>
@@ -465,41 +467,11 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     </div>
 
     <div class="reveal">
-      <form class="cform" id="contactForm" novalidate>
-        <div class="cform-row">
-          <div class="cfield"><label class="cfield-label" for="f-first" data-i18n="contact.first">First name</label><input class="cfield-input" type="text" id="f-first" name="first_name" placeholder="First name" data-i18n-placeholder="contact.first" required/></div>
-          <div class="cfield"><label class="cfield-label" for="f-last" data-i18n="contact.last">Last name</label><input class="cfield-input" type="text" id="f-last" name="last_name" placeholder="Last name" data-i18n-placeholder="contact.last" required/></div>
-        </div>
-        <div class="cform-row">
-          <div class="cfield"><label class="cfield-label" for="f-company" data-i18n="contact.company">Company</label><input class="cfield-input" type="text" id="f-company" name="company" placeholder="Company name" data-i18n-placeholder="contact.company.ph" required/></div>
-          <div class="cfield"><label class="cfield-label" for="f-email" data-i18n="contact.email2">Work email</label><input class="cfield-input" type="email" id="f-email" name="_replyto" placeholder="you@company.com" required/></div>
-        </div>
-        <div class="cfield">
-          <label class="cfield-label" for="planSelect" data-i18n="contact.plan.label">What are you looking for?</label>
-          <select class="cfield-select" name="product" id="planSelect" required>
-            <option value="" disabled selected data-i18n="contact.plan.ph">Select a product</option>
-            <option value="ARGUS" data-i18n="contact.plan.o1">ARGUS: find companies I don't know yet</option>
-            <option value="LYNX" data-i18n="contact.plan.o2">LYNX: profile companies I already have</option>
-            <option value="ARGUS + LYNX" data-i18n="contact.plan.o3">ARGUS and LYNX together</option>
-            <option value="COLLAB" data-i18n="contact.plan.o4">COLLAB: a workspace for my team</option>
-            <option value="Not sure yet" data-i18n="contact.plan.o5">Not sure yet, recommend something</option>
-          </select>
-        </div>
-        <div class="cfield"><label class="cfield-label" for="f-market" data-i18n="contact.market.label">Target market &amp; geography</label><input class="cfield-input" type="text" id="f-market" name="target_market" placeholder="e.g. Manufacturing SMEs, North-East Italy, 20–200 employees" data-i18n-placeholder="contact.market.ph"/></div>
-        <div class="cfield"><label class="cfield-label" for="f-roles" data-i18n="contact.roles.label">Target role(s)</label><input class="cfield-input" type="text" id="f-roles" name="target_roles" placeholder="e.g. Head of Sales, VP Engineering, CFO" data-i18n-placeholder="contact.roles.ph"/></div>
-        <div class="cfield"><label class="cfield-label" for="f-icp" data-i18n="contact.icp.label">Your ICP: tell us more</label><textarea class="cfield-textarea" id="f-icp" name="icp_brief" placeholder="What problem do you solve? What signals suggest a company is ready to buy?" data-i18n-placeholder="contact.icp.ph"></textarea></div>
-        <div style="display:flex;align-items:flex-start;gap:10px;padding:18px 0 4px;">
-          <input type="checkbox" id="f-consent" name="consent" required style="margin-top:3px;flex-shrink:0;"/>
-          <label for="f-consent" style="font-size:11.5px;color:var(--text-faint);line-height:1.6;" data-i18n="contact.consent">I agree that SIFT may use the details I've submitted to respond to my enquiry. We won't share your information or add you to a marketing list without consent.</label>
-        </div><p class="priv-short" style="font-size:11.5px;color:var(--text-faint);line-height:1.6;margin:-6px 0 0;" data-i18n="contact.priv">Data controller: SIFT S.r.l. We use your details to reply to your request, as a step before a contract or on the basis of our legitimate interest in replying. You can object at any time by writing to privacy@sifttechnology.com. <a href="privacy.html">Full privacy notice</a>.</p>
-        <div class="cform-foot">
-          <p class="cform-note" data-i18n="contact.form.note">Every brief is read by hand. We reply within 24 hours.</p>
-          <button type="submit" class="btn btn-primary"><span data-i18n="contact.form.submit">Book a call</span> <span class="arr">→</span></button>
-        </div>
-      </form>
-      <div id="formSuccess" role="status" style="display:none;text-align:center;padding:64px 32px;background:var(--card);border:1px solid var(--border);border-radius:16px;">
-        <h3 style="font-family:'Sora',sans-serif;font-size:30px;font-weight:500;margin-bottom:10px;color:var(--text);" data-i18n="contact.success.h">Brief received.</h3>
-        <p style="font-size:14px;color:var(--text-dim);" data-i18n="contact.success.p">We'll read your brief and reply within 24 hours to set up a call.</p>
+      <div class="cform contact-card">
+        <h3 class="contact-card-h" data-i18n="contact.card.h">Write to us</h3>
+        <p class="contact-card-p" data-i18n="contact.card.p">Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply within 24 hours to set up a call.</p>
+        <a class="btn btn-primary" href="mailto:general@sifttechnology.com?subject=SIFT%20brief"><span data-i18n="contact.card.cta">Send us an email</span> <span class="arr">→</span></a>
+        <p class="cform-note" style="margin-top:18px;" data-i18n="contact.card.note">general@sifttechnology.com</p>
       </div>
     </div>
   </div>
@@ -554,29 +526,7 @@ if(hamburger&&mobilePanel){
     });
   }, 400); });
 })();
-/* section depth on scroll — opacity only, never on hero/footer, always reset when in view */
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const secs = [...document.querySelectorAll('section')].filter((s,i)=> i>0 && s.offsetHeight>260 && !s.querySelector('[style*="sticky"], .sticky-visual'));
-  if(!secs.length) return;
-  const onScroll = ()=>{
-    const vh = window.innerHeight;
-    // near the end of the page nothing should fade — the last stretch stays fully readable
-    const nearEnd = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - vh*0.9);
-    const atBottom = nearEnd;
-    secs.forEach(s=>{
-      const r = s.getBoundingClientRect();
-      if(atBottom || r.bottom < -200 || r.top > vh){ s.style.opacity=''; return; }
-      const out = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height*0.9)));
-      s.style.opacity = String(1 - out*0.45);
-    });
-  };
-  let tick=false;
-  const run=()=>{ if(!tick){ tick=true; requestAnimationFrame(()=>{ onScroll(); tick=false; }); } };
-  window.addEventListener('scroll', run, {passive:true});
-  window.addEventListener('resize', run, {passive:true});
-  onScroll();
-})();
+
 
 /* ─── i18n ─────────────────────────────────────────────── */
 const I18N = {
@@ -601,9 +551,9 @@ const I18N = {
     "process.4t":"Delivered in a matter of days","process.4p":"We deliver everything in a matter of days, inside ARGUS and LYNX: the scored list, the company profiles, the written brief. As soon as you confirm the brief, your run gets a start date and a delivery date.",
     "engines.eyebrow":"Three engines","engines.h1":"What you can","engines.h2":"buy from us.",
     "engines.lead":"Three separate licences. Take what you need: we won't make you buy the rest. Start with Argus if you still need to build a list, take Lynx if you already have one. Collab is where your team keeps its work, and it's sold on its own.",
-    "engines.tag1":"01 · Lead Lists","engines.sub1":"Precision lead lists","engines.p1":"Built to match your ICP. Every contact arrives with a fit score, a cited reason they're buying now, and a one-line way in.",
-    "engines.li1a":"Up to 80 qualified leads per report","engines.li1b":"Per-contact fit score (0–100)","engines.li1c":"Buying trigger, cited and sourced",
-    "engines.tag2":"02 · Account Intel","engines.sub2":"Company profiles and a people list","engines.p2":"Send us a list, or take the best companies from Argus. Lynx profiles every one of them, keeps a people list that stays alive, and gives you Moirai, a chat where you can ask your profiles anything.",
+    "engines.tag1":"01 · Lead Lists","engines.sub1":"Lead lists","engines.p1":"Built to match your ICP. Every contact arrives with a fit score, a cited reason they're buying now, and a one-line way in.",
+    "engines.li1a":"Up to 80 qualified leads per report","engines.li1b":"Per-contact fit score (0 to 100)","engines.li1c":"Buying trigger, cited and sourced",
+    "engines.tag2":"02 · Account Intel","engines.sub2":"Company profiles and a people list","engines.p2":"Send us a list, or take the best companies from Argus. Lynx profiles every one of them, names the decision makers, and gives you Moirai, a chat where you can ask your profiles anything.",
     "engines.li2a":"A full profile for every company","engines.li2b":"The decision makers, by name and role","engines.li2c":"News from the last 90 days, each with its source and date",
     "engines.tag3":"03 · Strategic Brief","engines.sub3":"A separate product","engines.p3":"Where your team keeps its work: notes and pages, folders and files, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
     "engines.li3a":"You choose who sees each note and file","engines.li3b":"Tasks assigned to people, with due dates","engines.li3c":"Shared calendar and team chat",
@@ -619,10 +569,11 @@ const I18N = {
     "cta.h1":"Tell us who","cta.h2":"you're looking for.","cta.btn":"Book a call","cta.note":"Reply within 24 hours",
     "footer.copy":"© 2026 SIFT · Research on public sources, written for B2B sales teams.",
     "contact.h1a":"Tell us who","contact.h1b":"you're looking for.",
-    "contact.hero.desc":"Describe your ideal customer in your own words. We reply within 24 hours to set up a call.",
+    "contact.card.h":"Write to us","contact.card.p":"Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply within 24 hours to set up a call.","contact.card.cta":"Send us an email","contact.card.note":"general@sifttechnology.com",
+    "contact.hero.desc":"Write to us about your ideal customer, in your own words. We reply within 24 hours to set up a call.",
     "contact.tag1":"A signal scan starts","contact.tag2":"with a brief.",
-    "contact.body":"Fill in your ICP, target market, and what you're trying to accomplish. We read it by hand and reply within 24 hours to set up a call.",
-    "contact.email.label":"Email","contact.response.label":"Response time","contact.response.val":"Within 24 hours","contact.sla.label":"Delivery","contact.sla.val":"A matter of days from brief confirmation",
+    "contact.body":"Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply within 24 hours to set up a call.",
+    "contact.email.label":"Email","contact.response.label":"Response time","contact.response.val":"Within 24 hours","contact.sla.label":"Delivery","contact.sla.val":"A matter of days from confirming the brief",
     "contact.next.title":"What happens next",
     "contact.next.1":"We review your ICP brief by hand","contact.next.2":"We reply within 24 hours","contact.next.3":"A 30-minute call to define who you're looking for","contact.next.4":"Brief confirmed: delivery in a matter of days","contact.next.5":"We explain the report when we hand it over",
     "contact.first":"First name","contact.last":"Last name","contact.company":"Company","contact.company.ph":"Company name","contact.email2":"Work email",
@@ -658,7 +609,7 @@ const I18N = {
     "engines.eyebrow":"Tre strumenti","engines.h1":"Cosa puoi","engines.h2":"comprare da noi.",
     "engines.lead":"Tre licenze separate. Prendi quello che ti serve: il resto non te lo facciamo comprare. Parti da Argus se la lista devi ancora costruirla, prendi Lynx se una lista ce l'hai già. Collab è dove il tuo team tiene il suo lavoro, e si compra da solo.",
     "engines.tag1":"Liste di contatti","engines.sub1":"Liste di contatti mirate","engines.p1":"Costruite su misura del tuo cliente ideale. Ogni contatto arriva con un punteggio, il motivo documentato per cui è il momento giusto per contattarlo e una frase con cui aprire il discorso.",
-    "engines.li1a":"Fino a 80 lead qualificati per report","engines.li1b":"Punteggio per contatto (0–100)","engines.li1c":"Il motivo per cui è pronto a comprare, con la fonte",
+    "engines.li1a":"Fino a 80 lead qualificati per report","engines.li1b":"Punteggio per contatto (0 to 100)","engines.li1c":"Il motivo per cui è pronto a comprare, con la fonte",
     "engines.tag2":"Schede aziende","engines.sub2":"Schede aziende e lista persone","engines.p2":"Mandaci una lista, o prendi le aziende migliori da Argus. Lynx fa la scheda completa di ognuna, tiene una lista persone che resta viva, e ti dà Moirai, una chat a cui chiedere qualunque cosa.",
     "engines.li2a":"Una scheda completa per ogni azienda","engines.li2b":"I decisori, con nome e ruolo","engines.li2c":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data",
     "engines.tag3":"Spazio di lavoro","engines.sub3":"Un prodotto a sé","engines.p3":"Dove il tuo team tiene il suo lavoro: note e pagine, cartelle e file, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
@@ -675,12 +626,13 @@ const I18N = {
     "cta.h1":"Dicci chi","cta.h2":"stai cercando.","cta.btn":"Prenota una call","cta.note":"Risposta entro 24 ore",
     "footer.copy":"© 2026 SIFT · Ricerca su fonti pubbliche, scritta per i team commerciali B2B.",
     "contact.h1a":"Dicci chi","contact.h1b":"stai cercando.",
-    "contact.hero.desc":"Descrivi a parole tue il tuo cliente ideale. Ti rispondiamo entro 24 ore per fissare una call.",
+    "contact.card.h":"Scrivici","contact.card.p":"Raccontaci a chi vendi e cosa di solito li spinge a comprare. Basta una frase. Leggiamo ogni messaggio di persona e ti rispondiamo entro 24 ore per fissare una call.","contact.card.cta":"Scrivici una email","contact.card.note":"general@sifttechnology.com",
+    "contact.hero.desc":"Scrivici a parole tue chi è il tuo cliente ideale. Ti rispondiamo entro 24 ore per fissare una call.",
     "contact.tag1":"Ogni ricerca parte","contact.tag2":"da una conversazione.",
-    "contact.body":"Raccontaci il tuo cliente ideale, il mercato e cosa vuoi ottenere. Leggiamo tutto di persona e ti rispondiamo entro 24 ore per fissare una call.",
-    "contact.email.label":"Email","contact.response.label":"Ti rispondiamo","contact.response.val":"Entro 24 ore","contact.sla.label":"Tempi di consegna","contact.sla.val":"Pochi giorni dalla conferma del brief",
+    "contact.body":"Raccontaci a chi vendi, dove e cosa vuoi ottenere. Leggiamo tutto di persona e ti rispondiamo entro 24 ore per fissare una call.",
+    "contact.email.label":"Email","contact.response.label":"Ti rispondiamo","contact.response.val":"Entro 24 ore","contact.sla.label":"Tempi di consegna","contact.sla.val":"Questione di giorni dalla conferma del brief",
     "contact.next.title":"Cosa succede dopo che scrivi",
-    "contact.next.1":"Leggiamo la tua richiesta di persona","contact.next.2":"Ti rispondiamo entro 24 ore","contact.next.3":"Una call di mezz'ora per definire chi stai cercando","contact.next.4":"Brief confermato: consegna in pochi giorni","contact.next.5":"Ti spieghiamo il report quando te lo consegniamo",
+    "contact.next.1":"Leggiamo la tua richiesta di persona","contact.next.2":"Ti rispondiamo entro 24 ore","contact.next.3":"Una call di mezz'ora per definire chi stai cercando","contact.next.4":"Brief confermato: consegna in questione di giorni","contact.next.5":"Ti spieghiamo il report quando te lo consegniamo",
     "contact.first":"Nome","contact.last":"Cognome","contact.company":"Azienda","contact.company.ph":"Come si chiama la tua azienda","contact.email2":"Email aziendale",
     "contact.plan.label":"Cosa ti serve?","contact.plan.ph":"Scegli una soluzione",
     "contact.plan.o1":"ARGUS: trovare aziende che non conosco","contact.plan.o2":"LYNX: schede sulle aziende che ho già","contact.plan.o3":"ARGUS e LYNX insieme",
@@ -715,29 +667,7 @@ let savedLang='en';
 try{ savedLang = localStorage.getItem('sift-lang') || 'en'; }catch(e){}
 applyLang(savedLang);
 </script>
-<script>
-const planParam = new URLSearchParams(location.search).get('plan');
-if (planParam) {
-  const sel = document.getElementById('planSelect');
-  if (sel) {
-    const map = { 'argus': 'ARGUS', 'lynx': 'LYNX', 'argus-lynx': 'ARGUS + LYNX', 'collab': 'COLLAB' };
-    const target = map[planParam] || '';
-    for (let i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].value === target) { sel.selectedIndex = i; break; }
-    }
-  }
-}
-const form = document.getElementById('contactForm');
-const success = document.getElementById('formSuccess');
-if (form) {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    form.style.display = 'none';
-    success.style.display = 'block';
-  });
-}
-</script>
+
 <script src="assets/wrap.js" defer></script>
 </body>
 </html>

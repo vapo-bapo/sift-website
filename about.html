@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>How it works — Method &amp; team | SIFT</title>
+<title>How it works: Method &amp; team | SIFT</title>
 <meta name="description" content="How SIFT turns public signals into a usable shortlist: define the fit, research the signals, map the account, deliver in a matter of days."/>
 <link rel="icon" href="assets/logo.svg"/>
 <meta name="theme-color" content="#F7FCFA"/>
@@ -48,9 +48,9 @@ ul{list-style:none;}
 @keyframes floatB{0%,100%{transform:translateY(0) translateX(0) rotate(0deg);}50%{transform:translateY(40px) translateX(-30px) rotate(5deg);}}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 760ms cubic-bezier(0.16,1,0.3,1),transform 760ms cubic-bezier(0.16,1,0.3,1);}
-.reveal.in{opacity:1;transform:none;}
-.reveal.settled{transition:none;transform:none;opacity:1;}
+.js .reveal{opacity:0;transform:translateY(32px);transition:opacity 760ms cubic-bezier(0.16,1,0.3,1),transform 760ms cubic-bezier(0.16,1,0.3,1);}
+.js .reveal.in{opacity:1;transform:none;}
+.js .reveal.settled{transition:none;transform:none;opacity:1;}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important;}}
 /* responsive spacing scale */
 @media(max-width:760px){.container{padding:0 24px;}}
@@ -417,9 +417,10 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#E2B04A 0%,#C9973A 100%)!important;}
 </style>
 <link rel="canonical" href="https://www.sifttechnology.com/about.html"/>
-<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="How it works — Method &amp; team | SIFT"/><meta property="og:description" content="How SIFT turns public signals into a usable shortlist: define the fit, research the signals, map the account, deliver in a matter of days."/><meta property="og:url" content="https://www.sifttechnology.com/about.html"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="How it works: Method &amp; team | SIFT"/><meta property="og:description" content="How SIFT turns public signals into a usable shortlist: define the fit, research the signals, map the account, deliver in a matter of days."/><meta property="og:url" content="https://www.sifttechnology.com/about.html"/>
 <meta name="twitter:card" content="summary"/>
 <link rel="stylesheet" href="assets/theme.css"/>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="pg-about">
 <div class="noise"></div>
@@ -583,29 +584,7 @@ if(hamburger&&mobilePanel){
     });
   }, 400); });
 })();
-/* section depth on scroll — opacity only, never on hero/footer, always reset when in view */
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const secs = [...document.querySelectorAll('section')].filter((s,i)=> i>0 && s.offsetHeight>260 && !s.querySelector('[style*="sticky"], .sticky-visual'));
-  if(!secs.length) return;
-  const onScroll = ()=>{
-    const vh = window.innerHeight;
-    // near the end of the page nothing should fade — the last stretch stays fully readable
-    const nearEnd = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - vh*0.9);
-    const atBottom = nearEnd;
-    secs.forEach(s=>{
-      const r = s.getBoundingClientRect();
-      if(atBottom || r.bottom < -200 || r.top > vh){ s.style.opacity=''; return; }
-      const out = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height*0.9)));
-      s.style.opacity = String(1 - out*0.45);
-    });
-  };
-  let tick=false;
-  const run=()=>{ if(!tick){ tick=true; requestAnimationFrame(()=>{ onScroll(); tick=false; }); } };
-  window.addEventListener('scroll', run, {passive:true});
-  window.addEventListener('resize', run, {passive:true});
-  onScroll();
-})();
+
 
 /* ─── i18n ─────────────────────────────────────────────── */
 const I18N = {
@@ -630,9 +609,9 @@ const I18N = {
     "process.4t":"Delivered in a matter of days","process.4p":"We deliver everything in a matter of days, inside ARGUS and LYNX: the scored list, the company profiles, the written brief. As soon as you confirm the brief, your run gets a start date and a delivery date.",
     "engines.eyebrow":"Three engines","engines.h1":"What you can","engines.h2":"buy from us.",
     "engines.lead":"Three separate licences. Take what you need: we won't make you buy the rest. Start with Argus if you still need to build a list, take Lynx if you already have one. Collab is where your team keeps its work, and it's sold on its own.",
-    "engines.tag1":"01 · Lead Lists","engines.sub1":"Precision lead lists","engines.p1":"Built to match your ICP. Every contact arrives with a fit score, a cited reason they're buying now, and a one-line way in.",
-    "engines.li1a":"Up to 80 qualified leads per report","engines.li1b":"Per-contact fit score (0–100)","engines.li1c":"Buying trigger, cited and sourced",
-    "engines.tag2":"02 · Account Intel","engines.sub2":"Company profiles and a people list","engines.p2":"Send us a list, or take the best companies from Argus. Lynx profiles every one of them, keeps a people list that stays alive, and gives you Moirai, a chat where you can ask your profiles anything.",
+    "engines.tag1":"01 · Lead Lists","engines.sub1":"Lead lists","engines.p1":"Built to match your ICP. Every contact arrives with a fit score, a cited reason they're buying now, and a one-line way in.",
+    "engines.li1a":"Up to 80 qualified leads per report","engines.li1b":"Per-contact fit score (0 to 100)","engines.li1c":"Buying trigger, cited and sourced",
+    "engines.tag2":"02 · Account Intel","engines.sub2":"Company profiles and a people list","engines.p2":"Send us a list, or take the best companies from Argus. Lynx profiles every one of them, names the decision makers, and gives you Moirai, a chat where you can ask your profiles anything.",
     "engines.li2a":"A full profile for every company","engines.li2b":"The decision makers, by name and role","engines.li2c":"News from the last 90 days, each with its source and date",
     "engines.tag3":"03 · Strategic Brief","engines.sub3":"A separate product","engines.p3":"Where your team keeps its work: notes and pages, folders and files, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
     "engines.li3a":"You choose who sees each note and file","engines.li3b":"Tasks assigned to people, with due dates","engines.li3c":"Shared calendar and team chat",
@@ -689,7 +668,7 @@ const I18N = {
     "engines.eyebrow":"Tre strumenti","engines.h1":"Cosa puoi","engines.h2":"comprare da noi.",
     "engines.lead":"Tre licenze separate. Prendi quello che ti serve: il resto non te lo facciamo comprare. Parti da Argus se la lista devi ancora costruirla, prendi Lynx se una lista ce l'hai già. Collab è dove il tuo team tiene il suo lavoro, e si compra da solo.",
     "engines.tag1":"Liste di contatti","engines.sub1":"Liste di contatti mirate","engines.p1":"Costruite su misura del tuo cliente ideale. Ogni contatto arriva con un punteggio, il motivo documentato per cui è il momento giusto per contattarlo e una frase con cui aprire il discorso.",
-    "engines.li1a":"Fino a 80 lead qualificati per report","engines.li1b":"Punteggio per contatto (0–100)","engines.li1c":"Il motivo per cui è pronto a comprare, con la fonte",
+    "engines.li1a":"Fino a 80 lead qualificati per report","engines.li1b":"Punteggio per contatto (0 to 100)","engines.li1c":"Il motivo per cui è pronto a comprare, con la fonte",
     "engines.tag2":"Schede aziende","engines.sub2":"Schede aziende e lista persone","engines.p2":"Mandaci una lista, o prendi le aziende migliori da Argus. Lynx fa la scheda completa di ognuna, tiene una lista persone che resta viva, e ti dà Moirai, una chat a cui chiedere qualunque cosa.",
     "engines.li2a":"Una scheda completa per ogni azienda","engines.li2b":"I decisori, con nome e ruolo","engines.li2c":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data",
     "engines.tag3":"Spazio di lavoro","engines.sub3":"Un prodotto a sé","engines.p3":"Dove il tuo team tiene il suo lavoro: note e pagine, cartelle e file, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
