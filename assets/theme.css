@@ -238,3 +238,6 @@ body:has(#tour) #progress .d{border:0;padding:0;cursor:pointer}
 .tour-foot{display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;padding:26px 24px 8px;font-size:13px;color:var(--p-dim)}
 .tour-foot a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:900px){.tour-lang{top:12px;right:12px}}
+
+/* mockup dei tour: niente inclinazione 3D */
+body:has(#tour) .screen,body:has(#tour) #s3 .screen,body:has(#tour) #s5 .screen{transform:none!important;transition:none}
