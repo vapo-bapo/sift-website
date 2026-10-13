@@ -7,6 +7,8 @@
 <meta name="description" content="LYNX profiles every company on your list, names the decision makers, and expands into a full strategic brief when a single deal justifies it."/>
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png"/>
 <meta name="theme-color" content="#F7FCFA"/>
+<link rel="preload" href="assets/fonts/inter-400.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/sora.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root{
@@ -190,7 +192,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · board · <span data-i18n="ex">Example data</span></span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title"><span data-i18n="bar.1">lynx · board</span> · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="board-title">LYNX</div>
           <div class="board-meta" data-i18n="s2.meta">Lists · companies · unassigned</div>
@@ -231,7 +233,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         <p class="sub" style="font-size:11px;font-style:italic;margin-top:14px;" data-i18n="s3.note">Sample data, illustrative, not a real client.</p>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · account file · <span data-i18n="ex">Example data</span></span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title"><span data-i18n="bar.2">lynx · account file</span> · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="case-cols">
             <div>
@@ -265,7 +267,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">lynx · strategic brief · <span data-i18n="ex">Example data</span></span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title"><span data-i18n="bar.3">lynx · strategic brief</span> · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="case-tag" data-i18n="s4.tag">Example company · strategic brief</div>
           <div class="brief-sec" data-i18n="s4.sec1">Entry windows</div>
@@ -311,10 +313,8 @@ const I18N = {
     "co.E":"Company E",
     "co.F":"Company F",
     "s3.cname":"Example company",
-    "n.emp":"1,800+",
     "nm.p":"Name Surname",
-
-    "nav.back":"← Back to products","nav.contact":"Contact","nav.cta":"Book a call →","cta.case":"Book a call →","cta.back":"Back to products","scroll":"Scroll for the tour",
+    "nav.back":"← Back to products","nav.contact":"Contact","nav.cta":"Book a call →","cta.case":"Book a call →","cta.back":"Back to products","scroll":"Scroll for the tour","bar.1":"lynx · board","bar.2":"lynx · account file","bar.3":"lynx · strategic brief",
     "s1.eyebrow":"Product tour · Company profiles","s1.h":"LYNX gives you the full picture","s1.he":"on the accounts that matter.",
     "s1.p":"LYNX takes the companies that matter and builds a full profile for each one: who decides, what changed in the last 90 days, and, when a single deal justifies it, a full strategic brief.",
     "s2.eyebrow":"The board","s2.h":"All your accounts,","s2.he":"organised in one place.",
@@ -347,10 +347,8 @@ const I18N = {
     "co.E":"Azienda E",
     "co.F":"Azienda F",
     "s3.cname":"Azienda di esempio",
-    "n.emp":"1.800+",
     "nm.p":"Nome Cognome",
-
-    "nav.back":"← Torna ai prodotti","nav.contact":"Contatti","nav.cta":"Prenota una call →","cta.case":"Prenota una call →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour",
+    "nav.back":"← Torna ai prodotti","nav.contact":"Contatti","nav.cta":"Prenota una call →","cta.case":"Prenota una call →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour","bar.1":"lynx · bacheca","bar.2":"lynx · scheda azienda","bar.3":"lynx · analisi strategica",
     "s1.eyebrow":"Il prodotto · Schede aziende","s1.h":"LYNX ti dà il quadro completo","s1.he":"delle aziende che contano.",
     "s1.p":"LYNX prende le aziende che contano e fa la scheda completa di ognuna: chi decide, cosa è cambiato negli ultimi 90 giorni e, quando una singola trattativa lo giustifica, un'analisi strategica completa.",
     "s2.eyebrow":"La bacheca","s2.h":"Tutte le tue aziende,","s2.he":"in un unico posto.",
@@ -365,7 +363,7 @@ const I18N = {
     "s3.r2":"RESPONSABILE OPERATIONS · INFLUENZA LA SCELTA","s3.d2":"Gestisce il budget per gli strumenti e le decisioni sul CRM.",
     "s3.r3":"DIRETTORE FINANZIARIO · FIRMA LA SPESA","s3.d3":"Approva gli acquisti oltre una certa cifra.",
     "s4.eyebrow":"L'analisi strategica","s4.h":"Quando una trattativa conta davvero,","s4.he":"la scheda diventa un'analisi.",
-    "s4.p":"Per l'azienda che merita lo sforzo in più, LYNX diventa un'analisi strategica completa: concorrenti, chi ha davvero il budget, i momenti giusti per entrare, e te la spieghiamo quando te la consegniamo.",
+    "s4.p":"Per l'azienda che merita lo sforzo in più, LYNX diventa un'analisi strategica completa: concorrenti, chi ha davvero il budget, i momenti giusti per entrare. Te la spieghiamo quando te la consegniamo.",
     "s4.l1":"Chi sono i concorrenti e come si compra in quel settore","s4.l2":"Spiegata al tuo team quando te la consegniamo","s4.l3":"Per 30 giorni dopo la consegna, chiedi a chi l'ha scritta qualunque cosa",
     "s4.tag":"Azienda di esempio · analisi strategica","s4.sec1":"Quando farsi avanti",
     "s4.hl1":"Nuovo responsabile vendite arrivato da poco: probabile riorganizzazione della macchina commerciale. È il momento in cui rivede i fornitori.",

@@ -7,6 +7,8 @@
 <meta name="description" content="ARGUS reads public hiring, funding and technology signals across your market and turns them into a scored, sourced lead list in a matter of days."/>
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png"/>
 <meta name="theme-color" content="#F7FCFA"/>
+<link rel="preload" href="assets/fonts/inter-400.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/sora.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root{
@@ -211,7 +213,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">sift · home / overview · <span data-i18n="ex">Example data</span></span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title"><span data-i18n="bar.1">sift · home / overview</span> · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="stat-row">
             <div class="stat-card"><div class="stat-ic amber"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></div><div class="stat-num">126</div><div class="stat-label" data-i18n="s2.k1">Researched accounts</div></div>
@@ -240,7 +242,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">argus · reports / archive · <span data-i18n="ex">Example data</span></span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title"><span data-i18n="bar.2">argus · reports / archive</span> · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="arc-card">
             <div class="arc-top">
@@ -281,7 +283,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">argus · report detail · <span data-i18n="ex">Example data</span></span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title"><span data-i18n="bar.3">argus · report detail</span> · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="crit-box">
             <div class="crit-label" data-i18n="s4.crit">Search criteria</div>
@@ -317,7 +319,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">argus · lead rankings · <span data-i18n="ex">Example data</span></span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title"><span data-i18n="bar.4">argus · lead rankings</span> · <span data-i18n="ex">Example data</span></span></div>
         <div class="screen-body">
           <div class="lead-row">
             <span class="rank">#1</span>
@@ -379,7 +381,7 @@ const I18N = {
     "d.part":"Partial data",
     "d.solid":"Solid data",
 
-    "nav.back":"← Back to products","nav.contact":"Contact","nav.cta":"Book a call →","cta.run":"Book a call →","cta.back":"Back to products","scroll":"Scroll for the tour","why":"Why:",
+    "nav.back":"← Back to products","nav.contact":"Contact","nav.cta":"Book a call →","cta.run":"Book a call →","cta.back":"Back to products","scroll":"Scroll for the tour","bar.1":"sift · home / overview","bar.2":"argus · reports / archive","bar.3":"argus · report detail","bar.4":"argus · lead rankings","why":"Why:",
     "s1.eyebrow":"Product tour · Lead Lists","s1.h":"ARGUS finds the companies","s1.he":"ready to buy from you.",
     "s1.p":"It reads the public signals a company can't hide (hiring, funding, new leadership, tech changes) and turns them into a scored lead list your reps can call the same day.",
     "s2.eyebrow":"Your home screen","s2.h":"Open ARGUS and see your whole market","s2.he":"at a glance.",
@@ -423,19 +425,19 @@ const I18N = {
     "d.part":"Dati parziali",
     "d.solid":"Dati solidi",
 
-    "nav.back":"← Torna ai prodotti","nav.contact":"Contatti","nav.cta":"Prenota una call →","cta.run":"Prenota una call →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour","why":"Perché:",
+    "nav.back":"← Torna ai prodotti","nav.contact":"Contatti","nav.cta":"Prenota una call →","cta.run":"Prenota una call →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour","bar.1":"sift · home / panoramica","bar.2":"argus · report / archivio","bar.3":"argus · dettaglio del report","bar.4":"argus · classifica dei contatti","why":"Perché:",
     "s1.eyebrow":"Il prodotto · Liste di contatti","s1.h":"ARGUS trova le aziende","s1.he":"pronte a comprare da te.",
     "s1.p":"Legge i segnali pubblici che un'azienda non può nascondere (chi assume, chi raccoglie capitali, chi cambia i vertici, chi cambia tecnologie) e li trasforma in una lista di contatti già valutata, che i tuoi commerciali possono chiamare lo stesso giorno.",
-    "s2.eyebrow":"La tua centrale operativa","s2.h":"Apri ARGUS e vedi tutto il tuo mercato","s2.he":"in un colpo d'occhio.",
+    "s2.eyebrow":"La tua schermata iniziale","s2.h":"Apri ARGUS e vedi tutto il tuo mercato","s2.he":"in un colpo d'occhio.",
     "s2.p":"Questa è la schermata da cui parte il tuo team: quante aziende hai studiato, quanti report sono pronti, e un pulsante per mandarci una nuova richiesta.",
-    "s2.l1":"Tutte le aziende che hai studiato, in un posto solo","s2.l2":"Ogni analisi archiviata e sempre riapribile","s2.l3":"Una nuova richiesta con un clic: al resto pensiamo noi",
-    "s2.k1":"Aziende studiate","s2.k2":"Analisi generate","s2.k3":"Contatti trovati","s2.recent":"Aggiunte di recente",
+    "s2.l1":"Tutte le aziende che hai studiato, in un posto solo","s2.l2":"Ogni report archiviato e sempre riapribile","s2.l3":"Una nuova richiesta con un clic: al resto pensiamo noi",
+    "s2.k1":"Aziende studiate","s2.k2":"Report generati","s2.k3":"Contatti trovati","s2.recent":"Report recenti",
     "s3.eyebrow":"L'archivio","s3.h":"Ogni ricerca che fai","s3.he":"resta tua.",
-    "s3.p":"Ogni ricerca resta salvata in ARGUS con tutti i risultati: quante aziende abbiamo guardato, quante sono qualificate e quanto tempo ci è voluto. Scarichi ogni report in PDF o Word, quando ti serve.",
-    "s3.l1":"Lo storico completo di ogni ricerca, mai perso","s3.l2":"Vedi subito quante aziende si sono qualificate","s3.l3":"Esporti in PDF o Word con un clic",
+    "s3.p":"Ogni ricerca resta salvata in ARGUS con tutti i risultati: quante aziende abbiamo guardato, quante sono qualificate e quanto tempo ci è voluto. Scarichi ogni report in PDF o DOCX, quando ti serve.",
+    "s3.l1":"Lo storico completo di ogni ricerca, mai perso","s3.l2":"Vedi subito quante aziende si sono qualificate","s3.l3":"Esporti in PDF o DOCX con un clic",
     "s3.a1":"Produttori di imballaggi in carta e plastica","s3.a2":"Produttori di occhiali, fascia media","s3.a3":"PMI in crescita, Nord-Est",
-    "s4.eyebrow":"L'analisi","s4.h":"Numeri chiari e un riassunto","s4.he":"in parole semplici.",
-    "s4.p":"Ogni analisi apre con i criteri che ci hai dato e i numeri concreti, poi un riassunto in parole semplici: cosa abbiamo trovato, come si sta muovendo il mercato e chi conviene contattare per primo. Il punto è parlare chiaro.",
+    "s4.eyebrow":"Il report","s4.h":"Numeri chiari e un riassunto","s4.he":"in parole semplici.",
+    "s4.p":"Ogni report apre con i criteri che ci hai dato e i numeri concreti, poi un riassunto in parole semplici: cosa abbiamo trovato, come si sta muovendo il mercato e chi conviene contattare per primo. Il punto è parlare chiaro.",
     "s4.l1":"Esaminate → analizzate → qualificate, a colpo d'occhio","s4.l2":"Cosa emerge e come si muove il mercato, in parole semplici","s4.l3":"Le priorità: chi chiamare, ed entro quando",
     "s4.crit":"Criteri di ricerca","s4.critv":"Produttori di imballaggi in carta e plastica",
     "s4.ov1":"Esaminate","s4.ov2":"Analizzate","s4.ov3":"Qualificate","s4.ov4":"Punteggio medio","s4.ov5":"Spunti",

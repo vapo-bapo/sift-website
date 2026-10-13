@@ -7,6 +7,8 @@
 <meta name="description" content="Three separate licences for B2B sales teams: ARGUS finds the companies, LYNX profiles them, and COLLAB is where your team works."/>
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png"/>
 <meta name="theme-color" content="#F7FCFA"/>
+<link rel="preload" href="assets/fonts/inter-400.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/sora.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root{
@@ -465,7 +467,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     <div class="cmock reveal">
       <div class="cmock-label" data-i18n="prod.c.mock">COLLAB · SHARED WORKSPACE</div>
       <div class="cmock-cal">
-        <div class="cmock-dow">Mon</div><div class="cmock-dow">Tue</div><div class="cmock-dow">Wed</div><div class="cmock-dow">Thu</div><div class="cmock-dow">Fri</div><div class="cmock-dow">Sat</div><div class="cmock-dow">Sun</div>
+        <div class="cmock-dow" data-i18n="prod.dow.1">Mon</div><div class="cmock-dow" data-i18n="prod.dow.2">Tue</div><div class="cmock-dow" data-i18n="prod.dow.3">Wed</div><div class="cmock-dow" data-i18n="prod.dow.4">Thu</div><div class="cmock-dow" data-i18n="prod.dow.5">Fri</div><div class="cmock-dow" data-i18n="prod.dow.6">Sat</div><div class="cmock-dow" data-i18n="prod.dow.7">Sun</div>
         <div class="cmock-cell">3</div><div class="cmock-cell">4<span class="ev" data-i18n="prod.c.ev1">Team meeting</span></div><div class="cmock-cell">5</div><div class="cmock-cell today">6<span class="ev alt" data-i18n="prod.c.ev2">Follow-up</span></div><div class="cmock-cell">7</div><div class="cmock-cell">8</div><div class="cmock-cell">9</div>
         <div class="cmock-cell">10</div><div class="cmock-cell">11</div><div class="cmock-cell">12<span class="ev" data-i18n="prod.c.ev3">Sales call</span></div><div class="cmock-cell">13</div><div class="cmock-cell">14</div><div class="cmock-cell">15</div><div class="cmock-cell">16</div>
       </div>
@@ -593,12 +595,8 @@ document.querySelectorAll('.intel-tab').forEach(tab=>{
 const I18N = {
   en: {
     "ex":"Example data",
-    "n.emp":"1,800+",
-
     "nm.p":"Name Surname",
-
-    "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","foot.p":"Research on public sources, written for B2B sales teams.","foot.li":"Follow us on LinkedIn","foot.sift":"SIFT","foot.write":"Write to us","foot.reply":"We reply by the end of the day","nav.cta":"Book a call →",
-    "footer.copy":"© 2026 SIFT · Research on public sources, written for B2B sales teams.",
+    "nav.products":"Products","nav.how":"How it works","nav.contact":"Contact","foot.p":"Research on public sources, written for B2B sales teams.","foot.li":"Follow us on LinkedIn","foot.sift":"SIFT","foot.write":"Write to us","foot.reply":"We reply by the end of the day","nav.cta":"Book a call →",
     "cta.btn":"Book a call",
     "prod.h1a":"Three tools.","prod.h1b":"Take what you need.",
     "prod.hero.jump":"Jump to ARGUS","prod.hero.jump2":"Jump to LYNX","prod.hero.jump3":"Jump to COLLAB",
@@ -622,7 +620,7 @@ const I18N = {
     "prod.lb.ov.body":"An example enterprise software company, growing its sales team after a funding round. Decision-making authority sits with the CRO and a recently appointed Sales Director.",
     "prod.lb.ov.hl1":"New Sales Director appointed recently, probably rebuilding the outbound motion. Likely entry window.",
     "prod.lb.ov.hl2":"Hiring sales engineers suggests expansion into the technical buyer segment.",
-    "prod.lb.ov.k1":"Employees","prod.lb.ov.k2":"Last funding","prod.lb.ov.v2":"Series C","prod.lb.ov.k3":"Fit score",
+    "prod.lb.ov.k1":"Employees","prod.lb.ov.k2":"Last funding","prod.lb.ov.k3":"Fit score",
     "prod.lb.ov.note":"Names, figures and signals shown here are illustrative and do not represent a real company or client.",
     "prod.lb.stk.label":"Key stakeholders",
     "prod.lb.stk.r1":"CRO, PRIMARY CHAMPION","prod.lb.stk.d1":"Strong outbound background. Open to new tooling based on recent public commentary around pipeline efficiency.",
@@ -632,28 +630,18 @@ const I18N = {
     "prod.lb.sig.1":"↑ Hiring sales engineers: expansion signal","prod.lb.sig.2":"↑ New Sales Director appointed recently: outbound rebuild likely","prod.lb.sig.3":"↑ Migrating CRM stack: integration window open",
     "prod.c.tag":"Team Workspace","prod.c.body":"COLLAB is where your team keeps its work: notes and pages, folders and files, spreadsheets with their full history, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
     "prod.c.avail":"A separate product: use it on its own, or alongside our research. Your reports are delivered in ARGUS and LYNX, not here.","prod.c.mock":"COLLAB · SHARED WORKSPACE","prod.c.ev1":"Team meeting","prod.c.ev2":"Follow-up","prod.c.ev3":"Sales call","prod.c.r1":"Uploaded by Sara · shared with the team","prod.c.r2n":"Meeting notes, Q3 outbound","prod.c.r2":"Shared · updated 2h ago","prod.c.r2c":"Notes","prod.c.r3n":"Call the VP Engineering","prod.c.r3":"Assigned to Marco · due Fri","prod.c.r3c":"Task",
-    "prod.c.li6":"Organised the way your team already works","prod.c.li7":"Free 30-day trial, with guided migration of your existing files","prod.c.li1":"Shared notes, files and tasks in one hub","prod.c.li2":"Shared calendar with month, week and agenda views","prod.c.li3":"Tasks assigned to people, with due dates","prod.c.li4":"A team chat","prod.c.li5":"For every note and file, you choose who sees it","prod.c.more":"Full COLLAB details",
-    "prod.cmp.eyebrow":"Compare","prod.cmp.h1":"What's included","prod.cmp.h2":"in each stack.",
-    "prod.cmp.col0":"Feature","prod.cmp.col1":"ARGUS Starter","prod.cmp.col2":"ARGUS + LYNX","prod.cmp.col3":"Complete + COLLAB",
-    "prod.cmp.f1":"Qualified lead list","prod.cmp.f2":"Fit score per contact","prod.cmp.f3":"Why it's on the list, with its source","prod.cmp.f4":"Outreach hook per contact","prod.cmp.f5":"PDF + DOCX delivery",
-    "prod.cmp.f6":"LYNX company profiles","prod.cmp.f7":"Decision-maker org chart","prod.cmp.f8":"News from the last 90 days, with source",
-    "prod.cmp.f10":"Strategic brief on one target","prod.cmp.f12":"Questions on the report for 30 days",
-    "prod.cmp.f13":"COLLAB shared workspace","prod.cmp.f14":"Team notes, files, tasks &amp; calendar"
-  },
+    "prod.c.li6":"Organised the way your team already works","prod.c.li7":"Free 30-day trial, with guided migration of your existing files","prod.dow.1":"Mon","prod.dow.2":"Tue","prod.dow.3":"Wed","prod.dow.4":"Thu","prod.dow.5":"Fri","prod.dow.6":"Sat","prod.dow.7":"Sun","prod.c.li1":"Shared notes, files and tasks in one hub","prod.c.li2":"Shared calendar with month, week and agenda views","prod.c.li3":"Tasks assigned to people, with due dates","prod.c.li4":"A team chat","prod.c.li5":"For every note and file, you choose who sees it","prod.c.more":"Full COLLAB details",
+    },
   it: {
     "ex":"Dati d'esempio",
-    "n.emp":"1.800+",
-
     "nm.p":"Nome Cognome",
-
-    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","foot.p":"Ricerca su fonti pubbliche, scritta per i team commerciali B2B.","foot.li":"Seguici su LinkedIn","foot.sift":"SIFT","foot.write":"Scrivici","foot.reply":"Rispondiamo entro la fine della giornata","nav.cta":"Prenota una call →",
-    "footer.copy":"© 2026 SIFT · Ricerca su fonti pubbliche, scritta per i team commerciali B2B.",
+    "nav.products":"Prodotti","nav.how":"Come funziona","nav.contact":"Contatti","foot.p":"Ricerca su fonti pubbliche, scritta per i team commerciali B2B.","foot.li":"Seguici su LinkedIn","foot.sift":"SIFT","foot.write":"Scrivici","foot.reply":"Rispondiamo entro la fine della giornata","nav.cta":"Prenota una call →",
     "cta.btn":"Prenota una call",
     "prod.h1a":"Tre strumenti.","prod.h1b":"Prendi quello che ti serve.",
     "prod.hero.jump":"Vai ad ARGUS","prod.hero.jump2":"Vai a LYNX","prod.hero.jump3":"Vai a COLLAB",
     "prod.hero.c1n":"Trova e valuta","prod.hero.c1d":"Le aziende pronte a comprare, con un punteggio da 0 a 100.","prod.hero.c2n":"Studia a fondo","prod.hero.c2d":"Quelle che contano davvero, analizzate pezzo per pezzo.","prod.hero.c3n":"Tiene tutto in ordine","prod.hero.c3d":"Dove il tuo team tiene il suo lavoro.",
-    "prod.a.tag":"Liste di contatti","prod.a.body":"ARGUS costruisce liste mirate partendo solo dal tuo cliente ideale, senza raccogliere dati alla rinfusa. Tiene d'occhio chi assume, chi raccoglie capitali, chi cambia i vertici e chi cambia tecnologie, poi dà a ogni contatto un punteggio da 0 a 100 spiegando perché proprio adesso è il momento giusto.",
-    "prod.a.li1":"Fino a 80 lead qualificati per report","prod.a.li2":"Un punteggio da 0 a 100 per ogni contatto","prod.a.li3":"Il motivo per cui è nella lista, con la fonte","prod.a.li4":"Una frase pronta con cui aprire il discorso","prod.a.li5":"Consegnato dentro ARGUS in pochi giorni","prod.a.li6":"Scaricabile in PDF e Word","prod.a.more":"Scopri ARGUS nel dettaglio",
+    "prod.a.tag":"Liste di contatti","prod.a.body":"ARGUS costruisce liste mirate partendo solo dal tuo cliente ideale, senza raccogliere dati alla rinfusa. Al momento della tua ricerca legge chi assume, chi raccoglie capitali, chi cambia i vertici e chi cambia tecnologie, poi dà a ogni contatto un punteggio da 0 a 100 e il motivo, con la fonte, per cui vale la pena chiamarlo questa settimana.",
+    "prod.a.li1":"Fino a 80 lead qualificati per report","prod.a.li2":"Un punteggio da 0 a 100 per ogni contatto","prod.a.li3":"Il motivo per cui è nella lista, con la fonte","prod.a.li4":"Una frase pronta per aprire il discorso con ogni contatto","prod.a.li5":"Consegnato dentro ARGUS in pochi giorni","prod.a.li6":"Scaricabile in PDF o DOCX","prod.a.more":"Scopri ARGUS nel dettaglio",
     "prod.a.sample":"ARGUS · ESEMPIO DI RISULTATO",
     "prod.a.r1n":"Direttore tecnico","prod.a.r1t":"Sta assumendo nel team tecnico",
     "prod.a.r2n":"Responsabile Sales Ops","prod.a.r2t":"Round di finanziamento chiuso · si espande all'estero",
@@ -662,8 +650,8 @@ const I18N = {
     "prod.l.tag":"Schede aziende e Moirai","prod.l.body":"LYNX prende una lista, la tua o una di ARGUS, e fa la scheda di ogni azienda: chi decide, cosa è successo negli ultimi 90 giorni e qual è la strada più semplice per entrare. Indica i decisori per nome e ruolo, e con Moirai chiedi qualunque cosa sulle schede. Quando una singola trattativa lo giustifica, diventa un'analisi strategica completa.",
     "prod.l.li1":"Una scheda completa per ogni azienda della lista","prod.l.li2":"I decisori, con nome e ruolo, esportabili nel tuo CRM","prod.l.li3":"Ruoli, profili LinkedIn e da dove conviene entrare","prod.l.li4":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data","prod.l.li5":"Moirai, una chat per chiedere qualunque cosa sulle schede","prod.l.li7":"Per 30 giorni dopo la consegna puoi fare domande a chi ha scritto le schede","prod.l.more":"Scopri LYNX nel dettaglio",
     "prod.l.sample":"LYNX · CHI DECIDE",
-    "prod.l.r1n":"Direttore commerciale, il tuo alleato","prod.l.r1t":"Dalle sue dichiarazioni pubbliche, è aperto a nuovi strumenti",
-    "prod.l.r2n":"Responsabile operations, ha voce in capitolo","prod.l.r2t":"Decide sul budget per gli strumenti e sul CRM",
+    "prod.l.r1n":"Direttore commerciale, ti appoggia","prod.l.r1t":"Dalle sue dichiarazioni pubbliche, è aperto a nuovi strumenti",
+    "prod.l.r2n":"Responsabile operations, influenza la scelta","prod.l.r2t":"Decide sul budget per gli strumenti e sul CRM",
     "prod.l.r3n":"Direttore finanziario, firma la spesa","prod.l.r3t":"Approva gli acquisti oltre una certa cifra",
     "prod.lb.flag":"Con LYNX, quando una singola trattativa lo giustifica: analisi strategica · esempio dimostrativo","prod.lb.head":"Com'è fatta un'analisi strategica completa",
     "prod.lb.tab1":"Panoramica","prod.lb.tab2":"Stakeholder","prod.lb.tab3":"Segnali",
@@ -671,24 +659,18 @@ const I18N = {
     "prod.lb.ov.body":"Un'azienda di esempio nel software per le imprese, che sta allargando la squadra commerciale dopo un round di finanziamento. Le decisioni passano dal direttore commerciale e da un responsabile vendite arrivato da poco.",
     "prod.lb.ov.hl1":"Nuovo responsabile vendite arrivato da poco: probabile riorganizzazione della macchina commerciale. È il momento buono per farsi avanti.",
     "prod.lb.ov.hl2":"Sta assumendo tecnici commerciali: segno che punta sui clienti più tecnici.",
-    "prod.lb.ov.k1":"Dipendenti","prod.lb.ov.k2":"Ultimo round","prod.lb.ov.v2":"Series C","prod.lb.ov.k3":"Punteggio",
+    "prod.lb.ov.k1":"Dipendenti","prod.lb.ov.k2":"Ultimo round","prod.lb.ov.k3":"Punteggio",
     "prod.lb.ov.note":"Nomi, numeri e segnali qui sopra sono inventati a scopo dimostrativo: non si riferiscono ad aziende o clienti reali.",
     "prod.lb.stk.label":"Le persone che contano",
-    "prod.lb.stk.r1":"DIRETTORE COMMERCIALE · IL TUO ALLEATO","prod.lb.stk.d1":"Viene dalle vendite dirette. Da quello che ha dichiarato di recente, è aperto a nuovi strumenti per rendere più efficiente il lavoro.",
-    "prod.lb.stk.r2":"RESPONSABILE OPERATIONS · HA VOCE IN CAPITOLO","prod.lb.stk.d2":"Gestisce il budget per gli strumenti e le scelte sul CRM. Passa da lui qualunque valutazione di un nuovo fornitore.",
-    "prod.lb.stk.r3":"DIRETTORE FINANZIARIO · FIRMA LA SPESA","prod.lb.stk.d3":"Deve approvare ogni acquisto oltre una certa cifra. Si occupa del budget annuale.",
+    "prod.lb.stk.r1":"DIRETTORE COMMERCIALE, TI APPOGGIA","prod.lb.stk.d1":"Ha un'esperienza solida nel contattare i clienti per primo. Da quello che ha dichiarato di recente, è aperto a nuovi strumenti per rendere più efficiente il lavoro.",
+    "prod.lb.stk.r2":"RESPONSABILE OPERATIONS, INFLUENZA LA SCELTA","prod.lb.stk.d2":"Gestisce il budget per gli strumenti e le scelte sul CRM. Passa da lui qualunque valutazione di un nuovo fornitore.",
+    "prod.lb.stk.r3":"DIRETTORE FINANZIARIO, FIRMA LA SPESA","prod.lb.stk.d3":"Deve approvare ogni acquisto oltre una certa cifra. Si occupa del budget annuale.",
     "prod.lb.sig.label":"Segnali che è il momento giusto",
     "prod.lb.sig.1":"↑ Assume tecnici commerciali: si sta espandendo","prod.lb.sig.2":"↑ Nuovo responsabile vendite arrivato da poco: rifarà la macchina commerciale","prod.lb.sig.3":"↑ Sta cambiando CRM: è il momento buono per proporre integrazioni",
     "prod.c.tag":"Spazio di lavoro condiviso","prod.c.body":"COLLAB è dove il tuo team tiene il suo lavoro: note e pagine, cartelle e file, fogli di calcolo con tutta la cronologia, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
-    "prod.c.avail":"Un prodotto a sé: puoi usarlo da solo, o insieme alle nostre ricerche. I report arrivano in ARGUS e LYNX, non qui.","prod.c.mock":"COLLAB · SPAZIO CONDIVISO","prod.c.ev1":"Riunione team","prod.c.ev2":"Da richiamare","prod.c.ev3":"Chiamata cliente","prod.c.r1":"Caricato da Sara · condiviso con il team","prod.c.r2n":"Verbali delle riunioni, vendite del terzo trimestre","prod.c.r2":"Condiviso · aggiornato 2 ore fa","prod.c.r2c":"Note","prod.c.r3n":"Chiamare il responsabile tecnico","prod.c.r3":"Assegnato a Marco · entro venerdì","prod.c.r3c":"Attività",
-    "prod.c.li6":"Organizzato come lavora già il tuo team","prod.c.li7":"30 giorni di prova gratuita, con migrazione guidata dei tuoi file","prod.c.li1":"Note, file e attività condivisi in un unico posto","prod.c.li2":"Calendario condiviso con vista mese, settimana e agenda","prod.c.li3":"Attività assegnate alle persone, con scadenza","prod.c.li4":"Una chat di team","prod.c.li5":"Per ogni nota e file scegli tu chi lo vede","prod.c.more":"Scopri COLLAB nel dettaglio",
-    "prod.cmp.eyebrow":"Confronto","prod.cmp.h1":"Cosa è incluso","prod.cmp.h2":"in ogni licenza.",
-    "prod.cmp.col0":"Funzionalità","prod.cmp.col1":"ARGUS Starter","prod.cmp.col2":"ARGUS + LYNX","prod.cmp.col3":"Completo + COLLAB",
-    "prod.cmp.f1":"Lista di lead qualificati","prod.cmp.f2":"Punteggio per contatto","prod.cmp.f3":"Il motivo per cui è nella lista, con la fonte","prod.cmp.f4":"Spunto di contatto per contatto","prod.cmp.f5":"Consegna PDF + DOCX",
-    "prod.cmp.f6":"Schede aziende LYNX","prod.cmp.f7":"Organigramma dei decisori","prod.cmp.f8":"Novità degli ultimi 90 giorni, con fonte",
-    "prod.cmp.f10":"Brief strategico su un target","prod.cmp.f12":"Domande sul report per 30 giorni",
-    "prod.cmp.f13":"Spazio di lavoro COLLAB","prod.cmp.f14":"Note, file, task e calendario di team"
-  }
+    "prod.c.avail":"Un prodotto a sé: puoi usarlo da solo, o insieme alle nostre ricerche. I report arrivano in ARGUS e LYNX, non qui.","prod.c.mock":"COLLAB · SPAZIO CONDIVISO","prod.c.ev1":"Riunione team","prod.c.ev2":"Da richiamare","prod.c.ev3":"Chiamata cliente","prod.c.r1":"Caricato da Sara · condiviso con il team","prod.c.r2n":"Appunti delle riunioni, campagna del terzo trimestre","prod.c.r2":"Condiviso · aggiornato 2 ore fa","prod.c.r2c":"Note","prod.c.r3n":"Chiamare il responsabile tecnico","prod.c.r3":"Assegnato a Marco · entro venerdì","prod.c.r3c":"Attività",
+    "prod.c.li6":"Organizzato come lavora già il tuo team","prod.c.li7":"30 giorni di prova gratuita, con migrazione guidata dei tuoi file","prod.dow.1":"Lun","prod.dow.2":"Mar","prod.dow.3":"Mer","prod.dow.4":"Gio","prod.dow.5":"Ven","prod.dow.6":"Sab","prod.dow.7":"Dom","prod.c.li1":"Note, file e attività condivisi in un unico posto","prod.c.li2":"Calendario condiviso con vista mese, settimana e agenda","prod.c.li3":"Attività assegnate alle persone, con scadenza","prod.c.li4":"Una chat di team","prod.c.li5":"Per ogni nota e file scegli tu chi lo vede","prod.c.more":"Scopri COLLAB nel dettaglio",
+    }
 };
 function applyLang(lang){document.querySelectorAll('[data-aria-en]').forEach(function(e){e.setAttribute('aria-label',e.getAttribute('data-aria-'+(lang==='it'?'it':'en')))});
   document.documentElement.lang = lang;

@@ -7,6 +7,8 @@
 <meta name="description" content="COLLAB keeps notes, files, tasks and calendar in one shared workspace for your team. A separate product, set up with you and shaped by you."/>
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png"/>
 <meta name="theme-color" content="#F7FCFA"/>
+<link rel="preload" href="assets/fonts/inter-400.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/sora.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root{
@@ -197,7 +199,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">collab · notes</span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title" data-i18n="bar.1">collab · notes</span></div>
         <div class="notes-mock">
           <div class="notes-side">
             <div class="notes-label" data-i18n="s2.nlabel">Notes</div>
@@ -233,7 +235,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">collab · files</span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title" data-i18n="bar.2">collab · files</span></div>
         <div class="screen-body">
           <div class="files-head">
             <div><div class="files-title" data-i18n="s3.ftitle">Files</div><div class="files-meta" data-i18n="s3.fmeta">12 files · 4 folders</div></div>
@@ -264,7 +266,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </ul>
       </div>
       <div class="screen">
-        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title">collab · calendar</span></div>
+        <div class="screen-bar"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-title" data-i18n="bar.3">collab · calendar</span></div>
         <div class="screen-body">
           <div class="cal-head">
             <div><div class="cal-title" data-i18n="s4.month">August 2026</div><div class="cal-meta" data-i18n="s4.evts">7 events</div></div>
@@ -300,7 +302,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* ─── i18n ─── */
 const I18N = {
   en: {
-    "nav.back":"← Back to products","nav.contact":"Contact","nav.cta":"Book a call →","cta.ask":"Ask about COLLAB →","cta.back":"Back to products","scroll":"Scroll for the tour",
+    "nav.back":"← Back to products","nav.contact":"Contact","nav.cta":"Book a call →","cta.ask":"Ask about COLLAB →","cta.back":"Back to products","scroll":"Scroll for the tour","bar.1":"collab · notes","bar.2":"collab · files","bar.3":"collab · calendar",
     "s1.eyebrow":"Product tour · Team Workspace","s1.h":"One workspace where","s1.he":"nothing gets lost.",
     "s1.p":"Notes, files, tasks and calendar for your whole team, in one place instead of scattered across inboxes and drives. Try it free for 30 days. It's a separate product: your reports are delivered in ARGUS and LYNX, not here.",
     "s2.eyebrow":"Notes","s2.h":"Your team's knowledge,","s2.he":"organised in folders.",
@@ -322,11 +324,11 @@ const I18N = {
     "s5.eyebrow":"That's COLLAB","s5.h":"Your team's work,","s5.he":"in one shared place.","s5.back":"Back to all products","s5.note":"A separate product · ask us to walk you through it"
   },
   it: {
-    "nav.back":"← Torna ai prodotti","nav.contact":"Contatti","nav.cta":"Prenota una call →","cta.ask":"Chiedici di COLLAB →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour",
+    "nav.back":"← Torna ai prodotti","nav.contact":"Contatti","nav.cta":"Prenota una call →","cta.ask":"Chiedici di COLLAB →","cta.back":"Torna ai prodotti","scroll":"Scorri per il tour","bar.1":"collab · note","bar.2":"collab · file","bar.3":"collab · calendario",
     "s1.eyebrow":"Il prodotto · Spazio di lavoro","s1.h":"Un unico spazio dove","s1.he":"non si perde niente.",
     "s1.p":"Note, file, attività e calendario per tutto il team, in un posto solo invece che sparsi fra caselle email e drive. Prova gratuita di 30 giorni. È un prodotto a sé: i report arrivano in ARGUS e LYNX, non qui.",
     "s2.eyebrow":"Le note","s2.h":"Quello che sa il tuo team,","s2.he":"ordinato in cartelle.",
-    "s2.p":"Verbali di riunione, informazioni sui clienti, idee: tutto vive in cartelle condivise invece che in documenti sparsi. Metti in evidenza quello che conta e ritrovi qualsiasi nota in pochi secondi.",
+    "s2.p":"Riepiloghi delle riunioni, informazioni sui clienti, idee: tutto vive in cartelle condivise invece che in documenti sparsi. Metti in evidenza quello che conta e ritrovi qualsiasi nota in pochi secondi.",
     "s2.l1":"Cartelle per clienti, riunioni, progetti","s2.l2":"Le note in evidenza restano sempre in alto","s2.l3":"Tutto si trova con la ricerca, per tutto il team",
     "s2.nlabel":"Note","s2.f1":"BUSINESS","s2.n1":"Appunti business","s2.n2":"Startup innovative","s2.f2":"SVILUPPO","s2.n3":"Migliorie ARGUS","s2.f3":"RIUNIONI","s2.n4":"Riunione 16/06",
     "s2.empty":"Scegli una nota, oppure creane una nuova","s2.newnote":"Nuova nota",

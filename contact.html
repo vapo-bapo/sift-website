@@ -7,6 +7,8 @@
 <meta name="description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply by the end of the day."/>
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png"/>
 <meta name="theme-color" content="#F7FCFA"/>
+<link rel="preload" href="assets/fonts/inter-400.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/sora.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root{
@@ -451,7 +453,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
       <p class="contact-body" data-i18n="contact.body">Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply by the end of the day to set up a call.</p>
       <div class="cdetails">
         <div><div class="cdetail-label" data-i18n="contact.email.label">Email</div><a href="mailto:general@sifttechnology.com" class="cdetail-val" style="color:var(--gold-dim);">general@sifttechnology.com</a></div>
-        <div><div class="cdetail-label">LinkedIn</div><a href="https://www.linkedin.com/company/sift-aicompany/" class="cdetail-val" style="color:var(--gold-dim);" target="_blank" rel="noopener">SIFT on LinkedIn</a></div>
+        <div><div class="cdetail-label">LinkedIn</div><a href="https://www.linkedin.com/company/sift-aicompany/" class="cdetail-val" style="color:var(--gold-dim);" target="_blank" rel="noopener" data-i18n="contact.li.val">SIFT on LinkedIn</a></div>
         <div><div class="cdetail-label" data-i18n="contact.response.label">Response time</div><span class="cdetail-val" data-i18n="contact.response.val">By the end of the day</span></div>
         <div><div class="cdetail-label" data-i18n="contact.sla.label">Delivery</div><span class="cdetail-val" data-i18n="contact.sla.val">A matter of days from confirming the brief</span></div>
       </div>
@@ -526,117 +528,27 @@ if(hamburger&&mobilePanel){
 /* ─── i18n ─────────────────────────────────────────────── */
 const I18N = {
   en: {
-    "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","foot.p":"Research on public sources, written for B2B sales teams.","foot.li":"Follow us on LinkedIn","foot.sift":"SIFT","foot.write":"Write to us","foot.reply":"We reply by the end of the day","nav.cta":"Book a call →",
-    "hero.eyebrow":"Signal research","hero.title1":"The research is done.","hero.title2":"You make the call.",
-    "hero.body":"Tell us who you're after, in your own words. In a matter of days you get up to eighty qualified leads, each with the reason to call now and where we saw it, plus the person to write to.",
-    "hero.cta1":"Book a call","hero.cta2":"See how it works",
-    "hero.meta1":"ARGUS ONLINE","hero.meta2":"DELIVERY IN A MATTER OF DAYS","hero.meta3":"",
-    "trust.label":"Built for B2B sales teams",
-    "stats.1":"Delivery time","stats.2":"Fit score per contact","stats.3":"Accounts mapped per run","stats.4":"Signals per account",
-    "method.eyebrow":"Where the value is","method.h1":"We don't find data.","method.h2":"We read it.",
-    "method.lead":"A company that filed a capital increase last month has money to spend, and usually a plan it hasn't announced yet. The raw material is public. The value is in what the fragments mean together, so we put them side by side, decide which ones matter for you, and write it down in plain language: why this company, why now, and where to start.",
-    "nla.badge":"Natural-language analysis","nla.h1":"The point is","nla.h2":"to be clear.",
-    "nla.body":"A fit score tells you <strong>that</strong> an account matters. NLA tells you <strong>why</strong>. Your rep can read it in ten seconds and use it in the first email.",
-    "nla.demoLabel":"One lead, read two ways","nla.rawK":"Raw data","nla.sift":"SIFT / NLA",
-    "nla.demoV":"\"They just raised a Series C and are hiring 11 engineers. The CRO is rebuilding outbound right now. Lead with how you shorten ramp time.\"",
-    "process.eyebrow":"The process","process.h1":"How a","process.h2":"report gets made.",
-    "process.1t":"Define the fit","process.1p":"We align on your ICP: firmographics, tech, triggers, and roles that mark a real prospect.",
-    "process.2t":"Research the signals","process.2p":"ARGUS surfaces companies that are moving: hiring, funding, new leadership, tech changes, all public.",
-    "process.3t":"Map the account","process.3p":"LYNX builds the picture on your top accounts: who makes the decision, and the easiest way to reach them.",
-    "process.4t":"Delivered in a matter of days","process.4p":"We deliver everything in a matter of days, inside ARGUS and LYNX: the scored list, the company profiles, the written brief. As soon as you confirm the brief, your run gets a start date and a delivery date.",
-    "engines.eyebrow":"Three engines","engines.h1":"What you can","engines.h2":"buy from us.",
-    "engines.lead":"Three separate licences. Take what you need: we won't make you buy the rest. Start with ARGUS if you still need to build a list, take LYNX if you already have one. COLLAB is where your team keeps its work, and it's sold on its own.",
-    "engines.tag1":"01 · Lead Lists","engines.sub1":"Lead lists","engines.p1":"Built to match your ICP. Every contact arrives with a fit score, a cited reason they're buying now, and a one-line way in.",
-    "engines.li1a":"Up to 80 qualified leads per report","engines.li1b":"Per-contact fit score (0 to 100)","engines.li1c":"Why it's on the list, with its source",
-    "engines.tag2":"02 · Account Intel","engines.sub2":"Company profiles and a people list","engines.p2":"Send us a list, or take the best companies from ARGUS. LYNX profiles every one of them, names the decision makers, and gives you Moirai, a chat where you can ask your profiles anything.",
-    "engines.li2a":"A full profile for every company","engines.li2b":"The decision makers, by name and role","engines.li2c":"News from the last 90 days, each with its source and date",
-    "engines.tag3":"03 · Strategic Brief","engines.sub3":"A separate product","engines.p3":"Where your team keeps its work: notes and pages, folders and files, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
-    "engines.li3a":"You choose who sees each note and file","engines.li3b":"Tasks assigned to people, with due dates","engines.li3c":"Shared calendar and team chat",
-    "engines.delivery":"Delivery","engines.d1":"Inside ARGUS, as PDF and DOCX","engines.d2":"Inside LYNX, with Moirai","engines.d3":"Sold on its own",
-    "guar.eyebrow":"What we stand behind","guar.h1":"What we","guar.h2":"guarantee.",
-    "guar.1t":"Very short turnaround, a matter of days.","guar.1p":"From the moment you confirm the brief, the list reaches you in a matter of days, and we explain it when we hand it over.",
-    "guar.2t":"Every reading comes with its source.","guar.2p":"If we tell you a company has just won a public tender, the link to the award notice is right there next to it.",
-    "guar.3t":"Questions answered for 30 days.","guar.3p":"After delivery, you can ask the person who wrote your report anything about it, for 30 days.",
-    "guar.4t":"A reply by the end of the day.","guar.4p":"Whatever you write to us, someone answers the same day.",
-    "who.lead":"A hiring page is data. Eleven engineers hired six weeks after a new sales director arrived is a signal. Turning the first into the second is the work we do: reading scattered public traces and reconstructing what they mean for your deal.",
-    "who.1t":"Who you're working with","who.1p":"Your brief is followed by one person, from first read to final list. The person who reads your brief is the one who writes your report.",
-    "who.2t":"What we won't do","who.2p":"We won't invent a buying signal to pad a list, and we won't hand you a data dump with a score on top. If the signals don't add up to a real opportunity, we say so instead of filling the gap with noise.",
-    "cta.h1":"Tell us who","cta.h2":"you're looking for.","cta.btn":"Book a call","cta.note":"Reply by the end of the day",
-    "footer.copy":"© 2026 SIFT · Research on public sources, written for B2B sales teams.",
+    "nav.products":"Products","nav.how":"How it works","nav.contact":"Contact","foot.p":"Research on public sources, written for B2B sales teams.","foot.li":"Follow us on LinkedIn","foot.sift":"SIFT","foot.write":"Write to us","foot.reply":"We reply by the end of the day","nav.cta":"Book a call →",
     "contact.h1a":"Tell us who","contact.h1b":"you're looking for.",
     "contact.card.h":"Write to us","contact.card.p":"Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply by the end of the day to set up a call.","contact.card.cta":"Send us an email","contact.card.note":"general@sifttechnology.com",
     "contact.hero.desc":"Write to us about your ideal customer, in your own words. We reply by the end of the day to set up a call.",
     "contact.tag1":"All our research starts","contact.tag2":"with a conversation.",
     "contact.body":"Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply by the end of the day to set up a call.",
-    "contact.email.label":"Email","contact.response.label":"Response time","contact.response.val":"By the end of the day","contact.sla.label":"Delivery","contact.sla.val":"A matter of days from confirming the brief",
+    "contact.email.label":"Email","contact.li.val":"SIFT on LinkedIn","contact.response.label":"Response time","contact.response.val":"By the end of the day","contact.sla.label":"Delivery","contact.sla.val":"A matter of days from confirming the brief",
     "contact.next.title":"What happens next",
     "contact.next.1":"We review your ICP brief by hand","contact.next.2":"We reply by the end of the day","contact.next.3":"A 30-minute call to define who you're looking for","contact.next.4":"Brief confirmed: delivery in a matter of days","contact.next.5":"We explain the report when we hand it over",
-    "contact.first":"First name","contact.last":"Last name","contact.company":"Company","contact.company.ph":"Company name","contact.email2":"Work email",
-    "contact.plan.label":"What are you looking for?","contact.plan.ph":"Select a product",
-    "contact.plan.o1":"ARGUS: find new leads","contact.plan.o2":"LYNX: profile companies I already have","contact.plan.o3":"ARGUS and LYNX together",
-    "contact.plan.o4":"COLLAB: a workspace for my team","contact.plan.o5":"Not sure yet, recommend something","contact.plan.o6":"Agency: multi-client","contact.plan.o7":"Not sure yet, recommend something","contact.plan.o8":"Custom build: let's talk",
-    "contact.market.label":"Target market &amp; geography","contact.market.ph":"e.g. Manufacturing SMEs, North-East Italy, 20–200 employees",
-    "contact.roles.label":"Target role(s)","contact.roles.ph":"e.g. Head of Sales, VP Engineering, CFO",
-    "contact.icp.label":"Your ICP: tell us more","contact.icp.ph":"What problem do you solve? What signals suggest a company is ready to buy?",
-    "contact.form.note":"Every brief is read by hand. We reply by the end of the day.","contact.form.submit":"Book a call",
-    "contact.success.h":"Brief received.","contact.success.p":"We'll read your brief and reply by the end of the day to set up a call."
-  },
+    },
   it: {
-    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","foot.p":"Ricerca su fonti pubbliche, scritta per i team commerciali B2B.","foot.li":"Seguici su LinkedIn","foot.sift":"SIFT","foot.write":"Scrivici","foot.reply":"Rispondiamo entro la fine della giornata","nav.cta":"Prenota una call →",
-    "hero.eyebrow":"Ricerca basata sui segnali","hero.title1":"La ricerca è pronta.","hero.title2":"A te la chiamata.",
-    "hero.body":"Descrivi a parole tue chi stai cercando. Nel giro di pochi giorni ricevi fino a ottanta lead qualificati, ognuno con il motivo per chiamarlo adesso e dove l'abbiamo visto, più la persona a cui scrivere.",
-    "hero.cta1":"Prenota una call","hero.cta2":"Guarda come funziona",
-    "hero.meta1":"ARGUS ATTIVO","hero.meta2":"CONSEGNA IN POCHI GIORNI","hero.meta3":"",
-    "trust.label":"Al servizio dei team commerciali B2B",
-    "stats.1":"Tempi di consegna","stats.2":"Punteggio per contatto","stats.3":"Aziende studiate per ricerca","stats.4":"Segnali per azienda",
-    "method.eyebrow":"Dove sta il valore","method.h1":"Non troviamo dati.","method.h2":"Li interpretiamo.",
-    "method.lead":"Un'azienda che il mese scorso ha depositato un aumento di capitale ha soldi da spendere, e di solito un piano che non ha ancora annunciato. La materia prima è pubblica. Il valore sta nel significato dei pezzi messi insieme. Noi li mettiamo insieme, decidiamo quali contano per te e lo scriviamo in parole chiare: perché questa azienda, perché adesso e da dove cominciare.",
-    "nla.badge":"Analisi in linguaggio naturale","nla.h1":"Il punto","nla.h2":"è parlare chiaro.",
-    "nla.body":"Un punteggio ti dice <strong>quali</strong> aziende contano. La NLA ti dice <strong>perché</strong>. Il tuo commerciale la legge in dieci secondi e la usa già nella prima email.",
-    "nla.demoLabel":"Lo stesso contatto, letto in due modi","nla.rawK":"Il dato grezzo","nla.sift":"SIFT / NLA",
-    "nla.demoV":"«Hanno appena chiuso un round Series C e stanno assumendo 11 ingegneri. Il direttore commerciale sta rifacendo tutta la macchina di vendita in questo momento: apri parlando di come far ingranare prima i nuovi venditori.»",
-    "process.eyebrow":"Il processo","process.h1":"Come nasce","process.h2":"un report.",
-    "process.1t":"Capiamo chi cerchi","process.1p":"Mettiamo a fuoco insieme il tuo cliente ideale: settore, dimensione, tecnologie usate, segnali da tenere d'occhio e le figure con cui vale la pena parlare.",
-    "process.2t":"Leggiamo i segnali","process.2p":"ARGUS individua le aziende che si stanno muovendo: chi assume, chi ha appena raccolto capitali, chi cambia tecnologie. Tutte informazioni pubbliche.",
-    "process.3t":"Studiamo l'azienda","process.3p":"Su quelle che contano davvero, LYNX ricostruisce il quadro: chi decide, e qual è la strada più semplice per arrivarci.",
-    "process.4t":"Consegnato in pochi giorni","process.4p":"Ti consegniamo tutto in pochi giorni, dentro ARGUS e LYNX: la lista valutata, le schede delle aziende, l'analisi scritta. Appena confermi il brief, la tua ricerca ha una data di inizio e una di consegna.",
-    "engines.eyebrow":"Tre strumenti","engines.h1":"Cosa puoi","engines.h2":"comprare da noi.",
-    "engines.lead":"Tre licenze separate. Prendi quello che ti serve: il resto non te lo facciamo comprare. Parti da ARGUS se la lista devi ancora costruirla, prendi LYNX se una lista ce l'hai già. COLLAB è dove il tuo team tiene il suo lavoro, e si compra da solo.",
-    "engines.tag1":"Liste di contatti","engines.sub1":"Liste di contatti mirate","engines.p1":"Costruite su misura del tuo cliente ideale. Ogni contatto arriva con un punteggio, il motivo documentato per cui è il momento giusto per contattarlo e una frase con cui aprire il discorso.",
-    "engines.li1a":"Fino a 80 lead qualificati per report","engines.li1b":"Punteggio per contatto (da 0 a 100)","engines.li1c":"Il motivo per cui è pronto a comprare, con la fonte",
-    "engines.tag2":"Schede aziende","engines.sub2":"Schede aziende e lista persone","engines.p2":"Mandaci una lista, o prendi le aziende migliori da ARGUS. LYNX fa la scheda completa di ognuna, tiene una lista persone che resta viva, e ti dà Moirai, una chat a cui chiedere qualunque cosa.",
-    "engines.li2a":"Una scheda completa per ogni azienda","engines.li2b":"I decisori, con nome e ruolo","engines.li2c":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data",
-    "engines.tag3":"Spazio di lavoro","engines.sub3":"Un prodotto a sé","engines.p3":"Dove il tuo team tiene il suo lavoro: note e pagine, cartelle e file, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
-    "engines.li3a":"Per ogni nota e file scegli tu chi lo vede","engines.li3b":"Attività assegnate alle persone, con scadenza","engines.li3c":"Calendario condiviso e chat di team",
-    "engines.delivery":"Consegna","engines.d1":"Dentro ARGUS, in PDF e Word","engines.d2":"Dentro LYNX, con Moirai","engines.d3":"Si compra da solo",
-    "guar.eyebrow":"Le nostre garanzie","guar.h1":"Cosa ti","guar.h2":"garantiamo.",
-    "guar.1t":"Tempi brevissimi, questione di giorni.","guar.1p":"Dal momento in cui confermi il brief, la lista ti arriva in pochi giorni, e te la spieghiamo quando te la consegniamo.",
-    "guar.2t":"Ogni lettura arriva con la sua fonte.","guar.2p":"Se ti diciamo che un'azienda ha appena vinto una gara pubblica, accanto trovi il link all'esito della gara.",
-    "guar.3t":"Domande sul report per 30 giorni.","guar.3p":"Dopo la consegna, per 30 giorni puoi chiedere qualunque cosa sul tuo report a chi l'ha scritto.",
-    "guar.4t":"Una risposta entro la fine della giornata.","guar.4p":"Qualunque cosa ci scrivi, qualcuno ti risponde in giornata.",
-    "who.lead":"Un annuncio di lavoro è un dato. Undici ingegneri assunti sei settimane dopo l'arrivo di un nuovo direttore commerciale è un segnale. Trasformare il primo nel secondo è esattamente il nostro lavoro: leggere tracce pubbliche sparse e ricostruire cosa significano per la tua trattativa.",
-    "who.1t":"Con chi stai lavorando","who.1p":"Il tuo brief lo segue una sola persona, dalla prima lettura fino alla lista finale. Chi legge il tuo brief è la stessa persona che scrive il tuo report.",
-    "who.2t":"Cosa non facciamo","who.2p":"Non ci inventiamo segnali per allungare una lista e non ti consegniamo un mucchio di dati con un punteggio sopra. Se i segnali non compongono un'occasione vera, te lo diciamo invece di riempire il vuoto con rumore.",
-    "cta.h1":"Dicci chi","cta.h2":"stai cercando.","cta.btn":"Prenota una call","cta.note":"Risposta entro la fine della giornata",
-    "footer.copy":"© 2026 SIFT · Ricerca su fonti pubbliche, scritta per i team commerciali B2B.",
+    "nav.products":"Prodotti","nav.how":"Come funziona","nav.contact":"Contatti","foot.p":"Ricerca su fonti pubbliche, scritta per i team commerciali B2B.","foot.li":"Seguici su LinkedIn","foot.sift":"SIFT","foot.write":"Scrivici","foot.reply":"Rispondiamo entro la fine della giornata","nav.cta":"Prenota una call →",
     "contact.h1a":"Dicci chi","contact.h1b":"stai cercando.",
     "contact.card.h":"Scrivici","contact.card.p":"Raccontaci a chi vendi e cosa di solito li spinge a comprare. Basta una frase. Leggiamo ogni messaggio di persona e ti rispondiamo entro la fine della giornata per fissare una call.","contact.card.cta":"Scrivici una email","contact.card.note":"general@sifttechnology.com",
     "contact.hero.desc":"Scrivici a parole tue chi è il tuo cliente ideale. Ti rispondiamo entro la fine della giornata per fissare una call.",
     "contact.tag1":"Ogni ricerca parte","contact.tag2":"da una conversazione.",
-    "contact.body":"Raccontaci a chi vendi, dove e cosa vuoi ottenere. Leggiamo tutto di persona e ti rispondiamo entro la fine della giornata per fissare una call.",
-    "contact.email.label":"Email","contact.response.label":"Ti rispondiamo","contact.response.val":"Entro la fine della giornata","contact.sla.label":"Tempi di consegna","contact.sla.val":"Questione di giorni dalla conferma del brief",
+    "contact.body":"Raccontaci a chi vendi, dove e cosa vuoi ottenere questo trimestre. Leggiamo tutto di persona e ti rispondiamo entro la fine della giornata per fissare una call.",
+    "contact.email.label":"Email","contact.li.val":"SIFT su LinkedIn","contact.response.label":"Ti rispondiamo","contact.response.val":"Entro la fine della giornata","contact.sla.label":"Tempi di consegna","contact.sla.val":"Questione di giorni dalla conferma del brief",
     "contact.next.title":"Cosa succede dopo che scrivi",
-    "contact.next.1":"Leggiamo la tua richiesta di persona","contact.next.2":"Ti rispondiamo entro la fine della giornata","contact.next.3":"Una call di mezz'ora per definire chi stai cercando","contact.next.4":"Brief confermato: consegna in questione di giorni","contact.next.5":"Ti spieghiamo il report quando te lo consegniamo",
-    "contact.first":"Nome","contact.last":"Cognome","contact.company":"Azienda","contact.company.ph":"Come si chiama la tua azienda","contact.email2":"Email aziendale",
-    "contact.plan.label":"Cosa ti serve?","contact.plan.ph":"Scegli una soluzione",
-    "contact.plan.o1":"ARGUS: trovare nuovi lead","contact.plan.o2":"LYNX: schede sulle aziende che ho già","contact.plan.o3":"ARGUS e LYNX insieme",
-    "contact.plan.o4":"COLLAB: uno spazio di lavoro per il team","contact.plan.o5":"Non lo so ancora, consigliami tu","contact.plan.o6":"Agenzia, lavoro su più clienti","contact.plan.o7":"Non lo so ancora, consigliami tu","contact.plan.o8":"Qualcosa su misura, parliamone",
-    "contact.market.label":"In quale mercato e area geografica","contact.market.ph":"es. PMI manifatturiere, Nord-Est, 20-200 dipendenti",
-    "contact.roles.label":"Con chi vuoi parlare","contact.roles.ph":"es. direttore vendite, responsabile IT, direttore finanziario",
-    "contact.icp.label":"Raccontaci meglio chi cerchi","contact.icp.ph":"Che problema risolvi ai tuoi clienti? Da cosa capisci che un'azienda è pronta a comprare?",
-    "contact.form.note":"Ogni richiesta la leggiamo di persona. Ti rispondiamo entro la fine della giornata.","contact.form.submit":"Prenota una call",
-    "contact.success.h":"Richiesta ricevuta.","contact.success.p":"Leggiamo la tua richiesta e ti rispondiamo entro la fine della giornata per fissare una call."
-  }
+    "contact.next.1":"Leggiamo la tua richiesta di persona","contact.next.2":"Ti rispondiamo entro la fine della giornata","contact.next.3":"Una call di mezz'ora per definire chi stai cercando","contact.next.4":"Brief confermato: consegna in pochi giorni","contact.next.5":"Ti spieghiamo il report quando te lo consegniamo",
+    }
 };
 function applyLang(lang){document.querySelectorAll('[data-aria-en]').forEach(function(e){e.setAttribute('aria-label',e.getAttribute('data-aria-'+(lang==='it'?'it':'en')))});
   document.documentElement.lang = lang;
