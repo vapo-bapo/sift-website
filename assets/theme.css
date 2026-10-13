@@ -243,19 +243,19 @@ body:has(#tour) #progress .d{border:0;padding:0;cursor:pointer}
 body:has(#tour) .screen,body:has(#tour) #s3 .screen,body:has(#tour) #s5 .screen{transform:none!important;transition:none}
 
 /* fasce verdi: menu e tasti menta dentro uno spazio verde (stesso raggio del report, 14px) */
-body:not(:has(#tour)) .nav{background:linear-gradient(#F7FCFA 72%,rgba(247,252,250,0))!important;backdrop-filter:none;border-bottom:0!important;padding:12px 0}
+body:not(:has(#tour)) .nav{background:linear-gradient(#F7FCFA 82%,rgba(247,252,250,0))!important;backdrop-filter:none;border-bottom:0!important;padding:32px 0 12px}
 body:not(:has(#tour)) .nav-inner{background:#0A5143;border:6px solid #1F6757;border-radius:14px;min-height:88px;padding:0 20px 0 36px}
 body:not(:has(#tour)) .nav-logo,body:not(:has(#tour)) .nav-logo *{color:#F7FCFA!important}
 body:not(:has(#tour)) .nav-link{color:#DDF3EC!important}body:not(:has(#tour)) .nav-link:hover,body:not(:has(#tour)) .nav-link.active{color:#fff!important}
 body:not(:has(#tour)) .lang-toggle{border-color:#1F6757}body:not(:has(#tour)) .lang-btn{color:#9FD2C3!important}body:not(:has(#tour)) .lang-btn.active{background:#F7FCFA!important;color:#0A5143!important}
 body:not(:has(#tour)) .nav-hamburger span{background:#F7FCFA!important}
-.pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:124px}
+.pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:148px}
 .pg-contact .contact-card{background:#0A5143;border:6px solid #1F6757;color:#F7FCFA;border-radius:14px;box-shadow:none}
 .pg-contact .contact-card h3,.pg-contact .contact-card p,.pg-contact .contact-card .contact-card-h{color:#F7FCFA!important}
 .pg-contact .contact-card .btn-outline{border-color:#86D3BA!important;color:#F7FCFA!important}
 @media(max-width:860px){
-  body:not(:has(#tour)) .nav{padding:10px 0}
+  body:not(:has(#tour)) .nav{padding:20px 0 10px}
   body:not(:has(#tour)) .nav-inner{min-height:68px;border-width:4px;padding:0 16px 0 22px}
-  .mobile-panel{top:90px}
-  .pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:98px}
+  .mobile-panel{top:106px}
+  .pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:112px}
 }
