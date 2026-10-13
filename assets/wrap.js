@@ -1,7 +1,10 @@
 /* Keeps short words glued to the next one, so lines never end on "a", "di", "the"... and never leave a single word alone on the last line */
 (function(){
   var SEL='p,li,h1,h2,h3,h4,blockquote,figcaption,dd,.sub,.lead,.page-hero-desc,.prow-body',busy=false,t;
-  var re=/(^|[\s(])([A-Za-zÀ-ÿ]{1,2}|[Tt]he|[Aa]nd|[Ff]or|[Ww]ith|[Nn]on|[Pp]er|[Ll]a|[Ll]e|[Uu]n|[Uu]na|[Ii]l|[Ll]o|[Gg]li|[Cc]on|[Ss]u|[Tt]ra|[Ff]ra) /g;
+  /* on phones only 1-2 letter words are glued: three-letter words (the, and, per...) would leave notches at the end of short lines */
+  var phone=!!(window.screen&&Math.min(screen.width,screen.height)<=600);
+  var MORE=phone?'':'|[Tt]he|[Aa]nd|[Ff]or|[Ww]ith|[Nn]on|[Pp]er|[Uu]na|[Gg]li|[Cc]on|[Tt]ra|[Ff]ra';
+  var re=new RegExp('(^|[\\s(])([A-Za-z\u00c0-\u00ff]{1,2}'+MORE+') ','g');
   function done(el){return el.__rx!==undefined&&el.__rx===el.textContent}
   function fix(){
     if(busy)return;busy=true;
@@ -10,7 +13,7 @@
       if(done(el))return;
       var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;
       while(n=w.nextNode()){
-        var v=n.nodeValue,r=v.replace(re,'$1$2 ').replace(re,'$1$2 ');
+        var v=n.nodeValue,r=v.replace(re,'$1$2\u00a0').replace(re,'$1$2\u00a0');
         if(r!==v)n.nodeValue=r;
       }
     });
@@ -32,8 +35,14 @@
     var last=nodes[nodes.length-1],v=last.nodeValue,m=/^([\s\S]*\S)\s+(\S+)(\s*)$/.exec(v),r;
     if(m){
       r=m[1]+'\u00a0'+m[2]+m[3];
-      var tail=/[^ \t\r\n]+$/.exec(r.replace(/\s+$/,'')),fs=parseFloat(getComputedStyle(el).fontSize)||16,bw=el.getBoundingClientRect().width||(el.parentElement?el.parentElement.getBoundingClientRect().width:0);
-      if(tail&&bw&&tail[0].length*fs*0.55>bw*0.8)return;
+      var trimmed=r.replace(/\s+$/,''),tail=/[^ \t\r\n]+$/.exec(trimmed),fs=parseFloat(getComputedStyle(el).fontSize)||16,bw=el.getBoundingClientRect().width||(el.parentElement?el.parentElement.getBoundingClientRect().width:0);
+      if(tail&&bw&&tail[0].length*fs*0.55>bw*0.8){
+        /* the glued run at the end is too long: cut it just before the last two words, so those two still stay together */
+        var run=tail[0],base=trimmed.length-run.length,lastG=run.lastIndexOf('\u00a0'),prevG=lastG>0?run.lastIndexOf('\u00a0',lastG-1):-1;
+        if(prevG<0)return;
+        if(run.slice(prevG+1).length*fs*0.55>bw*0.8)return;
+        r=r.slice(0,base+prevG)+' '+r.slice(base+prevG+1);
+      }
       if(r!==v)last.nodeValue=r;
     }
     else if(nodes.length>1){

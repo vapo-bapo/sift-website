@@ -176,7 +176,7 @@ footer{background:var(--graphite);color:var(--grey);font-size:14px}
 .foot{align-items:start}
 .cta h2 span,.hero h1 span,.read h2 span,.guar h2 span{padding-bottom:.14em}
 .f-col h2{font:600 15px var(--display);color:var(--ivory);margin-bottom:10px;letter-spacing:0}
-.f-col a{color:var(--ivory-dim);text-decoration:none;padding:9px 0;min-height:44px;display:inline-flex;align-items:center}
+.f-col a{color:var(--ivory-dim);text-decoration:none;padding:9px 0;min-height:44px;min-width:44px;display:inline-flex;align-items:center}
 .f-col a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
 .f-col span{padding:9px 0;color:var(--grey)}
 .f-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:0;padding-bottom:20px;font-size:13px;position:relative}
@@ -212,16 +212,66 @@ dl{margin:0} dd{margin:0}
   .step:nth-child(n){margin-top:0}.step{padding-bottom:28px}
   .prods{grid-template-columns:1fr}
   .prod{padding-right:0}.prod+.prod{padding-left:0;border-left:0}
-  .prod:nth-child(3){margin-left:0;margin-top:24px}
-  .links>a:not(.btn),.links>.lang{display:none} .menu{display:block} .links{gap:12px} .links .btn{white-space:nowrap;padding:10px 18px;font-size:13.5px} .menu .lang{display:flex;padding:4px 8px} .menu .lang button{color:var(--grey)} .menu .lang button[aria-pressed=true]{color:var(--ivory)}
+  .prod:nth-child(3){margin-left:0;margin-top:24px;padding:30px 24px 28px}
+  header.wrap nav{position:relative}
+  .links>a:not(.btn),.links>.lang{display:none}.menu{display:block;position:static}.links{gap:4px}
+  .links a.btn{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:44px;padding:0 20px;font-size:14px;line-height:1}
+  .menu summary{display:block;position:relative;width:44px;height:44px;padding:0;font-size:0;line-height:0}
+  .menu summary:before,.menu summary:after{content:"";position:absolute;left:11px;top:21px;width:22px;height:1.5px;border-radius:1px;background:#F7FCFA}
+  .menu summary:before{box-shadow:0 -6.5px 0 #F7FCFA,0 6.5px 0 #F7FCFA}
+  .menu summary:after{opacity:0}
+  .menu[open] summary:before{box-shadow:none;transform:rotate(45deg)}
+  .menu[open] summary:after{opacity:1;transform:rotate(-45deg)}
+  .menu div{left:-4px;right:-4px;top:calc(100% + 12px);min-width:0;background:#0A5143;padding:6px 22px 16px;border:4px solid #1F6757;border-radius:14px;box-shadow:0 18px 40px rgba(0,40,32,.3)}
+  .menu div a{display:flex;align-items:center;min-height:48px;padding:0;font-size:16px}
+  .menu .lang{display:flex;align-self:flex-start;gap:2px;margin:10px 0 0;padding:2px;border:1px solid #1F6757;border-radius:999px}
+  header.wrap nav .menu .lang button{min-width:52px;min-height:40px;padding:0 14px;border-radius:999px;font-weight:600;color:#9FD2C3}
+  header.wrap nav .menu .lang button[aria-pressed=true]{background:#F7FCFA;color:#0A5143}
   .cta .wrap{flex-direction:column;align-items:flex-start}
   .wrap{padding-left:20px;padding-right:20px}
   .stamp{right:10px;bottom:-16px}
   .hero{padding-bottom:8px}
-  header.wrap nav{min-height:68px;border-width:4px;padding:0 10px 0 18px;margin-top:20px}.hero .ctas{gap:20px;padding:0 14px;min-height:76px;border-width:4px}.hero .ctas .btn{padding:12px 20px;white-space:nowrap}header.wrap{margin-bottom:12px}
+  header.wrap nav{min-height:68px;border-width:4px;padding:0 6px 0 18px;margin-top:20px}.hero .ctas{gap:20px;padding:0 14px;min-height:76px;border-width:4px}.hero .ctas .btn{padding:12px 20px;white-space:nowrap}header.wrap{margin-bottom:12px}
 }
-@media(max-width:400px){.links a.btn{padding:13px 14px;font-size:13px}.links{gap:6px}.menu summary{padding:12px 2px}.logo{font-size:20px;gap:8px}}
-@media(max-width:360px){header.wrap nav{padding:0 8px 0 14px}.links a.btn{padding:13px 12px}.logo{font-size:18px;gap:6px}}
+@media(max-width:760px){
+  .hero{padding-top:30px;padding-bottom:44px}
+  .hero h1{font-size:clamp(34px,10vw,50px);line-height:1.04;letter-spacing:-.03em}
+  .hero h1 span{margin-left:0}
+  .hero-row{margin-top:20px;gap:0}
+  .hero-copy{padding-top:0}
+  .hero-copy p{font-size:18px;line-height:1.55}
+  .hero .ctas{flex-direction:column;align-items:stretch;gap:0;min-height:0;padding:12px 12px 2px;margin-top:28px}
+  .hero .ctas .btn{width:100%;min-height:52px;padding:0 20px;font-size:16px}
+  .hero .ctas .textlink{align-self:center;padding:14px 0 16px}
+  mark{padding:0;margin:0}
+  .read h2,.sec h2,.guar h2,.cta h2{font-size:clamp(30px,8.6vw,42px);line-height:1.06}
+  .big h3{font-size:clamp(26px,7.2vw,36px)}
+  .read-top{padding-top:64px;gap:0}.read .lead{margin-top:20px;font-size:17px}
+  .compare{margin-top:44px;padding:32px 0 72px}
+  .frags{display:grid;grid-template-columns:18px auto;justify-content:start;align-items:center;gap:10px 10px}
+  .frags li{font-size:16px;padding:10px 20px}
+  .frags li.plus{padding:0;text-align:center;font-size:20px}
+  .frags li:nth-child(1){grid-area:1/2}
+  .frags li:nth-child(2){grid-area:2/1}.frags li:nth-child(3){grid-area:2/2}
+  .frags li:nth-child(4){grid-area:3/1}.frags li:nth-child(5){grid-area:3/2}
+  .frags li:nth-child(6){grid-area:4/1}.frags li:nth-child(7){grid-area:4/2}
+  .reading-wrap{margin-top:28px}.reading{font-size:21px;line-height:1.42}
+  .sec{padding:68px 0}
+  .steps{margin-top:24px;padding-bottom:0}
+  .step{display:grid;grid-template-columns:44px 1fr;column-gap:16px;align-items:start;padding:22px 0;border-top:1px solid var(--line-light)}
+  .step .n{grid-row:1/span 2;font-size:44px;margin:0}
+  .step h3{grid-column:2;border-top:0;padding-top:3px;margin-bottom:6px;font-size:19px}
+  .step p{grid-column:2;font-size:15.5px}
+  .prods{margin-top:24px}
+  .prod{padding-top:28px;padding-bottom:26px}.prod h3{font-size:32px}
+  .prod p{font-size:16px}.prod li span{font-size:15px}
+  .guar{padding-top:56px;padding-bottom:56px}.promises{margin-top:32px;gap:32px}
+  .who .cols{margin-top:32px}
+  .cta .wrap{padding-top:64px;padding-bottom:64px;gap:28px}
+  .f-bottom:before{left:20px;right:20px}.lang2{margin-right:-15px}
+}
+@media(max-width:400px){.links a.btn{padding:0 16px;font-size:13.5px}.links{gap:2px}.logo{font-size:20px;gap:8px}}
+@media(max-width:360px){header.wrap nav{padding:0 4px 0 14px}.links a.btn{padding:0 12px;font-size:13px}.logo{font-size:18px;gap:6px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 .t{font-style:normal}.prod li .lt{font-style:normal}.sheet .co~dl dt{}
 h1,h2,h3,h4,blockquote{text-wrap:balance;hyphens:none}p,li{text-wrap:pretty;hyphens:none}
@@ -233,7 +283,7 @@ h1,h2,h3,h4,blockquote{text-wrap:balance;hyphens:none}p,li{text-wrap:pretty;hyph
 <header class="wrap">
   <nav aria-label="Main">
     <a class="logo" href="index.html" aria-label="SIFT home"><svg viewBox="-76 -60 152 120" fill="none" aria-hidden="true"><circle r="50.8" stroke="currentColor" stroke-width="6"/><polyline points="-41.5,-30 -70.5,0 -41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="41.5,-30 70.5,0 41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wm" data-i18n="foot.sift">SIFT</span></a>
-    <div class="links"><a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a><span class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="it" aria-pressed="false">IT</button></span><a class="btn btn-amber" href="contact.html" data-i18n="nav.cta">Book a call</a><details class="menu"><summary>Menu</summary><div><a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a><span class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="it" aria-pressed="false">IT</button></span></div></details></div>
+    <div class="links"><a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a><span class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="it" aria-pressed="false">IT</button></span><a class="btn btn-amber" href="contact.html" data-i18n="nav.cta">Book a call</a><details class="menu"><summary aria-label="Menu">Menu</summary><div><a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a><span class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="it" aria-pressed="false">IT</button></span></div></details></div>
   </nav>
 </header>
 <main id="main">

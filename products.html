@@ -180,7 +180,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .blob-red{background:radial-gradient(circle at 60% 40%,var(--red-bright),var(--red) 55%,transparent 100%);}
 @keyframes blobMorph{0%,100%{border-radius:42% 58% 65% 35%/45% 45% 55% 55%;}50%{border-radius:58% 42% 35% 65%/55% 65% 35% 45%;}}
 @keyframes blobFloat{0%,100%{transform:translate(0,0) rotate(0deg);}50%{transform:translate(22px,-26px) rotate(8deg);}}
-.prow-panel-label{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.3);margin-bottom:20px;}
+.prow-panel-label{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.62);margin-bottom:20px;}
 .prow-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,253,245,0.08);}
 .prow-row:last-child{border-bottom:none;}
 .prow-row-name{font-size:13.5px;color:rgba(255,253,245,0.9);}
@@ -202,10 +202,10 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 /* collab mock panel */
 .cmock{background:var(--void);border-radius:20px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,0.5);transition:transform 400ms cubic-bezier(0.22,1,0.36,1),box-shadow 400ms;}
 .cmock:hover{transform:scale(1.015) rotate(0.3deg);box-shadow:0 30px 70px rgba(0,0,0,0.55);}
-.cmock-label{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.3);margin-bottom:18px;}
+.cmock-label{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.62);margin-bottom:18px;}
 .cmock-cal{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgba(255,253,245,0.08);border-radius:10px;overflow:hidden;margin-bottom:16px;}
-.cmock-dow{font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,253,245,0.35);text-transform:uppercase;padding:6px 0;text-align:center;background:rgba(255,253,245,0.03);border-bottom:1px solid rgba(255,253,245,0.08);}
-.cmock-cell{min-height:36px;border-bottom:1px solid rgba(255,253,245,0.06);border-right:1px solid rgba(255,253,245,0.06);font-size:11px;color:rgba(255,253,245,0.35);padding:3px 5px;text-align:right;}
+.cmock-dow{font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,253,245,0.62);text-transform:uppercase;padding:6px 0;text-align:center;background:rgba(255,253,245,0.03);border-bottom:1px solid rgba(255,253,245,0.08);}
+.cmock-cell{min-height:36px;border-bottom:1px solid rgba(255,253,245,0.06);border-right:1px solid rgba(255,253,245,0.06);font-size:11px;color:rgba(255,253,245,0.62);padding:3px 5px;text-align:right;}
 .cmock-cell:nth-child(7n){border-right:none;}
 .cmock-cell.today{background:rgba(226,176,74,0.14);color:var(--gold-bright);font-weight:700;}
 .cmock-cell .ev{display:block;text-align:left;background:var(--gold);color:#0D1013;font-size:11px;font-weight:700;border-radius:3px;padding:1px 4px;margin-top:2px;}
@@ -225,7 +225,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .intel-tab.active{color:#F0EBDD;border-bottom-color:var(--gold);}
 .intel-pane{display:none;padding:28px 32px;}
 .intel-pane.active{display:block;}
-.intel-title{font-size:11px;font-weight:700;letter-spacing:0.16em;color:rgba(255,253,245,0.3);text-transform:uppercase;margin-bottom:12px;}
+.intel-title{font-size:11px;font-weight:700;letter-spacing:0.16em;color:rgba(255,253,245,0.62);text-transform:uppercase;margin-bottom:12px;}
 .intel-name{font-family:var(--display);font-size:20px;font-weight:500;color:#F0EBDD;margin-bottom:12px;}
 .intel-body{font-size:13px;color:rgba(255,253,245,0.65);line-height:1.7;margin-bottom:14px;}
 .intel-hl{background:rgba(226,176,74,0.08);border-left:2px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:8px;font-size:12px;color:rgba(255,253,245,0.8);line-height:1.6;}
@@ -233,7 +233,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .intel-stake .nm{font-size:13px;font-weight:500;color:#F0EBDD;margin-bottom:3px;}
 .intel-stake .rl{font-size:11px;color:var(--gold-bright);margin-bottom:5px;}
 .intel-stake .ds{font-size:12px;color:rgba(255,253,245,0.55);line-height:1.55;}
-.intel-note{font-size:11px;color:rgba(255,253,245,0.35);font-style:italic;margin-top:12px;}
+.intel-note{font-size:11px;color:rgba(255,253,245,0.62);font-style:italic;margin-top:12px;}
 
 /* comparison table */
 .compare-wrap{margin-top:56px;overflow-x:auto;}

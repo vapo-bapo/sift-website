@@ -141,7 +141,7 @@ body:has(#tour) .nav-logo span{color:#6FEBBD!important}
 .pg-privacy .page-hero{padding:64px 0 48px}
 .pg-privacy .priv{background:#fff}
 .pg-privacy .priv .ph{background:rgba(111,235,189,.4)}
-@media(max-width:760px){.pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin:76px 10px 0;border-radius:28px}.pg-products #lynx,.pg-about .method{margin:0 10px;border-radius:28px}.pg-contact .cform{padding:24px}}
+@media(max-width:760px){.pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin:76px 20px 0;border-radius:28px}.pg-products #lynx,.pg-about .method{margin:0 20px;border-radius:28px}.pg-contact .cform{padding:24px}}
 /* ---------- line breaks, all pages ---------- */
 h1,h2,h3,h4,.headline,.page-hero-title,.prow-name,blockquote{text-wrap:balance;hyphens:none}
 p,li,.lead,.sub,.page-hero-desc,.prow-body,figcaption,dd{text-wrap:pretty;hyphens:none;overflow-wrap:break-word}
@@ -305,15 +305,23 @@ svg.ic{width:1em;height:1em;flex:none;display:inline-block;vertical-align:-.125e
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 a,button,summary,[role=button],.lang-btn{touch-action:manipulation}
 @media(max-width:860px){
-  body:not(:has(#tour)) .nav-inner{width:calc(100% - 20px);margin-left:auto;margin-right:auto}
+  body:not(:has(#tour)) .nav-inner{width:calc(100% - 32px);margin-left:auto;margin-right:auto}
   body:not(:has(#tour)) .nav-hamburger{padding:14px 8px;margin-right:-4px;align-items:center;min-width:44px}
-  body:not(:has(#tour)) .mobile-panel{top:98px;left:10px;right:10px;background:#0A5143!important;border:4px solid #1F6757;border-radius:14px;padding:10px 22px 22px;gap:0;box-shadow:0 18px 40px rgba(0,40,32,.3)!important}
+  body:not(:has(#tour)) .mobile-panel{top:98px;left:16px;right:16px;background:#0A5143!important;border:4px solid #1F6757;border-radius:14px;padding:10px 22px 22px;gap:0;box-shadow:0 18px 40px rgba(0,40,32,.3)!important}
   body:not(:has(#tour)) .mobile-panel .nav-link{color:#F7FCFA!important;font-size:16px;min-height:48px;display:flex;align-items:center}
   body:not(:has(#tour)) .mobile-panel .lang-toggle{align-self:flex-start;margin:8px 0 16px}
   body:not(:has(#tour)) .mobile-panel .lang-btn{padding:11px 16px}
 }
 @media(max-width:760px){
   p,li,dd,figcaption,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,.engine p,.gcard p,.who-cols p,.takeaways li{text-wrap:wrap!important}
+  body:where(:not(:has(#tour))) .container{padding-left:20px;padding-right:20px}
+  body:not(:has(#tour)) .nav-inner{width:calc(100% - 40px)}
+  body:not(:has(#tour)) .mobile-panel{left:20px;right:20px}
+  .pg-products .page-hero .container,.pg-contact .page-hero .container,.pg-privacy .page-hero .container,.pg-products #lynx .container,.pg-about .method .container{padding-left:16px;padding-right:16px}
+  .hero-title em,.h2 em,.page-hero-title em,.headline .accent,h3 em{line-height:inherit!important}
+  .tl-content h3{line-height:1.25}
+  .gcard h4{font-size:16px}.gcard p{font-size:14px;line-height:1.6}
+  .pg-about .method .h2{font-size:clamp(26px,7.2vw,34px)}
   .cdetail-val{display:inline-block;padding:10px 0}
   .cmock{padding:20px 16px}
   .prow-grid>*{min-width:0}
@@ -331,13 +339,20 @@ a,button,summary,[role=button],.lang-btn{touch-action:manipulation}
 }
 @media(max-width:560px){
   body:has(#tour) h1.headline{font-size:clamp(32px,10.4vw,44px)}
-  body:has(#tour) .prow-item{flex-wrap:wrap;row-gap:6px}
-  body:has(#tour) .prow-item .tag-medium{margin-left:36px}
+  body:has(#tour) .prow-item{display:grid;grid-template-columns:26px auto auto 1fr;column-gap:8px;row-gap:8px;align-items:center}
+  body:has(#tour) .prow-item>.avatar{grid-column:1;grid-row:1}
+  body:has(#tour) .prow-item>div:not(.avatar){grid-column:2/-1;grid-row:1}
+  body:has(#tour) .prow-item>.tag{grid-row:2;justify-self:start}
+  body:has(#tour) .prow-item>.tag:nth-of-type(1){grid-column:2}
+  body:has(#tour) .prow-item>.tag:nth-of-type(2){grid-column:3}
+  body:has(#tour) .prow-item .tag-medium{margin-left:0}
+  body:has(#tour) .co-card{padding:7px 6px;gap:6px}body:has(#tour) .co-domain{letter-spacing:-.02em}
 }
 @media(max-width:860px){
   .nav-logo{padding:8px 0}
   .site-foot .f-col a{min-width:44px}
   body:not(:has(#tour)) .site-foot .lang2 .lang-btn{padding:13px 15px}
+  .site-foot .lang2{margin-right:-15px}
 }
 @media(max-width:520px){
   .cal-cell .ev,.cmock-cell .ev{font-size:0;line-height:0;height:7px;padding:0;border-radius:4px;margin-top:5px;overflow:hidden}
