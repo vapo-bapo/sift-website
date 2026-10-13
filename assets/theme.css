@@ -260,3 +260,14 @@ body:not(:has(#tour)) .nav-hamburger span{background:#F7FCFA!important}
   .pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:112px}
 }
 body:has(#tour) .sub,body:has(#tour) .headline{text-wrap:balance}
+/* about: "Con chi stai lavorando" / "Cosa non facciamo" in due box in evidenza */
+.pg-about .who-cols{gap:24px;margin-top:48px;align-items:stretch}
+.pg-about .who-cols>div{border-radius:18px;padding:44px 44px 48px;position:relative;overflow:hidden}
+.pg-about .who-cols>div:first-child{background:#0A5143;color:#F7FCFA}
+.pg-about .who-cols>div:first-child:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,#8CF0CC,#3FE0A9)}
+.pg-about .who-cols>div:last-child{border:1px solid rgba(0,61,50,.18);background:#fff}
+.pg-about .who-cols h4{font:600 clamp(26px,2.6vw,34px)/1.1 var(--display);letter-spacing:-.03em;margin-bottom:16px;color:var(--ink)}
+.pg-about .who-cols>div:first-child h4{color:#F7FCFA}
+.pg-about .who-cols p{font-size:17px;line-height:1.6;font-weight:400;color:var(--ink-dim)}
+.pg-about .who-cols>div:first-child p{color:#DDF3EC}
+@media(max-width:760px){.pg-about .who-cols>div{padding:32px 26px 36px}}
