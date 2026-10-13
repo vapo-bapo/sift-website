@@ -259,3 +259,4 @@ body:not(:has(#tour)) .nav-hamburger span{background:#F7FCFA!important}
   .mobile-panel{top:106px}
   .pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:112px}
 }
+body:has(#tour) .sub,body:has(#tour) .headline{text-wrap:balance}
