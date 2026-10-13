@@ -37,8 +37,8 @@ h3,.pcard-name,.prow-name,.gcard h3,.faq-q,.step-title{font-family:var(--display
 .nav-hamburger span{background:var(--ink)!important}
 .mobile-panel{background:var(--ivory)!important;box-shadow:0 12px 30px rgba(6,36,30,.12)!important}
 /* buttons: fluo gradient, graphite text */
-.btn-primary,.nav-cta,.btn-onDark,.btn-amber{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 45%,var(--fluo-3) 100%)!important;color:var(--graphite)!important;box-shadow:0 0 0 5px #0A5143!important;animation:none!important}
-.btn-primary:hover,.nav-cta:hover,.btn-onDark:hover{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 100%)!important;box-shadow:0 0 0 5px #0A5143,0 10px 28px rgba(63,224,169,.35)!important}
+.btn-primary,.nav-cta,.btn-onDark,.btn-amber{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 45%,var(--fluo-3) 100%)!important;color:var(--graphite)!important;box-shadow:none!important;animation:none!important}
+.btn-primary:hover,.nav-cta:hover,.btn-onDark:hover{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 100%)!important;box-shadow:0 10px 28px rgba(63,224,169,.35)!important}
 .btn-outline{border-color:rgba(6,36,30,.45)!important;color:var(--ink)!important}.btn-outline:hover{border-color:var(--ink)!important;color:var(--ink)!important}
 mark{background:linear-gradient(transparent 62%,rgba(111,235,189,.75) 62%);color:inherit;padding:0 .08em}
 :focus-visible{outline:2px solid var(--emerald)!important;outline-offset:3px}
@@ -241,3 +241,21 @@ body:has(#tour) #progress .d{border:0;padding:0;cursor:pointer}
 
 /* mockup dei tour: niente inclinazione 3D */
 body:has(#tour) .screen,body:has(#tour) #s3 .screen,body:has(#tour) #s5 .screen{transform:none!important;transition:none}
+
+/* fasce verdi: menu e tasti menta dentro uno spazio verde (stesso raggio del report, 14px) */
+body:not(:has(#tour)) .nav{background:linear-gradient(#F7FCFA 72%,rgba(247,252,250,0))!important;backdrop-filter:none;border-bottom:0!important;padding:12px 0}
+body:not(:has(#tour)) .nav-inner{background:#0A5143;border:6px solid #1F6757;border-radius:14px;min-height:88px;padding:0 20px 0 36px}
+body:not(:has(#tour)) .nav-logo,body:not(:has(#tour)) .nav-logo *{color:#F7FCFA!important}
+body:not(:has(#tour)) .nav-link{color:#DDF3EC!important}body:not(:has(#tour)) .nav-link:hover,body:not(:has(#tour)) .nav-link.active{color:#fff!important}
+body:not(:has(#tour)) .lang-toggle{border-color:#1F6757}body:not(:has(#tour)) .lang-btn{color:#9FD2C3!important}body:not(:has(#tour)) .lang-btn.active{background:#F7FCFA!important;color:#0A5143!important}
+body:not(:has(#tour)) .nav-hamburger span{background:#F7FCFA!important}
+.pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:124px}
+.pg-contact .contact-card{background:#0A5143;border:6px solid #1F6757;color:#F7FCFA;border-radius:14px;box-shadow:none}
+.pg-contact .contact-card h3,.pg-contact .contact-card p,.pg-contact .contact-card .contact-card-h{color:#F7FCFA!important}
+.pg-contact .contact-card .btn-outline{border-color:#86D3BA!important;color:#F7FCFA!important}
+@media(max-width:860px){
+  body:not(:has(#tour)) .nav{padding:10px 0}
+  body:not(:has(#tour)) .nav-inner{min-height:68px;border-width:4px;padding:0 16px 0 22px}
+  .mobile-panel{top:90px}
+  .pg-products .page-hero,.pg-contact .page-hero,.pg-privacy .page-hero{margin-top:98px}
+}
