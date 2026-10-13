@@ -366,3 +366,120 @@ a,button,summary,[role=button],.lang-btn{touch-action:manipulation}
 }
 @media(max-width:420px){.intel-tab{padding:14px 4px;letter-spacing:.04em;min-width:0}}
 @media(max-width:400px){.page-hero-title{font-size:clamp(32px,9.6vw,40px)}}
+
+/* =====================================================================
+   Pagine interne su telefono (Chi siamo, Prodotti, Contatti): stesso linguaggio della home.
+   Titolo di pagina 34-50px, titoli di sezione 30-42px, testo 15-17px in peso normale,
+   passaggi con cifre sottili e linee, garanzie e prezzi in righe compatte,
+   tasti menta a tutta larghezza dentro la fascia verde.
+   ===================================================================== */
+.prow-cta{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+@media(max-width:760px){
+  /* titoli e testi: gli stessi valori della home */
+  body.pg-about .page-hero-title,body.pg-products .page-hero-title,body.pg-contact .page-hero-title{font-size:clamp(34px,10vw,50px)!important;line-height:1.04!important;letter-spacing:-.03em!important;padding-bottom:0}
+  body.pg-about .h2,body.pg-about .cta-title,body.pg-products .h2{font-size:clamp(30px,8.6vw,42px);line-height:1.06!important;letter-spacing:-.03em;padding-bottom:0}
+  body.pg-about :is(.section-lead,.tl-content p,.gcard p,.price-card p,.price-note),
+  body.pg-products :is(.prow-body,.prow-feat-list li,.hero-chip-desc,.intel-body),
+  body.pg-contact :is(.page-hero-desc,.contact-body,.process-mini-row){font-weight:400}
+  body.pg-about .section-lead,body.pg-products .section-lead{font-size:16px;line-height:1.6;margin-top:16px;max-width:none}
+  body.pg-about .section:not(.method) .section-lead{color:var(--ink-dim)}
+
+  /* tasti menta: fascia verde a tutta larghezza, come nella testata della home */
+  .btn-band{display:flex;width:100%}
+  .btn-band .btn{flex:1;justify-content:center;min-height:52px;padding:0 20px;font-size:16px}
+
+  /* ---------- Chi siamo ---------- */
+  .pg-about .page-hero{padding:124px 0 0}
+  .pg-about .page-hero-inner{gap:0}
+  body.pg-about .section{padding-block:60px}
+  .pg-about .page-hero+.section{padding-top:40px}
+  .pg-about .eyebrow{margin-bottom:14px;letter-spacing:.2em}
+  body.pg-about .who-h2{font-size:clamp(24px,6.9vw,28px);line-height:1.1!important}
+  body.pg-about .who-h2 em{display:block!important;margin-top:6px}
+  .pg-about .who-cols{margin-top:32px!important}
+  /* il metodo: scheda verde con quattro passaggi, cifra sottile + etichetta sulla prima riga */
+  body.pg-about .method{padding-block:44px 8px}
+  .pg-about .method .h2{font-size:clamp(30px,8.6vw,42px)}
+  .pg-about .timeline{margin-top:24px}
+  .pg-about .tl-step{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center;padding:24px 0}
+  .pg-about .tl-step:last-child{border-bottom:0;padding-bottom:20px}
+  .pg-about .tl-content{display:contents}
+  .pg-about .tl-n{grid-column:1;grid-row:1;width:auto;height:auto;border:0!important;border-radius:0;justify-content:flex-start;font:300 36px/1 var(--display);letter-spacing:-.02em}
+  .pg-about .tl-tag{grid-column:2;grid-row:1;justify-self:start;margin:0;padding:5px 11px;font-size:11px}
+  .pg-about .tl-content h3{grid-column:1/-1;grid-row:2;margin:16px 0 8px;font-size:21px;line-height:1.2}
+  .pg-about .tl-content p{grid-column:1/-1;grid-row:3;font-size:15.5px;line-height:1.6;max-width:none}
+  /* garanzie e prezzi: icona + titolo sulla prima riga, testo sotto a tutta larghezza */
+  .pg-about .guarantees-grid{margin-top:26px}
+  .pg-about .gcard{display:grid;grid-template-columns:24px 1fr;column-gap:14px;row-gap:8px;align-items:center;padding:20px 20px 22px}
+  .pg-about .gcard-ic{grid-column:1;grid-row:1;width:24px;height:24px;display:flex;align-items:center;font-size:22px}
+  .pg-about .gcard h4{grid-column:2;grid-row:1;font-size:17px;line-height:1.25}
+  .pg-about .gcard p{grid-column:1/-1;grid-row:2;font-size:15px;line-height:1.6}
+  .pg-about .price-grid{margin-top:26px;gap:12px}
+  .pg-about .price-card{display:grid;grid-template-columns:40px 1fr;column-gap:14px;row-gap:12px;align-items:center;padding:20px 20px 22px}
+  .pg-about .price-ic{grid-column:1;grid-row:1;width:40px;height:40px;margin:0;font-size:20px}
+  .pg-about .price-card h4{grid-column:2;grid-row:1;margin:0;font-size:17px;line-height:1.25}
+  .pg-about .price-card p{grid-column:1/-1;grid-row:2;font-size:15px;line-height:1.6}
+  .pg-about .price-note{margin-top:12px;padding:14px 16px;font-size:14px}
+  .pg-about .cta{padding:48px 0 56px}
+  .pg-about .cta-inner{border-radius:28px;padding:40px 22px 22px;gap:26px}
+  .pg-about .cta-title{max-width:none}
+
+  /* ---------- Prodotti ---------- */
+  .pg-products .page-hero{padding:44px 0 30px}
+  .pg-products .page-hero-inner{gap:26px}
+  .pg-products .hero-chips{gap:12px}
+  .pg-products .hero-chip{display:grid;grid-template-columns:40px 1fr;column-gap:14px;row-gap:0;align-items:center;padding:18px 18px 14px}
+  .pg-products .hero-chip-ic{grid-column:1;grid-row:1/span 2;margin:0;width:40px;height:40px;font-size:20px}
+  .pg-products .hero-chip-name{grid-column:2;grid-row:1;font-size:26px;line-height:1.1}
+  .pg-products .hero-chip-sub{grid-column:2;grid-row:2;font-size:14px;margin-top:2px}
+  .pg-products .hero-chip-desc{grid-column:1/-1;font-size:15px;line-height:1.5;margin-top:12px}
+  .pg-products .hero-chip-go{grid-column:1/-1;margin-top:12px;padding-top:12px;font-size:13px}
+  body.pg-products .prow{padding-block:52px}
+  body.pg-products #lynx{padding-block:44px}
+  .pg-products .prow-grid{gap:28px}
+  body.pg-products .prow-name{font-size:clamp(34px,9.6vw,40px)!important;line-height:1.05;padding:0;margin-bottom:12px}
+  .pg-products .prow-tag{margin-bottom:10px}
+  .pg-products .prow-body{font-size:16px;line-height:1.6;max-width:none;margin-bottom:18px}
+  .pg-products .prow-feat-list{gap:9px;margin-bottom:22px}
+  .pg-products .prow-feat-list li{font-size:15px;line-height:1.45;padding-left:20px}
+  .pg-products .prow-feat-list li::before{top:8px}
+  .prow-cta{flex-direction:column;align-items:stretch;gap:12px}
+  .pg-products .link-more{justify-content:center;min-height:52px;padding:0 20px;font-size:15px}
+  .pg-products .c-avail{display:flex;align-items:flex-start;border-radius:16px;padding:12px 16px;font-size:14px;line-height:1.45;margin-bottom:18px}
+  .pg-products .c-avail svg.ic{flex:none;margin-top:2px}
+  .pg-products #lynx .prow-grid>.prow-panel{order:2!important}
+  .pg-products #lynx .prow-grid>div:not(.prow-panel){order:1!important}
+  .pg-products .prow-panel{padding:22px 20px}
+  .pg-products .prow-panel-label{margin-bottom:12px}
+  .pg-products .prow-row{padding:12px 0}
+  .pg-products .prow-row-name{font-size:14.5px}
+  .pg-products .prow-row-tag{font-size:12px}
+  .pg-products .prow-score{font-size:22px}
+  body.pg-products #sample{padding-block:56px}
+  .pg-products .subbrief-head{gap:12px;margin-bottom:20px}
+  .pg-products .subbrief-badge{border-radius:14px;letter-spacing:.08em;line-height:1.5;padding:9px 14px;font-size:11px}
+  .pg-products .subbrief-head h3{font-size:26px;line-height:1.15;letter-spacing:-.02em}
+  .pg-products .intel-pane{padding:22px 20px}
+
+  /* ---------- Contatti ---------- */
+  .pg-contact .page-hero{padding:44px 0 34px}
+  .pg-contact .page-hero-inner{gap:16px}
+  .pg-contact .page-hero-desc{font-size:16px;line-height:1.6}
+  body.pg-contact .section{padding-block:48px 56px}
+  .pg-contact .contact-grid{gap:32px;margin-top:0}
+  body.pg-contact .contact-tagline{font-size:clamp(27px,7.6vw,32px);font-weight:600;line-height:1.1;letter-spacing:-.03em;margin-bottom:14px}
+  .pg-contact .contact-body{font-size:16px;line-height:1.6;margin-bottom:20px}
+  .pg-contact .cdetails{gap:0;margin-bottom:24px;border-top:1px solid var(--border)}
+  .pg-contact .cdetails>div{display:grid;grid-template-columns:112px minmax(0,1fr);column-gap:12px;align-items:center;padding:2px 0;border-bottom:1px solid var(--border)}
+  .pg-contact .cdetail-label{margin:0;font-size:13px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink-dim)}
+  .pg-contact .cdetail-val{font-size:14.5px}
+  .pg-contact .process-mini{padding:20px 18px}
+  .pg-contact .process-mini-title{margin-bottom:8px}
+  .pg-contact .process-mini-row{font-size:14.5px;line-height:1.45;padding:10px 0}
+  .pg-contact .contact-card{border-width:4px}
+  .pg-contact .cform-note{font-size:13px}
+}
+@media(max-width:374px){.pg-about .tl-tag{grid-column:1/-1;grid-row:2;margin-top:10px}.pg-about .tl-content h3{grid-row:3;margin-top:12px}.pg-about .tl-content p{grid-row:4}}
+@media(max-width:374px){.pg-contact .cdetails>div{grid-template-columns:minmax(0,1fr);padding:10px 0 0}.pg-contact .cdetail-val{padding:10px 0}}
+/* tour: stesso margine laterale del resto del sito su telefono */
+@media(max-width:760px){body:has(#tour) .slide .container{padding-left:20px;padding-right:20px}}

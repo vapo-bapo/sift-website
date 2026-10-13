@@ -36,11 +36,11 @@
     if(m){
       r=m[1]+'\u00a0'+m[2]+m[3];
       var trimmed=r.replace(/\s+$/,''),tail=/[^ \t\r\n]+$/.exec(trimmed),fs=parseFloat(getComputedStyle(el).fontSize)||16,bw=el.getBoundingClientRect().width||(el.parentElement?el.parentElement.getBoundingClientRect().width:0);
-      if(tail&&bw&&tail[0].length*fs*0.55>bw*0.8){
+      if(tail&&bw&&tail[0].length*fs*0.5>bw*0.9){
         /* the glued run at the end is too long: cut it just before the last two words, so those two still stay together */
         var run=tail[0],base=trimmed.length-run.length,lastG=run.lastIndexOf('\u00a0'),prevG=lastG>0?run.lastIndexOf('\u00a0',lastG-1):-1;
         if(prevG<0)return;
-        if(run.slice(prevG+1).length*fs*0.55>bw*0.8)return;
+        if(run.slice(prevG+1).length*fs*0.5>bw*0.9)return;
         r=r.slice(0,base+prevG)+' '+r.slice(base+prevG+1);
       }
       if(r!==v)last.nodeValue=r;
