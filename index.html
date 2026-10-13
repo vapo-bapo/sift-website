@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>SIFT · Signal-driven account research for B2B teams</title>
 <meta name="description" content="SIFT researches the companies worth calling and hands your sales team up to eighty qualified leads, each with the reason to call now, its source and the person to write to. Delivered in a matter of days."/>
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png"/>
+<link rel="icon" href="assets/logo.svg?v=2" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png?v=2" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png?v=2"/>
 <meta name="theme-color" content="#F7FCFA"/>
 <link rel="canonical" href="https://www.sifttechnology.com/"/>
 <meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="SIFT: Signal-driven account research for B2B teams"/><meta property="og:description" content="SIFT researches the companies worth calling and hands your sales team up to eighty qualified leads, each with the reason to call now, its source and the person to write to. Delivered in a matter of days."/><meta property="og:url" content="https://www.sifttechnology.com/"/>
@@ -93,6 +93,8 @@ mark{color:inherit;background:linear-gradient(90deg,rgba(var(--fluo-rgb),.95),rg
 
 /* fluo gradients: white melts into the fluo green, then into the deep green */
 .div{display:block;width:100%;height:clamp(40px,6vw,84px)}
+/* the dark band slides 2px under/over the slanted divider: no hairline of page background can show between them on any screen density */
+.div+.band,.band+.div{margin-top:-2px}
 .fade{height:300px;background:linear-gradient(180deg,#F7FCFA 0.0%,#F5FBF9 4.2%,#EFFAF6 8.3%,#E8F8F2 12.5%,#E1F7EE 16.7%,#DDF6EC 20.8%,#DAF5EB 25.0%,#CFF3E5 29.2%,#BEF1DD 33.3%,#AEEED6 37.5%,#A6EDD2 41.7%,#9EE9CC 45.8%,#88E0BE 50.0%,#6CD7AD 54.2%,#5ED3A6 58.3%,#56C89E 62.5%,#44B18C 66.7%,#2B9879 70.8%,#1F8E71 75.0%,#1B8066 79.2%,#126652 83.3%,#0A5143 87.5%,#094D40 91.7%,#064337 95.8%,#003D32 100.0%)}
 .fade.short{height:300px}
 .fade.up{background:linear-gradient(0deg,#F7FCFA 0.0%,#F5FBF9 4.2%,#EFFAF6 8.3%,#E8F8F2 12.5%,#E1F7EE 16.7%,#DDF6EC 20.8%,#DAF5EB 25.0%,#CFF3E5 29.2%,#BEF1DD 33.3%,#AEEED6 37.5%,#A6EDD2 41.7%,#9EE9CC 45.8%,#88E0BE 50.0%,#6CD7AD 54.2%,#5ED3A6 58.3%,#56C89E 62.5%,#44B18C 66.7%,#2B9879 70.8%,#1F8E71 75.0%,#1B8066 79.2%,#126652 83.3%,#0A5143 87.5%,#094D40 91.7%,#064337 95.8%,#003D32 100.0%)}
@@ -248,13 +250,9 @@ dl{margin:0} dd{margin:0}
   .big h3{font-size:clamp(26px,7.2vw,36px)}
   .read-top{padding-top:64px;gap:0}.read .lead{margin-top:20px;font-size:17px}
   .compare{margin-top:44px;padding:32px 0 72px}
-  .frags{display:grid;grid-template-columns:18px auto;justify-content:start;align-items:center;gap:10px 10px}
-  .frags li{font-size:16px;padding:10px 20px}
-  .frags li.plus{padding:0;text-align:center;font-size:20px}
-  .frags li:nth-child(1){grid-area:1/2}
-  .frags li:nth-child(2){grid-area:2/1}.frags li:nth-child(3){grid-area:2/2}
-  .frags li:nth-child(4){grid-area:3/1}.frags li:nth-child(5){grid-area:3/2}
-  .frags li:nth-child(6){grid-area:4/1}.frags li:nth-child(7){grid-area:4/2}
+  .frags{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0}
+  .frags li{font-size:17px;padding:11px 20px;text-align:center}
+  .frags li.plus{padding:0;height:26px;line-height:26px;font-size:22px;color:var(--fluo)}
   .reading-wrap{margin-top:28px}.reading{font-size:21px;line-height:1.42}
   .sec{padding:68px 0}
   .steps{margin-top:24px;padding-bottom:0}
@@ -282,7 +280,7 @@ h1,h2,h3,h4,blockquote{text-wrap:balance;hyphens:none}p,li{text-wrap:pretty;hyph
 <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 <header class="wrap">
   <nav aria-label="Main">
-    <a class="logo" href="index.html" aria-label="SIFT home"><svg viewBox="-76 -60 152 120" fill="none" aria-hidden="true"><circle r="50.8" stroke="currentColor" stroke-width="6"/><polyline points="-41.5,-30 -70.5,0 -41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="41.5,-30 70.5,0 41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wm" data-i18n="foot.sift">SIFT</span></a>
+    <a class="logo" href="index.html" aria-label="SIFT home"><svg viewBox="-76 -60 152 120" fill="none" aria-hidden="true"><circle r="50.8" stroke="currentColor" stroke-width="6"/><polyline points="-41.5,-54 -70.5,0 -41.5,54" stroke="currentColor" stroke-width="5.2" stroke-linejoin="miter" stroke-miterlimit="10"/><polyline points="41.5,-54 70.5,0 41.5,54" stroke="currentColor" stroke-width="5.2" stroke-linejoin="miter" stroke-miterlimit="10"/></svg><span class="wm" data-i18n="foot.sift">SIFT</span></a>
     <div class="links"><a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a><span class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="it" aria-pressed="false">IT</button></span><a class="btn btn-amber" href="contact.html" data-i18n="nav.cta">Book a call</a><details class="menu"><summary aria-label="Menu">Menu</summary><div><a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a><span class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="it" aria-pressed="false">IT</button></span></div></details></div>
   </nav>
 </header>
@@ -381,7 +379,7 @@ h1,h2,h3,h4,blockquote{text-wrap:balance;hyphens:none}p,li{text-wrap:pretty;hyph
 </main>
 <footer>
   <div class="wrap foot">
-    <div class="f-brand"><a class="f-logo" href="index.html" aria-label="SIFT home"><svg viewBox="-76 -60 152 120" fill="none" aria-hidden="true"><circle r="50.8" stroke="currentColor" stroke-width="6"/><polyline points="-41.5,-30 -70.5,0 -41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="41.5,-30 70.5,0 41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wm" data-i18n="foot.sift">SIFT</span></a><p data-i18n="foot.p">Research on public sources, written for B2B sales teams.</p><a class="f-li" href="https://www.linkedin.com/company/sift-aicompany/" rel="noopener" aria-label="SIFT on LinkedIn" data-aria-en="SIFT on LinkedIn" data-aria-it="SIFT su LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.5H3V9.75Zm6.5 0h3.83v1.57h.06c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.78 2.66 4.78 6.12v5.87h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75v5.29h-4V9.75Z"/></svg><span data-i18n="foot.li">Follow us on LinkedIn</span></a></div>
+    <div class="f-brand"><a class="f-logo" href="index.html" aria-label="SIFT home"><svg viewBox="-76 -60 152 120" fill="none" aria-hidden="true"><circle r="50.8" stroke="currentColor" stroke-width="6"/><polyline points="-41.5,-54 -70.5,0 -41.5,54" stroke="currentColor" stroke-width="5.2" stroke-linejoin="miter" stroke-miterlimit="10"/><polyline points="41.5,-54 70.5,0 41.5,54" stroke="currentColor" stroke-width="5.2" stroke-linejoin="miter" stroke-miterlimit="10"/></svg><span class="wm" data-i18n="foot.sift">SIFT</span></a><p data-i18n="foot.p">Research on public sources, written for B2B sales teams.</p><a class="f-li" href="https://www.linkedin.com/company/sift-aicompany/" rel="noopener" aria-label="SIFT on LinkedIn" data-aria-en="SIFT on LinkedIn" data-aria-it="SIFT su LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.5H3V9.75Zm6.5 0h3.83v1.57h.06c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.78 2.66 4.78 6.12v5.87h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75v5.29h-4V9.75Z"/></svg><span data-i18n="foot.li">Follow us on LinkedIn</span></a></div>
     <nav class="f-col" aria-label="Products"><h2 data-i18n="nav.products">Products</h2><a href="argus.html">ARGUS</a><a href="lynx.html">LYNX</a><a href="collab.html">COLLAB</a></nav>
     <nav class="f-col" aria-label="Company"><h2 data-i18n="foot.sift">SIFT</h2><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a></nav>
     <div class="f-col"><h2 data-i18n="foot.write">Write to us</h2><a href="mailto:general@sifttechnology.com">general@sifttechnology.com</a><span data-i18n="cta.note">We reply by the end of the day</span></div>
