@@ -4,13 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact: Book a call | SIFT</title>
-<meta name="description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply within 24 hours."/>
+<meta name="description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply by the end of the day."/>
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/><link rel="icon" href="assets/favicon.png" sizes="180x180" type="image/png"/><link rel="apple-touch-icon" href="assets/favicon.png"/>
 <meta name="theme-color" content="#F7FCFA"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root{
   --bg:#1B1F23; --bg-secondary:#262B30; --card:#262B30;
@@ -66,7 +63,7 @@ ul{list-style:none;}
 .nav-link{font-size:13px;color:var(--text-dim);transition:color 250ms;}
 .nav-link:hover,.nav-link.active{color:var(--text);}
 .lang-toggle{display:flex;align-items:center;gap:2px;border:1px solid var(--border-strong);border-radius:999px;padding:3px;}
-.lang-btn{padding:5px 11px;font-size:10.5px;font-weight:700;letter-spacing:0.04em;border-radius:999px;color:var(--text-faint);transition:all 200ms;cursor:pointer;}
+.lang-btn{padding:5px 11px;font-size:11px;font-weight:700;letter-spacing:0.04em;border-radius:999px;color:var(--text-faint);transition:all 200ms;cursor:pointer;}
 .lang-btn.active{background:var(--text);color:var(--bg);}
 .nav-cta{padding:10px 22px;border-radius:999px;font-size:12.5px;font-weight:600;background:#E2B04A;color:#1B1F23;transition:transform 480ms cubic-bezier(0.22,1,0.36,1),box-shadow 480ms cubic-bezier(0.22,1,0.36,1);}
 .nav-cta:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 10px 30px rgba(226,176,74,0.28);}
@@ -106,7 +103,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .hero-title em{font-style:italic;font-weight:400;}
 .hero-body{font-size:clamp(16px,1.6vw,20px);color:var(--text-dim);max-width:620px;margin:0 auto 44px;font-weight:300;line-height:1.7;}
 .hero-ctas{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;}
-.hero-meta{margin-top:64px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.2em;font-family:'Inter',sans-serif;}
+.hero-meta{margin-top:64px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.2em;font-family:'Inter',sans-serif;}
 .hero-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--border-strong);}
 
 /* section shell */
@@ -144,7 +141,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 /* NLA feature — kept as a dark accent panel for contrast */
 .nla{margin-top:56px;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;background:var(--void);box-shadow:0 24px 64px rgba(0,0,0,0.55);}
 .nla-copy{padding:52px 48px;display:flex;flex-direction:column;justify-content:center;}
-.nla-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-bright);background:rgba(235,194,110,0.1);border:1px solid rgba(235,194,110,0.24);border-radius:999px;padding:7px 15px;margin-bottom:20px;}
+.nla-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-bright);background:rgba(235,194,110,0.1);border:1px solid rgba(235,194,110,0.24);border-radius:999px;padding:7px 15px;margin-bottom:20px;}
 .nla-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold-bright);}
 .nla h3{font-family:var(--display);font-size:clamp(26px,3vw,36px);font-weight:600;line-height:1.4;padding-bottom:0.16em;margin-bottom:16px;color:#F0EBDD;letter-spacing:-0.01em;}
 .nla h3 em{font-style:italic;font-weight:400;display:inline-block;padding:0.05em 0.15em 0.2em;line-height:1.3;
@@ -152,10 +149,10 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .nla-body{font-size:14.5px;color:rgba(255,253,245,0.62);line-height:1.78;max-width:420px;font-weight:300;}
 .nla-body strong{color:rgba(255,253,245,0.92);font-weight:500;}
 .nla-demo{border-left:1px solid rgba(255,253,245,0.08);padding:40px;background:linear-gradient(180deg,rgba(235,194,110,0.05),transparent);}
-.nla-demo-label{font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.28);margin-bottom:16px;}
+.nla-demo-label{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.28);margin-bottom:16px;}
 .nla-line{display:flex;flex-direction:column;gap:6px;padding:14px 0;border-bottom:1px solid rgba(255,253,245,0.08);}
 .nla-line:last-child{border-bottom:none;}
-.nla-line-k{font-size:10px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:rgba(235,194,110,0.75);}
+.nla-line-k{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:rgba(235,194,110,0.75);}
 .nla-line-v{font-size:13.5px;color:rgba(255,253,245,0.85);line-height:1.6;}
 .nla-line-v.raw{font-family:'Inter',sans-serif;color:rgba(255,253,245,0.35);}
 @media(max-width:800px){.nla{grid-template-columns:1fr;}.nla-copy{padding:36px 28px;}.nla-demo{border-left:none;border-top:1px solid rgba(255,253,245,0.08);padding:28px;}}
@@ -167,7 +164,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .engine-ic{width:52px;height:52px;border-radius:16px;background:rgba(226,176,74,0.1);display:flex;align-items:center;justify-content:center;color:var(--gold-dim);font-size:26px;}
 .engine:nth-child(2) .engine-ic{background:rgba(127,192,171,0.1);color:var(--red);}
 .engine:nth-child(2) li::before{background:var(--red);}
-.engine-tag{font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.14em;}
+.engine-tag{font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.14em;}
 .engine h3{font-family:var(--display);font-size:32px;font-weight:600;margin-bottom:6px;
   background:linear-gradient(135deg,var(--text) 0%,var(--gold-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .engine-sub{font-size:13px;color:var(--gold-dim);margin-bottom:20px;}
@@ -208,7 +205,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .cta-title em{font-style:italic;font-weight:400;display:inline-block;padding:0.05em 0.15em 0.2em;line-height:1.3;
   background:linear-gradient(135deg,var(--gold-bright) 0%,var(--red-bright,#9AD3C1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .cta-actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start;position:relative;z-index:1;flex-shrink:0;}
-.cta-note{font-size:10.5px;color:rgba(255,253,245,0.4);letter-spacing:0.1em;text-transform:uppercase;}
+.cta-note{font-size:11px;color:rgba(255,253,245,0.4);letter-spacing:0.1em;text-transform:uppercase;}
 @media(max-width:760px){.cta-inner{flex-direction:column;align-items:flex-start;padding:44px 30px;}.cta-actions{width:100%;}.cta-actions .btn{width:100%;justify-content:center;}}
 
 /* footer */
@@ -252,7 +249,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .tl-content h3{font-family:var(--display);font-size:clamp(22px,2.6vw,30px);font-weight:500;margin-bottom:10px;color:var(--text);}
 .tl-content h3 em{font-style:italic;font-weight:400;color:var(--gold-dim);}
 .tl-content p{font-size:14.5px;color:var(--text-dim);line-height:1.72;max-width:600px;font-weight:300;}
-.tl-tag{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);background:rgba(226,176,74,0.08);border:1px solid var(--border);border-radius:999px;padding:5px 12px;margin-bottom:14px;}
+.tl-tag{display:inline-flex;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);background:rgba(226,176,74,0.08);border:1px solid var(--border);border-radius:999px;padding:5px 12px;margin-bottom:14px;}
 @media(max-width:640px){.tl-step{grid-template-columns:44px 1fr;gap:0 20px;}.tl-n{width:44px;height:44px;font-size:17px;}}
 
 /* product rows */
@@ -263,11 +260,11 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .prow-tag{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;}
 .prow-body{font-size:15px;color:var(--text-dim);line-height:1.78;margin-bottom:26px;max-width:460px;font-weight:300;}
 .prow-panel{background:var(--void);border-radius:20px;padding:36px;box-shadow:0 24px 60px rgba(0,0,0,0.5);}
-.prow-panel-label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.3);margin-bottom:20px;}
+.prow-panel-label{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,245,0.3);margin-bottom:20px;}
 .prow-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,253,245,0.08);}
 .prow-row:last-child{border-bottom:none;}
 .prow-row-name{font-size:13.5px;color:rgba(255,253,245,0.9);}
-.prow-row-tag{font-size:10.5px;color:rgba(255,253,245,0.4);margin-top:2px;}
+.prow-row-tag{font-size:11px;color:rgba(255,253,245,0.4);margin-top:2px;}
 .prow-score{font-family:var(--display);font-size:20px;font-weight:600;color:var(--gold-bright);}
 @media(max-width:860px){.prow-grid{grid-template-columns:1fr;gap:36px;}}
 
@@ -277,7 +274,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .compare-table th,.compare-table td{padding:14px 18px;text-align:center;border-bottom:1px solid var(--border);}
 .compare-table th:first-child,.compare-table td:first-child{text-align:left;}
 .compare-table th{font-family:var(--display);font-size:20px;font-weight:500;padding-bottom:18px;border-bottom:1px solid var(--border-strong);color:var(--text);}
-.compare-table th:first-child{font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--text-faint);text-transform:uppercase;}
+.compare-table th:first-child{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;color:var(--text-faint);text-transform:uppercase;}
 .compare-table td{font-size:13px;color:var(--text-dim);}
 .compare-table td:first-child{font-size:13.5px;color:var(--text);}
 .compare-table .ck{color:var(--gold-dim);font-size:15px;}
@@ -291,10 +288,10 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
 .pcard{padding:40px 32px;display:flex;flex-direction:column;}
 .pcard.rec{border-color:rgba(226,176,74,0.35);}
-.rec-badge{font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--gold-dim);text-transform:uppercase;height:14px;margin-bottom:16px;}
-.pcard-tier{font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:16px;}
+.rec-badge{font-size:11px;font-weight:700;letter-spacing:0.16em;color:var(--gold-dim);text-transform:uppercase;height:14px;margin-bottom:16px;}
+.pcard-tier{font-size:11px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:16px;}
 .pcard-name{font-family:var(--display);font-size:32px;font-weight:500;margin-bottom:14px;color:var(--text);}
-.pcard-scope{display:inline-flex;font-size:10.5px;font-weight:600;color:var(--gold-dim);background:rgba(226,176,74,0.08);border:1px solid var(--border);border-radius:999px;padding:5px 12px;margin-bottom:18px;align-self:flex-start;}
+.pcard-scope{display:inline-flex;font-size:11px;font-weight:600;color:var(--gold-dim);background:rgba(226,176,74,0.08);border:1px solid var(--border);border-radius:999px;padding:5px 12px;margin-bottom:18px;align-self:flex-start;}
 .pcard-desc{font-size:13.5px;color:var(--text-dim);line-height:1.68;margin-bottom:22px;font-weight:300;}
 .pcard ul{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;flex-grow:1;}
 .pcard li{font-size:12.5px;color:var(--text-dim);padding-left:18px;position:relative;}
@@ -314,16 +311,16 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .contact-tagline em{font-style:italic;font-weight:400;color:var(--gold-dim);}
 .contact-body{font-size:14px;color:var(--text-dim);line-height:1.76;margin-bottom:32px;font-weight:300;}
 .cdetails{display:flex;flex-direction:column;gap:20px;margin-bottom:32px;}
-.cdetail-label{font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:4px;}
+.cdetail-label{font-size:11px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:4px;}
 .cdetail-val{font-size:14px;color:var(--text);}
 .process-mini{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;}
-.process-mini-title{font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:14px;}
+.process-mini-title{font-size:11px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:14px;}
 .process-mini-row{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--text-dim);}
 .process-mini-row:last-child{border-bottom:none;}
 .process-mini-row span.n{font-family:var(--display);color:var(--gold-dim);width:18px;flex-shrink:0;}
 .cform{display:flex;flex-direction:column;gap:0;}
 .cfield{display:flex;flex-direction:column;padding:18px 0;border-bottom:1px solid var(--border);}
-.cfield-label{font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:8px;}
+.cfield-label{font-size:11px;font-weight:700;letter-spacing:0.16em;color:var(--text-faint);text-transform:uppercase;margin-bottom:8px;}
 .cfield-input,.cfield-select,.cfield-textarea{background:transparent;border:none;outline:none;font-size:14.5px;color:var(--text);width:100%;font-family:'Inter',sans-serif;}
 .cfield-textarea{resize:none;min-height:80px;line-height:1.6;}
 .cform-row{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;}
@@ -335,7 +332,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .section{padding-block:clamp(56px,7.5vw,116px);}
 .h2{margin-bottom:0;}
 .section-lead{margin-top:18px;}
-img,iconify-icon,svg{max-width:100%;}
+img,svg.ic,svg{max-width:100%;}
 :target{scroll-margin-top:96px;}
 @media(max-width:1024px){
   .container{max-width:100%;}
@@ -406,7 +403,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 .btn-primary:hover,.nav-cta:hover{background:linear-gradient(135deg,#E2B04A 0%,#C9973A 100%)!important;}
 </style>
 <link rel="canonical" href="https://www.sifttechnology.com/contact.html"/>
-<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="Contact: Book a call | SIFT"/><meta property="og:description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply within 24 hours."/><meta property="og:url" content="https://www.sifttechnology.com/contact.html"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="Contact: Book a call | SIFT"/><meta property="og:description" content="Tell SIFT your ICP and target market. We review every brief by hand and reply by the end of the day."/><meta property="og:url" content="https://www.sifttechnology.com/contact.html"/>
 <meta name="twitter:card" content="summary"/>
 <link rel="stylesheet" href="assets/theme.css"/>
 <script>document.documentElement.classList.add('js')</script>
@@ -443,7 +440,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 <section class="page-hero">
   <div class="container page-hero-inner">
     <h1 class="page-hero-title reveal in"><span data-i18n="contact.h1a">Tell us who</span><br/><em data-i18n="contact.h1b">you're looking for.</em></h1>
-    <p class="page-hero-desc reveal in" data-i18n="contact.hero.desc">Write to us about your ideal customer, in your own words. We reply within 24 hours to set up a call.</p>
+    <p class="page-hero-desc reveal in" data-i18n="contact.hero.desc">Write to us about your ideal customer, in your own words. We reply by the end of the day to set up a call.</p>
   </div>
 </section>
 
@@ -451,17 +448,17 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
   <div class="container contact-grid">
     <div class="reveal">
       <h2 class="contact-tagline"><span data-i18n="contact.tag1">A signal scan starts</span><br/><em data-i18n="contact.tag2">with a brief.</em></h2>
-      <p class="contact-body" data-i18n="contact.body">Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply within 24 hours to set up a call.</p>
+      <p class="contact-body" data-i18n="contact.body">Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply by the end of the day to set up a call.</p>
       <div class="cdetails">
         <div><div class="cdetail-label" data-i18n="contact.email.label">Email</div><a href="mailto:general@sifttechnology.com" class="cdetail-val" style="color:var(--gold-dim);">general@sifttechnology.com</a></div>
         <div><div class="cdetail-label">LinkedIn</div><a href="https://www.linkedin.com/company/sift-aicompany/" class="cdetail-val" style="color:var(--gold-dim);" target="_blank" rel="noopener">SIFT on LinkedIn</a></div>
-        <div><div class="cdetail-label" data-i18n="contact.response.label">Response time</div><span class="cdetail-val" data-i18n="contact.response.val">Within 24 hours</span></div>
+        <div><div class="cdetail-label" data-i18n="contact.response.label">Response time</div><span class="cdetail-val" data-i18n="contact.response.val">By the end of the day</span></div>
         <div><div class="cdetail-label" data-i18n="contact.sla.label">Delivery</div><span class="cdetail-val" data-i18n="contact.sla.val">A matter of days from confirming the brief</span></div>
       </div>
       <div class="process-mini">
         <div class="process-mini-title" data-i18n="contact.next.title">What happens next</div>
         <div class="process-mini-row"><span class="n">1</span><span data-i18n="contact.next.1">We review your ICP brief by hand</span></div>
-        <div class="process-mini-row"><span class="n">2</span><span data-i18n="contact.next.2">We reply within 24 hours</span></div>
+        <div class="process-mini-row"><span class="n">2</span><span data-i18n="contact.next.2">We reply by the end of the day</span></div>
         <div class="process-mini-row"><span class="n">3</span><span data-i18n="contact.next.3">A 30-minute call to define who you're looking for</span></div>
         <div class="process-mini-row"><span class="n">4</span><span data-i18n="contact.next.4">Brief confirmed: delivery in a matter of days</span></div>
         <div class="process-mini-row"><span class="n">5</span><span data-i18n="contact.next.5">We explain the report when we hand it over</span></div>
@@ -471,7 +468,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
     <div class="reveal">
       <div class="cform contact-card">
         <h3 class="contact-card-h" data-i18n="contact.card.h">Write to us</h3>
-        <p class="contact-card-p" data-i18n="contact.card.p">Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply within 24 hours to set up a call.</p>
+        <p class="contact-card-p" data-i18n="contact.card.p">Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply by the end of the day to set up a call.</p>
         <a class="btn btn-primary" href="mailto:general@sifttechnology.com?subject=SIFT%20brief"><span data-i18n="contact.card.cta">Send us an email</span> <span class="arr">→</span></a> <a class="btn btn-outline" href="https://www.linkedin.com/company/sift-aicompany/" target="_blank" rel="noopener">LinkedIn</a>
         <p class="cform-note" style="margin-top:18px;" data-i18n="contact.card.note">general@sifttechnology.com</p>
       </div>
@@ -479,17 +476,14 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <a href="index.html" class="footer-logo"><svg class="logo-mark" viewBox="-76 -60 152 120" fill="none" aria-hidden="true"><circle r="50.8" stroke="currentColor" stroke-width="6"></circle><polyline points="-41.5,-30 -70.5,0 -41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></polyline><polyline points="41.5,-30 70.5,0 41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></polyline></svg><span>SIFT</span></a>
-    <nav class="footer-nav">
-      <a href="products.html" class="footer-link" data-i18n="nav.products">Products</a>
-      <a href="about.html" class="footer-link" data-i18n="nav.how">How it works</a>
-      <a href="contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
-    </nav>
-    <a href="https://www.linkedin.com/company/sift-aicompany/" class="footer-social" target="_blank" rel="noopener" aria-label="SIFT on LinkedIn"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
-    <p class="footer-copy" data-i18n="footer.copy">© 2026 SIFT · Research on public sources, written for B2B sales teams.</p>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div class="f-brand"><a class="f-logo" href="index.html" aria-label="SIFT home"><svg viewBox="-76 -60 152 120" fill="none" aria-hidden="true"><circle r="50.8" stroke="currentColor" stroke-width="6"/><polyline points="-41.5,-30 -70.5,0 -41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="41.5,-30 70.5,0 41.5,30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wm" data-i18n="foot.sift">SIFT</span></a><p data-i18n="foot.p">Research on public sources, written for B2B sales teams.</p><a class="f-li" href="https://www.linkedin.com/company/sift-aicompany/" rel="noopener" aria-label="SIFT on LinkedIn" data-aria-en="SIFT on LinkedIn" data-aria-it="SIFT su LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.5H3V9.75Zm6.5 0h3.83v1.57h.06c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.78 2.66 4.78 6.12v5.87h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75v5.29h-4V9.75Z"/></svg><span data-i18n="foot.li">Follow us on LinkedIn</span></a></div>
+    <nav class="f-col" aria-label="Products"><h2 data-i18n="nav.products">Products</h2><a href="argus.html">ARGUS</a><a href="lynx.html">LYNX</a><a href="collab.html">COLLAB</a></nav>
+    <nav class="f-col" aria-label="Company"><h2 data-i18n="foot.sift">SIFT</h2><a href="about.html" data-i18n="nav.how">How it works</a><a href="contact.html" data-i18n="nav.contact">Contact</a></nav>
+    <div class="f-col"><h2 data-i18n="foot.write">Write to us</h2><a href="mailto:general@sifttechnology.com">general@sifttechnology.com</a><span data-i18n="foot.reply">We reply by the end of the day</span></div>
   </div>
+  <div class="wrap f-bottom"><span>© 2026 SIFT</span><span class="lang2"><span class="lang-btn active" data-lang="en" role="button" tabindex="0">EN</span><span class="lang-btn" data-lang="it" role="button" tabindex="0">IT</span></span></div>
 </footer>
 <script>
 const nav=document.querySelector('.nav');
@@ -532,9 +526,9 @@ if(hamburger&&mobilePanel){
 /* ─── i18n ─────────────────────────────────────────────── */
 const I18N = {
   en: {
-    "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","nav.cta":"Book a call →",
+    "nav.products":"Products","nav.how":"How it works","nav.pricing":"Pricing","nav.contact":"Contact","foot.p":"Research on public sources, written for B2B sales teams.","foot.li":"Follow us on LinkedIn","foot.sift":"SIFT","foot.write":"Write to us","foot.reply":"We reply by the end of the day","nav.cta":"Book a call →",
     "hero.eyebrow":"Signal research","hero.title1":"The research is done.","hero.title2":"You make the call.",
-    "hero.body":"Tell us who you're after, in your own words. In a matter of days you get up to eighty qualified companies, each with the reason to call now and where we saw it, plus the person to write to.",
+    "hero.body":"Tell us who you're after, in your own words. In a matter of days you get up to eighty qualified leads, each with the reason to call now and where we saw it, plus the person to write to.",
     "hero.cta1":"Book a call","hero.cta2":"See how it works",
     "hero.meta1":"ARGUS ONLINE","hero.meta2":"DELIVERY IN A MATTER OF DAYS","hero.meta3":"",
     "trust.label":"Built for B2B sales teams",
@@ -547,14 +541,14 @@ const I18N = {
     "nla.demoV":"\"They just raised a Series C and are hiring 11 engineers. The CRO is rebuilding outbound right now. Lead with how you shorten ramp time.\"",
     "process.eyebrow":"The process","process.h1":"How a","process.h2":"report gets made.",
     "process.1t":"Define the fit","process.1p":"We align on your ICP: firmographics, tech, triggers, and roles that mark a real prospect.",
-    "process.2t":"Research the signals","process.2p":"Argus surfaces companies that are moving: hiring, funding, new leadership, tech changes, all public.",
-    "process.3t":"Map the account","process.3p":"Lynx builds the picture on your top accounts: who makes the decision, and the easiest way to reach them.",
+    "process.2t":"Research the signals","process.2p":"ARGUS surfaces companies that are moving: hiring, funding, new leadership, tech changes, all public.",
+    "process.3t":"Map the account","process.3p":"LYNX builds the picture on your top accounts: who makes the decision, and the easiest way to reach them.",
     "process.4t":"Delivered in a matter of days","process.4p":"We deliver everything in a matter of days, inside ARGUS and LYNX: the scored list, the company profiles, the written brief. As soon as you confirm the brief, your run gets a start date and a delivery date.",
     "engines.eyebrow":"Three engines","engines.h1":"What you can","engines.h2":"buy from us.",
-    "engines.lead":"Three separate licences. Take what you need: we won't make you buy the rest. Start with Argus if you still need to build a list, take Lynx if you already have one. Collab is where your team keeps its work, and it's sold on its own.",
+    "engines.lead":"Three separate licences. Take what you need: we won't make you buy the rest. Start with ARGUS if you still need to build a list, take LYNX if you already have one. COLLAB is where your team keeps its work, and it's sold on its own.",
     "engines.tag1":"01 · Lead Lists","engines.sub1":"Lead lists","engines.p1":"Built to match your ICP. Every contact arrives with a fit score, a cited reason they're buying now, and a one-line way in.",
     "engines.li1a":"Up to 80 qualified leads per report","engines.li1b":"Per-contact fit score (0 to 100)","engines.li1c":"Why it's on the list, with its source",
-    "engines.tag2":"02 · Account Intel","engines.sub2":"Company profiles and a people list","engines.p2":"Send us a list, or take the best companies from Argus. Lynx profiles every one of them, names the decision makers, and gives you Moirai, a chat where you can ask your profiles anything.",
+    "engines.tag2":"02 · Account Intel","engines.sub2":"Company profiles and a people list","engines.p2":"Send us a list, or take the best companies from ARGUS. LYNX profiles every one of them, names the decision makers, and gives you Moirai, a chat where you can ask your profiles anything.",
     "engines.li2a":"A full profile for every company","engines.li2b":"The decision makers, by name and role","engines.li2c":"News from the last 90 days, each with its source and date",
     "engines.tag3":"03 · Strategic Brief","engines.sub3":"A separate product","engines.p3":"Where your team keeps its work: notes and pages, folders and files, tasks, a shared calendar, a team chat. We set up the first version with you; after that it's yours to shape.",
     "engines.li3a":"You choose who sees each note and file","engines.li3b":"Tasks assigned to people, with due dates","engines.li3c":"Shared calendar and team chat",
@@ -563,34 +557,34 @@ const I18N = {
     "guar.1t":"Very short turnaround, a matter of days.","guar.1p":"From the moment you confirm the brief, the list reaches you in a matter of days, and we explain it when we hand it over.",
     "guar.2t":"Every reading comes with its source.","guar.2p":"If we tell you a company has just won a public tender, the link to the award notice is right there next to it.",
     "guar.3t":"Questions answered for 30 days.","guar.3p":"After delivery, you can ask the person who wrote your report anything about it, for 30 days.",
-    "guar.4t":"A reply within 24 hours.","guar.4p":"Whatever you write to us, someone answers the same day or by the end of the next day.",
+    "guar.4t":"A reply by the end of the day.","guar.4p":"Whatever you write to us, someone answers the same day.",
     "who.lead":"A hiring page is data. Eleven engineers hired six weeks after a new sales director arrived is a signal. Turning the first into the second is the work we do: reading scattered public traces and reconstructing what they mean for your deal.",
     "who.1t":"Who you're working with","who.1p":"Your brief is followed by one person, from first read to final list. The person who reads your brief is the one who writes your report.",
     "who.2t":"What we won't do","who.2p":"We won't invent a buying signal to pad a list, and we won't hand you a data dump with a score on top. If the signals don't add up to a real opportunity, we say so instead of filling the gap with noise.",
-    "cta.h1":"Tell us who","cta.h2":"you're looking for.","cta.btn":"Book a call","cta.note":"Reply within 24 hours",
+    "cta.h1":"Tell us who","cta.h2":"you're looking for.","cta.btn":"Book a call","cta.note":"Reply by the end of the day",
     "footer.copy":"© 2026 SIFT · Research on public sources, written for B2B sales teams.",
     "contact.h1a":"Tell us who","contact.h1b":"you're looking for.",
-    "contact.card.h":"Write to us","contact.card.p":"Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply within 24 hours to set up a call.","contact.card.cta":"Send us an email","contact.card.note":"general@sifttechnology.com",
-    "contact.hero.desc":"Write to us about your ideal customer, in your own words. We reply within 24 hours to set up a call.",
+    "contact.card.h":"Write to us","contact.card.p":"Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply by the end of the day to set up a call.","contact.card.cta":"Send us an email","contact.card.note":"general@sifttechnology.com",
+    "contact.hero.desc":"Write to us about your ideal customer, in your own words. We reply by the end of the day to set up a call.",
     "contact.tag1":"A signal scan starts","contact.tag2":"with a brief.",
-    "contact.body":"Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply within 24 hours to set up a call.",
-    "contact.email.label":"Email","contact.response.label":"Response time","contact.response.val":"Within 24 hours","contact.sla.label":"Delivery","contact.sla.val":"A matter of days from confirming the brief",
+    "contact.body":"Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply by the end of the day to set up a call.",
+    "contact.email.label":"Email","contact.response.label":"Response time","contact.response.val":"By the end of the day","contact.sla.label":"Delivery","contact.sla.val":"A matter of days from confirming the brief",
     "contact.next.title":"What happens next",
-    "contact.next.1":"We review your ICP brief by hand","contact.next.2":"We reply within 24 hours","contact.next.3":"A 30-minute call to define who you're looking for","contact.next.4":"Brief confirmed: delivery in a matter of days","contact.next.5":"We explain the report when we hand it over",
+    "contact.next.1":"We review your ICP brief by hand","contact.next.2":"We reply by the end of the day","contact.next.3":"A 30-minute call to define who you're looking for","contact.next.4":"Brief confirmed: delivery in a matter of days","contact.next.5":"We explain the report when we hand it over",
     "contact.first":"First name","contact.last":"Last name","contact.company":"Company","contact.company.ph":"Company name","contact.email2":"Work email",
     "contact.plan.label":"What are you looking for?","contact.plan.ph":"Select a product",
-    "contact.plan.o1":"ARGUS: find companies I don't know yet","contact.plan.o2":"LYNX: profile companies I already have","contact.plan.o3":"ARGUS and LYNX together",
+    "contact.plan.o1":"ARGUS: find new leads","contact.plan.o2":"LYNX: profile companies I already have","contact.plan.o3":"ARGUS and LYNX together",
     "contact.plan.o4":"COLLAB: a workspace for my team","contact.plan.o5":"Not sure yet, recommend something","contact.plan.o6":"Agency: multi-client","contact.plan.o7":"Not sure yet, recommend something","contact.plan.o8":"Custom build: let's talk",
     "contact.market.label":"Target market &amp; geography","contact.market.ph":"e.g. Manufacturing SMEs, North-East Italy, 20–200 employees",
     "contact.roles.label":"Target role(s)","contact.roles.ph":"e.g. Head of Sales, VP Engineering, CFO",
     "contact.icp.label":"Your ICP: tell us more","contact.icp.ph":"What problem do you solve? What signals suggest a company is ready to buy?",
-    "contact.form.note":"Every brief is read by hand. We reply within 24 hours.","contact.form.submit":"Book a call",
-    "contact.success.h":"Brief received.","contact.success.p":"We'll read your brief and reply within 24 hours to set up a call."
+    "contact.form.note":"Every brief is read by hand. We reply by the end of the day.","contact.form.submit":"Book a call",
+    "contact.success.h":"Brief received.","contact.success.p":"We'll read your brief and reply by the end of the day to set up a call."
   },
   it: {
-    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","nav.cta":"Prenota una call →",
+    "nav.products":"Prodotti","nav.how":"Come funziona","nav.pricing":"Prezzi","nav.contact":"Contatti","foot.p":"Ricerca su fonti pubbliche, scritta per i team commerciali B2B.","foot.li":"Seguici su LinkedIn","foot.sift":"SIFT","foot.write":"Scrivici","foot.reply":"Rispondiamo entro la fine della giornata","nav.cta":"Prenota una call →",
     "hero.eyebrow":"Ricerca basata sui segnali","hero.title1":"La ricerca è pronta.","hero.title2":"A te la chiamata.",
-    "hero.body":"Descrivi a parole tue chi stai cercando. Nel giro di pochi giorni ricevi fino a ottanta aziende qualificate, ognuna con il motivo per chiamarla adesso e dove l'abbiamo visto, più la persona a cui scrivere.",
+    "hero.body":"Descrivi a parole tue chi stai cercando. Nel giro di pochi giorni ricevi fino a ottanta lead qualificati, ognuno con il motivo per chiamarlo adesso e dove l'abbiamo visto, più la persona a cui scrivere.",
     "hero.cta1":"Prenota una call","hero.cta2":"Guarda come funziona",
     "hero.meta1":"ARGUS ATTIVO","hero.meta2":"CONSEGNA IN POCHI GIORNI","hero.meta3":"",
     "trust.label":"Al servizio dei team commerciali B2B",
@@ -603,14 +597,14 @@ const I18N = {
     "nla.demoV":"«Hanno appena chiuso un round Series C e stanno assumendo 11 ingegneri. Il direttore commerciale sta rifacendo tutta la macchina di vendita in questo momento: apri parlando di come far ingranare prima i nuovi venditori.»",
     "process.eyebrow":"Il processo","process.h1":"Come nasce","process.h2":"un report.",
     "process.1t":"Capiamo chi cerchi","process.1p":"Mettiamo a fuoco insieme il tuo cliente ideale: settore, dimensione, tecnologie usate, segnali da tenere d'occhio e le figure con cui vale la pena parlare.",
-    "process.2t":"Leggiamo i segnali","process.2p":"Argus individua le aziende che si stanno muovendo: chi assume, chi ha appena raccolto capitali, chi cambia tecnologie. Tutte informazioni pubbliche.",
-    "process.3t":"Studiamo l'azienda","process.3p":"Su quelle che contano davvero, Lynx ricostruisce il quadro: chi decide, e qual è la strada più semplice per arrivarci.",
+    "process.2t":"Leggiamo i segnali","process.2p":"ARGUS individua le aziende che si stanno muovendo: chi assume, chi ha appena raccolto capitali, chi cambia tecnologie. Tutte informazioni pubbliche.",
+    "process.3t":"Studiamo l'azienda","process.3p":"Su quelle che contano davvero, LYNX ricostruisce il quadro: chi decide, e qual è la strada più semplice per arrivarci.",
     "process.4t":"Consegnato in pochi giorni","process.4p":"Ti consegniamo tutto in pochi giorni, dentro ARGUS e LYNX: la lista valutata, le schede delle aziende, l'analisi scritta. Appena confermi il brief, la tua ricerca ha una data di inizio e una di consegna.",
     "engines.eyebrow":"Tre strumenti","engines.h1":"Cosa puoi","engines.h2":"comprare da noi.",
-    "engines.lead":"Tre licenze separate. Prendi quello che ti serve: il resto non te lo facciamo comprare. Parti da Argus se la lista devi ancora costruirla, prendi Lynx se una lista ce l'hai già. Collab è dove il tuo team tiene il suo lavoro, e si compra da solo.",
+    "engines.lead":"Tre licenze separate. Prendi quello che ti serve: il resto non te lo facciamo comprare. Parti da ARGUS se la lista devi ancora costruirla, prendi LYNX se una lista ce l'hai già. COLLAB è dove il tuo team tiene il suo lavoro, e si compra da solo.",
     "engines.tag1":"Liste di contatti","engines.sub1":"Liste di contatti mirate","engines.p1":"Costruite su misura del tuo cliente ideale. Ogni contatto arriva con un punteggio, il motivo documentato per cui è il momento giusto per contattarlo e una frase con cui aprire il discorso.",
     "engines.li1a":"Fino a 80 lead qualificati per report","engines.li1b":"Punteggio per contatto (da 0 a 100)","engines.li1c":"Il motivo per cui è pronto a comprare, con la fonte",
-    "engines.tag2":"Schede aziende","engines.sub2":"Schede aziende e lista persone","engines.p2":"Mandaci una lista, o prendi le aziende migliori da Argus. Lynx fa la scheda completa di ognuna, tiene una lista persone che resta viva, e ti dà Moirai, una chat a cui chiedere qualunque cosa.",
+    "engines.tag2":"Schede aziende","engines.sub2":"Schede aziende e lista persone","engines.p2":"Mandaci una lista, o prendi le aziende migliori da ARGUS. LYNX fa la scheda completa di ognuna, tiene una lista persone che resta viva, e ti dà Moirai, una chat a cui chiedere qualunque cosa.",
     "engines.li2a":"Una scheda completa per ogni azienda","engines.li2b":"I decisori, con nome e ruolo","engines.li2c":"Novità degli ultimi 90 giorni, ognuna con la fonte e la data",
     "engines.tag3":"Spazio di lavoro","engines.sub3":"Un prodotto a sé","engines.p3":"Dove il tuo team tiene il suo lavoro: note e pagine, cartelle e file, attività, un calendario condiviso, una chat di team. La prima versione la impostiamo insieme; dopo è tua, e la organizzi come vuoi.",
     "engines.li3a":"Per ogni nota e file scegli tu chi lo vede","engines.li3b":"Attività assegnate alle persone, con scadenza","engines.li3c":"Calendario condiviso e chat di team",
@@ -619,32 +613,32 @@ const I18N = {
     "guar.1t":"Tempi brevissimi, questione di giorni.","guar.1p":"Dal momento in cui confermi il brief, la lista ti arriva in pochi giorni, e te la spieghiamo quando te la consegniamo.",
     "guar.2t":"Ogni lettura arriva con la sua fonte.","guar.2p":"Se ti diciamo che un'azienda ha appena vinto una gara pubblica, accanto trovi il link all'esito della gara.",
     "guar.3t":"Domande sul report per 30 giorni.","guar.3p":"Dopo la consegna, per 30 giorni puoi chiedere qualunque cosa sul tuo report a chi l'ha scritto.",
-    "guar.4t":"Una risposta entro 24 ore.","guar.4p":"Qualunque cosa ci scrivi, qualcuno ti risponde in giornata o entro la fine del giorno dopo.",
+    "guar.4t":"Una risposta entro la fine della giornata.","guar.4p":"Qualunque cosa ci scrivi, qualcuno ti risponde in giornata.",
     "who.lead":"Un annuncio di lavoro è un dato. Undici ingegneri assunti sei settimane dopo l'arrivo di un nuovo direttore commerciale è un segnale. Trasformare il primo nel secondo è esattamente il nostro lavoro: leggere tracce pubbliche sparse e ricostruire cosa significano per la tua trattativa.",
     "who.1t":"Con chi stai lavorando","who.1p":"Il tuo brief lo segue una sola persona, dalla prima lettura fino alla lista finale. Chi legge il tuo brief è la stessa persona che scrive il tuo report.",
     "who.2t":"Cosa non facciamo","who.2p":"Non ci inventiamo segnali per allungare una lista e non ti consegniamo un mucchio di dati con un punteggio sopra. Se i segnali non compongono un'occasione vera, te lo diciamo invece di riempire il vuoto con rumore.",
-    "cta.h1":"Dicci chi","cta.h2":"stai cercando.","cta.btn":"Prenota una call","cta.note":"Risposta entro 24 ore",
+    "cta.h1":"Dicci chi","cta.h2":"stai cercando.","cta.btn":"Prenota una call","cta.note":"Risposta entro la fine della giornata",
     "footer.copy":"© 2026 SIFT · Ricerca su fonti pubbliche, scritta per i team commerciali B2B.",
     "contact.h1a":"Dicci chi","contact.h1b":"stai cercando.",
-    "contact.card.h":"Scrivici","contact.card.p":"Raccontaci a chi vendi e cosa di solito li spinge a comprare. Basta una frase. Leggiamo ogni messaggio di persona e ti rispondiamo entro 24 ore per fissare una call.","contact.card.cta":"Scrivici una email","contact.card.note":"general@sifttechnology.com",
-    "contact.hero.desc":"Scrivici a parole tue chi è il tuo cliente ideale. Ti rispondiamo entro 24 ore per fissare una call.",
+    "contact.card.h":"Scrivici","contact.card.p":"Raccontaci a chi vendi e cosa di solito li spinge a comprare. Basta una frase. Leggiamo ogni messaggio di persona e ti rispondiamo entro la fine della giornata per fissare una call.","contact.card.cta":"Scrivici una email","contact.card.note":"general@sifttechnology.com",
+    "contact.hero.desc":"Scrivici a parole tue chi è il tuo cliente ideale. Ti rispondiamo entro la fine della giornata per fissare una call.",
     "contact.tag1":"Ogni ricerca parte","contact.tag2":"da una conversazione.",
-    "contact.body":"Raccontaci a chi vendi, dove e cosa vuoi ottenere. Leggiamo tutto di persona e ti rispondiamo entro 24 ore per fissare una call.",
-    "contact.email.label":"Email","contact.response.label":"Ti rispondiamo","contact.response.val":"Entro 24 ore","contact.sla.label":"Tempi di consegna","contact.sla.val":"Questione di giorni dalla conferma del brief",
+    "contact.body":"Raccontaci a chi vendi, dove e cosa vuoi ottenere. Leggiamo tutto di persona e ti rispondiamo entro la fine della giornata per fissare una call.",
+    "contact.email.label":"Email","contact.response.label":"Ti rispondiamo","contact.response.val":"Entro la fine della giornata","contact.sla.label":"Tempi di consegna","contact.sla.val":"Questione di giorni dalla conferma del brief",
     "contact.next.title":"Cosa succede dopo che scrivi",
-    "contact.next.1":"Leggiamo la tua richiesta di persona","contact.next.2":"Ti rispondiamo entro 24 ore","contact.next.3":"Una call di mezz'ora per definire chi stai cercando","contact.next.4":"Brief confermato: consegna in questione di giorni","contact.next.5":"Ti spieghiamo il report quando te lo consegniamo",
+    "contact.next.1":"Leggiamo la tua richiesta di persona","contact.next.2":"Ti rispondiamo entro la fine della giornata","contact.next.3":"Una call di mezz'ora per definire chi stai cercando","contact.next.4":"Brief confermato: consegna in questione di giorni","contact.next.5":"Ti spieghiamo il report quando te lo consegniamo",
     "contact.first":"Nome","contact.last":"Cognome","contact.company":"Azienda","contact.company.ph":"Come si chiama la tua azienda","contact.email2":"Email aziendale",
     "contact.plan.label":"Cosa ti serve?","contact.plan.ph":"Scegli una soluzione",
-    "contact.plan.o1":"ARGUS: trovare aziende che non conosco","contact.plan.o2":"LYNX: schede sulle aziende che ho già","contact.plan.o3":"ARGUS e LYNX insieme",
+    "contact.plan.o1":"ARGUS: trovare nuovi lead","contact.plan.o2":"LYNX: schede sulle aziende che ho già","contact.plan.o3":"ARGUS e LYNX insieme",
     "contact.plan.o4":"COLLAB: uno spazio di lavoro per il team","contact.plan.o5":"Non lo so ancora, consigliami tu","contact.plan.o6":"Agenzia, lavoro su più clienti","contact.plan.o7":"Non lo so ancora, consigliami tu","contact.plan.o8":"Qualcosa su misura, parliamone",
     "contact.market.label":"In quale mercato e area geografica","contact.market.ph":"es. PMI manifatturiere, Nord-Est, 20-200 dipendenti",
     "contact.roles.label":"Con chi vuoi parlare","contact.roles.ph":"es. direttore vendite, responsabile IT, direttore finanziario",
     "contact.icp.label":"Raccontaci meglio chi cerchi","contact.icp.ph":"Che problema risolvi ai tuoi clienti? Da cosa capisci che un'azienda è pronta a comprare?",
-    "contact.form.note":"Ogni richiesta la leggiamo di persona. Ti rispondiamo entro 24 ore.","contact.form.submit":"Prenota una call",
-    "contact.success.h":"Richiesta ricevuta.","contact.success.p":"Leggiamo la tua richiesta e ti rispondiamo entro 24 ore per fissare una call."
+    "contact.form.note":"Ogni richiesta la leggiamo di persona. Ti rispondiamo entro la fine della giornata.","contact.form.submit":"Prenota una call",
+    "contact.success.h":"Richiesta ricevuta.","contact.success.p":"Leggiamo la tua richiesta e ti rispondiamo entro la fine della giornata per fissare una call."
   }
 };
-function applyLang(lang){
+function applyLang(lang){document.querySelectorAll('[data-aria-en]').forEach(function(e){e.setAttribute('aria-label',e.getAttribute('data-aria-'+(lang==='it'?'it':'en')))});
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
