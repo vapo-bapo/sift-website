@@ -483,3 +483,65 @@ a,button,summary,[role=button],.lang-btn{touch-action:manipulation}
 @media(max-width:374px){.pg-contact .cdetails>div{grid-template-columns:minmax(0,1fr);padding:10px 0 0}.pg-contact .cdetail-val{padding:10px 0}}
 /* tour: stesso margine laterale del resto del sito su telefono */
 @media(max-width:760px){body:has(#tour) .slide .container{padding-left:20px;padding-right:20px}}
+
+/* =====================================================================
+   Schede prodotto (ARGUS, LYNX, COLLAB) su telefono: stesso linguaggio delle altre pagine.
+   Barra alta con uscita e lingua che non copre il testo, tutto allineato a sinistra,
+   un solo tasto per schermata, riquadri con le colonne che respirano.
+   ===================================================================== */
+@media(max-width:760px){
+  /* barra alta: uscita e lingua stanno su una fascia, non galleggiano sul testo */
+  body:has(#tour)::before{content:"";position:fixed;top:0;left:0;right:0;height:64px;z-index:94;background:rgba(255,255,255,.92);background:color-mix(in srgb,var(--p-bg0) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--p-line)}
+  .tour-exit{top:10px;left:20px;background:#fff}
+  .tour-lang{top:8px;right:20px;background:#fff}
+
+  /* prima schermata: allineata a sinistra, un solo tasto a tutta larghezza */
+  body:has(#tour) #s1{padding:92px 0 44px!important}
+  body:has(#tour) #s1 .container{text-align:left!important}
+  body:has(#tour) #s1 .step-eyebrow{justify-content:flex-start!important;margin-bottom:18px}
+  body:has(#tour) h1.headline{font-size:clamp(34px,10vw,46px);line-height:1.04;letter-spacing:-.035em}
+  body:has(#tour) #s1 .sub{margin:16px 0 0!important;max-width:36em!important}
+  body:has(#tour) #s1 .container>div:last-child{flex-direction:column;align-items:stretch!important;justify-content:flex-start!important;gap:12px!important;margin-top:26px!important}
+  body:has(#tour) #s1 .btn-outline,body:has(#tour) .scroll-hint{display:none}
+  body:has(#tour) .btn{min-height:52px;justify-content:center;padding:0 22px;font-size:16px}
+
+  /* schermate del tour: ritmo e testi come le pagine interne */
+  body:has(#tour) .slide{padding:52px 0 56px!important}
+  body:has(#tour) .duo{gap:26px}
+  body:has(#tour) h2.headline{font-size:clamp(30px,8.4vw,38px);line-height:1.07;letter-spacing:-.032em}
+  body:has(#tour) .step-eyebrow{margin-bottom:16px}
+  body:has(#tour) .sub{font-size:16px;line-height:1.6;margin-top:14px;max-width:36em}
+  body:has(#tour) .takeaways{margin-top:20px;gap:10px}
+  body:has(#tour) .takeaways li{font-size:15px;line-height:1.45}
+
+  /* ultima schermata: a sinistra, tasti uguali e a tutta larghezza */
+  body:has(#tour) .cta-slide{text-align:left}
+  body:has(#tour) .cta-slide .step-eyebrow{justify-content:flex-start!important}
+  body:has(#tour) .cta-slide .container>div{flex-direction:column;align-items:stretch!important;justify-content:flex-start!important;gap:12px!important;margin-top:26px!important}
+  body:has(#tour) .cta-note{font-size:13px;line-height:1.5;margin-top:16px}
+  body:has(#tour) .tour-foot{justify-content:flex-start;padding:30px 12px 0;font-size:14px}
+
+  /* riquadri del prodotto */
+  body:has(#tour) .screen{border-radius:22px!important}
+  body:has(#tour) .screen-body{padding:16px}
+  body:has(#tour) .ov-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  body:has(#tour) .ov-cell:nth-child(-n+3){grid-column:span 2}
+  body:has(#tour) .ov-cell:nth-child(n+4){grid-column:span 3}
+  body:has(#tour) .lead-row{display:grid;grid-template-columns:auto 38px minmax(0,1fr);grid-template-areas:"rank gauge main" ". . tag";column-gap:10px;row-gap:8px;align-items:start;padding:12px}
+  body:has(#tour) .lead-row .rank{grid-area:rank;width:auto;padding-top:11px}
+  body:has(#tour) .lead-row .gauge{grid-area:gauge}
+  body:has(#tour) .lead-row>div:nth-of-type(2){grid-area:main;min-width:0}
+  body:has(#tour) .lead-row .tag{grid-area:tag;justify-self:start}
+  body:has(#tour) .case-cols{grid-template-columns:1fr;gap:16px}
+  body:has(#tour) .notes-mock{grid-template-columns:1fr;min-height:0}
+  body:has(#tour) .notes-side{border-right:0;border-bottom:1px solid var(--border);padding:14px 16px}
+  body:has(#tour) .notes-main{flex-direction:row;justify-content:space-between;align-items:center;gap:14px;padding:14px 16px;text-align:left}
+  body:has(#tour) .notes-main svg.ic{display:none}
+  body:has(#tour) :is(h1,h2).headline{text-wrap:balance}
+  /* testi dentro i riquadri un filo più grandi: leggibili da telefono */
+  body:has(#tour) .screen :is(.stat-label,.prow-domain,.arc-meta,.lead-why,.board-meta,.owner-row,.list-card.dashed,.stake-desc,.brief-hl,.notes-main p,.notes-btn,.files-search,.dropzone,.cal-chip){font-size:12px}
+  body:has(#tour) .screen :is(.prow-name,.arc-title,.lead-name,.co-name,.case-row,.stake-name,.folder-row,.note-row,.folder-card .fn){font-size:12.5px}
+  body:has(#tour) .screen .crit-box>div:last-child{font-size:12.5px!important}
+}
+/* tour: schermi molto stretti, le etichette dei numeri del report non vanno a capo a metà parola */
+@media(max-width:339px){body:has(#tour) .ov-cell{padding-inline:0}body:has(#tour) .ov-cell .l{font-size:10px;letter-spacing:0}}
