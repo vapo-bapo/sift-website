@@ -140,7 +140,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .process-card h3{font-family:var(--display);font-size:22px;font-weight:500;color:var(--text);}
 .process-card p{font-size:13.5px;color:var(--text-dim);line-height:1.68;font-weight:300;}
 
-/* NLA feature — kept as a dark accent panel for contrast */
+/* NLA feature: kept as a dark accent panel for contrast */
 .nla{margin-top:56px;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;background:var(--void);box-shadow:0 24px 64px rgba(0,0,0,0.55);}
 .nla-copy{padding:52px 48px;display:flex;flex-direction:column;justify-content:center;}
 .nla-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-bright);background:rgba(235,194,110,0.1);border:1px solid rgba(235,194,110,0.24);border-radius:999px;padding:7px 15px;margin-bottom:20px;}
@@ -199,7 +199,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .who-cols p{font-size:13.5px;color:var(--text-dim);line-height:1.75;font-weight:300;}
 @media(max-width:760px){.who-cols{grid-template-columns:1fr;gap:28px;}}
 
-/* CTA — kept as a dark accent panel */
+/* CTA: kept as a dark accent panel */
 .cta{padding:clamp(80px,10vw,140px) 0;}
 .cta-inner{background:linear-gradient(160deg,#22272C,var(--void));border-radius:24px;padding:clamp(48px,7vw,88px);display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.55);}
 .cta-glow{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(235,194,110,0.16) 0%,rgba(154,211,193,0.1) 55%,transparent 75%);pointer-events:none;}
@@ -443,6 +443,15 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
   <div class="container page-hero-inner">
     <h1 class="page-hero-title reveal in"><span data-i18n="contact.h1a">Tell us who</span><br/><em data-i18n="contact.h1b">you're looking for.</em></h1>
     <p class="page-hero-desc reveal in" data-i18n="contact.hero.desc">Write to us about your ideal customer, in your own words. We reply by the end of the day to set up a call.</p>
+    <div class="hero-contact reveal in">
+      <div class="btn-band"><a class="btn btn-primary" href="mailto:general@sifttechnology.com?subject=SIFT%20brief"><span data-i18n="contact.card.cta">Send us an email</span> <span class="arr">→</span></a></div>
+      <p class="hero-addr">general@sifttechnology.com</p>
+      <div class="hero-alt">
+        <a class="alt-chip" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=general%40sifttechnology.com&amp;su=SIFT%20brief" target="_blank" rel="noopener" data-i18n="contact.alt.gmail">Open in Gmail</a>
+        <a class="alt-chip" href="https://outlook.office.com/mail/deeplink/compose?to=general%40sifttechnology.com&amp;subject=SIFT%20brief" target="_blank" rel="noopener" data-i18n="contact.alt.outlook">Open in Outlook</a>
+        <button class="alt-chip" type="button" data-copy="general@sifttechnology.com" data-i18n="contact.copy">Copy address</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -530,7 +539,7 @@ const I18N = {
   en: {
     "nav.products":"Products","nav.how":"How it works","nav.contact":"Contact","foot.p":"Research on public sources, written for B2B sales teams.","foot.li":"Follow us on LinkedIn","foot.sift":"SIFT","foot.write":"Write to us","foot.reply":"We reply by the end of the day","nav.cta":"Book a call →",
     "contact.h1a":"Tell us who","contact.h1b":"you're looking for.",
-    "contact.card.h":"Write to us","contact.card.p":"Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply by the end of the day to set up a call.","contact.card.cta":"Send us an email","contact.card.note":"general@sifttechnology.com",
+    "contact.card.h":"Write to us","contact.card.p":"Tell us who you sell to and what usually makes them buy. A sentence is enough. We read every message by hand and reply by the end of the day to set up a call.","contact.card.cta":"Send us an email","contact.alt.gmail":"Open in Gmail","contact.alt.outlook":"Open in Outlook","contact.copy":"Copy address","contact.copied":"Copied","contact.card.note":"general@sifttechnology.com",
     "contact.hero.desc":"Write to us about your ideal customer, in your own words. We reply by the end of the day to set up a call.",
     "contact.tag1":"All our research starts","contact.tag2":"with a conversation.",
     "contact.body":"Tell us who you sell to, where, and what you're trying to hit this quarter. We read it by hand and reply by the end of the day to set up a call.",
@@ -541,7 +550,7 @@ const I18N = {
   it: {
     "nav.products":"Prodotti","nav.how":"Come funziona","nav.contact":"Contatti","foot.p":"Ricerca su fonti pubbliche, scritta per i team commerciali B2B.","foot.li":"Seguici su LinkedIn","foot.sift":"SIFT","foot.write":"Scrivici","foot.reply":"Rispondiamo entro la fine della giornata","nav.cta":"Prenota una call →",
     "contact.h1a":"Dicci chi","contact.h1b":"stai cercando.",
-    "contact.card.h":"Scrivici","contact.card.p":"Raccontaci a chi vendi e cosa di solito li spinge a comprare. Basta una frase. Leggiamo ogni messaggio di persona e ti rispondiamo entro la fine della giornata per fissare una call.","contact.card.cta":"Scrivici una email","contact.card.note":"general@sifttechnology.com",
+    "contact.card.h":"Scrivici","contact.card.p":"Raccontaci a chi vendi e cosa di solito li spinge a comprare. Basta una frase. Leggiamo ogni messaggio di persona e ti rispondiamo entro la fine della giornata per fissare una call.","contact.card.cta":"Scrivici una email","contact.alt.gmail":"Apri in Gmail","contact.alt.outlook":"Apri in Outlook","contact.copy":"Copia indirizzo","contact.copied":"Copiato","contact.card.note":"general@sifttechnology.com",
     "contact.hero.desc":"Scrivici a parole tue chi è il tuo cliente ideale. Ti rispondiamo entro la fine della giornata per fissare una call.",
     "contact.tag1":"Ogni ricerca parte","contact.tag2":"da una conversazione.",
     "contact.body":"Raccontaci a chi vendi, dove e cosa vuoi ottenere questo trimestre. Leggiamo tutto di persona e ti rispondiamo entro la fine della giornata per fissare una call.",
@@ -567,6 +576,26 @@ function applyLang(lang){document.querySelectorAll('[data-aria-en]').forEach(fun
 }
 document.querySelectorAll('.lang-btn').forEach(b=>{
   b.addEventListener('click', ()=>applyLang(b.dataset.lang));
+});
+/* copia indirizzo: per chi non ha un'app di posta che si apre dal collegamento */
+function copyText(t){
+  if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(t);}
+  return new Promise(function(res,rej){
+    var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,t.length);
+    var ok=false;try{ok=document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);ok?res():rej();
+  });
+}
+document.querySelectorAll('[data-copy]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    copyText(btn.getAttribute('data-copy')).then(function(){
+      var l=document.documentElement.lang==='it'?'it':'en';
+      btn.textContent=I18N[l]['contact.copied'];btn.classList.add('done');
+      clearTimeout(btn._t);
+      btn._t=setTimeout(function(){var l2=document.documentElement.lang==='it'?'it':'en';btn.textContent=I18N[l2]['contact.copy'];btn.classList.remove('done');},2200);
+    },function(){});
+  });
 });
 let savedLang='en';
 try{ savedLang = localStorage.getItem('sift-lang') || 'en'; }catch(e){}
