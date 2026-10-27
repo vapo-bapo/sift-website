@@ -140,7 +140,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .process-card h3{font-family:var(--display);font-size:22px;font-weight:500;color:var(--text);}
 .process-card p{font-size:13.5px;color:var(--text-dim);line-height:1.68;font-weight:300;}
 
-/* NLA feature — kept as a dark accent panel for contrast */
+/* NLA feature: kept as a dark accent panel for contrast */
 .nla{margin-top:56px;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;background:var(--void);box-shadow:0 24px 64px rgba(0,0,0,0.55);}
 .nla-copy{padding:52px 48px;display:flex;flex-direction:column;justify-content:center;}
 .nla-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-bright);background:rgba(235,194,110,0.1);border:1px solid rgba(235,194,110,0.24);border-radius:999px;padding:7px 15px;margin-bottom:20px;}
@@ -199,7 +199,7 @@ a:focus-visible,button:focus-visible,.nav-link:focus-visible,.footer-link:focus-
 .who-cols p{font-size:13.5px;color:var(--text-dim);line-height:1.75;font-weight:300;}
 @media(max-width:760px){.who-cols{grid-template-columns:1fr;gap:28px;}}
 
-/* CTA — kept as a dark accent panel */
+/* CTA: kept as a dark accent panel */
 .cta{padding:clamp(80px,10vw,140px) 0;overflow:hidden;}
 .cta-inner{background:linear-gradient(160deg,#22272C,var(--void));border-radius:24px;padding:clamp(48px,7vw,88px);display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.55);}
 .cta-glow{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(235,194,110,0.16) 0%,rgba(154,211,193,0.1) 55%,transparent 75%);pointer-events:none;}
@@ -422,6 +422,7 @@ p,li,.sub,.lead,.section-lead,.hero-body,.page-hero-desc,.pcard-desc,.prow-body,
 <meta property="og:type" content="website"/><meta property="og:site_name" content="SIFT"/><meta property="og:title" content="How it works: Method &amp; team | SIFT"/><meta property="og:description" content="How SIFT turns public signals into a usable shortlist: work out who you want, research the signals, map the account, deliver in a matter of days."/><meta property="og:url" content="https://www.sifttechnology.com/about.html"/>
 <meta name="twitter:card" content="summary"/>
 <link rel="stylesheet" href="assets/theme.css"/>
+<link rel="stylesheet" href="assets/buttons.css"/>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="pg-about">
@@ -662,5 +663,6 @@ try{ savedLang = localStorage.getItem('sift-lang') || 'en'; }catch(e){}
 applyLang(savedLang);
 </script>
 <script src="assets/wrap.js" defer></script>
+<script src="assets/motion.js" defer></script>
 </body>
 </html>

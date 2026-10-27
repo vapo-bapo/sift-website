@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 :root{
-  --graphite:#003D32; --graphite-2:#0A5143; --line-dark:#1F6757;
+  --graphite:#003D32; --graphite-2:#0A5143; --line-dark:#1F6757; --frame:#0F7A64; --frame-hot:#1BA283;
   --ivory:#F7FCFA; --ivory-2:#EEF7F3; --ivory-dim:#D2F1E5; --grey:#86D3BA;
   --amber:#5CF2B4; --amber-ink:#00775D; --teal:#FFD166; --teal-ink:#8A5A00;
   --line-light:rgba(6,36,30,.2); --line-light-2:rgba(6,36,30,.12); --on-amber-dim:#00382B;
@@ -34,13 +34,13 @@ a{color:inherit}
 .btn-amber{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 45%,var(--fluo-3) 100%);color:var(--graphite)}
 .btn-ghost{border:1px solid rgba(var(--ink-rgb),.45);color:var(--ink)}
 .btn-dark{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 100%);color:var(--graphite)}
-header.wrap nav{background:#0A5143;border:6px solid #1F6757;border-radius:14px;min-height:88px;padding:0 14px 0 36px;margin-top:32px}
+header.wrap nav{background:#0A5143;border:6px solid var(--frame);border-radius:14px;min-height:88px;padding:0 14px 0 36px;margin-top:32px}
 header.wrap nav .logo,header.wrap nav .logo .wm,header.wrap nav .logo svg{color:#F7FCFA!important}
 header.wrap nav .links a:not(.btn){color:#DDF3EC}
 header.wrap nav .lang button{color:#9FD2C3}header.wrap nav .lang button[aria-pressed=true]{color:#F7FCFA}
 header.wrap{margin-bottom:28px}
-header.wrap nav .menu summary{color:#F7FCFA}.menu div{background:#0A5143;border:2px solid #1F6757;top:56px}
-.hero .ctas{background:#0A5143;border:6px solid #1F6757;border-radius:14px;min-height:88px;padding:0 22px;gap:48px;width:100%;max-width:760px;flex-wrap:nowrap;margin-top:34px}
+header.wrap nav .menu summary{color:#F7FCFA}.menu div{background:#0A5143;border:2px solid var(--frame);top:56px}
+.hero .ctas{background:#0A5143;border:6px solid var(--frame);border-radius:14px;min-height:88px;padding:0 22px;gap:48px;width:100%;max-width:760px;flex-wrap:nowrap;margin-top:34px}
 .hero .ctas .btn{margin:0}.hero .ctas .textlink{color:#F7FCFA;padding:12px 0}
 
 /* nav */
@@ -72,7 +72,7 @@ mark{color:inherit;background:linear-gradient(90deg,rgba(var(--fluo-rgb),.95),rg
 .btn-dark{background:linear-gradient(120deg,var(--fluo-hi) 0%,var(--fluo) 100%);color:var(--graphite)}
 .textlink{font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px;display:inline-block;padding:12px 0}
 
-.sheet{background:var(--graphite-2);border:1px solid var(--line-dark);color:var(--ivory);border-radius:14px;padding:28px 30px 56px;position:relative;margin-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 40%,rgba(0,0,0,.5) 68%,transparent 96%);mask-image:linear-gradient(180deg,#000 0%,#000 40%,rgba(0,0,0,.5) 68%,transparent 96%)}
+.sheet{background:var(--graphite-2);border:2px solid var(--frame);color:var(--ivory);border-radius:14px;padding:27px 29px 55px;position:relative;margin-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 40%,rgba(0,0,0,.5) 68%,transparent 96%);mask-image:linear-gradient(180deg,#000 0%,#000 40%,rgba(0,0,0,.5) 68%,transparent 96%)}
 .sheet-top{display:flex;justify-content:space-between;align-items:baseline;color:var(--grey);font-size:13px;margin-bottom:22px}
 .sheet-top span:first-child{color:var(--ivory);font:500 17px var(--display)}
 .co{font:600 28px/1.15 var(--display);letter-spacing:-.02em}
@@ -224,7 +224,7 @@ dl{margin:0} dd{margin:0}
   .menu summary:after{opacity:0}
   .menu[open] summary:before{box-shadow:none;transform:rotate(45deg)}
   .menu[open] summary:after{opacity:1;transform:rotate(-45deg)}
-  .menu div{left:-4px;right:-4px;top:calc(100% + 12px);min-width:0;background:#0A5143;padding:6px 22px 16px;border:4px solid #1F6757;border-radius:14px;box-shadow:0 18px 40px rgba(0,40,32,.3)}
+  .menu div{left:-4px;right:-4px;top:calc(100% + 12px);min-width:0;background:#0A5143;padding:6px 22px 16px;border:4px solid var(--frame);border-radius:14px;box-shadow:0 18px 40px rgba(0,40,32,.3)}
   .menu div a{display:flex;align-items:center;min-height:48px;padding:0;font-size:16px}
   .menu .lang{display:flex;align-self:flex-start;gap:2px;margin:10px 0 0;padding:2px;border:1px solid #1F6757;border-radius:999px}
   header.wrap nav .menu .lang button{min-width:52px;min-height:40px;padding:0 14px;border-radius:999px;font-weight:600;color:#9FD2C3}
@@ -274,6 +274,7 @@ dl{margin:0} dd{margin:0}
 .t{font-style:normal}.prod li .lt{font-style:normal}.sheet .co~dl dt{}
 h1,h2,h3,h4,blockquote{text-wrap:balance;hyphens:none}p,li{text-wrap:pretty;hyphens:none}
 </style>
+<link rel="stylesheet" href="assets/buttons.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SIFT","url":"https://www.sifttechnology.com/","logo":"https://www.sifttechnology.com/assets/logo.svg","sameAs":["https://www.linkedin.com/company/sift-aicompany/"],"email":"general@sifttechnology.com"}</script>
 </head>
 <body>
@@ -402,5 +403,6 @@ var sl='en';try{sl=localStorage.getItem('sift-lang')||'en'}catch(e){}
 if(sl!=='en')applyLang(sl);
 </script>
 <script src="assets/wrap.js" defer></script>
+<script src="assets/motion.js" defer></script>
 </body>
 </html>

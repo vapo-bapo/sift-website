@@ -1,0 +1,86 @@
+/* SIFT · animazioni dei tasti
+   Foglio unico, caricato per ultimo da tutte le pagine (home compresa).
+   - il movimento usa solo transform e opacity: nessun salto di impaginazione
+   - il passaggio del mouse vale solo con puntatore preciso; su telefono contano la pressione e l'onda al tocco (motion.js)
+   - con "riduci movimento" restano i cambi di colore e il bagliore, senza spostamenti */
+
+:root{--btn-ease:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- base comune ---------- */
+:is(.btn,.nav-cta,.alt-chip,.site-foot .f-li){position:relative}
+:is(.btn,.nav-cta,.alt-chip,.site-foot .f-li,.link-more,.tour-exit){overflow:hidden;overflow:clip;isolation:isolate;-webkit-tap-highlight-color:transparent}
+:is(.btn,.nav-cta){transition:transform .5s var(--btn-ease),box-shadow .5s var(--btn-ease),filter .3s ease,background-color .3s ease,border-color .3s ease,color .3s ease}
+:is(.alt-chip,.site-foot .f-li,.tour-exit){transition:transform .45s var(--btn-ease),box-shadow .45s var(--btn-ease),background-color .25s ease,border-color .25s ease,color .25s ease}
+.btn .arr,.link-more .arr{display:inline-block;transition:transform .45s var(--btn-ease)}
+
+/* onda al tocco: parte dal punto toccato (motion.js scrive --rx/--ry), usa il colore del testo del tasto */
+:is(.btn,.nav-cta,.alt-chip,.site-foot .f-li,.link-more,.tour-exit)::after{content:"";position:absolute;left:var(--rx,50%);top:var(--ry,50%);width:190%;aspect-ratio:1;border-radius:50%;z-index:-1;pointer-events:none;opacity:0;background:radial-gradient(circle,currentColor 0%,transparent 66%);transform:translate(-50%,-50%) scale(0)}
+:is(.btn,.nav-cta,.alt-chip,.site-foot .f-li,.link-more,.tour-exit).rip::after{animation:btn-rip .7s var(--btn-ease) 1 both}
+@keyframes btn-rip{0%{transform:translate(-50%,-50%) scale(0);opacity:.26}65%{opacity:.1}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
+/* ---------- tasti menta: lampo di luce ---------- */
+:is(.btn-primary,.btn-amber,.btn-dark,.btn-onDark,.nav-cta)::before{content:"";position:absolute;top:0;bottom:0;left:0;width:55%;z-index:-1;pointer-events:none;opacity:0;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.62) 50%,rgba(255,255,255,0) 100%);transform:translateX(-140%) skewX(-18deg)}
+@keyframes btn-sheen{0%,74%{transform:translateX(-140%) skewX(-18deg);opacity:0}78%,88%{opacity:1}92%,100%{transform:translateX(200%) skewX(-18deg);opacity:0}}
+@keyframes btn-sheen-hover{0%{transform:translateX(-140%) skewX(-18deg);opacity:0}15%,70%{opacity:1}100%{transform:translateX(200%) skewX(-18deg);opacity:0}}
+
+/* ---------- tasti a contorno: riempimento che sale dal basso ---------- */
+:is(.btn-outline,.btn-ghost)::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:var(--btn-fill,rgba(0,119,93,.1));opacity:0;transition:opacity .3s ease,transform .5s var(--btn-ease)}
+.pg-contact .contact-card{--btn-fill:rgba(111,235,189,.16)}
+body:has(#tour){--btn-fill:rgba(0,0,0,.06)}
+@supports (background:color-mix(in srgb,red 50%,blue)){body:has(#tour){--btn-fill:color-mix(in srgb,var(--p-accent) 14%,transparent)}}
+
+/* ---------- cornici delle fasce: si accendono quando il tasto dentro è attivo ---------- */
+.btn-band,.hero .ctas,.pg-contact .contact-card,header.wrap nav,body:not(:has(#tour)) .nav-inner{transition:border-color .4s var(--btn-ease),box-shadow .4s var(--btn-ease)}
+:is(.btn-band,.hero .ctas,.pg-contact .contact-card,header.wrap nav,body:not(:has(#tour)) .nav-inner) :is(.btn,.nav-cta,.alt-chip):focus-visible{outline:2px solid #F7FCFA!important;outline-offset:3px}
+.pg-contact .alt-chip:focus-visible{outline:2px solid #F7FCFA!important;outline-offset:3px}
+
+/* ---------- tasto "Scheda completa": testo leggibile sul riempimento ---------- */
+.link-more:hover,.link-more:focus-visible{color:#F7FCFA}
+.pg-products #lynx .link-more:hover,.pg-products #lynx .link-more:focus-visible{color:var(--graphite)}
+
+/* ---------- pillole piccole ---------- */
+.lang-btn{transition:background-color .25s ease,color .25s ease,transform .15s var(--btn-ease)}
+.textlink{transition:text-underline-offset .4s var(--btn-ease),text-decoration-color .3s ease,color .3s ease}
+
+/* ---------- mouse: bagliore e cambio di colore (valgono anche con "riduci movimento") ---------- */
+@media (hover:hover) and (pointer:fine){
+  :is(.btn-primary,.btn-amber,.btn-dark,.btn-onDark,.nav-cta):hover{box-shadow:0 6px 18px rgba(63,224,169,.45);filter:brightness(1.04) saturate(1.06)}
+  body:has(#tour) .btn-primary:hover{box-shadow:0 8px 22px rgba(var(--p-fluo-rgb),.5)}
+  :is(.btn-outline,.btn-ghost):hover::before{opacity:1}
+  .link-more:hover,.link-more:focus-visible{box-shadow:0 10px 26px rgba(0,119,93,.28)}
+  .pg-products #lynx .link-more:hover,.pg-products #lynx .link-more:focus-visible{box-shadow:0 10px 26px rgba(111,235,189,.3)}
+  .textlink:hover,.hero .ctas .textlink:hover{text-underline-offset:9px;color:#8CF0CC}
+  .btn-band:has(.btn:hover),.hero .ctas:has(.btn:hover),.pg-contact .contact-card:has(.btn-primary:hover){border-color:var(--frame-hot,#1BA283);box-shadow:0 8px 28px rgba(15,122,100,.3)}
+  body:not(:has(#tour)) .nav-inner:has(.nav-cta:hover),header.wrap nav:has(.btn:hover){border-color:var(--frame-hot,#1BA283)}
+}
+
+/* ---------- pressione (mouse e dito) ---------- */
+:is(.btn,.nav-cta,.alt-chip,.site-foot .f-li,.link-more,.tour-exit):active{filter:brightness(.96)}
+:is(.btn-outline,.btn-ghost):active::before{opacity:1}
+.btn-band:has(.btn:active),.hero .ctas:has(.btn:active),.pg-contact .contact-card:has(.btn-primary:active){border-color:var(--frame-hot,#1BA283)}
+body:not(:has(#tour)) .nav-inner:has(.nav-cta:active),header.wrap nav:has(.btn:active){border-color:var(--frame-hot,#1BA283)}
+
+/* ---------- con "riduci movimento": niente spostamenti, nemmeno quelli vecchi delle pagine ---------- */
+@media (prefers-reduced-motion:reduce){
+  :is(.btn,.nav-cta,.alt-chip,.site-foot .f-li,.link-more,.tour-exit):is(:hover,:active,:focus-visible){transform:none!important}
+  :is(.btn,.link-more) .arr{transform:none!important}
+}
+
+/* ---------- movimento (solo se non è richiesto di ridurlo) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  :is(.btn-outline,.btn-ghost)::before{transform:scaleY(.35);transform-origin:50% 100%}
+  /* lampo ogni tanto sui tasti principali, a riposo */
+  :is(.btn-primary,.btn-amber,.btn-dark,.btn-onDark)::before{animation:btn-sheen 6s cubic-bezier(.45,.05,.2,1) 1.2s infinite}
+  @media (hover:hover) and (pointer:fine){
+    :is(.btn,.nav-cta,.alt-chip,.site-foot .f-li,.tour-exit):hover{transform:translateY(-2px)}
+    :is(.btn-primary,.btn-amber,.btn-dark,.btn-onDark,.nav-cta):hover::before{animation:btn-sheen-hover .85s var(--btn-ease) 1 both}
+    :is(.btn-outline,.btn-ghost):hover::before{transform:none}
+    .btn:hover .arr,.link-more:hover .arr{transform:translateX(4px)}
+  }
+  :is(.btn,.nav-cta,.alt-chip,.site-foot .f-li,.link-more,.tour-exit):active{transform:translateY(0) scale(.965);transition-duration:.12s;box-shadow:none}
+  :is(.btn-outline,.btn-ghost):active::before{transform:none}
+  .lang-btn:active{transform:scale(.92)}
+  /* "Copiato": piccolo rimbalzo sul tasto Copia indirizzo */
+  .pg-contact .alt-chip.done{animation:chip-pop .5s var(--btn-ease) 1}
+  @keyframes chip-pop{0%{transform:scale(.92)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+}
