@@ -570,3 +570,6 @@ a,button,summary,[role=button],.lang-btn{touch-action:manipulation}
 @media(max-width:760px){body:not(:has(#tour)) .nav-inner{padding:0 10px 0 18px}}
 @media(max-width:360px){body:not(:has(#tour)) .nav-inner{padding:0 6px 0 14px}body:not(:has(#tour)) .nav-cta{padding:0 12px;font-size:13px}body:not(:has(#tour)) .nav-logo{font-size:18px;gap:6px}}
 @media(max-width:339px){body:not(:has(#tour)) .nav-inner{padding:0 4px 0 12px}body:not(:has(#tour)) .nav-cta{padding:0 10px;font-size:12px;margin-right:2px}body:not(:has(#tour)) .nav-logo{font-size:17px;gap:5px}}
+
+/* barra superiore larga quasi tutta la pagina (16/11) */
+@media(min-width:861px){body:not(:has(#tour)) .nav .container.nav-inner{max-width:min(calc(100% - 48px),1560px)}}
