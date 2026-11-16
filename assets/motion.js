@@ -25,3 +25,10 @@
     if(e.animationName==='btn-rip'&&e.target.classList)e.target.classList.remove('rip');
   },true);
 })();
+
+/* aria-pressed dei tasti lingua sempre allineato alla lingua attiva */
+(function(){
+  function sync(){document.querySelectorAll('.lang-btn[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',b.classList.contains('active')?'true':'false');});}
+  document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-lang]'))setTimeout(sync,0);});
+  if(document.readyState!=='loading')sync();else document.addEventListener('DOMContentLoaded',sync);
+})();

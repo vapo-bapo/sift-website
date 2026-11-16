@@ -64,7 +64,7 @@ body:has(#tour){
   background:#003D32!important;color:#F7FCFA}
 body:has(#tour) .nav{background:rgba(0,61,50,.92)!important;border-bottom-color:#1F6757!important}
 body:has(#tour) .nav-logo,body:has(#tour) .nav-logo .logo-mark{color:#F7FCFA!important}
-body:has(#tour) .nav-back,body:has(#tour) .lang-btn{color:#86D3BA!important}
+body:has(#tour) .nav-back{color:#86D3BA!important}
 body:has(#tour) .lang-btn.active{background:#F7FCFA!important;color:#003D32!important}
 body:has(#tour) .headline{color:#F7FCFA!important}
 body:has(#tour) .headline .accent{background:var(--grad-dark)!important;-webkit-background-clip:text!important;background-clip:text!important}
@@ -573,3 +573,8 @@ a,button,summary,[role=button],.lang-btn{touch-action:manipulation}
 
 /* barra superiore larga quasi tutta la pagina (16/11) */
 @media(min-width:861px){body:not(:has(#tour)) .nav .container.nav-inner{max-width:min(calc(100% - 48px),1560px)}}
+
+/* tasti lingua e menu come veri pulsanti (tastiera, 16/11) */
+button.lang-btn{border:0;font-family:inherit;line-height:inherit;-webkit-appearance:none;appearance:none}
+button.lang-btn:not(.active){background:transparent}
+button.nav-hamburger{border:0;background:transparent;-webkit-appearance:none;appearance:none}
