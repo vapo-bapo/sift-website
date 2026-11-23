@@ -580,3 +580,4 @@ button.lang-btn:not(.active){background:transparent}
 button.nav-hamburger{border:0;background:transparent;-webkit-appearance:none;appearance:none}
 /* Pulsante download nella barra: su schermi stretti si nasconde "now/ora" */
 @media(max-width:520px){.nav-cta .dl-x{display:none}}
+.site-foot .f-col .dl-x{padding:0;color:inherit}
