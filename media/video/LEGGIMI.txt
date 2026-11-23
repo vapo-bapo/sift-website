@@ -1,0 +1,7 @@
+Tutti i video e le copertine vanno qui:
+- sift-manifatturiero.mp4 / .jpg / .vtt
+- sift-startup.mp4 / .jpg / .vtt
+- sift-servizi.mp4 / .jpg / .vtt
+- argus.mp4 / .jpg / .vtt
+- lynx.mp4 / .jpg / .vtt
+Poi compila "src" (e "sottotitoli") in /data/video.json.
