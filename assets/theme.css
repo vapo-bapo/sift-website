@@ -578,3 +578,5 @@ a,button,summary,[role=button],.lang-btn{touch-action:manipulation}
 button.lang-btn{border:0;font-family:inherit;line-height:inherit;-webkit-appearance:none;appearance:none}
 button.lang-btn:not(.active){background:transparent}
 button.nav-hamburger{border:0;background:transparent;-webkit-appearance:none;appearance:none}
+/* Pulsante download nella barra: su schermi stretti si nasconde "now/ora" */
+@media(max-width:520px){.nav-cta .dl-x{display:none}}
