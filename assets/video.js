@@ -8,6 +8,7 @@
   function player(v){
     var box=el('div',{'class':'v-player'});
     if(!v||!v.src){box.appendChild(el('div',{'class':'v-soon',role:'img','aria-label':'Video in arrivo'},'In arrivo'));return box;}
+    if(v.formato==='verticale')box.className+=' v-player--vert';
     var vid=el('video',{controls:'',preload:'none',playsinline:'',poster:v.poster||'', 'aria-label':v.titolo});
     vid.appendChild(el('source',{src:v.src,type:'video/mp4'}));
     if(v.sottotitoli)vid.appendChild(el('track',{kind:'subtitles',src:v.sottotitoli,srclang:'it',label:'Italiano','default':''}));
@@ -21,6 +22,12 @@
       root.querySelector('.v-slot').appendChild(player(v));
       if(v&&v.src&&v.descrizione)root.querySelector('.v-slot').appendChild(el('p',{'class':'v-desc'},v.descrizione));
       if(!prodPronti){var b=root.querySelector('.v-block');if(b)b.hidden=true;}
+    }
+    if(page==='presentazione'){
+      var p=list.filter(function(x){return x.tipo==='presentazione';})[0];
+      if(p){root.querySelector('h1').textContent=p.titolo;}
+      root.querySelector('.v-slot').appendChild(player(p));
+      if(p&&p.src&&p.descrizione)root.querySelector('.v-slot').appendChild(el('p',{'class':'v-desc'},p.descrizione));
     }
     if(page==='prodotti'){
       var slot=root.querySelector('.v-slot');
